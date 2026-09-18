@@ -4335,7 +4335,7 @@ transition-duration: 0.01ms !important;
 .visitor-counter {
     margin-top: 12px;
     font-size: 14px;
-    color: #d6c58f;
+    color: #202020; 
     text-align: center;
 }
 
