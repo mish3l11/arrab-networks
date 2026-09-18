@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>حسابي | عرّاب الشبكات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Tajawal", sans-serif;
+            background: #cbb77a;
+            color: #111;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background: #bda766;
+            padding: 18px 6%;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .brand-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            color: #d6c58f;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .network-logo-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            opacity: 0.65;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover {
+            color: #075985;
+        }
+
+        .nav-links .active {
+            color: #075985;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .profile-page {
+            width: min(1050px, 92%);
+            margin: 45px auto 80px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .profile-header {
+            background: #111;
+            color: white;
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #d6c58f;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+        }
+
+        .profile-header h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+        }
+
+        .profile-header p {
+            margin: 0;
+            color: #c8c8c8;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: #d6c58f;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            margin-top: 5px;
+            font-size: 13px;
+            opacity: 0.7;
+            font-weight: 700;
+        }
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .profile-card {
+            background: #d6c58f;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .profile-card h2 {
+            margin: 0 0 20px;
+            font-size: 24px;
+        }
+
+        .progress-row {
+            margin-bottom: 22px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: #075985;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+
+        /* =========================
+           LEVEL
+        ========================= */
+
+        .level-card {
+            background: #111;
+            color: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .level-title {
+            color: #d6c58f;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .level-card h2 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        .level-card p {
+            color: #bbb;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           ACTIONS
+        ========================= */
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .profile-actions a,
+        .profile-actions button {
+            border: none;
+            text-decoration: none;
+            background: #111;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-family: "Tajawal", sans-serif;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .profile-actions a.secondary {
+            background: rgba(0,0,0,0.12);
+            color: #111;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer strong {
+            font-size: 18px;
+        }
+
+        footer p {
+            margin: 8px 0 0;
+            color: #aaa;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .navbar-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .profile-page {
+                width: 94%;
+                margin-top: 30px;
+            }
+
+            .profile-header {
+                padding: 28px 22px;
+            }
+
+            .profile-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 32px;
+            }
+
+            .profile-header h1 {
+                font-size: 25px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+.name-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.name-modal.hidden {
+    display: none;
+}
+
+.name-modal-box {
+    width: min(420px, 100%);
+    background: #d6c58f;
+    border: 1px solid #111111;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.name-modal-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.name-modal-box h2 {
+    color: #111111;
+    margin-bottom: 10px;
+}
+
+.name-modal-box p {
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+#nameInput {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    background: #f5edcf;
+    color: #111111;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+#nameInput:focus {
+    border-color: #075985;
+}
+
+#saveNameBtn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #111111;
+    color: #d6c58f;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#saveNameBtn:hover {
+    background: #075985;
+}
+
+#nameError {
+    display: block;
+    color: #9b2c2c;
+    margin-top: 10px;
+    min-height: 18px;
+}
+
+.reset-progress-btn {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid #8b3a3a;
+    border-radius: 12px;
+    background: transparent;
+    color: #8b3a3a;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.reset-progress-btn:hover {
+    background: #8b3a3a;
+    color: #ffffff;
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="navbar-container">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    role="img"
+                    aria-label="شعار عرّاب الشبكات"
+                >
+
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                    >
+
+                        <path d="M50 64 L22 82" />
+                        <path d="M50 64 L78 82" />
+                        <path d="M50 64 L50 91" />
+
+                        <path d="M22 82 L12 72" />
+                        <path d="M78 82 L88 72" />
+
+                        <path d="M50 91 L38 96" />
+                        <path d="M50 91 L62 96" />
+
+                    </g>
+
+                    <g fill="currentColor">
+
+                        <circle cx="22" cy="82" r="3" />
+                        <circle cx="78" cy="82" r="3" />
+                        <circle cx="50" cy="91" r="3" />
+
+                        <circle cx="12" cy="72" r="2.5" />
+                        <circle cx="88" cy="72" r="2.5" />
+
+                        <circle cx="38" cy="96" r="2.5" />
+                        <circle cx="62" cy="96" r="2.5" />
+
+                    </g>
+
+                    <text
+                        x="39"
+                        y="45"
+                        text-anchor="middle"
+                        font-family="Tajawal, Arial, sans-serif"
+                        font-size="34"
+                        font-weight="800"
+                        fill="currentColor"
+                    >ع</text>
+
+                    <text
+                        x="64"
+                        y="38"
+                        text-anchor="middle"
+                        font-family="Arial, sans-serif"
+                        font-size="22"
+                        font-weight="800"
+                        fill="currentColor"
+                    >N</text>
+
+                    <path
+                        d="M47 31 H57"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                    <path
+                        d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
+                        fill="currentColor"
+                        opacity="0.95"
+                    />
+
+                </svg>
+
+            </span>
+
+
+            <span class="brand-text">
+
+                <span class="brand-name">
+                    عرّاب الشبكات
+                </span>
+
+                <span class="brand-subtitle">
+                    NETWORKS
+                </span>
+
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                🏠 الرئيسية
+            </a>
+
+            <a href="lessons.html">
+                📚 الدروس
+            </a>
+
+            <a href="quiz.html">
+                🧠 الاختبارات
+            </a>
+
+            <a href="config.html">
+                💻 أوامر الشبكات
+            </a>
+
+            <a href="profile.html" class="active">
+                👤 حسابي
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<main class="profile-page">
+
+
+    <section class="profile-header">
+
+        <div class="profile-avatar">
+            👤
+        </div>
+
+        <div>
+
+            <h1 id="userName">
+                مرحبًا بك 👋
+            </h1>
+
+            <p>
+                هذا مكانك لمتابعة رحلتك في تعلم الشبكات.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <div
+                class="stat-value"
+                id="lessonsCompleted"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                دروس مكتملة
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🧠
+            </div>
+
+            <div
+                class="stat-value"
+                id="bestScore"
+            >
+                0%
+            </div>
+
+            <div class="stat-label">
+                أفضل نتيجة
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🧪
+            </div>
+
+            <div
+                class="stat-value"
+                id="labProgress"
+            >
+                0%
+            </div>
+
+            <div class="stat-label">
+                تقدم المختبر
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎖️
+            </div>
+
+            <div
+                class="stat-value"
+                id="userLevel"
+            >
+                مبتدئ
+            </div>
+
+            <div class="stat-label">
+                المستوى
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section class="profile-card">
+
+        <h2>
+            📊 تقدمك في التعلم
+        </h2>
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    الدروس
+                </span>
+
+                <span id="lessonsProgressText">
+                    0 / 12
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="lessonsProgress"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    الاختبارات
+                </span>
+
+                <span id="quizProgressText">
+                    لم تبدأ
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="quizProgress"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-row">
+
+            <div class="progress-info">
+
+                <span>
+                    المختبر
+                </span>
+
+                <span>
+                    قريبًا
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="labProgressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEVEL -->
+
+    <section class="level-card">
+
+        <div class="level-title">
+            YOUR NETWORK LEVEL
+        </div>
+
+        <h2 id="levelTitle">
+            🌱 مبتدئ في الشبكات
+        </h2>
+
+        <p id="levelDescription">
+            ابدأ بالدروس الأساسية وابنِ فهمك للشبكات خطوة بخطوة.
+        </p>
+
+    </section>
+
+
+    <!-- ACTIONS -->
+
+    <section class="profile-actions">
+
+        <a href="lessons.html">
+            📚 متابعة التعلم
+        </a>
+
+        <a
+            href="quiz.html"
+            class="secondary"
+        >
+            🧠 اختبار معلوماتك
+        </a>
+
+        <a
+            href="index.html"
+            class="secondary"
+        >
+            🏠 الرئيسية
+        </a>
+
+        <button
+    type="button"
+    id="resetProgressBtn"
+    class="reset-progress-btn"
+>
+    🗑️ إعادة تعيين التقدم
+</button>
+
+    </section>
+
+<div id="nameModal" class="name-modal">
+    <div class="name-modal-box">
+
+        <div class="name-modal-icon">👋</div>
+
+        <h2>أهلاً بك في عرّاب الشبكات</h2>
+
+        <p>
+            وش الاسم اللي تبي يظهر في حسابك؟
+        </p>
+
+        <input
+            type="text"
+            id="nameInput"
+            placeholder="اكتب اسمك"
+            maxlength="30"
+            autocomplete="off"
+        >
+
+        <button type="button" id="saveNameBtn">
+            حفظ الاسم
+        </button>
+
+        <small id="nameError"></small>
+
+    </div>
+</div>
+
+</main>
+
+
+<footer>
+
+    <strong>
+        عرّاب الشبكات
+    </strong>
+
+    <p>
+        تعلم، طبّق، واختبر معلوماتك في الشبكات
+    </p>
+
+</footer>
+
+<script>
+    /* =========================
+       USER NAME
+    ========================= */
+
+    const nameModal = document.getElementById("nameModal");
+    const nameInput = document.getElementById("nameInput");
+    const saveNameBtn = document.getElementById("saveNameBtn");
+    const nameError = document.getElementById("nameError");
+    const userName = document.getElementById("userName");
+
+    const savedName = localStorage.getItem("networkUserName");
+
+    if (savedName) {
+        nameModal.classList.add("hidden");
+        userName.textContent = "مرحبًا، " + savedName + " 👋";
+    }
+
+
+    /* =========================
+       SAVE USER NAME
+    ========================= */
+
+    saveNameBtn.addEventListener("click", saveName);
+
+    nameInput.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+            saveName();
+        }
+
+    });
+
+
+    function saveName() {
+
+        const name = nameInput.value.trim();
+
+        if (!name) {
+
+            nameError.textContent = "اكتب اسمك أولًا";
+
+            nameInput.focus();
+
+            return;
+        }
+
+        localStorage.setItem(
+            "networkUserName",
+            name
+        );
+
+        userName.textContent =
+            "مرحبًا، " + name + " 👋";
+
+        nameModal.classList.add("hidden");
+    }
+
+
+    /* =========================
+       LESSON PROGRESS
+    ========================= */
+
+    let completedLessons = [];
+
+    try {
+
+        completedLessons =
+            JSON.parse(
+                localStorage.getItem("completedLessons") || "[]"
+            );
+
+    } catch (error) {
+
+        completedLessons = [];
+
+    }
+
+
+    const totalLessons = 12;
+
+    const completedCount =
+        Array.isArray(completedLessons)
+            ? completedLessons.length
+            : 0;
+
+
+    const lessonPercentage =
+        Math.round(
+            (completedCount / totalLessons) * 100
+        );
+
+
+    /* =========================
+       UPDATE LESSON STATS
+    ========================= */
+
+    document.getElementById(
+        "lessonsCompleted"
+    ).textContent = completedCount;
+
+
+    document.getElementById(
+        "lessonsProgressText"
+    ).textContent =
+        completedCount + " / " + totalLessons;
+
+
+    document.getElementById(
+        "lessonsProgress"
+    ).style.width =
+        lessonPercentage + "%";
+
+
+    /* =========================
+       QUIZ
+    ========================= */
+
+    const bestScore =
+        Number(
+            localStorage.getItem(
+                "networkQuizBestScore"
+            ) || 0
+        );
+
+
+    document.getElementById(
+        "bestScore"
+    ).textContent =
+        bestScore + "%";
+
+
+    document.getElementById(
+        "quizProgressText"
+    ).textContent =
+        bestScore > 0
+            ? bestScore + "%"
+            : "لم تبدأ";
+
+
+    document.getElementById(
+        "quizProgress"
+    ).style.width =
+        Math.min(bestScore, 100) + "%";
+
+
+    /* =========================
+       LAB
+    ========================= */
+
+    const labProgress =
+        Number(
+            localStorage.getItem(
+                "networkLabProgress"
+            ) || 0
+        );
+
+
+    document.getElementById(
+        "labProgress"
+    ).textContent =
+        labProgress + "%";
+
+
+    document.getElementById(
+        "labProgressBar"
+    ).style.width =
+        Math.min(labProgress, 100) + "%";
+
+
+    /* =========================
+       OVERALL LEVEL
+    ========================= */
+
+    const overallProgress =
+        Math.round(
+            (
+                lessonPercentage +
+                bestScore +
+                labProgress
+            ) / 3
+        );
+
+
+    let levelTitle;
+    let levelName;
+    let levelDescription;
+
+
+    if (overallProgress >= 90) {
+
+        levelTitle =
+            "🔥 Network Specialist";
+
+        levelName =
+            "متخصص";
+
+        levelDescription =
+            "مستوى متقدم جدًا في رحلة تعلم الشبكات.";
+
+    } else if (overallProgress >= 70) {
+
+        levelTitle =
+            "⚡ Network Practitioner";
+
+        levelName =
+            "متقدم";
+
+        levelDescription =
+            "لديك أساس قوي وتقدم ممتاز في تعلم الشبكات.";
+
+    } else if (overallProgress >= 40) {
+
+        levelTitle =
+            "🌿 Network Explorer";
+
+        levelName =
+            "متوسط";
+
+        levelDescription =
+            "أنت تتقدم بشكل جيد، استمر في التعلم والتطبيق.";
+
+    } else {
+
+        levelTitle =
+            "🌱 مبتدئ في الشبكات";
+
+        levelName =
+            "مبتدئ";
+
+        levelDescription =
+            "ابدأ بالدروس الأساسية وابنِ فهمك للشبكات خطوة بخطوة.";
+    }
+
+
+    document.getElementById(
+        "userLevel"
+    ).textContent = levelName;
+
+
+    document.getElementById(
+        "levelTitle"
+    ).textContent = levelTitle;
+
+
+    document.getElementById(
+        "levelDescription"
+    ).textContent = levelDescription;
+
+const resetProgressBtn =
+    document.getElementById("resetProgressBtn");
+
+resetProgressBtn.addEventListener("click", function () {
+
+    const confirmReset = confirm(
+        "هل أنت متأكد من إعادة تعيين تقدمك؟\n\nسيتم حذف تقدم الدروس ونتيجة الاختبار وتقدم المختبر."
+    );
+
+    if (!confirmReset) {
+        return;
+    }
+
+    localStorage.removeItem("completedLessons");
+    localStorage.removeItem("networkQuizBestScore");
+    localStorage.removeItem("networkLabProgress");
+
+    location.reload();
+});
+
+
+</script>
+
+</body>
+
+</html>

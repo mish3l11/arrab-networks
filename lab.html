@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Network Lab | عرّاب الشبكات</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+
+<style>
+
+/* =========================
+   NETWORK LAB PAGE
+========================= */
+
+.lab-page{
+
+    min-height:calc(100vh - 90px);
+
+    padding:35px 18px 70px;
+
+}
+
+
+/* =========================
+   TOP
+========================= */
+
+.lab-top{
+
+    max-width:900px;
+
+    margin:0 auto 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+
+.lab-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+
+.lab-title-icon{
+
+    width:48px;
+
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(7,89,133,0.12);
+
+    border:1px solid rgba(7,89,133,0.16);
+
+    border-radius:14px;
+
+    font-size:23px;
+
+}
+
+
+.lab-title h1{
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    color:#111;
+
+}
+
+
+.lab-title p{
+
+    margin:3px 0 0;
+
+    font-size:10px;
+
+    color:#666;
+
+    font-family:Arial,sans-serif;
+
+    letter-spacing:1px;
+
+}
+
+
+.back-test-center{
+
+    padding:10px 15px;
+
+    border-radius:11px;
+
+    text-decoration:none;
+
+    color:#111;
+
+    background:rgba(255,255,255,0.18);
+
+    border:1px solid rgba(17,17,17,0.10);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    transition:0.2s ease;
+
+}
+
+
+.back-test-center:hover{
+
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,0.30);
+
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.lab-container{
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+
+.lab-question-card{
+
+    background:#111820;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 70px rgba(0,0,0,0.25);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.lab-progress{
+
+    padding:22px 28px;
+
+    background:#151f28;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+
+.lab-progress > div{
+
+    padding:14px 16px;
+
+    border-radius:13px;
+
+    background:rgba(255,255,255,0.035);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+}
+
+
+.lab-progress span{
+
+    display:block;
+
+    color:#7f8d99;
+
+    font-size:10px;
+
+    margin-bottom:5px;
+
+}
+
+
+.lab-progress strong{
+
+    color:white;
+
+    font-size:17px;
+
+}
+
+
+/* =========================
+   QUESTION TOP
+========================= */
+
+.lab-question-top{
+
+    padding:30px 35px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.lab-vendor{
+
+    padding:7px 11px;
+
+    border-radius:8px;
+
+    background:rgba(56,189,248,0.09);
+
+    border:1px solid rgba(56,189,248,0.14);
+
+    color:#66cdf7;
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+
+.lab-question-number{
+
+    color:#7d8a96;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================
+   QUESTION
+========================= */
+
+#labQuestion{
+
+    margin:25px 35px;
+
+    color:#fff;
+
+    font-size:clamp(19px,3vw,27px);
+
+    line-height:1.8;
+
+    font-weight:800;
+
+}
+
+
+/* =========================
+   TERMINAL
+========================= */
+
+.lab-terminal{
+
+    margin:0 35px 20px;
+
+    background:#0b1015;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+
+.terminal-bar{
+
+    height:38px;
+
+    padding:0 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    background:#151c23;
+
+    border-bottom:1px solid rgba(255,255,255,0.06);
+
+}
+
+
+.terminal-bar span{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#59646e;
+
+}
+
+
+.terminal-bar small{
+
+    margin-right:auto;
+
+    color:#687580;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+    font-family:Arial,sans-serif;
+
+}
+
+
+.terminal-content{
+
+    min-height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 18px;
+
+}
+
+
+.terminal-prompt{
+
+    color:#45c2f2;
+
+    font-family:monospace;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+}
+
+
+#labAnswer{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#e8f3f8;
+
+    font-family:monospace;
+
+    font-size:14px;
+
+    direction:ltr;
+
+    text-align:left;
+
+}
+
+
+#labAnswer::placeholder{
+
+    color:#5e6b75;
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.lab-check-button{
+
+    width:calc(100% - 70px);
+
+    margin:0 35px 18px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:13px;
+
+    background:#f1f5f7;
+
+    color:#101820;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:0.2s ease;
+
+}
+
+
+.lab-check-button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.lab-result{
+
+    min-height:25px;
+
+    margin:0 35px 15px;
+
+    padding:12px;
+
+    border-radius:11px;
+
+    text-align:center;
+
+    color:#aeb9c3;
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+.lab-next-button{
+
+    width:calc(100% - 70px);
+
+    margin:0 35px 35px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:13px;
+
+    background:#159bd1;
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:0.2s ease;
+
+}
+
+
+.lab-next-button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(21,155,209,0.25);
+
+}
+
+
+/* =========================
+   TIP
+========================= */
+
+.lab-tip{
+
+    max-width:900px;
+
+    margin:18px auto 0;
+
+    padding:15px 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#555;
+
+    font-size:11px;
+
+    background:rgba(255,255,255,0.12);
+
+    border:1px solid rgba(17,17,17,0.07);
+
+    border-radius:13px;
+
+}
+
+
+.lab-tip span{
+
+    font-size:18px;
+
+}
+
+
+/* =========================
+   LAB LOGO
+========================= */
+
+.lab-brand-icon{
+
+    width:45px;
+
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#111111;
+
+    color:#d6c58f;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+
+}
+
+
+.lab-brand-icon .network-logo-svg{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+}
+
+
+/* =========================
+   FOOTER LOGO
+========================= */
+
+.lab-footer-logo{
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#d6c58f;
+
+    color:#111111;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    flex-shrink:0;
+
+}
+
+
+.lab-footer-logo .network-logo-svg{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .lab-page{
+
+        padding:25px 12px 45px;
+
+    }
+
+
+    .lab-top{
+
+        align-items:flex-start;
+
+    }
+
+
+    .lab-title-icon{
+
+        width:43px;
+
+        height:43px;
+
+        font-size:20px;
+
+    }
+
+
+    .lab-title h1{
+
+        font-size:17px;
+
+    }
+
+
+    .back-test-center{
+
+        font-size:9px;
+
+        padding:8px 10px;
+
+    }
+
+
+    .lab-question-card{
+
+        border-radius:20px;
+
+    }
+
+
+    .lab-progress{
+
+        padding:18px;
+
+        gap:9px;
+
+    }
+
+
+    .lab-progress > div{
+
+        padding:12px;
+
+    }
+
+
+    .lab-progress strong{
+
+        font-size:15px;
+
+    }
+
+
+    .lab-question-top{
+
+        padding:25px 18px 0;
+
+    }
+
+
+    #labQuestion{
+
+        margin:22px 18px;
+
+        font-size:18px;
+
+    }
+
+
+    .lab-terminal{
+
+        margin:0 18px 18px;
+
+    }
+
+
+    #labAnswer{
+
+        font-size:12px;
+
+    }
+
+
+    .lab-check-button{
+
+        width:calc(100% - 36px);
+
+        margin:0 18px 15px;
+
+    }
+
+
+    .lab-result{
+
+        margin:0 18px 12px;
+
+    }
+
+
+    .lab-next-button{
+
+        width:calc(100% - 36px);
+
+        margin:0 18px 22px;
+
+    }
+
+
+    .lab-tip{
+
+        font-size:10px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="brand">
+
+        <div class="lab-brand-icon">
+
+            <svg
+                class="network-logo-svg"
+                viewBox="0 0 100 100"
+                role="img"
+                aria-label="شعار عرّاب الشبكات"
+            >
+
+                <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    opacity="0.75"
+                >
+
+                    <path d="M50 64 L22 82" />
+
+                    <path d="M50 64 L78 82" />
+
+                    <path d="M50 64 L50 91" />
+
+                    <path d="M22 82 L12 72" />
+
+                    <path d="M78 82 L88 72" />
+
+                    <path d="M50 91 L38 96" />
+
+                    <path d="M50 91 L62 96" />
+
+                </g>
+
+
+                <g fill="currentColor">
+
+                    <circle cx="22" cy="82" r="3" />
+
+                    <circle cx="78" cy="82" r="3" />
+
+                    <circle cx="50" cy="91" r="3" />
+
+                    <circle cx="12" cy="72" r="2.5" />
+
+                    <circle cx="88" cy="72" r="2.5" />
+
+                    <circle cx="38" cy="96" r="2.5" />
+
+                    <circle cx="62" cy="96" r="2.5" />
+
+                </g>
+
+
+                <text
+                    x="39"
+                    y="45"
+                    text-anchor="middle"
+                    font-family="Tajawal, Arial, sans-serif"
+                    font-size="34"
+                    font-weight="800"
+                    fill="currentColor"
+                >ع</text>
+
+
+                <text
+                    x="64"
+                    y="38"
+                    text-anchor="middle"
+                    font-family="Arial, sans-serif"
+                    font-size="22"
+                    font-weight="800"
+                    fill="currentColor"
+                >N</text>
+
+
+                <path
+                    d="M47 31 H57"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+
+
+                <path
+                    d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
+                    fill="currentColor"
+                    opacity="0.95"
+                />
+
+            </svg>
+
+        </div>
+
+
+        <div>
+
+            <div class="brand-name">
+                عرّاب الشبكات
+            </div>
+
+            <div class="brand-subtitle">
+                NETWORKS
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html"
+           class="nav-button">
+
+            <span>⌂</span>
+            الرئيسية
+
+        </a>
+
+
+        <a href="lessons.html"
+           class="nav-button">
+
+            <span>▣</span>
+            الدروس
+
+        </a>
+
+
+        <a href="lab.html"
+           class="nav-button active">
+
+            <span>🧪</span>
+            المختبر
+
+        </a>
+
+        <a href="quiz.html" class="active">
+            🧠 اختبر معلوماتك
+        </a>
+
+        <a href="config.html">
+            أوامر الشبكات
+        </a>
+        
+        <a href="profile.html" class="nav-button profile-link">
+        👤 حسابي
+    </a>
+    
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="lab-page">
+
+
+    <div class="lab-top">
+
+        <div class="lab-title">
+
+            <div class="lab-title-icon">
+                🧪
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Network Lab
+                </h1>
+
+                <p>
+                    PRACTICAL NETWORK LAB
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="quiz.html"
+           class="back-test-center">
+
+            ← مركز الاختبارات
+
+        </a>
+
+    </div>
+
+
+
+    <section class="lab-container">
+
+
+        <div class="lab-question-card">
+
+
+            <!-- Progress -->
+
+            <div class="lab-progress">
+
+                <div>
+
+                    <span>
+                        التقدم
+                    </span>
+
+                    <strong id="labProgress">
+                        1 / 30
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        النقاط
+                    </span>
+
+                    <strong id="labScore">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Question -->
+
+            <div class="lab-question-top">
+
+                <span
+                    id="labVendor"
+                    class="lab-vendor"
+                >
+
+                    🔵 Cisco IOS
+
+                </span>
+
+
+                <span
+                    id="labNumber"
+                    class="lab-question-number"
+                >
+
+                    السؤال 1
+
+                </span>
+
+            </div>
+
+
+            <h2 id="labQuestion">
+
+                جاري تحميل السؤال...
+
+            </h2>
+
+
+
+            <!-- Terminal -->
+
+            <div class="lab-terminal">
+
+
+                <div class="terminal-bar">
+
+                    <span></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                    <small>
+                        COMMAND LINE
+                    </small>
+
+                </div>
+
+
+                <div class="terminal-content">
+
+                    <span class="terminal-prompt">
+                        &gt;
+                    </span>
+
+
+                    <input
+                        id="labAnswer"
+                        type="text"
+                        placeholder="اكتب الأمر هنا..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <button
+                id="checkLabButton"
+                class="lab-check-button"
+                type="button"
+            >
+
+                ✓ تحقق من الإجابة
+
+            </button>
+
+
+            <div
+                id="labResult"
+                class="lab-result"
+            >
+            </div>
+
+
+            <button
+                id="nextLabButton"
+                class="lab-next-button"
+                type="button"
+                style="display:none;"
+            >
+
+                السؤال التالي →
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <div class="lab-tip">
+
+        <span>
+            💡
+        </span>
+
+
+        <div>
+
+            اكتب الأمر كما ستكتبه في الجهاز،
+            ثم اضغط تحقق من الإجابة.
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+    <div class="brand">
+
+
+        <div class="lab-footer-logo">
+
+
+            <svg
+                class="network-logo-svg"
+                viewBox="0 0 100 100"
+                role="img"
+                aria-label="شعار عرّاب الشبكات"
+            >
+
+                <g
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    opacity="0.75"
+                >
+
+                    <path d="M50 64 L22 82" />
+
+                    <path d="M50 64 L78 82" />
+
+                    <path d="M50 64 L50 91" />
+
+                    <path d="M22 82 L12 72" />
+
+                    <path d="M78 82 L88 72" />
+
+                    <path d="M50 91 L38 96" />
+
+                    <path d="M50 91 L62 96" />
+
+                </g>
+
+
+                <g fill="currentColor">
+
+                    <circle cx="22" cy="82" r="3" />
+
+                    <circle cx="78" cy="82" r="3" />
+
+                    <circle cx="50" cy="91" r="3" />
+
+                    <circle cx="12" cy="72" r="2.5" />
+
+                    <circle cx="88" cy="72" r="2.5" />
+
+                    <circle cx="38" cy="96" r="2.5" />
+
+                    <circle cx="62" cy="96" r="2.5" />
+
+                </g>
+
+
+                <text
+                    x="39"
+                    y="45"
+                    text-anchor="middle"
+                    font-family="Tajawal, Arial, sans-serif"
+                    font-size="34"
+                    font-weight="800"
+                    fill="currentColor"
+                >ع</text>
+
+
+                <text
+                    x="64"
+                    y="38"
+                    text-anchor="middle"
+                    font-family="Arial, sans-serif"
+                    font-size="22"
+                    font-weight="800"
+                    fill="currentColor"
+                >N</text>
+
+
+                <path
+                    d="M47 31 H57"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+
+
+                <path
+                    d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
+                    fill="currentColor"
+                    opacity="0.95"
+                />
+
+            </svg>
+
+
+        </div>
+
+
+        <div>
+
+            <div class="brand-name">
+                عرّاب الشبكات
+            </div>
+
+
+            <div class="brand-subtitle">
+                NETWORKS
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p>
+        تعلم الشبكات بطريقة سهلة ومبسطة
+    </p>
+
+
+</footer>
+
+
+
+<script src="lab.js"></script>
+<script src="user.js"></script>
+
+</body>
+
+</html>

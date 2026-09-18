@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الاختبار النظري | عرّاب الشبكات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* =========================
+           Quiz Test Page
+        ========================= */
+
+        .theory-page {
+
+            min-height: calc(100vh - 90px);
+
+            padding: 35px 18px 70px;
+
+        }
+
+
+        /* Top */
+
+        .theory-top {
+
+            max-width: 900px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+        }
+
+
+        .theory-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+        }
+
+
+        .theory-title-icon {
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(7,89,133,0.12);
+
+            border: 1px solid rgba(7,89,133,0.16);
+
+            border-radius: 14px;
+
+            font-size: 22px;
+
+        }
+
+
+        .theory-title h1 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            color: #111;
+
+        }
+
+
+        .theory-title p {
+
+            margin: 3px 0 0;
+
+            font-size: 10px;
+
+            color: #666;
+
+            font-family: Arial, sans-serif;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .back-test-center {
+
+            padding: 10px 15px;
+
+            border-radius: 11px;
+
+            text-decoration: none;
+
+            color: #111;
+
+            background: rgba(255,255,255,0.18);
+
+            border: 1px solid rgba(17,17,17,0.10);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .back-test-center:hover {
+
+            transform: translateY(-2px);
+
+            background: rgba(255,255,255,0.30);
+
+        }
+
+
+        /* Main Card */
+
+        .theory-card {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 0;
+
+            background: #111820;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+
+                0 25px 70px rgba(0,0,0,0.25);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+        }
+
+
+        /* Progress */
+
+        .theory-progress-area {
+
+            padding: 22px 28px 18px;
+
+            background: #151f28;
+
+        }
+
+
+        .theory-progress-info {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 11px;
+
+        }
+
+
+        .theory-progress-info span {
+
+            color: #8b99a5;
+
+            font-size: 11px;
+
+        }
+
+
+        .theory-progress-info strong {
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+        }
+
+
+        .theory-progress {
+
+            height: 6px;
+
+            background: rgba(255,255,255,0.07);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .theory-progress-bar {
+
+            width: 3.33%;
+
+            height: 100%;
+
+            background: #159bd1;
+
+            border-radius: 20px;
+
+        }
+
+
+        /* Question */
+
+        .theory-question {
+
+            padding: 38px 35px 25px;
+
+        }
+
+
+        .question-meta {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .question-badge {
+
+            padding: 7px 11px;
+
+            border-radius: 8px;
+
+            background: rgba(56,189,248,0.09);
+
+            border: 1px solid rgba(56,189,248,0.14);
+
+            color: #66cdf7;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+        }
+
+
+        #questionNumber {
+
+            color: #7d8a96;
+
+            font-size: 10px;
+
+        }
+
+
+        #question {
+
+            margin: 0;
+
+            color: #ffffff;
+
+            font-size: clamp(19px, 3vw, 27px);
+
+            line-height: 1.8;
+
+            font-weight: 800;
+
+        }
+
+
+        /* Answers */
+
+        .answers {
+
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 12px;
+
+            padding: 0 35px 25px;
+
+        }
+
+
+        .answers button {
+
+            width: 100%;
+
+            min-height: 62px;
+
+            padding: 15px 18px;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            background: #1b2731;
+
+            color: #e6edf2;
+
+            text-align: right;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+
+                transform 0.2s ease,
+
+                background 0.2s ease,
+
+                border-color 0.2s ease;
+
+        }
+
+
+        .answers button:hover:not(:disabled) {
+
+            transform: translateX(-4px);
+
+            background: #22323e;
+
+            border-color: rgba(56,189,248,0.30);
+
+        }
+
+
+        .answers button:disabled {
+
+            cursor: default;
+
+        }
+
+
+        .answers button.correct {
+
+            background: rgba(46,160,92,0.18);
+
+            border-color: rgba(74,190,115,0.45);
+
+            color: #8ee5ad;
+
+        }
+
+
+        .answers button.wrong {
+
+            background: rgba(190,70,70,0.18);
+
+            border-color: rgba(220,100,100,0.45);
+
+            color: #f0a3a3;
+
+        }
+
+
+        /* Result */
+
+        .quiz-result {
+
+            min-height: 25px;
+
+            margin: 0 35px 10px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            text-align: center;
+
+            color: #aeb9c3;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* Next */
+
+        .next-question {
+
+            width: calc(100% - 70px);
+
+            margin: 0 35px 35px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #f1f5f7;
+
+            color: #101820;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .next-question:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+
+                0 10px 25px rgba(0,0,0,0.25);
+
+        }
+
+
+        /* Bottom info */
+
+        .theory-tip {
+
+            max-width: 900px;
+
+            margin: 18px auto 0;
+
+            padding: 15px 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #555;
+
+            font-size: 11px;
+
+            background: rgba(255,255,255,0.12);
+
+            border: 1px solid rgba(17,17,17,0.07);
+
+            border-radius: 13px;
+
+        }
+
+
+        .theory-tip span {
+
+            font-size: 18px;
+
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 650px) {
+
+            .theory-page {
+
+                padding: 25px 12px 45px;
+
+            }
+
+
+            .theory-top {
+
+                align-items: flex-start;
+
+            }
+
+
+            .theory-title-icon {
+
+                width: 43px;
+                height: 43px;
+
+                font-size: 19px;
+
+            }
+
+
+            .theory-title h1 {
+
+                font-size: 17px;
+
+            }
+
+
+            .back-test-center {
+
+                font-size: 9px;
+
+                padding: 8px 10px;
+
+            }
+
+
+            .theory-card {
+
+                border-radius: 20px;
+
+            }
+
+
+            .theory-progress-area {
+
+                padding: 18px;
+
+            }
+
+
+            .theory-question {
+
+                padding: 28px 18px 20px;
+
+            }
+
+
+            #question {
+
+                font-size: 18px;
+
+            }
+
+
+            .answers {
+
+                padding: 0 18px 20px;
+
+                gap: 9px;
+
+            }
+
+
+            .answers button {
+
+                min-height: 58px;
+
+                font-size: 12px;
+
+                padding: 13px;
+
+            }
+
+
+            .quiz-result {
+
+                margin: 0 18px 10px;
+
+            }
+
+
+            .next-question {
+
+                width: calc(100% - 36px);
+
+                margin: 0 18px 22px;
+
+            }
+
+
+            .theory-tip {
+
+                font-size: 10px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🌐
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                عرّاب الشبكات
+            </div>
+
+            <div class="brand-subtitle">
+                NETWORKS
+            </div>
+
+        
+
+    </div>
+
+   <a href="index.html" class="nav-button">
+           <span>⌂</span>
+            الرئيسية
+        </a>
+
+        <a href="lessons.html" class="nav-button active">
+            <span>▣</span>
+            الدروس
+        </a>
+
+        <a href="index.html#network-lab" class="nav-button">
+            <span>🧪</span>
+            المختبر
+        </a>
+
+<a href="quiz.html" class="nav-button">
+        🧠 اختبر معلوماتك
+    </a>
+
+    <a href="config.html" class="nav-button">
+        💻 أوامر الشبكات
+    </a> 
+
+
+    <a href="profile.html" class="nav-button profile-link">
+        👤 حسابي
+    </a>
+
+    
+    </nav>
+
+</header>
+
+
+<main class="theory-page">
+
+
+    <div class="theory-top">
+
+        <div class="theory-title">
+
+            <div class="theory-title-icon">
+                📝
+            </div>
+
+            <div>
+
+                <h1>
+                    الاختبار النظري
+                </h1>
+
+                <p>
+                    NETWORK THEORY QUIZ
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="quiz.html" class="back-test-center">
+            ← مركز الاختبارات
+        </a>
+
+    </div>
+
+
+    <section class="theory-card">
+
+
+        <!-- Progress -->
+
+        <div class="theory-progress-area">
+
+            <div class="theory-progress-info">
+
+                <span>
+                    تقدم الاختبار
+                </span>
+
+                <strong id="questionNumber">
+                    السؤال 1 من 30
+                </strong>
+
+            </div>
+
+
+            <div class="theory-progress">
+
+                <div class="theory-progress-bar"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Question -->
+
+        <div class="theory-question">
+
+            <div class="question-meta">
+
+                <span class="question-badge">
+                    🌐 أساسيات الشبكات
+                </span>
+
+            </div>
+
+
+            <h2 id="question">
+                جاري تحميل السؤال...
+            </h2>
+
+        </div>
+
+
+        <!-- Answers -->
+
+        <div class="answers">
+
+            <button></button>
+
+            <button></button>
+
+            <button></button>
+
+        </div>
+
+
+        <!-- Result -->
+
+        <div
+            id="result"
+            class="quiz-result">
+        </div>
+
+
+        <!-- Next -->
+
+        <button
+            class="next-question"
+            onclick="nextQuestion()">
+
+            السؤال التالي →
+
+        </button>
+
+
+    </section>
+
+
+    <div class="theory-tip">
+
+        <span>
+            💡
+        </span>
+
+        <div>
+            اختر الإجابة التي تراها صحيحة، وبعد الإجابة ستظهر لك النتيجة.
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🌐
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                عرّاب الشبكات
+            </div>
+
+            <div class="brand-subtitle">
+                NETWORKS
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p>
+        تعلم الشبكات بطريقة سهلة ومبسطة
+    </p>
+
+</footer>
+
+
+<script src="quiz.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>عرّاب الشبكات | NETWORKS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="navbar-container">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    role="img"
+                    aria-label="شعار عرّاب الشبكات"
+                >
+
+                    <!-- Network lines -->
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                    >
+                        <path d="M50 64 L22 82" />
+                        <path d="M50 64 L78 82" />
+                        <path d="M50 64 L50 91" />
+
+                        <path d="M22 82 L12 72" />
+                        <path d="M78 82 L88 72" />
+
+                        <path d="M50 91 L38 96" />
+                        <path d="M50 91 L62 96" />
+                    </g>
+
+                    <!-- Network nodes -->
+                    <g fill="currentColor">
+                        <circle cx="22" cy="82" r="3" />
+                        <circle cx="78" cy="82" r="3" />
+                        <circle cx="50" cy="91" r="3" />
+                        <circle cx="12" cy="72" r="2.5" />
+                        <circle cx="88" cy="72" r="2.5" />
+                        <circle cx="38" cy="96" r="2.5" />
+                        <circle cx="62" cy="96" r="2.5" />
+                    </g>
+
+                    <!-- ع -->
+                    <text
+                        x="39"
+                        y="45"
+                        text-anchor="middle"
+                        font-family="Tajawal, Arial, sans-serif"
+                        font-size="34"
+                        font-weight="800"
+                        fill="currentColor"
+                    >ع</text>
+
+                    <!-- N -->
+                    <text
+                        x="64"
+                        y="38"
+                        text-anchor="middle"
+                        font-family="Arial, sans-serif"
+                        font-size="22"
+                        font-weight="800"
+                        fill="currentColor"
+                    >N</text>
+
+                    <!-- Connection between ع and N -->
+                    <path
+                        d="M47 31 H57"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                    <!-- Star -->
+                    <path
+                        d="M50 51
+                           L53 58
+                           L61 59
+                           L55 64
+                           L57 72
+                           L50 68
+                           L43 72
+                           L45 64
+                           L39 59
+                           L47 58
+                           Z"
+                        fill="currentColor"
+                        opacity="0.95"
+                    />
+
+                </svg>
+
+            </span>
+
+            <span class="brand-text">
+                <span class="brand-name">عرّاب الشبكات</span>
+                <span class="brand-subtitle">NETWORKS</span>
+            </span>
+
+        </a>
+
+
+  <nav class="nav-links">
+
+    <a href="index.html" class="active">
+        🏠 الرئيسية
+    </a>
+
+    <a href="lessons.html">
+        📚 الدروس
+    </a>
+
+    <a href="#network-lab">
+        🧪 المختبر
+    </a>
+
+    <a href="quiz.html" class="nav-button">
+        🧠 اختبر معلوماتك
+    </a>
+
+    <a href="config.html" class="nav-button">
+        💻 أوامر الشبكات
+    </a>
+
+    <a href="profile.html" class="nav-button profile-link">
+        👤 حسابي
+    </a>
+
+</nav>
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-logo">
+
+            <div class="hero-logo-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    role="img"
+                    aria-label="شعار عرّاب الشبكات"
+                >
+
+                    <!-- Network lines -->
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                    >
+                        <path d="M50 64 L22 82" />
+                        <path d="M50 64 L78 82" />
+                        <path d="M50 64 L50 91" />
+
+                        <path d="M22 82 L12 72" />
+                        <path d="M78 82 L88 72" />
+
+                        <path d="M50 91 L38 96" />
+                        <path d="M50 91 L62 96" />
+                    </g>
+
+                    <!-- Network nodes -->
+                    <g fill="currentColor">
+                        <circle cx="22" cy="82" r="3" />
+                        <circle cx="78" cy="82" r="3" />
+                        <circle cx="50" cy="91" r="3" />
+                        <circle cx="12" cy="72" r="2.5" />
+                        <circle cx="88" cy="72" r="2.5" />
+                        <circle cx="38" cy="96" r="2.5" />
+                        <circle cx="62" cy="96" r="2.5" />
+                    </g>
+
+                    <!-- ع -->
+                    <text
+                        x="39"
+                        y="45"
+                        text-anchor="middle"
+                        font-family="Tajawal, Arial, sans-serif"
+                        font-size="34"
+                        font-weight="800"
+                        fill="currentColor"
+                    >ع</text>
+
+                    <!-- N -->
+                    <text
+                        x="64"
+                        y="38"
+                        text-anchor="middle"
+                        font-family="Arial, sans-serif"
+                        font-size="22"
+                        font-weight="800"
+                        fill="currentColor"
+                    >N</text>
+
+                    <!-- Connection -->
+                    <path
+                        d="M47 31 H57"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                    <!-- Star -->
+                    <path
+                        d="M50 51
+                           L53 58
+                           L61 59
+                           L55 64
+                           L57 72
+                           L50 68
+                           L43 72
+                           L45 64
+                           L39 59
+                           L47 58
+                           Z"
+                        fill="currentColor"
+                        opacity="0.95"
+                    />
+
+                </svg>
+
+            </div>
+
+            <h1> مرحباً بك في عرّاب الشبكات</h1>
+
+            <div class="hero-logo-subtitle">
+                NETWORKS
+            </div>
+
+        </div>
+
+
+        <p class="hero-greeting">
+        </p>
+
+
+        <div class="hero-journey">
+
+            <div class="welcome-card">
+
+                <div class="welcome-label">
+                    YOUR NETWORK JOURNEY
+                </div>
+
+                <div class="welcome-title">
+                    كل شبكة تبدأ بخطوة 🌐
+                </div>
+
+                <div class="welcome-text">
+                    افهم الأساسيات، جرّب بنفسك، وابنِ خبرتك في الشبكات.
+                </div>
+
+                <div class="welcome-watermark">
+                    🌐
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LEARNING JOURNEY
+===================================================== -->
+
+<main class="container">
+
+    <section class="learning-journey">
+
+        <div class="journey-header">
+
+            <span>
+                LEARNING JOURNEY
+            </span>
+
+            <h2>
+                من النظرية إلى التطبيق
+            </h2>
+
+            <p>
+                طريقة تعلّمك داخل عرّاب الشبكات
+            </p>
+
+        </div>
+
+
+        <div class="journey-steps">
+
+            <div class="journey-step">
+
+                <div class="journey-icon">
+                    📖
+                </div>
+
+                <div>
+                    <strong>النظرية</strong>
+                    <small>تعرف على المفهوم</small>
+                </div>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-icon">
+                    💡
+                </div>
+
+                <div>
+                    <strong>الفهم</strong>
+                    <small>اربط المعلومات</small>
+                </div>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-icon">
+                    💻
+                </div>
+
+                <div>
+                    <strong>التطبيق</strong>
+                    <small>جرّب بنفسك</small>
+                </div>
+
+            </div>
+
+
+            <div class="journey-line"></div>
+
+
+            <div class="journey-step">
+
+                <div class="journey-icon">
+                    🧠
+                </div>
+
+                <div>
+                    <strong>الاختبار</strong>
+                    <small>اختبر معلوماتك</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="journey-next">
+            ↓ ثم اختر الموضوع الذي تريد تعلمه
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         LEARNING PATHS
+    ================================================= -->
+
+    <section class="learning-paths">
+
+    <h2 class="home-title">
+        ماذا ستتعلم؟
+    </h2>
+
+    <p class="section-description">
+        تعرّف على أهم مواضيع الشبكات التي ستتعلمها خلال رحلتك.
+    </p>
+
+
+    <div class="paths-grid">
+
+
+        <div class="path-card">
+
+            <div class="path-icon">
+                🌐
+            </div>
+
+            <h3>
+                أساسيات الشبكات
+            </h3>
+
+            <p>
+                تعرّف على أهم مفاهيم الشبكات ومكوناتها وكيف تتواصل الأجهزة مع بعضها.
+            </p>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-icon">
+                🔢
+            </div>
+
+            <h3>
+                IP & Subnetting
+            </h3>
+
+            <p>
+                افهم عناوين IP والشبكات وكيفية تقسيم الشبكات باستخدام Subnetting.
+            </p>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-icon">
+                🔵
+            </div>
+
+            <h3>
+                Switching
+            </h3>
+
+            <p>
+                تعلّم أساسيات السويتش وكيف تنتقل البيانات بين الأجهزة داخل الشبكة.
+            </p>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-icon">
+                🧭
+            </div>
+
+            <h3>
+                Routing
+            </h3>
+
+            <p>
+                افهم التوجيه وكيف تنتقل البيانات بين الشبكات المختلفة.
+            </p>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-icon">
+                🏷️
+            </div>
+
+            <h3>
+                VLAN
+            </h3>
+
+            <p>
+                تعلّم كيفية تقسيم الشبكة منطقيًا وإدارة الـ VLANs.
+            </p>
+
+        </div>
+
+
+        <div class="path-card">
+
+            <div class="path-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Network Security
+            </h3>
+
+            <p>
+                تعرّف على أساسيات حماية الشبكات وتأمين الأجهزة والاتصالات.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     CTA
+================================================= -->
+
+<section class="cta-section">
+
+    <div class="cta-card">
+
+        <h2>
+            جاهز تبدأ رحلتك؟
+        </h2>
+
+        <p>
+            ابدأ من الأساسيات وابنِ معرفتك في الشبكات خطوة بخطوة.
+        </p>
+
+        <a href="lessons.html" class="cta-button">
+            🚀 ابدأ التعلم
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     NETWORK LAB
+===================================================== -->
+
+<section id="network-lab" class="network-lab">
+
+    <div class="lab-header">
+
+        <div>
+            <span class="lab-kicker">
+                NETWORK OPERATIONS LAB
+            </span>
+
+            <h2>
+                🧪 مختبر الشبكة
+            </h2>
+
+            <p>
+                شاهد انتقال البيانات بين أجهزة الشبكة بشكل تفاعلي
+            </p>
+        </div>
+
+        <div class="lab-status">
+            <span class="status-dot"></span>
+            NETWORK ONLINE
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Network Topology
+    ========================== -->
+
+    <div class="network-topology">
+
+
+        <button
+            class="network-device"
+            onclick="showDeviceInfo('pc')"
+            type="button"
+        >
+            <span>💻</span>
+
+            <strong>
+                PC
+            </strong>
+
+            <small>
+                جهاز المستخدم
+            </small>
+        </button>
+
+
+        <div class="network-line"></div>
+
+
+        <button
+            class="network-device"
+            onclick="showDeviceInfo('switch')"
+            type="button"
+        >
+            <span>🔵</span>
+
+            <strong>
+                Switch
+            </strong>
+
+            <small>
+                Layer 2
+            </small>
+        </button>
+
+
+        <div class="network-line"></div>
+
+
+        <button
+            class="network-device"
+            onclick="showDeviceInfo('router')"
+            type="button"
+        >
+            <span>🟠</span>
+
+            <strong>
+                Router
+            </strong>
+
+            <small>
+                Layer 3
+            </small>
+        </button>
+
+
+        <div class="network-line"></div>
+
+
+        <button
+            class="network-device"
+            onclick="showDeviceInfo('firewall')"
+            type="button"
+        >
+            <span>🛡️</span>
+
+            <strong>
+                Firewall
+            </strong>
+
+            <small>
+                Security
+            </small>
+        </button>
+
+
+        <div class="network-line"></div>
+
+
+        <button
+            class="network-device"
+            onclick="showDeviceInfo('server')"
+            type="button"
+        >
+            <span>🖥️</span>
+
+            <strong>
+                Server
+            </strong>
+
+            <small>
+                Destination
+            </small>
+        </button>
+
+
+        <!-- Packet -->
+
+        <div id="packet" class="packet">
+            📡
+        </div>
+
+    </div>
+
+
+
+
+    <!-- =========================
+         Packet Controls
+    ========================== -->
+
+    <div class="packet-controls">
+
+        <button
+            class="packet-button"
+            onclick="sendPacket()"
+            type="button"
+        >
+            🚀 إرسال البيانات
+        </button>
+
+
+        <p id="packet-status">
+            💡 اضغط «إرسال البيانات» لبدء انتقال الـPacket
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         Device Information
+    ========================== -->
+
+    <div
+        id="device-info"
+        class="device-info"
+        aria-live="polite"
+    >
+
+        <div class="device-info-empty">
+
+            <span>🌐</span>
+
+            <h3>
+                معلومات الجهاز
+            </h3>
+
+            <p>
+                اضغط على أي جهاز في الشبكة لمعرفة وظيفته.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <span class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    role="img"
+                    aria-label="شعار عرّاب الشبكات"
+                >
+
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                    >
+                        <path d="M50 64 L22 82" />
+                        <path d="M50 64 L78 82" />
+                        <path d="M50 64 L50 91" />
+                        <path d="M22 82 L12 72" />
+                        <path d="M78 82 L88 72" />
+                        <path d="M50 91 L38 96" />
+                        <path d="M50 91 L62 96" />
+                    </g>
+
+                    <g fill="currentColor">
+                        <circle cx="22" cy="82" r="3" />
+                        <circle cx="78" cy="82" r="3" />
+                        <circle cx="50" cy="91" r="3" />
+                        <circle cx="12" cy="72" r="2.5" />
+                        <circle cx="88" cy="72" r="2.5" />
+                        <circle cx="38" cy="96" r="2.5" />
+                        <circle cx="62" cy="96" r="2.5" />
+                    </g>
+
+                    <text
+                        x="39"
+                        y="45"
+                        text-anchor="middle"
+                        font-family="Tajawal, Arial, sans-serif"
+                        font-size="34"
+                        font-weight="800"
+                        fill="currentColor"
+                    >ع</text>
+
+                    <text
+                        x="64"
+                        y="38"
+                        text-anchor="middle"
+                        font-family="Arial, sans-serif"
+                        font-size="22"
+                        font-weight="800"
+                        fill="currentColor"
+                    >N</text>
+
+                    <path
+                        d="M47 31 H57"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                    <path
+                        d="M50 51
+                           L53 58
+                           L61 59
+                           L55 64
+                           L57 72
+                           L50 68
+                           L43 72
+                           L45 64
+                           L39 59
+                           L47 58
+                           Z"
+                        fill="currentColor"
+                    />
+
+                </svg>
+
+            </span>
+
+            <div>
+                <div class="brand-name">
+                    عرّاب الشبكات
+                </div>
+
+                <div class="brand-subtitle">
+                    NETWORKS
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="footer-text">
+            تعلّم • طبّق • اختبر
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+<script src="user.js"></script>
+
+</body>
+</html>
