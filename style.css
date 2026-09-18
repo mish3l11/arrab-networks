@@ -4332,3 +4332,13 @@ transition-duration: 0.01ms !important;
 .network-lab .device-info-empty span {
     color: #d6c58f;
 }
+.visitor-counter {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #d6c58f;
+    text-align: center;
+}
+
+#visitor-count {
+    font-weight: 700;
+}
