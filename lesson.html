@@ -2709,265 +2709,1522 @@ content: `
 ]
 },
 
-
 /* ==================================================
 12 — TROUBLESHOOTING
 ================================================== */
 
 {
-id: 12,
-category: "🧰 Troubleshooting",
-level: "🔴 متقدم",
-title: "Troubleshooting",
-description: "تعلم طريقة منظمة لتحديد مشاكل الشبكة بدل تغيير الإعدادات بشكل عشوائي.",
+    id: 12,
+    category: "🧰 Troubleshooting",
+    level: "🔴 متقدم",
+    title: "Troubleshooting",
+    description: "تعلم منهجية عملية ومنظمة لاكتشاف مشاكل الشبكة وتحديد سبب العطل قبل تغيير الإعدادات.",
 
-sections: [
+    sections: [
 
-{
-title: "من أين تبدأ؟",
-content: `
-<p>
-أهم مهارة في Troubleshooting ليست حفظ الأوامر،
-وإنما معرفة أين تبدأ وكيف تضيق نطاق المشكلة.
-</p>
+        /* =========================
+           01 — INTRO
+           ========================= */
 
-<div class="info-box">
-<strong>💡 القاعدة الذهبية</strong>
-<p>
-لا تغير الإعدادات قبل أن تعرف سبب المشكلة.
-</p>
-</div>
+        {
+            title: "🧠 ما هو Troubleshooting؟",
+            content: `
+                <p>
+                    Troubleshooting هو عملية البحث عن سبب المشكلة في الشبكة
+                    ثم تحديد مكانها وإصلاحها بطريقة منظمة.
+                </p>
 
-<p>
-ابدأ من الأساسيات ثم انتقل إلى الطبقات الأعلى.
-</p>
-`
-},
+                <div class="info-box">
+                    <strong>💡 القاعدة الذهبية</strong>
+                    <p>
+                        لا تغيّر الإعدادات بشكل عشوائي.
+                        أولًا اكتشف أين توجد المشكلة، ثم حدد سببها.
+                    </p>
+                </div>
 
-{
-title: "الخطوة الأولى — Physical",
-content: `
-<p>
-افحص الأمور الفيزيائية أولًا:
-</p>
+                <p>
+                    الهدف ليس فقط أن تجعل الشبكة تعمل،
+                    بل أن تعرف <strong>لماذا توقفت عن العمل</strong>.
+                </p>
 
-<ul>
-<li>هل الكيبل متصل؟</li>
-<li>هل منفذ الشبكة يعمل؟</li>
-<li>هل لمبات المنفذ تعمل؟</li>
-<li>هل الجهاز يعمل؟</li>
-</ul>
+                <div class="gold-box">
+                    <strong>🎯 فكر بهذه الطريقة</strong>
+                    <p>
+                        المشكلة → أين تحدث؟ → لماذا تحدث؟ → كيف أصلحها؟
+                    </p>
+                </div>
+            `
+        },
 
-<div class="warning-box">
-<strong>⚠️ مثال</strong>
-<p>
-إذا كان الكيبل مفصولًا، لن يفيدك تعديل
-Routing Table.
-</p>
-</div>
-`
-},
 
-{
-title: "الخطوة الثانية — Interface",
-content: `
-<p>
-بعد التأكد من التوصيلات، افحص حالة الواجهة.
-</p>
+        /* =========================
+           02 — METHODOLOGY
+           ========================= */
 
-<div class="code-box">
+        {
+            title: "🪜 منهجية Troubleshooting",
+            content: `
+                <p>
+                    أفضل طريقة لحل مشاكل الشبكات هي الانتقال من الأساسيات
+                    إلى الأشياء الأكثر تعقيدًا.
+                </p>
 
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
-show ip interface brief
-</pre>
-
-</div>
-
-<div class="code-box">
-
-<div class="code-title">
-Huawei
-</div>
-
-<pre>
-display ip interface brief
-</pre>
-
-</div>
-
-<p>
-ابحث عن حالة الواجهة وعنوان IP وحالة البروتوكول.
-</p>
-`
-},
-
-{
-title: "الخطوة الثالثة — IP",
-content: `
-<p>
-إذا كانت الواجهة تعمل، تحقق من إعدادات IP.
-</p>
-
-<div class="code-box">
-<pre>
-IP Address
-Subnet Mask
-Default Gateway
-</pre>
-</div>
-
-<p>
-خطأ بسيط في الـSubnet Mask قد يمنع جهازًا
-من التواصل بالطريقة المتوقعة.
-</p>
-`
-},
-
-{
-title: "الخطوة الرابعة — Ping",
-content: `
-<p>
-Ping أداة مهمة لاختبار الوصول بين جهازين.
-</p>
-
-<div class="code-box">
-<pre>
-ping 10.0.0.2
-</pre>
-</div>
-
-<p>
-لا تستخدم Ping فقط وتقول "الشبكة خربانة".
-يجب أن تعرف من أين ترسل الاختبار وإلى أين.
-</p>
-
-<div class="info-box">
-<strong>🧠 مثال منطقي</strong>
-
-<p>
-إذا استطعت Ping للـGateway ولم تستطع
-الوصول إلى شبكة بعيدة، ابدأ بفحص Routing.
-</p>
-</div>
-`
-},
-
-{
-title: "الخطوة الخامسة — Routing وVLAN",
-content: `
-<p>
-إذا كانت المشكلة بين شبكات مختلفة،
-افحص Routing.
-</p>
-
-<div class="code-box">
-
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
-show ip route
-</pre>
-
-</div>
-
-<div class="code-box">
-
-<div class="code-title">
-Huawei
-</div>
-
-<pre>
-display ip routing-table
-</pre>
-
-</div>
-
-<p>
-وإذا كانت المشكلة مرتبطة بـVLAN، تحقق من:
-</p>
-
-<ul>
-<li>VLAN موجودة.</li>
-<li>Port في VLAN الصحيحة.</li>
-<li>Trunk يسمح بمرور VLAN.</li>
-<li>إذا كان هناك Inter-VLAN Routing، تحقق من إعداداته.</li>
-</ul>
-`
-},
-
-{
-title: "منهجية Troubleshooting",
-content: `
-<div class="code-box">
-<pre>
+                <div class="code-box">
+                    <pre>
 1. Physical
 ↓
 2. Interface
 ↓
-3. IP
+3. IP / Subnet / Gateway
 ↓
 4. VLAN
 ↓
-5. Routing
+5. Trunk
 ↓
-6. Services
+6. ARP / MAC
 ↓
-7. Security
-</pre>
-</div>
+7. Routing
+↓
+8. Services
+↓
+9. Security
+                    </pre>
+                </div>
 
-<div class="gold-box">
-<strong>🎯 هدفك كمسؤول شبكة</strong>
+                <div class="info-box">
+                    <strong>🧠 لماذا بهذا الترتيب؟</strong>
+                    <p>
+                        لأنك لا تريد أن تفحص OSPF مثلًا
+                        بينما الكيبل نفسه غير متصل.
+                    </p>
+                </div>
+            `
+        },
 
-<p>
-لا تبحث عن الأمر الذي يحل المشكلة فقط.
-</p>
 
-<p>
-ابحث عن السبب الذي أدى إلى المشكلة.
-</p>
-</div>
-`
-},
+        /* =========================
+           03 — PHYSICAL
+           ========================= */
 
-{
-title: "الخلاصة",
-content: `
-<div class="info-box">
+        {
+            title: "🔌 الخطوة الأولى — Physical",
+            content: `
+                <p>
+                    ابدأ دائمًا بالطبقة الفيزيائية.
+                </p>
 
-<strong>🧠 تذكر هذه القاعدة</strong>
+                <ul>
+                    <li>هل الجهاز يعمل؟</li>
+                    <li>هل الكيبل متصل؟</li>
+                    <li>هل الكيبل سليم؟</li>
+                    <li>هل منفذ الشبكة يعمل؟</li>
+                    <li>هل لمبات المنفذ تعمل؟</li>
+                    <li>هل يوجد مشكلة في الـ SFP أو Fiber؟</li>
+                </ul>
 
-<p>
-افحص الكيبل والواجهة أولًا.
-</p>
+                <div class="warning-box">
+                    <strong>⚠️ مثال</strong>
+                    <p>
+                        إذا كان الكيبل مفصولًا، فلن يفيدك تعديل
+                        Routing Table أو OSPF.
+                    </p>
+                </div>
 
-<p>
-بعدها IP وSubnet.
-</p>
+                <div class="gold-box">
+                    <strong>🎯 سؤال سريع</strong>
+                    <p>
+                        إذا كان المنفذ Down، لا تبدأ بفحص Routing.
+                        ابدأ من الكيبل والمنفذ.
+                    </p>
+                </div>
+            `
+        },
 
-<p>
-بعدها VLAN حسب الحالة.
-</p>
 
-<p>
-بعدها Routing.
-</p>
+        /* =========================
+           04 — INTERFACE
+           ========================= */
 
-<p>
-ثم الخدمات والأمان.
-</p>
+        {
+            title: "🔗 الخطوة الثانية — Interface",
+            content: `
+                <p>
+                    بعد التأكد من التوصيلات، افحص حالة الواجهة.
+                </p>
 
-</div>
-`
-}
+                <div class="code-box">
 
-]
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ip interface brief</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display ip interface brief</pre>
+
+                </div>
+
+                <p>
+                    ركز على:
+                </p>
+
+                <ul>
+                    <li>Interface Status</li>
+                    <li>Protocol Status</li>
+                    <li>IP Address</li>
+                    <li>Subnet Mask</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 مثال</strong>
+                    <p>
+                        إذا كانت الواجهة Administratively Down،
+                        تحقق هل تم إيقافها باستخدام shutdown.
+                    </p>
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>no shutdown</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>undo shutdown</pre>
+
+                </div>
+            `
+        },
+
+
+        /* =========================
+           05 — INTERFACE DETAILS
+           ========================= */
+
+        {
+            title: "🔎 فحص تفاصيل المنفذ",
+            content: `
+                <p>
+                    أحيانًا تحتاج إلى معلومات أكثر من مجرد حالة المنفذ.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show interfaces GigabitEthernet0/1</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display interface GigabitEthernet 0/0/1</pre>
+
+                </div>
+
+                <p>
+                    ابحث عن:
+                </p>
+
+                <ul>
+                    <li>Input errors</li>
+                    <li>Output errors</li>
+                    <li>CRC errors</li>
+                    <li>Packets</li>
+                    <li>Speed</li>
+                    <li>Duplex</li>
+                    <li>Physical state</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ انتبه</strong>
+                    <p>
+                        وجود CRC أو Errors بشكل متكرر قد يشير إلى
+                        مشكلة في الكيبل أو الاتصال أو العتاد.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           06 — IP
+           ========================= */
+
+        {
+            title: "🌐 الخطوة الثالثة — IP وSubnet وGateway",
+            content: `
+                <p>
+                    إذا كانت الواجهة تعمل، انتقل إلى إعدادات Layer 3.
+                </p>
+
+                <div class="code-box">
+                    <pre>
+IP Address
+Subnet Mask
+Default Gateway
+                    </pre>
+                </div>
+
+                <p>
+                    تأكد أن عنوان IP والـSubnet Mask متوافقان
+                    وأن الـGateway صحيح.
+                </p>
+
+                <div class="warning-box">
+                    <strong>⚠️ خطأ شائع</strong>
+                    <p>
+                        عنوان IP صحيح مع Subnet Mask خاطئ
+                        قد يمنع الجهاز من الوصول إلى الشبكات المطلوبة.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 مثال</strong>
+                    <p>
+                        إذا كان جهازك في شبكة
+                        192.168.10.0/24
+                        فلا تفترض أن Gateway الموجود في
+                        192.168.20.0/24 صحيح له.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           07 — PING
+           ========================= */
+
+        {
+            title: "📡 الخطوة الرابعة — Ping",
+            content: `
+                <p>
+                    Ping من أهم الأدوات المستخدمة في Troubleshooting.
+                    لكنه لا يخبرك وحده بمكان المشكلة.
+                </p>
+
+                <div class="code-box">
+                    <pre>ping 10.0.0.2</pre>
+                </div>
+
+                <p>
+                    اختبر الاتصال بالتدرج:
+                </p>
+
+                <div class="code-box">
+                    <pre>
+الجهاز
+↓
+Gateway
+↓
+جهاز داخل نفس الشبكة
+↓
+شبكة بعيدة
+↓
+الخدمة المطلوبة
+                    </pre>
+                </div>
+
+                <div class="info-box">
+                    <strong>🧠 مثال منطقي</strong>
+
+                    <p>
+                        إذا استطعت Ping للـGateway
+                        ولكن لا تستطيع الوصول إلى شبكة بعيدة،
+                        فابدأ بفحص Routing.
+                    </p>
+                </div>
+
+                <div class="gold-box">
+                    <strong>🎯 لا تختبر الوجهة فقط</strong>
+
+                    <p>
+                        اسأل نفسك:
+                        من أين أرسل Ping؟
+                        وإلى أين؟
+                        وما أول نقطة يفشل عندها الاتصال؟
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           08 — VLAN
+           ========================= */
+
+        {
+            title: "🏷️ الخطوة الخامسة — VLAN",
+            content: `
+                <p>
+                    إذا كان الجهاز لا يستطيع الوصول إلى أجهزة
+                    داخل نفس الشبكة المحلية، افحص VLAN.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show vlan brief</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display vlan</pre>
+
+                </div>
+
+                <p>
+                    تحقق من:
+                </p>
+
+                <ul>
+                    <li>هل VLAN موجودة؟</li>
+                    <li>هل المنفذ في VLAN الصحيحة؟</li>
+                    <li>هل الجهاز متصل بالمنفذ الصحيح؟</li>
+                    <li>هل VLAN مسموحة عبر الـTrunk؟</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ مثال</strong>
+
+                    <p>
+                        جهاز المفروض يكون في VLAN 10
+                        لكنه موجود في VLAN 20.
+                        قد يكون الجهاز شغال والكيبل سليم،
+                        ولكن الاتصال لن يعمل بالشكل المتوقع.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           09 — ACCESS PORT
+           ========================= */
+
+        {
+            title: "🔌 فحص Access Port",
+            content: `
+                <p>
+                    إذا كان جهاز المستخدم متصلًا بالسويتش،
+                    تأكد أن المنفذ Access وفي VLAN الصحيحة.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>
+show interfaces GigabitEthernet0/1 switchport
+                    </pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>
+display port vlan
+                    </pre>
+
+                </div>
+
+                <p>
+                    في Cisco يجب أن تتأكد من:
+                </p>
+
+                <ul>
+                    <li>Administrative Mode</li>
+                    <li>Operational Mode</li>
+                    <li>Access VLAN</li>
+                </ul>
+
+                <p>
+                    وفي Huawei تحقق من نوع الرابط والـVLAN المرتبطة بالمنفذ.
+                </p>
+            `
+        },
+
+
+        /* =========================
+           10 — TRUNK
+           ========================= */
+
+        {
+            title: "🔀 الخطوة السادسة — Trunk",
+            content: `
+                <p>
+                    إذا كانت المشكلة بين سويتشين أو بين Switch وCore،
+                    افحص الـTrunk.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show interfaces trunk</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display port vlan</pre>
+
+                </div>
+
+                <p>
+                    تأكد من:
+                </p>
+
+                <ul>
+                    <li>المنفذ يعمل.</li>
+                    <li>المنفذ Trunk.</li>
+                    <li>VLAN المطلوبة موجودة.</li>
+                    <li>VLAN مسموحة بالمرور.</li>
+                    <li>الطرف الآخر لديه إعداد متوافق.</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ مثال</strong>
+
+                    <p>
+                        إذا كانت VLAN 30 موجودة في السويتشين
+                        ولكنها غير مسموحة على الـTrunk،
+                        فلن تعبر الترافيك بينهما.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           11 — MAC
+           ========================= */
+
+        {
+            title: "📋 الخطوة السابعة — MAC Address Table",
+            content: `
+                <p>
+                    إذا كان الجهاز متصلًا ولكنك غير متأكد
+                    من مكان ظهوره في السويتش،
+                    ابحث عن MAC Address.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show mac address-table</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display mac-address</pre>
+
+                </div>
+
+                <p>
+                    ويمكنك تحديد VLAN أو منفذ معين.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show mac address-table vlan 10</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display mac-address vlan 10</pre>
+
+                </div>
+
+                <div class="info-box">
+                    <strong>🧠 الفكرة</strong>
+                    <p>
+                        MAC Address يساعدك في معرفة
+                        أي منفذ تعلم منه السويتش الجهاز.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           12 — ARP
+           ========================= */
+
+        {
+            title: "🔎 الخطوة الثامنة — ARP",
+            content: `
+                <p>
+                    ARP مهم عندما يكون الاتصال باستخدام IPv4.
+                    فهو يربط عنوان IP بعنوان MAC.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show arp</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display arp</pre>
+
+                </div>
+
+                <p>
+                    إذا كنت تبحث عن جهاز معين:
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show arp 192.168.1.10</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display arp | include 192.168.1.10</pre>
+
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 ماذا تبحث عنه؟</strong>
+                    <p>
+                        هل يوجد ARP Entry للعنوان المطلوب؟
+                        وهل عنوان MAC ظاهر؟
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           13 — ROUTING
+           ========================= */
+
+        {
+            title: "🛣️ الخطوة التاسعة — Routing",
+            content: `
+                <p>
+                    إذا كان الجهاز يستطيع الوصول إلى الـGateway
+                    لكنه لا يستطيع الوصول إلى شبكة أخرى،
+                    افحص جدول التوجيه.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ip route</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display ip routing-table</pre>
+
+                </div>
+
+                <p>
+                    ابحث عن:
+                </p>
+
+                <ul>
+                    <li>هل الشبكة المطلوبة موجودة؟</li>
+                    <li>ما هو الـNext-Hop؟</li>
+                    <li>ما هو الـOutgoing Interface؟</li>
+                    <li>هل يوجد Default Route؟</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ مثال</strong>
+
+                    <p>
+                        إذا لم يجد الراوتر Route للشبكة المطلوبة،
+                        فلن يعرف أين يرسل الـPacket.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           14 — STATIC ROUTE
+           ========================= */
+
+        {
+            title: "🧭 فحص Static Route",
+            content: `
+                <p>
+                    إذا كنت تستخدم Static Routing،
+                    تأكد أن المسار موجود وصحيح.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>
+show ip route static
+                    </pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>
+display ip routing-table protocol static
+                    </pre>
+
+                </div>
+
+                <p>
+                    مثال على Static Route:
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>
+ip route 192.168.20.0 255.255.255.0 10.0.0.2
+                    </pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>
+ip route-static 192.168.20.0 255.255.255.0 10.0.0.2
+                    </pre>
+
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ انتبه</strong>
+                    <p>
+                        تأكد من Network Address وMask وNext-Hop.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           15 — OSPF
+           ========================= */
+
+        {
+            title: "🔄 فحص OSPF",
+            content: `
+                <p>
+                    إذا كانت الشبكة تستخدم OSPF،
+                    افحص أولًا حالة الـNeighbors ثم الـRoutes.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ip ospf neighbor</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display ospf peer</pre>
+
+                </div>
+
+                <p>
+                    وبعدها افحص المسارات:
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ip route ospf</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>
+display ip routing-table protocol ospf
+                    </pre>
+
+                </div>
+
+                <div class="info-box">
+                    <strong>🧠 التسلسل الصحيح</strong>
+                    <p>
+                        Interface → IP → OSPF Neighbor → OSPF Route
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           16 — DHCP
+           ========================= */
+
+        {
+            title: "📦 فحص DHCP",
+            content: `
+                <p>
+                    إذا كان الجهاز لا يحصل على IP تلقائيًا،
+                    افحص DHCP.
+                </p>
+
+                <p>
+                    تأكد من:
+                </p>
+
+                <ul>
+                    <li>هل DHCP Server يعمل؟</li>
+                    <li>هل يوجد DHCP Pool؟</li>
+                    <li>هل VLAN الصحيحة تصل إلى DHCP Server؟</li>
+                    <li>هل يوجد DHCP Relay عند الحاجة؟</li>
+                    <li>هل يوجد عنوان متاح في الـPool؟</li>
+                </ul>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ip dhcp binding</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display ip pool</pre>
+
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ مثال</strong>
+                    <p>
+                        إذا كان الجهاز يأخذ IP غير متوقع،
+                        لا تفترض أن المشكلة من الجهاز نفسه.
+                        افحص مصدر DHCP أولًا.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           17 — DNS
+           ========================= */
+
+        {
+            title: "🌍 فحص DNS",
+            content: `
+                <p>
+                    أحيانًا يكون الإنترنت أو الشبكة تعمل،
+                    لكن أسماء المواقع لا تفتح.
+                </p>
+
+                <div class="info-box">
+                    <strong>🧠 فرق مهم</strong>
+                    <p>
+                        إذا كان Ping إلى عنوان IP يعمل،
+                        لكن اسم الموقع لا يعمل،
+                        فقد تكون المشكلة مرتبطة بـDNS.
+                    </p>
+                </div>
+
+                <p>
+                    افحص:
+                </p>
+
+                <ul>
+                    <li>DNS Server</li>
+                    <li>إعدادات الجهاز</li>
+                    <li>الوصول إلى DNS Server</li>
+                    <li>حل أسماء النطاقات</li>
+                </ul>
+
+                <div class="gold-box">
+                    <strong>🎯 لا تخلط بين المشاكل</strong>
+                    <p>
+                        نجاح Ping لا يعني أن DNS يعمل،
+                        وفشل DNS لا يعني بالضرورة أن الشبكة بالكامل متوقفة.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           18 — SSH
+           ========================= */
+
+        {
+            title: "🔐 فحص SSH",
+            content: `
+                <p>
+                    إذا كان الجهاز يعمل ويمكن الوصول إليه،
+                    لكن SSH لا يعمل، افحص خدمة الإدارة نفسها.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ssh</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display ssh server status</pre>
+
+                </div>
+
+                <p>
+                    تحقق من:
+                </p>
+
+                <ul>
+                    <li>هل SSH Server يعمل؟</li>
+                    <li>هل عنوان الإدارة صحيح؟</li>
+                    <li>هل يوجد ACL تمنع الاتصال؟</li>
+                    <li>هل بيانات الدخول صحيحة؟</li>
+                </ul>
+            `
+        },
+
+
+        /* =========================
+           19 — ACL
+           ========================= */
+
+        {
+            title: "🛡️ فحص ACL وSecurity",
+            content: `
+                <p>
+                    إذا كانت الشبكة تبدو صحيحة ولكن نوعًا معينًا
+                    من الترافيك لا يمر، افحص ACL أو سياسات الأمان.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show access-lists</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display acl 3000</pre>
+
+                </div>
+
+                <p>
+                    اسأل:
+                </p>
+
+                <ul>
+                    <li>هل يوجد Rule تمنع الترافيك؟</li>
+                    <li>هل الـACL مطبقة على الواجهة الصحيحة؟</li>
+                    <li>هل اتجاه التطبيق Inbound أو Outbound؟</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ ملاحظة</strong>
+                    <p>
+                        صياغة ACL تختلف بين Cisco وHuawei
+                        وبين الموديلات والإصدارات،
+                        لذلك تعامل مع الأوامر هنا كمرجع عملي وقد تحتاج لتعديلها حسب الجهاز.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           20 — LOGS
+           ========================= */
+
+        {
+            title: "📝 فحص Logs وCPU",
+            content: `
+                <p>
+                    عندما لا تجد السبب بسهولة،
+                    راجع سجلات الجهاز واستخدام الموارد.
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show logging</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display logbuffer</pre>
+
+                </div>
+
+                <p>
+                    وافحص استخدام المعالج:
+                </p>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show processes cpu</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display cpu-usage</pre>
+
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 الفكرة</strong>
+                    <p>
+                        أحيانًا المشكلة ليست في الإعدادات،
+                        وإنما في ضغط مرتفع على الجهاز أو حدث مسجل في الـLogs.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           21 — SCENARIO 1
+           ========================= */
+
+        {
+            title: "🧪 سيناريو 1 — الجهاز لا يأخذ IP",
+            content: `
+                <p>
+                    لديك جهاز متصل بالسويتش لكنه لا يحصل على IP من DHCP.
+                </p>
+
+                <div class="gold-box">
+                    <strong>🎯 كيف تبدأ؟</strong>
+                    <p>
+                        لا تبدأ بتغيير إعدادات DHCP مباشرة.
+                    </p>
+                </div>
+
+                <div class="code-box">
+                    <pre>
+1. افحص الكيبل
+↓
+2. افحص حالة المنفذ
+↓
+3. افحص VLAN
+↓
+4. افحص Access Port
+↓
+5. افحص Trunk
+↓
+6. افحص DHCP
+                    </pre>
+                </div>
+
+                <div class="info-box">
+                    <strong>🧠 مثال</strong>
+                    <p>
+                        إذا كان الجهاز في VLAN 20
+                        بينما منفذ المستخدم مضبوط على VLAN 10،
+                        فقد لا يصل DHCP إلى الجهاز بالطريقة المطلوبة.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           22 — SCENARIO 2
+           ========================= */
+
+        {
+            title: "🧪 سيناريو 2 — الجهاز يأخذ IP لكن لا يوجد Internet",
+            content: `
+                <p>
+                    الجهاز حصل على IP من DHCP،
+                    لكن لا يستطيع الوصول إلى الإنترنت.
+                </p>
+
+                <div class="code-box">
+                    <pre>
+1. Ping Gateway
+↓
+2. Ping جهاز داخل الشبكة
+↓
+3. Ping عنوان IP خارجي
+↓
+4. اختبر DNS
+↓
+5. افحص Routing
+↓
+6. افحص NAT / Firewall حسب التصميم
+                    </pre>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 مثال منطقي</strong>
+                    <p>
+                        إذا كان Ping للـGateway يعمل
+                        لكن Ping للوجهة الخارجية لا يعمل،
+                        انتقل لفحص Routing أو NAT أو Firewall
+                        حسب تصميم الشبكة.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           23 — SCENARIO 3
+           ========================= */
+
+        {
+            title: "🧪 سيناريو 3 — VLAN لا تتواصل",
+            content: `
+                <p>
+                    لديك VLAN 10 وVLAN 20،
+                    والأجهزة تعمل داخل كل VLAN،
+                    لكن لا يوجد اتصال بينهما.
+                </p>
+
+                <div class="code-box">
+                    <pre>
+VLAN 10
+   ↓
+Gateway
+   ↓
+Inter-VLAN Routing
+   ↓
+VLAN 20
+                    </pre>
+                </div>
+
+                <p>
+                    افحص:
+                </p>
+
+                <ul>
+                    <li>هل VLAN 10 و20 موجودتان؟</li>
+                    <li>هل المنافذ في VLAN الصحيحة؟</li>
+                    <li>هل الـTrunk يسمح بالـVLANs؟</li>
+                    <li>هل يوجد SVI / VLANIF؟</li>
+                    <li>هل عناوين Gateway صحيحة؟</li>
+                    <li>هل يوجد ACL تمنع الاتصال؟</li>
+                </ul>
+            `
+        },
+
+
+        /* =========================
+           24 — SCENARIO 4
+           ========================= */
+
+        {
+            title: "🧪 سيناريو 4 — OSPF Neighbor لا يظهر",
+            content: `
+                <p>
+                    لديك راوتران متصلان،
+                    لكن OSPF Neighbor لا يظهر.
+                </p>
+
+                <div class="code-box">
+                    <pre>
+Interface
+↓
+IP Address
+↓
+Reachability
+↓
+OSPF Configuration
+↓
+Area
+↓
+Network
+↓
+Hello / Dead Timers
+↓
+Authentication
+                    </pre>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ لا تبدأ بإعادة تشغيل OSPF</strong>
+                    <p>
+                        افحص الواجهة والـIP أولًا.
+                        إذا كان الرابط نفسه غير سليم،
+                        فلن تنجح مشكلة OSPF بإعادة تشغيل البروتوكول فقط.
+                    </p>
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>show ip ospf neighbor</pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>display ospf peer</pre>
+
+                </div>
+            `
+        },
+
+
+        /* =========================
+           25 — COMMAND CHEAT SHEET
+           ========================= */
+
+        {
+            title: "⚡ أهم أوامر Troubleshooting",
+            content: `
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Cisco
+                    </div>
+
+                    <pre>
+show ip interface brief
+show interfaces
+show vlan brief
+show interfaces trunk
+show mac address-table
+show arp
+show ip route
+show ip ospf neighbor
+show ip route ospf
+show access-lists
+show logging
+show processes cpu
+show ssh
+                    </pre>
+
+                </div>
+
+                <div class="code-box">
+
+                    <div class="code-title">
+                        Huawei
+                    </div>
+
+                    <pre>
+display ip interface brief
+display interface
+display vlan
+display port vlan
+display mac-address
+display arp
+display ip routing-table
+display ospf peer
+display ip routing-table protocol ospf
+display acl 3000
+display logbuffer
+display cpu-usage
+display ssh server status
+                    </pre>
+
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 نصيحة</strong>
+                    <p>
+                        لا تحفظ الأوامر كقائمة فقط.
+                        اربط كل أمر بالسؤال الذي تريد الإجابة عنه.
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           26 — FINAL METHODOLOGY
+           ========================= */
+
+        {
+            title: "🏁 منهجية العمل الاحترافية",
+            content: `
+                <div class="code-box">
+                    <pre>
+المشكلة
+   ↓
+حدد نطاق المشكلة
+   ↓
+Physical
+   ↓
+Interface
+   ↓
+IP
+   ↓
+VLAN
+   ↓
+Trunk
+   ↓
+MAC / ARP
+   ↓
+Routing
+   ↓
+Services
+   ↓
+Security
+   ↓
+حدد السبب
+   ↓
+طبّق الإصلاح
+   ↓
+اختبر من جديد
+                    </pre>
+                </div>
+
+                <div class="gold-box">
+                    <strong>🎯 القاعدة الذهبية</strong>
+
+                    <p>
+                        لا تسأل فقط:
+                        "وش الأمر اللي يصلح المشكلة؟"
+                    </p>
+
+                    <p>
+                        اسأل:
+                        "وين توقفت البيانات؟ وليش توقفت؟"
+                    </p>
+                </div>
+            `
+        },
+
+
+        /* =========================
+           27 — SUMMARY
+           ========================= */
+
+        {
+            title: "🧠 الخلاصة",
+            content: `
+                <div class="info-box">
+
+                    <strong>تذكر دائمًا:</strong>
+
+                    <p>
+                        🔌 افحص Physical أولًا.
+                    </p>
+
+                    <p>
+                        🔗 افحص Interface.
+                    </p>
+
+                    <p>
+                        🌐 افحص IP وSubnet وGateway.
+                    </p>
+
+                    <p>
+                        🏷️ افحص VLAN وAccess.
+                    </p>
+
+                    <p>
+                        🔀 افحص Trunk.
+                    </p>
+
+                    <p>
+                        📋 افحص MAC وARP.
+                    </p>
+
+                    <p>
+                        🛣️ افحص Routing.
+                    </p>
+
+                    <p>
+                        🔄 افحص OSPF إذا كان مستخدمًا.
+                    </p>
+
+                    <p>
+                        📦 افحص DHCP وDNS والخدمات.
+                    </p>
+
+                    <p>
+                        🔐 افحص ACL وSecurity.
+                    </p>
+
+                    <p>
+                        📝 راجع Logs عند الحاجة.
+                    </p>
+
+                </div>
+
+                <div class="gold-box">
+
+                    <strong>🏆 مهارة مسؤول الشبكة</strong>
+
+                    <p>
+                        مسؤول الشبكة الجيد لا يغيّر الإعدادات عشوائيًا.
+                        بل يحدد مكان المشكلة، يجمع الأدلة،
+                        يختبر الفرضيات، ثم يطبق الحل.
+                    </p>
+
+                </div>
+            `
+        }
+
+    ]
 }
 
 ];
@@ -3284,7 +4541,7 @@ block: "start"
 
 </script>
 <script src="user.js"></script>
-        <script data-goatcounter="https://mish3l11.goatcounter.com/count"
+<script data-goatcounter="https://mish3l11.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
