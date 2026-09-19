@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تدريب الأوامر | عرّاب الشبكات</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="command-practice.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="command-practice-page">
+
+    <!-- =========================
+         NAVBAR
+         ========================= -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <circle cx="50" cy="18" r="9" fill="currentColor"/>
+                    <circle cx="22" cy="72" r="9" fill="currentColor"/>
+                    <circle cx="78" cy="72" r="9" fill="currentColor"/>
+
+                    <line
+                        x1="50"
+                        y1="27"
+                        x2="27"
+                        y2="64"
+                        stroke="currentColor"
+                        stroke-width="7"
+                    />
+
+                    <line
+                        x1="50"
+                        y1="27"
+                        x2="73"
+                        y2="64"
+                        stroke="currentColor"
+                        stroke-width="7"
+                    />
+
+                    <line
+                        x1="31"
+                        y1="72"
+                        x2="69"
+                        y2="72"
+                        stroke="currentColor"
+                        stroke-width="7"
+                    />
+
+                </svg>
+
+            </div>
+
+            <span>عرّاب الشبكات</span>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">🏠 الرئيسية</a>
+
+            <a href="lessons.html">📚 الدروس</a>
+
+            <a href="index.html#network-lab">🧪 المختبر</a>
+
+            <a href="quiz.html">🧠 اختبر معلوماتك</a>
+
+<a href="dictionary.html" class="feature-card">
+     📖 القـاموس
+</a>
+    
+    <a href="config.html" class="nav-button">
+        💻 الاوامـر 
+    </a>
+
+            
+            <a href="profile.html">👤 حسابي</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+         ========================= -->
+
+    <header class="practice-hero">
+
+        <span class="practice-badge">
+            COMMAND PRACTICE
+        </span>
+
+        <h1>
+            ⌨️ تدريب الأوامر
+        </h1>
+
+        <p>
+            اختبر قدرتك على اختيار الأمر المناسب لحل مشاكل الشبكات.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+         ========================= -->
+
+    <main class="practice-wrapper">
+
+
+        <!-- =========================
+             MODE SELECTOR
+             ========================= -->
+
+        <section class="practice-modes">
+
+            <button
+                type="button"
+                class="practice-mode active"
+                data-mode="beginner"
+            >
+                🟢 مبتدئ
+            </button>
+
+            <button
+                type="button"
+                class="practice-mode"
+                data-mode="intermediate"
+            >
+                🟡 متوسط
+            </button>
+
+            <button
+                type="button"
+                class="practice-mode"
+                data-mode="advanced"
+            >
+                🔴 متقدم
+            </button>
+
+            <button
+                type="button"
+                class="practice-mode"
+                data-mode="real"
+            >
+                🧑‍💻 سيناريو واقعي
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             DEVICE SELECTOR
+             ========================= -->
+
+        <section class="device-selector">
+
+            <span class="device-label">
+                اختر النظام:
+            </span>
+
+            <button
+                type="button"
+                class="device-button active"
+                data-device="cisco"
+            >
+                🔵 Cisco
+            </button>
+
+            <button
+                type="button"
+                class="device-button"
+                data-device="huawei"
+            >
+                🟢 Huawei
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             SCORE
+             ========================= -->
+
+        <section class="practice-stats">
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    السؤال
+                </span>
+
+                <strong id="questionNumber">
+                    1 / 10
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    الإجابات الصحيحة
+                </span>
+
+                <strong id="correctCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    النتيجة
+                </span>
+
+                <strong id="scorePercent">
+                    0%
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PRACTICE CARD
+             ========================= -->
+
+        <section class="practice-card" id="practiceCard">
+
+            <div class="question-header">
+
+                <span class="question-category" id="questionCategory">
+                    Interface
+                </span>
+
+                <span class="question-level" id="questionLevel">
+                    🟢 مبتدئ
+                </span>
+
+            </div>
+
+
+            <div class="question-content">
+
+                <h2 id="questionTitle">
+                    جهاز متصل بالسويتش، لكنك تريد معرفة حالة المنافذ وعناوين IP.
+                </h2>
+
+                <p id="questionDescription">
+                    اختر الأمر المناسب لفحص حالة الـInterfaces.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 ANSWERS
+                 ========================= -->
+
+            <div
+                class="answers-container"
+                id="answersContainer"
+            >
+
+                <button
+                    type="button"
+                    class="answer-button"
+                    data-answer="0"
+                >
+                    <span class="answer-letter">
+                        A
+                    </span>
+
+                    <code>
+                        show ip route
+                    </code>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="answer-button"
+                    data-answer="1"
+                >
+                    <span class="answer-letter">
+                        B
+                    </span>
+
+                    <code>
+                        show ip interface brief
+                    </code>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="answer-button"
+                    data-answer="2"
+                >
+                    <span class="answer-letter">
+                        C
+                    </span>
+
+                    <code>
+                        show vlan brief
+                    </code>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="answer-button"
+                    data-answer="3"
+                >
+                    <span class="answer-letter">
+                        D
+                    </span>
+
+                    <code>
+                        show ip ospf neighbor
+                    </code>
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 RESULT
+                 ========================= -->
+
+            <div
+                class="answer-result"
+                id="answerResult"
+                aria-live="polite"
+            >
+
+                <strong id="resultTitle">
+                    اختر إجابة
+                </strong>
+
+                <p id="resultDescription">
+                    بعد اختيار الإجابة سيظهر لك تفسيرها.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 NEXT
+                 ========================= -->
+
+            <button
+                type="button"
+                class="next-question"
+                id="nextQuestion"
+                disabled
+            >
+                السؤال التالي →
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL RESULT
+             ========================= -->
+
+        <section
+            class="final-result"
+            id="finalResult"
+            hidden
+        >
+
+            <span class="final-icon">
+                🏆
+            </span>
+
+            <h2>
+                انتهى التدريب
+            </h2>
+
+            <p>
+                نتيجتك النهائية:
+            </p>
+
+            <strong id="finalScore">
+                0 / 10
+            </strong>
+
+            <button
+                type="button"
+                id="restartPractice"
+            >
+                🔄 إعادة التدريب
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 عرّاب الشبكات — Network Learning Platform
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         SCRIPTS
+         ========================= -->
+
+    <script src="command-practice.js"></script>
+
+    <script src="user.js"></script>
+
+    <script
+        data-goatcounter="https://mish3l11.goatcounter.com/count"
+        async
+        src="//gc.zgo.at/count.js"
+    ></script>
+
+</body>
+
+</html>
