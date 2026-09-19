@@ -2,1993 +2,2479 @@
 <html lang="ar" dir="rtl">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>أوامر الشبكات | عرّاب الشبكات</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 
-    <title>Configurations | عرّاب الشبكات</title>
+<style>
+.commands-page {
+padding: 35px 5%;
+}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+.commands-hero {
+background: #111111;
+color: #ffffff;
+border-radius: 18px;
+padding: 35px;
+margin-bottom: 25px;
+}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+.commands-hero h1 {
+margin: 0 0 10px;
+font-size: 32px;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
-        rel="stylesheet"
-    >
+.commands-hero p {
+margin: 0;
+color: #d6c58f;
+}
 
-    <link rel="stylesheet" href="style.css">
+.commands-layout {
+display: grid;
+grid-template-columns: 250px 1fr;
+gap: 25px;
+align-items: start;
+}
 
-    <style>
+.commands-sidebar {
+background: #d6c58f;
+border-radius: 18px;
+padding: 18px;
+position: sticky;
+top: 20px;
+}
 
-        /* ================= LOGO ================= */
+.commands-sidebar h3 {
+margin-top: 0;
+margin-bottom: 15px;
+}
 
-        .config-brand-icon {
-            width: 45px;
-            height: 45px;
+.commands-sidebar a {
+display: block;
+color: #111111;
+text-decoration: none;
+padding: 10px 12px;
+border-radius: 9px;
+margin-bottom: 5px;
+font-size: 14px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.commands-sidebar a:hover {
+background: #bda766;
+}
 
-            background: #111111;
-            color: #d6c58f;
+.commands-content {
+min-width: 0;
+}
 
-            border-radius: 12px;
+.command-tools {
+display: flex;
+gap: 12px;
+margin-bottom: 20px;
+flex-wrap: wrap;
+}
 
-            overflow: hidden;
-            flex-shrink: 0;
-        }
+.command-filters {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+}
 
-        .config-brand-icon .network-logo-svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+.filter-button {
+border: none;
+background: #d6c58f;
+color: #111111;
+padding: 11px 18px;
+border-radius: 10px;
+cursor: pointer;
+font-family: inherit;
+font-weight: bold;
+}
 
-        .config-footer-logo {
-            width: 55px;
-            height: 55px;
+.filter-button.active {
+background: #111111;
+color: #ffffff;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.search-box {
+background: #d6c58f;
+border-radius: 10px;
+padding: 8px 14px;
+display: flex;
+align-items: center;
+gap: 8px;
+flex: 1;
+min-width: 220px;
+}
 
-            background: #d6c58f;
-            color: #111111;
+.search-box input {
+border: none;
+outline: none;
+background: transparent;
+width: 100%;
+font-family: inherit;
+font-size: 15px;
+}
 
-            border-radius: 14px;
+.command-section {
+background: #d6c58f;
+border-radius: 18px;
+padding: 20px;
+margin-bottom: 25px;
+scroll-margin-top: 20px;
+}
 
-            overflow: hidden;
-            flex-shrink: 0;
-        }
+.command-section h2 {
+margin-top: 0;
+margin-bottom: 5px;
+}
 
-        .config-footer-logo .network-logo-svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+.section-number {
+color: #075985;
+font-weight: bold;
+}
 
-    </style>
+.section-description {
+color: #555555;
+margin-bottom: 18px;
+}
 
+.command-table {
+overflow-x: auto;
+}
+
+.command-header,
+.command-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+min-width: 650px;
+}
+
+.command-header {
+background: #111111;
+color: #ffffff;
+border-radius: 10px 10px 0 0;
+font-weight: bold;
+}
+
+.command-header div {
+padding: 13px;
+}
+
+.command-row {
+border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.command-cell {
+padding: 15px;
+position: relative;
+}
+
+.command-cell + .command-cell {
+border-right: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.command-cell small {
+display: block;
+font-weight: bold;
+margin-bottom: 8px;
+}
+
+.command-cell pre {
+background: #111111;
+color: #ffffff;
+border-radius: 9px;
+padding: 12px;
+overflow-x: auto;
+direction: ltr;
+text-align: left;
+margin: 0 0 10px;
+}
+
+.command-cell code {
+font-family: Consolas, monospace;
+font-size: 13px;
+}
+
+.copy-button {
+border: none;
+background: #075985;
+color: #ffffff;
+padding: 8px 13px;
+border-radius: 8px;
+cursor: pointer;
+font-family: inherit;
+font-size: 13px;
+}
+
+.copy-button:hover {
+opacity: 0.85;
+}
+
+@media (max-width: 850px) {
+.commands-layout {
+grid-template-columns: 1fr;
+}
+
+.commands-sidebar {
+position: static;
+}
+
+.commands-sidebar a {
+display: inline-block;
+}
+
+.commands-hero {
+padding: 25px;
+}
+
+.commands-hero h1 {
+font-size: 25px;
+}
+}
+
+@media (max-width: 600px) {
+.commands-page {
+padding: 20px 3%;
+}
+
+.command-section {
+padding: 14px;
+}
+}
+</style>
 </head>
 
 <body>
 
+<!-- ================= NAVBAR ================= -->
 
-    <!-- ================= NAVBAR ================= -->
-
-    <nav class="navbar">
+<nav class="navbar">
 
-        <div class="brand">
+<div class="brand">
 
-            <div class="config-brand-icon">
+<div class="brand-icon">
 
-                <svg
-                    class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    role="img"
-                    aria-label="شعار عرّاب الشبكات"
-                >
+<svg class="network-logo-svg"
+viewBox="0 0 100 100"
+xmlns="http://www.w3.org/2000/svg">
 
-                    <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        opacity="0.75"
-                    >
+<circle cx="50" cy="50" r="42"
+fill="none"
+stroke="currentColor"
+stroke-width="5"/>
 
-                        <path d="M50 64 L22 82" />
-                        <path d="M50 64 L78 82" />
-                        <path d="M50 64 L50 91" />
+<circle cx="50" cy="27" r="7"
+fill="currentColor"/>
 
-                        <path d="M22 82 L12 72" />
-                        <path d="M78 82 L88 72" />
+<circle cx="28" cy="68" r="7"
+fill="currentColor"/>
 
-                        <path d="M50 91 L38 96" />
-                        <path d="M50 91 L62 96" />
+<circle cx="72" cy="68" r="7"
+fill="currentColor"/>
 
-                    </g>
+<line x1="50" y1="34"
+x2="31" y2="62"
+stroke="currentColor"
+stroke-width="5"/>
 
-                    <g fill="currentColor">
+<line x1="50" y1="34"
+x2="69" y2="62"
+stroke="currentColor"
+stroke-width="5"/>
 
-                        <circle cx="22" cy="82" r="3" />
-                        <circle cx="78" cy="82" r="3" />
-                        <circle cx="50" cy="91" r="3" />
+<line x1="35" y1="68"
+x2="65" y2="68"
+stroke="currentColor"
+stroke-width="5"/>
 
-                        <circle cx="12" cy="72" r="2.5" />
-                        <circle cx="88" cy="72" r="2.5" />
+</svg>
 
-                        <circle cx="38" cy="96" r="2.5" />
-                        <circle cx="62" cy="96" r="2.5" />
+</div>
 
-                    </g>
+<span>عرّاب الشبكات</span>
 
-                    <text
-                        x="39"
-                        y="45"
-                        text-anchor="middle"
-                        font-family="Tajawal, Arial, sans-serif"
-                        font-size="34"
-                        font-weight="800"
-                        fill="currentColor"
-                    >
-                        ع
-                    </text>
+</div>
 
-                    <text
-                        x="64"
-                        y="38"
-                        text-anchor="middle"
-                        font-family="Arial, sans-serif"
-                        font-size="22"
-                        font-weight="800"
-                        fill="currentColor"
-                    >
-                        N
-                    </text>
+<div class="nav-links">
 
-                    <path
-                        d="M47 31 H57"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
+<a href="index.html">🏠 الرئيسية</a>
 
-                    <path
-                        d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
-                        fill="currentColor"
-                        opacity="0.95"
-                    />
+<a href="lessons.html">📚 الدروس</a>
 
-                </svg>
+<a href="index.html#network-lab">🧪 المختبر</a>
 
-            </div>
+<a href="quiz.html">🧠 اختبر معلوماتك</a>
 
-            <div>
+<a href="config.html" class="active">💻 أوامر الشبكات</a>
 
-                <div class="brand-name">
-                    عرّاب الشبكات
-                </div>
+<a href="profile.html">👤 حسابي</a>
 
-                <div class="brand-subtitle">
-                    NETWORKS
-                </div>
+</div>
 
-            </div>
+</nav>
 
-        </div>
 
+<!-- ================= PAGE ================= -->
 
-        <div class="nav-links">
+<main class="commands-page">
 
-            <a href="index.html" class="nav-button">
+<section class="commands-hero">
 
-                <span>⌂</span>
+<h1>NETWORK COMMAND CENTER</h1>
 
-                الرئيسية
+<p>
+مرجع أوامر الشبكات — Cisco IOS و Huawei VRP
+</p>
 
-            </a>
+</section>
 
 
-            <a href="lessons.html" class="nav-button">
+<div class="commands-layout">
 
-                <span>▣</span>
 
-                الدروس
+<!-- ================= SIDEBAR ================= -->
 
-            </a>
+<aside class="commands-sidebar">
 
+<h3>الأقسام</h3>
 
-            <a href="index.html#network-lab" class="nav-button">
+<a href="#basic">01 — Basic Configuration</a>
+<a href="#vlan">02 — VLAN</a>
+<a href="#access">03 — Access Port</a>
+<a href="#trunk">04 — Trunk</a>
+<a href="#interface">05 — Interface & Status</a>
+<a href="#routing">06 — Static Routing</a>
+<a href="#ospf">07 — OSPF</a>
+<a href="#stp">08 — STP</a>
+<a href="#ethtrunk">09 — Eth-Trunk</a>
+<a href="#dhcp">10 — DHCP</a>
+<a href="#ssh">11 — SSH</a>
+<a href="#acl">12 — ACL</a>
+<a href="#troubleshooting">13 — Troubleshooting</a>
+<a href="#save">14 — Save Configuration</a>
+<a href="#system">15 — System Management</a>
+<a href="#hardware">16 — Device & Hardware</a>
+<a href="#layer3">17 — Layer 3 Interface</a>
+<a href="#security">18 — Port Security</a>
+<a href="#stp-config">19 — STP Configuration</a>
+<a href="#vlan-trouble">20 — VLAN Troubleshooting</a>
 
-                <span>🧪</span>
+</aside>
 
-                المختبر
 
-            </a>
+<!-- ================= CONTENT ================= -->
 
-        <a href="quiz.html" class="active">
-            🧠 اختبر معلوماتك
-        </a>
+<section class="commands-content">
 
-        <a href="config.html">
-            أوامر الشبكات
-        </a>
 
-        <a href="profile.html" class="nav-button profile-link">
-        👤 حسابي
-    </a>
+<!-- ================= TOOLS ================= -->
 
+<div class="command-tools">
 
+<div class="command-filters">
 
-        </div>
+<button class="filter-button active"
+onclick="filterCommands('all', this)"
+type="button">
+الكل
+</button>
 
-    </nav>
+<button class="filter-button"
+onclick="filterCommands('cisco', this)"
+type="button">
+🔵 Cisco
+</button>
 
+<button class="filter-button"
+onclick="filterCommands('huawei', this)"
+type="button">
+🟢 Huawei
+</button>
 
+</div>
 
-    <!-- ================= MAIN ================= -->
 
-    <main class="config-page">
+<div class="search-box">
 
+<span>🔍</span>
 
-        <!-- ================= HERO ================= -->
+<input
+type="text"
+id="commandSearch"
+placeholder="ابحث عن أمر، VLAN، OSPF، SSH...">
 
-        <section class="config-hero">
+</div>
 
-            <div class="config-hero-icon">
-                💻
-            </div>
+</div>
 
-            <div>
 
-                <div class="config-label">
-                    NETWORK COMMAND CENTER
-                </div>
+<!-- ================================================= -->
+<!-- 01 BASIC CONFIGURATION -->
+<!-- ================================================= -->
 
-                <h1>
-                      أوامر الشبكات 
-                </h1>
+<section class="command-section" id="basic">
 
-                <p>
-                    مرجع أوامر الشبكات — Cisco IOS و Huawei VRP
-                </p>
+<h2>
+<span class="section-number">01</span>
+Basic Configuration
+</h2>
 
-            </div>
+<p class="section-description">
+أوامر الدخول والإعدادات الأساسية للجهاز.
+</p>
 
-        </section>
 
+<div class="command-table">
 
+<div class="command-header">
 
-        <!-- ================= LAYOUT ================= -->
+<div>🔵 Cisco IOS</div>
 
-        <div class="config-layout">
+<div>🟢 Huawei VRP</div>
 
+</div>
 
-            <!-- ================= SIDEBAR ================= -->
 
-            <aside class="config-sidebar">
+<div class="command-row">
 
-                <div class="sidebar-title">
+<div class="command-cell">
 
-                    <span>☰</span>
+<small>الدخول إلى وضع Privileged EXEC</small>
 
-                    أقسام الأوامر
+<pre><code>enable</code></pre>
 
-                </div>
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
+</div>
 
-                <a href="#basic" class="sidebar-link">
 
-                    <span>01</span>
+<div class="command-cell">
 
-                    Basic Configuration
+<small>الدخول إلى System View</small>
 
-                </a>
+<pre><code>system-view</code></pre>
 
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                <a href="#vlan" class="sidebar-link">
+</div>
 
-                    <span>02</span>
+</div>
 
-                    VLAN
 
-                </a>
+<div class="command-row">
 
+<div class="command-cell">
 
-                <a href="#access" class="sidebar-link">
+<small>الدخول لوضع الإعداد</small>
 
-                    <span>03</span>
+<pre><code>configure terminal</code></pre>
 
-                    Access Port
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                </a>
+</div>
 
 
-                <a href="#trunk" class="sidebar-link">
+<div class="command-cell">
 
-                    <span>04</span>
+<small>الدخول لوضع الإعداد</small>
 
-                    Trunk
+<pre><code>system-view</code></pre>
 
-                </a>
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
+</div>
 
-                <a href="#routing" class="sidebar-link">
+</div>
 
-                    <span>05</span>
 
-                    Static Routing
+<div class="command-row">
 
-                </a>
+<div class="command-cell">
 
+<small>تغيير اسم الجهاز</small>
 
-                <a href="#ospf" class="sidebar-link">
+<pre><code>hostname SW1</code></pre>
 
-                    <span>06</span>
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                    OSPF
+</div>
 
-                </a>
 
+<div class="command-cell">
 
-                <a href="#ssh" class="sidebar-link">
+<small>تغيير اسم الجهاز</small>
 
-                    <span>07</span>
+<pre><code>sysname SW1</code></pre>
 
-                    SSH
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                </a>
+</div>
 
+</div>
 
-                <a href="#interface" class="sidebar-link">
 
-                    <span>08</span>
+<div class="command-row">
 
-                    Interface & Status
+<div class="command-cell">
 
-                </a>
+<small>عرض إصدار الجهاز</small>
 
+<pre><code>show version</code></pre>
 
-                <a href="#troubleshooting" class="sidebar-link">
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                    <span>09</span>
+</div>
 
-                    Troubleshooting
 
-                </a>
+<div class="command-cell">
 
+<small>عرض إصدار الجهاز</small>
 
-                <div class="sidebar-note">
+<pre><code>display version</code></pre>
 
-                    <strong>
-                        💡 ملاحظة
-                    </strong>
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                    <p>
-                        الأوامر قد تختلف قليلًا حسب موديل الجهاز وإصدار النظام.
-                    </p>
+</div>
 
-                </div>
+</div>
 
-            </aside>
 
+<div class="command-row">
 
+<div class="command-cell">
 
-            <!-- ================= CONTENT ================= -->
+<small>عرض الوقت</small>
 
-            <div class="config-content">
+<pre><code>show clock</code></pre>
 
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                <!-- ================= SEARCH ================= -->
+</div>
 
-                <div class="command-search">
 
-                    <div class="command-filters">
+<div class="command-cell">
 
-                        <button
-                            class="filter-button active"
-                            onclick="filterCommands('all', this)"
-                        >
-                            الكل
-                        </button>
+<small>عرض الوقت</small>
 
-                        <button
-                            class="filter-button"
-                            onclick="filterCommands('cisco', this)"
-                        >
-                            🔵 Cisco IOS
-                        </button>
+<pre><code>display clock</code></pre>
 
-                        <button
-                            class="filter-button"
-                            onclick="filterCommands('huawei', this)"
-                        >
-                            🟢 Huawei VRP
-                        </button>
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                    </div>
+</div>
 
+</div>
 
-                    <span>🔍</span>
 
-                    <input
-                        type="text"
-                        id="commandSearch"
-                        placeholder="ابحث عن أمر، VLAN، OSPF، SSH..."
-                        onkeyup="searchCommands()"
-                    >
+<div class="command-row">
 
-                </div>
+<div class="command-cell">
 
+<small>الخروج</small>
 
+<pre><code>exit</code></pre>
 
-                <!-- ================= BASIC ================= -->
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                <section class="config-section" id="basic">
+</div>
 
-                    <div class="section-heading">
 
-                        <div class="section-number">
-                            01
-                        </div>
+<div class="command-cell">
 
-                        <div>
+<small>الخروج</small>
 
-                            <span>
-                                FUNDAMENTALS
-                            </span>
+<pre><code>quit</code></pre>
 
-                            <h2>
-                                Basic Configuration
-                            </h2>
+<button class="copy-button"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
 
-                            <p>
-                                الأوامر الأساسية للدخول وإعداد الجهاز.
-                            </p>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
+</div>
 
+</section>
 
-                    <div class="command-table">
 
-                        <div class="command-header">
+<!-- ================================================= -->
+<!-- 02 VLAN -->
+<!-- ================================================= -->
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
+<section class="command-section" id="vlan">
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+<h2>
+<span class="section-number">02</span>
+VLAN
+</h2>
 
-                        </div>
+<p class="section-description">
+إنشاء وإدارة VLANs والتحقق منها.
+</p>
 
 
-                        <div class="command-row">
+<div class="command-table">
 
-                            <div class="command-cell">
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                                <small>
-                                    الدخول إلى وضع Privileged EXEC
-                                </small>
 
-                                <pre><code>enable</code></pre>
+<div class="command-row">
 
-                                <button
-                                    class="copy-button"
-                                    onclick="copyCommand(this)"
-                                >
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
 
-                            </div>
+<small>إنشاء VLAN</small>
 
+<pre><code>vlan 10</code></pre>
 
-                            <div class="command-cell">
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                                <small>
-                                    الدخول إلى System View
-                                </small>
+</div>
 
-                                <pre><code>system-view</code></pre>
+<div class="command-cell">
 
-                                <button
-                                    class="copy-button"
-                                    onclick="copyCommand(this)"
-                                >
-                                    📋 نسخ
-                                </button>
+<small>إنشاء VLAN</small>
 
-                            </div>
+<pre><code>vlan 10</code></pre>
 
-                        </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
+</div>
 
-                        <div class="command-row">
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    الدخول إلى وضع الإعداد
-                                </small>
+<div class="command-row">
 
-                                <pre><code>configure terminal</code></pre>
+<div class="command-cell">
 
-                                <button
-                                    class="copy-button"
-                                    onclick="copyCommand(this)"
-                                >
-                                    📋 نسخ
-                                </button>
+<small>إنشاء عدة VLANs</small>
 
-                            </div>
+<pre><code>vlan 10
+vlan 20
+vlan 30</code></pre>
 
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            <div class="command-cell">
+</div>
 
-                                <small>
-                                    الدخول إلى وضع الإعداد
-                                </small>
+<div class="command-cell">
 
-                                <pre><code>system-view</code></pre>
+<small>إنشاء عدة VLANs</small>
 
-                                <button
-                                    class="copy-button"
-                                    onclick="copyCommand(this)"
-                                >
-                                    📋 نسخ
-                                </button>
+<pre><code>vlan batch 10 20 30</code></pre>
 
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                        </div>
+</div>
 
+</div>
 
-                        <div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-row">
 
-                                <small>
-                                    تغيير اسم الجهاز
-                                </small>
+<div class="command-cell">
 
-                                <pre><code>hostname SW1</code></pre>
+<small>تسمية VLAN</small>
 
-                                <button
-                                    class="copy-button"
-                                    onclick="copyCommand(this)"
-                                >
-                                    📋 نسخ
-                                </button>
+<pre><code>name USERS</code></pre>
 
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
 
-                                <small>
-                                    تغيير اسم الجهاز
-                                </small>
+<small>تسمية VLAN</small>
 
-                                <pre><code>sysname SW1</code></pre>
+<pre><code>name USERS</code></pre>
 
-                                <button
-                                    class="copy-button"
-                                    onclick="copyCommand(this)"
-                                >
-                                    📋 نسخ
-                                </button>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            </div>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
 
-                </section>
+<div class="command-row">
 
+<div class="command-cell">
 
+<small>عرض VLANs</small>
 
-                <!-- ================= VLAN ================= -->
+<pre><code>show vlan brief</code></pre>
 
-                <section class="config-section" id="vlan">
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                    <div class="section-heading">
+</div>
 
-                        <div class="section-number">
-                            02
-                        </div>
+<div class="command-cell">
 
-                        <div>
+<small>عرض VLANs</small>
 
-                            <span>
-                                SWITCHING
-                            </span>
+<pre><code>display vlan</code></pre>
 
-                            <h2>
-                                VLAN
-                            </h2>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            <p>
-                                إنشاء وإدارة شبكات VLAN.
-                            </p>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
 
+<div class="command-row">
 
-                    <div class="command-table">
+<div class="command-cell">
 
-                        <div class="command-header">
+<small>عرض VLAN محددة</small>
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
+<pre><code>show vlan id 10</code></pre>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                        </div>
+</div>
 
+<div class="command-cell">
 
-                        <div class="command-row">
+<small>عرض VLAN محددة</small>
 
-                            <div class="command-cell">
+<pre><code>display vlan 10</code></pre>
 
-                                <small>
-                                    إنشاء VLAN
-                                </small>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                                <pre><code>vlan 10</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</div>
 
-                            </div>
+</div>
 
+</section>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    إنشاء VLAN
-                                </small>
+<!-- ================================================= -->
+<!-- 03 ACCESS -->
+<!-- ================================================= -->
 
-                                <pre><code>vlan 10</code></pre>
+<section class="command-section" id="access">
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<h2>
+<span class="section-number">03</span>
+Access Port
+</h2>
 
-                            </div>
+<p class="section-description">
+إعداد منفذ Access وربطه بـ VLAN.
+</p>
 
-                        </div>
 
+<div class="command-table">
 
-                        <div class="command-row">
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    تسمية VLAN
-                                </small>
+<div class="command-row">
 
-                                <pre><code>name USERS</code></pre>
+<div class="command-cell">
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<small>الدخول إلى الواجهة</small>
 
-                            </div>
+<pre><code>interface GigabitEthernet0/1</code></pre>
 
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            <div class="command-cell">
+</div>
 
-                                <small>
-                                    تسمية VLAN
-                                </small>
+<div class="command-cell">
 
-                                <pre><code>name USERS</code></pre>
+<small>الدخول إلى الواجهة</small>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<pre><code>interface GigabitEthernet 0/0/1</code></pre>
 
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                        </div>
+</div>
 
+</div>
 
-                        <div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-row">
 
-                                <small>
-                                    عرض VLANs
-                                </small>
+<div class="command-cell">
 
-                                <pre><code>show vlan brief</code></pre>
+<small>تحديد Access</small>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<pre><code>switchport mode access</code></pre>
 
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
 
-                                <small>
-                                    عرض VLANs
-                                </small>
+<small>تحديد Access</small>
 
-                                <pre><code>display vlan</code></pre>
+<pre><code>port link-type access</code></pre>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            </div>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
 
-                </section>
+<div class="command-row">
 
+<div class="command-cell">
 
+<small>ربط المنفذ بـ VLAN</small>
 
-                <!-- ================= ACCESS ================= -->
+<pre><code>switchport access vlan 10</code></pre>
 
-                <section class="config-section" id="access">
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                    <div class="section-heading">
+</div>
 
-                        <div class="section-number">
-                            03
-                        </div>
+<div class="command-cell">
 
-                        <div>
+<small>ربط المنفذ بـ VLAN</small>
 
-                            <span>
-                                SWITCH PORT
-                            </span>
+<pre><code>port default vlan 10</code></pre>
 
-                            <h2>
-                                Access Port
-                            </h2>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            <p>
-                                إعداد منفذ السويتش للأجهزة النهائية.
-                            </p>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
 
+<div class="command-row">
 
-                    <div class="command-table">
+<div class="command-cell">
 
-                        <div class="command-header">
+<small>تشغيل المنفذ</small>
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
+<pre><code>no shutdown</code></pre>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                        </div>
+</div>
 
+<div class="command-cell">
 
-                        <div class="command-row">
+<small>تشغيل المنفذ</small>
 
-                            <div class="command-cell">
+<pre><code>undo shutdown</code></pre>
 
-                                <small>
-                                    اختيار المنفذ
-                                </small>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                                <pre><code>interface GigabitEthernet0/1</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</div>
 
-                            </div>
 
+<div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-cell">
 
-                                <small>
-                                    اختيار المنفذ
-                                </small>
+<small>إيقاف المنفذ</small>
 
-                                <pre><code>interface GigabitEthernet0/0/1</code></pre>
+<pre><code>shutdown</code></pre>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            </div>
+</div>
 
-                        </div>
+<div class="command-cell">
 
+<small>إيقاف المنفذ</small>
 
-                        <div class="command-row">
+<pre><code>shutdown</code></pre>
 
-                            <div class="command-cell">
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                                <small>
-                                    تحويل المنفذ إلى Access
-                                </small>
+</div>
 
-                                <pre><code>switchport mode access</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</div>
 
-                            </div>
+</section>
 
 
-                            <div class="command-cell">
+<!-- ================================================= -->
+<!-- 04 TRUNK -->
+<!-- ================================================= -->
 
-                                <small>
-                                    تحويل المنفذ إلى Access
-                                </small>
+<section class="command-section" id="trunk">
 
-                                <pre><code>port link-type access</code></pre>
+<h2>
+<span class="section-number">04</span>
+Trunk
+</h2>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<p class="section-description">
+إعداد Trunk والسماح بمرور عدة VLANs.
+</p>
 
-                            </div>
 
-                        </div>
+<div class="command-table">
 
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                        <div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-row">
 
-                                <small>
-                                    تحديد VLAN للمنفذ
-                                </small>
+<div class="command-cell">
 
-                                <pre><code>switchport access vlan 10</code></pre>
+<small>تحديد المنفذ Trunk</small>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<pre><code>switchport mode trunk</code></pre>
 
-                            </div>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
 
-                                <small>
-                                    تحديد VLAN للمنفذ
-                                </small>
+<small>تحديد المنفذ Trunk</small>
 
-                                <pre><code>port default vlan 10</code></pre>
+<pre><code>port link-type trunk</code></pre>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            </div>
+</div>
 
-                        </div>
+</div>
 
 
-                        <div class="command-row">
+<div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-cell">
 
-                                <small>
-                                    تشغيل المنفذ
-                                </small>
+<small>السماح بـ VLANs</small>
 
-                                <pre><code>no shutdown</code></pre>
+<pre><code>switchport trunk allowed vlan 10,20,30</code></pre>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            </div>
+</div>
 
+<div class="command-cell">
 
-                            <div class="command-cell">
+<small>السماح بـ VLANs</small>
 
-                                <small>
-                                    تشغيل المنفذ
-                                </small>
+<pre><code>port trunk allow-pass vlan 10 20 30</code></pre>
 
-                                <pre><code>undo shutdown</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</div>
 
-                            </div>
+</div>
 
-                        </div>
 
-                    </div>
+<div class="command-row">
 
-                </section>
+<div class="command-cell">
 
+<small>عرض Trunk</small>
 
+<pre><code>show interfaces trunk</code></pre>
 
-                <!-- ================= TRUNK ================= -->
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                <section class="config-section" id="trunk">
+</div>
 
-                    <div class="section-heading">
+<div class="command-cell">
 
-                        <div class="section-number">
-                            04
-                        </div>
+<small>عرض VLAN على المنافذ</small>
 
-                        <div>
+<pre><code>display port vlan</code></pre>
 
-                            <span>
-                                VLAN TRANSPORT
-                            </span>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 
-                            <h2>
-                                Trunk
-                            </h2>
+</div>
 
-                            <p>
-                                إعداد المنافذ التي تحمل أكثر من VLAN.
-                            </p>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
+</section>
 
 
-                    <div class="command-table">
+<!-- ================================================= -->
+<!-- 05 INTERFACE -->
+<!-- ================================================= -->
 
-                        <div class="command-header">
+<section class="command-section" id="interface">
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
+<h2>
+<span class="section-number">05</span>
+Interface & Status
+</h2>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+<p class="section-description">
+فحص حالة المنافذ والـ MAC و ARP والإعدادات.
+</p>
 
-                        </div>
 
+<div class="command-table">
 
-                        <div class="command-row">
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    اختيار منفذ Trunk
-                                </small>
+<div class="command-row">
 
-                                <pre><code>interface GigabitEthernet0/24</code></pre>
+<div class="command-cell">
+<small>حالة المنافذ</small>
+<pre><code>show interfaces status</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>حالة المنافذ</small>
+<pre><code>display interface brief</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+</div>
 
 
-                            <div class="command-cell">
+<div class="command-row">
 
-                                <small>
-                                    اختيار منفذ Trunk
-                                </small>
+<div class="command-cell">
+<small>حالة IP للمنافذ</small>
+<pre><code>show ip interface brief</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>interface GigabitEthernet0/0/24</code></pre>
+<div class="command-cell">
+<small>حالة IP للمنافذ</small>
+<pre><code>display ip interface brief</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</div>
 
-                            </div>
 
-                        </div>
+<div class="command-row">
 
+<div class="command-cell">
+<small>تفاصيل واجهة</small>
+<pre><code>show interfaces GigabitEthernet0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        <div class="command-row">
+<div class="command-cell">
+<small>تفاصيل واجهة</small>
+<pre><code>display interface GigabitEthernet 0/0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+</div>
 
-                                <small>
-                                    تحويل المنفذ إلى Trunk
-                                </small>
 
-                                <pre><code>switchport mode trunk</code></pre>
+<div class="command-row">
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>عرض MAC Address Table</small>
+<pre><code>show mac address-table</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+<div class="command-cell">
+<small>عرض MAC Address Table</small>
+<pre><code>display mac-address</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    تحويل المنفذ إلى Trunk
-                                </small>
+<div class="command-row">
 
-                                <pre><code>port link-type trunk</code></pre>
+<div class="command-cell">
+<small>عرض ARP</small>
+<pre><code>show arp</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>عرض ARP</small>
+<pre><code>display arp</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+</div>
 
-                        </div>
 
+<div class="command-row">
 
-                        <div class="command-row">
+<div class="command-cell">
+<small>الإعدادات الحالية</small>
+<pre><code>show running-config</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>الإعدادات الحالية</small>
+<pre><code>display current-configuration</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    السماح بمرور VLANs
-                                </small>
+</div>
 
-                                <pre><code>switchport trunk allowed vlan 10,20,30</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</section>
 
-                            </div>
 
+<!-- ================================================= -->
+<!-- 06 STATIC ROUTING -->
+<!-- ================================================= -->
 
-                            <div class="command-cell">
+<section class="command-section" id="routing">
 
-                                <small>
-                                    السماح بمرور VLANs
-                                </small>
+<h2>
+<span class="section-number">06</span>
+Static Routing
+</h2>
 
-                                <pre><code>port trunk allow-pass vlan 10 20 30</code></pre>
+<p class="section-description">
+إنشاء وفحص المسارات الثابتة.
+</p>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
 
-                            </div>
+<div class="command-table">
 
-                        </div>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                    </div>
 
-                </section>
+<div class="command-row">
 
+<div class="command-cell">
+<small>إضافة Static Route</small>
+<pre><code>ip route 192.168.20.0 255.255.255.0 192.168.10.2</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+<div class="command-cell">
+<small>إضافة Static Route</small>
+<pre><code>ip route-static 192.168.20.0 255.255.255.0 192.168.10.2</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                <!-- ================= ROUTING ================= -->
+</div>
 
-                <section class="config-section" id="routing">
 
-                    <div class="section-heading">
+<div class="command-row">
 
-                        <div class="section-number">
-                            05
-                        </div>
+<div class="command-cell">
+<small>عرض Routing Table</small>
+<pre><code>show ip route</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        <div>
+<div class="command-cell">
+<small>عرض Routing Table</small>
+<pre><code>display ip routing-table</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <span>
-                                ROUTING
-                            </span>
+</div>
 
-                            <h2>
-                                Static Routing
-                            </h2>
 
-                            <p>
-                                إضافة المسارات الثابتة بين الشبكات.
-                            </p>
+<div class="command-row">
 
-                        </div>
+<div class="command-cell">
+<small>البحث عن شبكة محددة</small>
+<pre><code>show ip route 192.168.20.0</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    </div>
+<div class="command-cell">
+<small>البحث عن شبكة محددة</small>
+<pre><code>display ip routing-table 192.168.20.0</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+</div>
 
-                    <div class="command-table">
+</div>
 
-                        <div class="command-header">
+</section>
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+<!-- ================================================= -->
+<!-- 07 OSPF -->
+<!-- ================================================= -->
 
-                        </div>
+<section class="command-section" id="ospf">
 
+<h2>
+<span class="section-number">07</span>
+OSPF
+</h2>
 
-                        <div class="command-row">
+<p class="section-description">
+أوامر إنشاء OSPF وفحص الجيران وقاعدة البيانات.
+</p>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    إضافة Static Route
-                                </small>
+<div class="command-table">
 
-                                <pre><code>ip route 192.168.20.0 255.255.255.0 192.168.10.2</code></pre>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
 
-                            </div>
+<div class="command-row">
 
+<div class="command-cell">
+<small>إنشاء OSPF</small>
+<pre><code>router ospf 1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>إنشاء OSPF</small>
+<pre><code>ospf 1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    إضافة Static Route
-                                </small>
+</div>
 
-                                <pre><code>ip route-static 192.168.20.0 255.255.255.0 192.168.10.2</code></pre>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-row">
 
-                            </div>
+<div class="command-cell">
+<small>إضافة Network إلى Area 0</small>
+<pre><code>network 192.168.10.0 0.0.0.255 area 0</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        </div>
-
-
-                        <div class="command-row">
-
-                            <div class="command-cell">
-
-                                <small>
-                                    عرض جدول التوجيه
-                                </small>
-
-                                <pre><code>show ip route</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-
-                            <div class="command-cell">
-
-                                <small>
-                                    عرض جدول التوجيه
-                                </small>
-
-                                <pre><code>display ip routing-table</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-
-                <!-- ================= OSPF ================= -->
-
-                <section class="config-section" id="ospf">
-
-                    <div class="section-heading">
-
-                        <div class="section-number">
-                            06
-                        </div>
-
-                        <div>
-
-                            <span>
-                                DYNAMIC ROUTING
-                            </span>
-
-                            <h2>
-                                OSPF
-                            </h2>
-
-                            <p>
-                                أوامر إعداد وفحص بروتوكول OSPF.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="command-table">
-
-                        <div class="command-header">
-
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
-
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
-
-                        </div>
-
-
-                        <div class="command-row">
-
-                            <div class="command-cell">
-
-                                <small>
-                                    إنشاء OSPF Process
-                                </small>
-
-                                <pre><code>router ospf 1</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-
-                            <div class="command-cell">
-
-                                <small>
-                                    إنشاء OSPF Process
-                                </small>
-
-                                <pre><code>ospf 1</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="command-row">
-
-                            <div class="command-cell">
-
-                                <small>
-                                    إضافة Network إلى Area 0
-                                </small>
-
-                                <pre><code>network 192.168.10.0 0.0.0.255 area 0</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-
-                            <div class="command-cell">
-
-                                <small>
-                                    إضافة Network إلى Area 0
-                                </small>
-
-                                <pre><code>area 0
+<div class="command-cell">
+<small>إضافة Network إلى Area 0</small>
+<pre><code>area 0
 network 192.168.10.0 0.0.0.255</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-                        </div>
+</div>
 
 
-                        <div class="command-row">
+<div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>عرض OSPF Neighbors</small>
+<pre><code>show ip ospf neighbor</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    عرض OSPF Neighbors
-                                </small>
+<div class="command-cell">
+<small>عرض OSPF Neighbors</small>
+<pre><code>display ospf peer</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>show ip ospf neighbor</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-
-                            <div class="command-cell">
-
-                                <small>
-                                    عرض OSPF Peers
-                                </small>
-
-                                <pre><code>display ospf peer</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </section>
+</div>
 
 
+<div class="command-row">
 
-                <!-- ================= SSH ================= -->
+<div class="command-cell">
+<small>عرض OSPF Database</small>
+<pre><code>show ip ospf database</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                <section class="config-section" id="ssh">
+<div class="command-cell">
+<small>عرض OSPF LSDB</small>
+<pre><code>display ospf lsdb</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    <div class="section-heading">
+</div>
 
-                        <div class="section-number">
-                            07
-                        </div>
+</div>
 
-                        <div>
-
-                            <span>
-                                REMOTE ACCESS
-                            </span>
-
-                            <h2>
-                                SSH
-                            </h2>
-
-                            <p>
-                                أوامر إعداد الوصول الآمن عن بعد.
-                            </p>
-
-                        </div>
-
-                    </div>
+</section>
 
 
-                    <div class="command-table">
+<!-- ================================================= -->
+<!-- 08 STP -->
+<!-- ================================================= -->
 
-                        <div class="command-header">
+<section class="command-section" id="stp">
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
+<h2>
+<span class="section-number">08</span>
+STP
+</h2>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
-
-                        </div>
-
-
-                        <div class="command-row">
-
-                            <div class="command-cell">
-
-                                <small>
-                                    إعداد Domain Name
-                                </small>
-
-                                <pre><code>ip domain-name network.local</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
+<p class="section-description">
+فحص Spanning Tree وحالة المنافذ.
+</p>
 
 
-                            <div class="command-cell">
+<div class="command-table">
 
-                                <small>
-                                    تفعيل SSH Server
-                                </small>
-
-                                <pre><code>stelnet server enable</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-                        </div>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
 
-                        <div class="command-row">
+<div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>عرض STP</small>
+<pre><code>show spanning-tree</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    إنشاء مستخدم SSH
-                                </small>
+<div class="command-cell">
+<small>عرض STP</small>
+<pre><code>display stp</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>username admin privilege 15 secret PASSWORD</code></pre>
-
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
+</div>
 
 
-                            <div class="command-cell">
+<div class="command-row">
 
-                                <small>
-                                    إنشاء مستخدم SSH
-                                </small>
+<div class="command-cell">
+<small>عرض STP لمنفذ</small>
+<pre><code>show spanning-tree interface GigabitEthernet0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>aaa
+<div class="command-cell">
+<small>عرض STP لمنفذ</small>
+<pre><code>display stp interface GigabitEthernet 0/0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 09 ETH TRUNK -->
+<!-- ================================================= -->
+
+<section class="command-section" id="ethtrunk">
+
+<h2>
+<span class="section-number">09</span>
+Eth-Trunk
+</h2>
+
+<p class="section-description">
+تجميع عدة وصلات في رابط منطقي واحد.
+</p>
+
+
+<div class="command-table">
+
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>واجهة Port-Channel</small>
+<pre><code>interface Port-channel 1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>واجهة Eth-Trunk</small>
+<pre><code>interface Eth-Trunk 1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>عرض EtherChannel</small>
+<pre><code>show etherchannel summary</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>عرض Eth-Trunk</small>
+<pre><code>display eth-trunk 1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 10 DHCP -->
+<!-- ================================================= -->
+
+<section class="command-section" id="dhcp">
+
+<h2>
+<span class="section-number">10</span>
+DHCP
+</h2>
+
+<p class="section-description">
+فحص DHCP وبعض إعدادات الحماية المرتبطة به.
+</p>
+
+
+<div class="command-table">
+
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>عرض DHCP Bindings</small>
+<pre><code>show ip dhcp binding</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>عرض DHCP IP Pool</small>
+<pre><code>display ip pool</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>تفعيل DHCP Snooping</small>
+<pre><code>ip dhcp snooping</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>تفعيل DHCP Snooping</small>
+<pre><code>dhcp snooping enable</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 11 SSH -->
+<!-- ================================================= -->
+
+<section class="command-section" id="ssh">
+
+<h2>
+<span class="section-number">11</span>
+SSH
+</h2>
+
+<p class="section-description">
+إعداد وإدارة الوصول الآمن عن بعد.
+</p>
+
+
+<div class="command-table">
+
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>تحديد Domain Name</small>
+<pre><code>ip domain-name network.local</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>تفعيل STelnet</small>
+<pre><code>stelnet server enable</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>إنشاء مستخدم</small>
+<pre><code>username admin privilege 15 secret PASSWORD</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>إنشاء مستخدم AAA</small>
+<pre><code>aaa
 local-user admin privilege level 15</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
-
-                            </div>
-
-                        </div>
+</div>
 
 
-                        <div class="command-row">
+<div class="command-row">
 
-                            <div class="command-cell">
-
-                                <small>
-                                    إعداد VTY للـ SSH
-                                </small>
-
-                                <pre><code>line vty 0 4
+<div class="command-cell">
+<small>إعداد VTY للـ SSH</small>
+<pre><code>line vty 0 4
 login local
 transport input ssh</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>إعداد VTY للـ SSH</small>
+<pre><code>user-interface vty 0 4
+authentication-mode aaa
+protocol inbound ssh</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+</div>
 
 
-                            <div class="command-cell">
+<div class="command-row">
 
-                                <small>
-                                    السماح للمستخدم باستخدام SSH
-                                </small>
+<div class="command-cell">
+<small>فحص SSH</small>
+<pre><code>show ssh</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>aaa
-local-user admin service-type ssh</code></pre>
+<div class="command-cell">
+<small>فحص SSH</small>
+<pre><code>display ssh server status</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</div>
 
-                            </div>
+</div>
 
-                        </div>
+</section>
 
-                    </div>
 
-                </section>
+<!-- ================================================= -->
+<!-- 12 ACL -->
+<!-- ================================================= -->
 
+<section class="command-section" id="acl">
 
+<h2>
+<span class="section-number">12</span>
+ACL
+</h2>
 
-                <!-- ================= INTERFACE ================= -->
+<p class="section-description">
+إنشاء وفحص قوائم التحكم بالوصول.
+</p>
 
-                <section class="config-section" id="interface">
 
-                    <div class="section-heading">
+<div class="command-table">
 
-                        <div class="section-number">
-                            08
-                        </div>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                        <div>
 
-                            <span>
-                                MONITORING
-                            </span>
+<div class="command-row">
 
-                            <h2>
-                                Interface & Status
-                            </h2>
+<div class="command-cell">
+<small>إنشاء ACL</small>
+<pre><code>access-list 100 permit ip any any</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <p>
-                                فحص المنافذ والواجهات والجهاز.
-                            </p>
+<div class="command-cell">
+<small>إنشاء ACL</small>
+<pre><code>acl 3000</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        </div>
+</div>
 
-                    </div>
 
+<div class="command-row">
 
-                    <div class="command-table">
+<div class="command-cell">
+<small>عرض ACL</small>
+<pre><code>show access-lists</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        <div class="command-header">
+<div class="command-cell">
+<small>عرض ACL</small>
+<pre><code>display acl 3000</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
+</div>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+</div>
 
-                        </div>
+</section>
 
 
-                        <div class="command-row">
+<!-- ================================================= -->
+<!-- 13 TROUBLESHOOTING -->
+<!-- ================================================= -->
 
-                            <div class="command-cell">
+<section class="command-section" id="troubleshooting">
 
-                                <small>
-                                    حالة المنافذ
-                                </small>
+<h2>
+<span class="section-number">13</span>
+Troubleshooting
+</h2>
 
-                                <pre><code>show interfaces status</code></pre>
+<p class="section-description">
+أوامر مهمة لتحديد مشاكل الاتصال والأداء.
+</p>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
 
-                            </div>
+<div class="command-table">
 
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    حالة المنافذ
-                                </small>
+<div class="command-row">
 
-                                <pre><code>display interface brief</code></pre>
+<div class="command-cell">
+<small>اختبار Ping</small>
+<pre><code>ping 192.168.1.1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>اختبار Ping</small>
+<pre><code>ping 192.168.1.1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+</div>
 
-                        </div>
 
+<div class="command-row">
 
-                        <div class="command-row">
+<div class="command-cell">
+<small>تتبع المسار</small>
+<pre><code>traceroute 192.168.1.1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>تتبع المسار</small>
+<pre><code>tracert 192.168.1.1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    حالة IP Interfaces
-                                </small>
+</div>
 
-                                <pre><code>show ip interface brief</code></pre>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-row">
 
-                            </div>
+<div class="command-cell">
+<small>عرض الجيران</small>
+<pre><code>show cdp neighbors</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+<div class="command-cell">
+<small>عرض LLDP Neighbors</small>
+<pre><code>display lldp neighbor brief</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+</div>
 
-                                <small>
-                                    حالة IP Interfaces
-                                </small>
 
-                                <pre><code>display ip interface brief</code></pre>
+<div class="command-row">
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>استخدام CPU</small>
+<pre><code>show processes cpu</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+<div class="command-cell">
+<small>استخدام CPU</small>
+<pre><code>display cpu-usage</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        </div>
+</div>
 
 
-                        <div class="command-row">
+<div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>استخدام Memory</small>
+<pre><code>show processes memory</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    جدول MAC
-                                </small>
+<div class="command-cell">
+<small>استخدام Memory</small>
+<pre><code>display memory-usage</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>show mac address-table</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
 
-                            </div>
+<div class="command-row">
 
+<div class="command-cell">
+<small>عرض Logs</small>
+<pre><code>show logging</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>عرض Logs</small>
+<pre><code>display logbuffer</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    جدول MAC
-                                </small>
+</div>
 
-                                <pre><code>display mac-address</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</section>
 
-                            </div>
 
-                        </div>
+<!-- ================================================= -->
+<!-- 14 SAVE -->
+<!-- ================================================= -->
 
+<section class="command-section" id="save">
 
-                        <div class="command-row">
+<h2>
+<span class="section-number">14</span>
+Save Configuration
+</h2>
 
-                            <div class="command-cell">
+<p class="section-description">
+حفظ إعدادات الجهاز بعد الانتهاء.
+</p>
 
-                                <small>
-                                    الإعداد الحالي
-                                </small>
 
-                                <pre><code>show running-config</code></pre>
+<div class="command-table">
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                            </div>
 
+<div class="command-row">
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>حفظ الإعدادات</small>
+<pre><code>copy running-config startup-config</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    الإعداد الحالي
-                                </small>
+<div class="command-cell">
+<small>حفظ الإعدادات</small>
+<pre><code>save</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <pre><code>display current-configuration</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
 
-                            </div>
+<div class="command-row">
 
-                        </div>
+<div class="command-cell">
+<small>عرض Startup Config</small>
+<pre><code>show startup-config</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    </div>
+<div class="command-cell">
+<small>عرض الإعدادات المحفوظة</small>
+<pre><code>display saved-configuration</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                </section>
+</div>
 
+</div>
 
+</section>
 
-                <!-- ================= TROUBLESHOOTING ================= -->
 
-                <section class="config-section" id="troubleshooting">
+<!-- ================================================= -->
+<!-- 15 SYSTEM MANAGEMENT -->
+<!-- ================================================= -->
 
-                    <div class="section-heading">
+<section class="command-section" id="system">
 
-                        <div class="section-number">
-                            09
-                        </div>
+<h2>
+<span class="section-number">15</span>
+System Management
+</h2>
 
-                        <div>
+<p class="section-description">
+إدارة المستخدمين والوقت وإعادة تشغيل الجهاز.
+</p>
 
-                            <span>
-                                DIAGNOSTICS
-                            </span>
 
-                            <h2>
-                                Troubleshooting
-                            </h2>
+<div class="command-table">
 
-                            <p>
-                                أوامر تساعدك في اكتشاف مشاكل الشبكة.
-                            </p>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                        </div>
 
-                    </div>
+<div class="command-row">
 
+<div class="command-cell">
+<small>عرض المستخدمين المتصلين</small>
+<pre><code>show users</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    <div class="command-table">
+<div class="command-cell">
+<small>عرض المستخدمين المتصلين</small>
+<pre><code>display users</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        <div class="command-header">
+</div>
 
-                            <div class="cisco-header">
-                                🔵 Cisco IOS
-                            </div>
 
-                            <div class="huawei-header">
-                                🟢 Huawei VRP
-                            </div>
+<div class="command-row">
 
-                        </div>
+<div class="command-cell">
+<small>عرض الوقت</small>
+<pre><code>show clock</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+<div class="command-cell">
+<small>عرض الوقت</small>
+<pre><code>display clock</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                        <div class="command-row">
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    اختبار الاتصال
-                                </small>
+<div class="command-row">
 
-                                <pre><code>ping 192.168.1.1</code></pre>
+<div class="command-cell">
+<small>إعادة تشغيل الجهاز</small>
+<pre><code>reload</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>إعادة تشغيل الجهاز</small>
+<pre><code>reboot</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+</div>
 
+</div>
 
-                            <div class="command-cell">
+</section>
 
-                                <small>
-                                    اختبار الاتصال
-                                </small>
 
-                                <pre><code>ping 192.168.1.1</code></pre>
+<!-- ================================================= -->
+<!-- 16 HARDWARE -->
+<!-- ================================================= -->
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<section class="command-section" id="hardware">
 
-                            </div>
+<h2>
+<span class="section-number">16</span>
+Device & Hardware
+</h2>
 
-                        </div>
+<p class="section-description">
+فحص معلومات الجهاز والمكونات وحالة الطاقة والمراوح.
+</p>
 
 
-                        <div class="command-row">
+<div class="command-table">
 
-                            <div class="command-cell">
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                                <small>
-                                    تتبع المسار
-                                </small>
 
-                                <pre><code>traceroute 192.168.1.1</code></pre>
+<div class="command-row">
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>معلومات الأجهزة والمكونات</small>
+<pre><code>show inventory</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+<div class="command-cell">
+<small>معلومات الجهاز</small>
+<pre><code>display device</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+</div>
 
-                            <div class="command-cell">
 
-                                <small>
-                                    تتبع المسار
-                                </small>
+<div class="command-row">
 
-                                <pre><code>tracert 192.168.1.1</code></pre>
+<div class="command-cell">
+<small>حالة البيئة والطاقة</small>
+<pre><code>show environment</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+<div class="command-cell">
+<small>حالة الطاقة</small>
+<pre><code>display power</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            </div>
+</div>
 
-                        </div>
 
+<div class="command-row">
 
-                        <div class="command-row">
+<div class="command-cell">
+<small>حالة المراوح</small>
+<pre><code>show environment fan</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                            <div class="command-cell">
+<div class="command-cell">
+<small>حالة المراوح</small>
+<pre><code>display fan</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                                <small>
-                                    اكتشاف أجهزة الجيران
-                                </small>
+</div>
 
-                                <pre><code>show cdp neighbors</code></pre>
+</div>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
+</section>
 
-                            </div>
 
+<!-- ================================================= -->
+<!-- 17 LAYER 3 -->
+<!-- ================================================= -->
 
-                            <div class="command-cell">
+<section class="command-section" id="layer3">
 
-                                <small>
-                                    اكتشاف أجهزة الجيران
-                                </small>
+<h2>
+<span class="section-number">17</span>
+Layer 3 Interface
+</h2>
 
-                                <pre><code>display lldp neighbor brief</code></pre>
+<p class="section-description">
+تحويل الواجهة إلى Layer 3 وإضافة IP Address.
+</p>
 
-                                <button class="copy-button" onclick="copyCommand(this)">
-                                    📋 نسخ
-                                </button>
 
-                            </div>
+<div class="command-table">
 
-                        </div>
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                    </div>
 
-                </section>
+<div class="command-row">
 
+<div class="command-cell">
+<small>الدخول إلى الواجهة</small>
+<pre><code>interface GigabitEthernet0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+<div class="command-cell">
+<small>الدخول إلى الواجهة</small>
+<pre><code>interface GigabitEthernet 0/0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                <!-- ================= END ================= -->
+</div>
 
-                <div class="config-end">
 
-                    <div class="config-end-icon">
-                        ✓
-                    </div>
+<div class="command-row">
 
-                    <h3>
-                        Network Command Reference
-                    </h3>
+<div class="command-cell">
+<small>تحويل المنفذ إلى Layer 3</small>
+<pre><code>no switchport</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    <p>
-                        عرّاب الشبكات — مرجعك لأوامر الشبكات
-                    </p>
+<div class="command-cell">
+<small>واجهة Layer 3</small>
+<pre><code>undo portswitch</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                </div>
+</div>
 
 
-            </div>
+<div class="command-row">
 
-        </div>
+<div class="command-cell">
+<small>إضافة IP Address</small>
+<pre><code>ip address 192.168.10.1 255.255.255.0</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-    </main>
+<div class="command-cell">
+<small>إضافة IP Address</small>
+<pre><code>ip address 192.168.10.1 255.255.255.0</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
+</div>
 
 
-    <!-- ================= FOOTER ================= -->
+<div class="command-row">
 
-    <footer class="footer">
+<div class="command-cell">
+<small>حذف IP Address</small>
+<pre><code>no ip address</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-        <div class="brand">
+<div class="command-cell">
+<small>حذف IP Address</small>
+<pre><code>undo ip address</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-            <div class="config-footer-logo">
+</div>
 
-                <svg
-                    class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    role="img"
-                    aria-label="شعار عرّاب الشبكات"
-                >
+</div>
 
-                    <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        opacity="0.75"
-                    >
+</section>
 
-                        <path d="M50 64 L22 82" />
-                        <path d="M50 64 L78 82" />
-                        <path d="M50 64 L50 91" />
 
-                        <path d="M22 82 L12 72" />
-                        <path d="M78 82 L88 72" />
+<!-- ================================================= -->
+<!-- 18 PORT SECURITY -->
+<!-- ================================================= -->
 
-                        <path d="M50 91 L38 96" />
-                        <path d="M50 91 L62 96" />
+<section class="command-section" id="security">
 
-                    </g>
+<h2>
+<span class="section-number">18</span>
+Port Security
+</h2>
 
-                    <g fill="currentColor">
+<p class="section-description">
+أوامر أساسية لحماية المنافذ من الأجهزة غير المصرح بها.
+</p>
 
-                        <circle cx="22" cy="82" r="3" />
-                        <circle cx="78" cy="82" r="3" />
-                        <circle cx="50" cy="91" r="3" />
 
-                        <circle cx="12" cy="72" r="2.5" />
-                        <circle cx="88" cy="72" r="2.5" />
+<div class="command-table">
 
-                        <circle cx="38" cy="96" r="2.5" />
-                        <circle cx="62" cy="96" r="2.5" />
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
 
-                    </g>
 
-                    <text
-                        x="39"
-                        y="45"
-                        text-anchor="middle"
-                        font-family="Tajawal, Arial, sans-serif"
-                        font-size="34"
-                        font-weight="800"
-                        fill="currentColor"
-                    >
-                        ع
-                    </text>
+<div class="command-row">
 
-                    <text
-                        x="64"
-                        y="38"
-                        text-anchor="middle"
-                        font-family="Arial, sans-serif"
-                        font-size="22"
-                        font-weight="800"
-                        fill="currentColor"
-                    >
-                        N
-                    </text>
+<div class="command-cell">
+<small>تفعيل Port Security</small>
+<pre><code>switchport port-security</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    <path
-                        d="M47 31 H57"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
+<div class="command-cell">
+<small>تفعيل Port Security</small>
+<pre><code>port-security enable</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                    <path
-                        d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
-                        fill="currentColor"
-                        opacity="0.95"
-                    />
+</div>
 
-                </svg>
 
-            </div>
+<div class="command-row">
 
-            <div>
+<div class="command-cell">
+<small>تحديد عدد MACs</small>
+<pre><code>switchport port-security maximum 2</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                <div class="brand-name">
-                    عرّاب الشبكات
-                </div>
+<div class="command-cell">
+<small>تحديد عدد MACs</small>
+<pre><code>port-security max-mac-num 2</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-                <div class="brand-subtitle">
-                    NETWORKS
-                </div>
+</div>
 
-            </div>
 
-        </div>
+<div class="command-row">
 
+<div class="command-cell">
+<small>عرض Port Security</small>
+<pre><code>show port-security</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-        <p>
-            تعلم الشبكات بطريقة عملية ومبسطة.
-        </p>
+<div class="command-cell">
+<small>عرض Port Security</small>
+<pre><code>display port-security</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
 
-    </footer>
+</div>
 
+</div>
 
+</section>
 
-    <script src="config.js"></script>
+
+<!-- ================================================= -->
+<!-- 19 STP CONFIG -->
+<!-- ================================================= -->
+
+<section class="command-section" id="stp-config">
+
+<h2>
+<span class="section-number">19</span>
+STP Configuration
+</h2>
+
+<p class="section-description">
+إعدادات أساسية للتحكم في STP والـ Root Bridge.
+</p>
+
+
+<div class="command-table">
+
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>تفعيل STP</small>
+<pre><code>spanning-tree mode rapid-pvst</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>تفعيل STP</small>
+<pre><code>stp enable</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>تحديد الجهاز كـ Root</small>
+<pre><code>spanning-tree vlan 10 root primary</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>تحديد Priority</small>
+<pre><code>stp vlan 10 priority 0</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>عرض Root Bridge</small>
+<pre><code>show spanning-tree root</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>عرض Root Bridge</small>
+<pre><code>display stp</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- 20 VLAN TROUBLESHOOTING -->
+<!-- ================================================= -->
+
+<section class="command-section" id="vlan-trouble">
+
+<h2>
+<span class="section-number">20</span>
+VLAN Troubleshooting
+</h2>
+
+<p class="section-description">
+أوامر عملية لمعرفة VLAN الموجودة على المنافذ ومشاكل الـ Trunk.
+</p>
+
+
+<div class="command-table">
+
+<div class="command-header">
+<div>🔵 Cisco IOS</div>
+<div>🟢 Huawei VRP</div>
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>عرض VLANs والمنافذ</small>
+<pre><code>show vlan brief</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>عرض VLANs والمنافذ</small>
+<pre><code>display vlan</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>فحص Trunk</small>
+<pre><code>show interfaces trunk</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>فحص VLAN على المنافذ</small>
+<pre><code>display port vlan</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>فحص MAC على منفذ</small>
+<pre><code>show mac address-table interface GigabitEthernet0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>فحص MAC على منفذ</small>
+<pre><code>display mac-address interface GigabitEthernet 0/0/1</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>البحث عن MAC محدد</small>
+<pre><code>show mac address-table address 0011.2233.4455</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>البحث عن MAC محدد</small>
+<pre><code>display mac-address 0011-2233-4455</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>فحص إعدادات VLAN داخل Configuration</small>
+<pre><code>show running-config | section vlan</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>البحث داخل Configuration</small>
+<pre><code>display current-configuration | include vlan</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+
+<div class="command-row">
+
+<div class="command-cell">
+<small>البحث عن إعداد معين</small>
+<pre><code>show running-config | include interface</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+<div class="command-cell">
+<small>البحث عن إعداد معين</small>
+<pre><code>display current-configuration | include interface</code></pre>
+<button class="copy-button" onclick="copyCommand(this)" type="button">📋 نسخ</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+</section>
+
+</div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<p>
+© 2026 عرّاب الشبكات — Network Learning Platform
+</p>
+
+</footer>
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="config.js"></script>
+
 <script src="user.js"></script>
-    
-    <script data-goatcounter="https://mish3l11.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+
+<script data-goatcounter="https://mish3l11.goatcounter.com/count"
+async
+src="//gc.zgo.at/count.js"></script>
+
 </body>
 
 </html>
