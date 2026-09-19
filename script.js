@@ -502,282 +502,114 @@ function clearActiveDevices() {
 
 function sendPacket() {
 
-    const packet =
-        document.getElementById("packet");
-
-    const status =
-        document.getElementById("packet-status");
-
-    const topology =
-        document.querySelector(".network-topology");
-
+    const packet = document.getElementById("packet");
+    const status = document.getElementById("packet-status");
+    const topology = document.querySelector(".network-topology");
 
     if (!packet || !status || !topology) {
+        console.error("Network Lab elements not found");
         return;
     }
-
-
-    /* =========================
-       إيقاف حركة سابقة
-    ========================= */
 
     clearInterval(window.packetMove);
-
     clearActiveDevices();
 
+    const devices = Array.from(
+        document.querySelectorAll(".network-device")
+    );
 
-    /* =========================
-       الأجهزة بالترتيب
-    ========================= */
-
-    const devices = [
-
-        document.querySelector(
-            '.network-device[onclick*="pc"]'
-        ),
-
-        document.querySelector(
-            '.network-device[onclick*="switch"]'
-        ),
-
-        document.querySelector(
-            '.network-device[onclick*="router"]'
-        ),
-
-        document.querySelector(
-            '.network-device[onclick*="firewall"]'
-        ),
-
-        document.querySelector(
-            '.network-device[onclick*="server"]'
-        )
-
-    ];
-
-
-    /* =========================
-       التأكد من الأجهزة
-    ========================= */
-
-    if (
-        devices.some(function (device) {
-            return !device;
-        })
-    ) {
+    if (devices.length !== 5) {
+        console.error("Network Lab needs 5 devices");
         return;
     }
-
-
-    /* =========================
-       موقع المختبر
-    ========================= */
 
     const topologyRect =
         topology.getBoundingClientRect();
 
+    const positions = devices.map(function (device) {
 
-    /* =========================
-       حساب مواقع الأجهزة
-    ========================= */
+        const rect =
+            device.getBoundingClientRect();
 
-    const positions =
-        devices.map(function (device) {
+        return {
+            x:
+                rect.left -
+                topologyRect.left +
+                rect.width / 2,
 
-            const rect =
-                device.getBoundingClientRect();
+            y:
+                rect.top -
+                topologyRect.top +
+                rect.height / 2
+        };
 
-            return {
+    });
 
-                x:
-                    rect.left -
-                    topologyRect.left +
-                    rect.width / 2,
+    packet.style.display = "block";
+    packet.style.opacity = "1";
+    packet.style.left = positions[0].x + "px";
+    packet.style.top = positions[0].y + "px";
+    packet.style.transform = "translate(-50%, -50%)";
 
-                y:
-                    rect.top -
-                    topologyRect.top +
-                    rect.height / 2
-            };
-        });
-
-
-    /* =========================
-       بداية Packet
-    ========================= */
-
-    packet.style.display =
-        "block";
-
-    packet.style.opacity =
-        "1";
-
-    packet.style.left =
-        positions[0].x + "px";
-
-    packet.style.top =
-        positions[0].y + "px";
-
-    packet.style.transform =
-        "translate(-50%, -50%)";
-
-
-    /* PC يصبح نشط */
     devices[0].classList.add("active");
 
     updatePacketStatus(0);
 
-
-    /* =========================
-       متغيرات الحركة
-    ========================= */
-
     let currentStep = 0;
-
     let progress = 0;
 
+    window.packetMove = setInterval(function () {
 
-    /* =========================
-       حركة Packet
-    ========================= */
+        const start = positions[currentStep];
+        const end = positions[currentStep + 1];
 
-    window.packetMove =
-        setInterval(function () {
+        if (!start || !end) {
 
-            const start =
-                positions[currentStep];
+            clearInterval(window.packetMove);
+            return;
+        }
 
-            const end =
-                positions[currentStep + 1];
+        progress += 0.015;
 
+        if (progress >= 1) {
+            progress = 1;
+        }
 
-            if (!start || !end) {
+        const x =
+            start.x +
+            (end.x - start.x) * progress;
 
-                clearInterval(
-                    window.packetMove
-                );
+        const y =
+            start.y +
+            (end.y - start.y) * progress;
+
+        packet.style.left = x + "px";
+        packet.style.top = y + "px";
+
+        if (progress >= 1) {
+
+            currentStep++;
+            progress = 0;
+
+            clearActiveDevices();
+
+            devices[currentStep].classList.add("active");
+
+            if (currentStep >= devices.length - 1) {
+
+                clearInterval(window.packetMove);
+
+                updatePacketStatus(4);
+
+                setTimeout(function () {
+                    packet.style.opacity = "0";
+                }, 800);
 
                 return;
             }
 
+            updatePacketStatus(currentStep);
+        }
 
-            /* سرعة الحركة */
-
-            progress += 0.010;
-
-
-            if (progress > 1) {
-                progress = 1;
-            }
-
-
-            /* =========================
-               حساب موقع Packet
-            ========================= */
-
-            const x =
-                start.x +
-                (end.x - start.x) *
-                progress;
-
-
-            const y =
-                start.y +
-                (end.y - start.y) *
-                progress;
-
-
-            packet.style.left =
-                x + "px";
-
-            packet.style.top =
-                y + "px";
-
-
-            /* =========================
-               وصول الجهاز التالي
-            ========================= */
-
-            if (progress >= 1) {
-
-                currentStep++;
-
-                progress = 0;
-
-
-                /* الجهاز الحالي */
-
-                const activeDevice =
-                    devices[currentStep];
-
-
-                if (activeDevice) {
-
-                    activeDevice
-                        .classList
-                        .add("active");
-
-
-                    setTimeout(function () {
-
-                        activeDevice
-                            .classList
-                            .remove("active");
-
-                    }, 500);
-                }
-
-
-                /* =========================
-                   السيرفر
-                ========================= */
-
-                if (
-                    currentStep >=
-                    positions.length - 1
-                ) {
-
-                    clearInterval(
-                        window.packetMove
-                    );
-
-
-                    const finalPosition =
-                        positions[
-                            positions.length - 1
-                        ];
-
-
-                    packet.style.left =
-                        finalPosition.x + "px";
-
-
-                    packet.style.top =
-                        finalPosition.y + "px";
-
-
-                    updatePacketStatus(4);
-
-
-                    setTimeout(function () {
-
-                        packet.style.opacity =
-                            "0";
-
-                    }, 800);
-
-
-                    return;
-                }
-
-
-                /* =========================
-                   تحديث حالة الرحلة
-                ========================= */
-
-                updatePacketStatus(
-                    currentStep
-                );
-            }
-
-        }, 30);
+    }, 30);
 }
