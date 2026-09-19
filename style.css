@@ -4342,3 +4342,173 @@ transition-duration: 0.01ms !important;
 #visitor-count {
     font-weight: 700;
 }
+/* =====================================================
+   📱 MOBILE RESPONSIVE - عرّاب الشبكات
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    /* الصفحة */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    .navbar {
+        padding: 10px 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nav-links {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        gap: 6px;
+        padding-bottom: 5px;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+
+    /* ================= COMMAND PAGE ================= */
+
+    .commands-layout {
+        display: block;
+    }
+
+    .commands-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .commands-content {
+        width: 100%;
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    .search-box {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+    }
+
+    .search-box input {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+
+    /* ================= FILTERS ================= */
+
+    .command-filters {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scrollbar-width: none;
+    }
+
+    .command-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-button {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 9px 13px;
+        font-size: 13px;
+    }
+
+
+    /* ================= COMMAND ROW ================= */
+
+    .command-row {
+        display: block;
+        width: 100%;
+    }
+
+    .command-cell {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 12px;
+    }
+
+    .command-cell pre {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .command-cell code {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= COPY BUTTON ================= */
+
+    .copy-button {
+        width: 100%;
+        min-height: 44px;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+
+    /* ================= SIDEBAR ================= */
+
+    .commands-sidebar a,
+    .commands-sidebar button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    /* ================= HEADINGS ================= */
+
+    h1 {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+
+    /* ================= GENERAL ================= */
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+        box-sizing: border-box;
+    }
+
+    .card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}
