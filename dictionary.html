@@ -1,3 +1,11 @@
+<!--
+  عرّاب الشبكات
+  Copyright (c) 2026 Mishal AL-Mishal
+  All Rights Reserved.
+  
+  يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
+  أو أي جزء جوهري منه دون إذن صاحب الحقوق.
+-->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -10,336 +18,298 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-    /* =========================
-       DICTIONARY - MODERN TECH
-       ========================= */
+        /* =========================
+           DICTIONARY - MODERN TECH
+           ========================= */
 
-    .dictionary-page {
-        padding-bottom: 45px;
-        overflow-x: hidden;
-    }
-
-    /* Hero */
-
-    .dictionary-hero {
-        width: min(1180px, calc(100% - 30px));
-        margin: 28px auto 20px;
-        padding: 34px 25px;
-        background:
-            linear-gradient(
-                135deg,
-                #d6c58f 0%,
-                #eee3bd 100%
-            );
-        border: 1px solid rgba(17,17,17,.12);
-        border-radius: 24px;
-        text-align: center;
-        box-sizing: border-box;
-    }
-
-    .dictionary-badge {
-        display: inline-flex;
-        padding: 7px 15px;
-        background: #111111;
-        color: #d6c58f;
-        border-radius: 999px;
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 1.5px;
-    }
-
-    .dictionary-hero h1 {
-        margin: 14px 0 8px;
-        color: #111111;
-        font-size: 32px;
-        line-height: 1.3;
-    }
-
-    .dictionary-hero p {
-        margin: 0;
-        color: #555555;
-        font-size: 14px;
-        line-height: 1.7;
-    }
-
-
-    /* Main */
-
-    .dictionary-wrapper {
-        width: min(1180px, calc(100% - 30px));
-        margin: auto;
-        box-sizing: border-box;
-    }
-
-
-    /* Search */
-
-    .dictionary-search {
-        position: relative;
-        margin-bottom: 35px;
-    }
-
-    .dictionary-search::before {
-        content: "⌕";
-        position: absolute;
-        right: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 23px;
-        color: #075985;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .dictionary-search input {
-        width: 100%;
-        height: 58px;
-        padding: 0 55px 0 18px;
-        border: 1px solid rgba(17,17,17,.13);
-        border-radius: 17px;
-        background: #f4eac8;
-        color: #111111;
-        font-family: inherit;
-        font-size: 15px;
-        outline: none;
-        box-sizing: border-box;
-        transition: .2s ease;
-    }
-
-    .dictionary-search input:focus {
-        border-color: #075985;
-        box-shadow: 0 0 0 4px rgba(7,89,133,.09);
-    }
-
-    .dictionary-search input::placeholder {
-        color: #777777;
-    }
-
-
-    /* Sections */
-
-    .dictionary-section {
-        margin-bottom: 38px;
-    }
-
-    .dictionary-section h2 {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0 0 17px;
-        color: #111111;
-        font-size: 22px;
-        font-weight: 800;
-    }
-
-    .dictionary-section h2::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: rgba(17,17,17,.14);
-    }
-
-
-    /* Cards */
-
-    .dictionary-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0,1fr));
-        gap: 15px;
-    }
-
-    .dictionary-card {
-        position: relative;
-        overflow: hidden;
-        min-width: 0;
-        padding: 20px;
-        background: #d6c58f;
-        border: 1px solid rgba(17,17,17,.10);
-        border-radius: 18px;
-        box-sizing: border-box;
-        transition:
-            transform .2s ease,
-            box-shadow .2s ease,
-            border-color .2s ease;
-    }
-
-    .dictionary-card::before {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 4px;
-        height: 100%;
-        background: #075985;
-    }
-
-    .dictionary-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(7,89,133,.28);
-        box-shadow: 0 10px 25px rgba(17,17,17,.09);
-    }
-
-    .dictionary-card strong {
-        display: block;
-        margin-bottom: 7px;
-        color: #075985;
-        font-size: 25px;
-        font-weight: 900;
-        line-height: 1.1;
-    }
-
-    .dictionary-card .english-name {
-        display: inline-block;
-        max-width: 100%;
-        padding: 5px 8px;
-        background: rgba(17,17,17,.07);
-        border-radius: 7px;
-        direction: ltr;
-        text-align: left;
-        color: #222222;
-        font-size: 11px;
-        font-weight: 700;
-        line-height: 1.5;
-        box-sizing: border-box;
-    }
-
-    .dictionary-card p {
-        margin: 13px 0 0;
-        color: #4f4f4f;
-        font-size: 13px;
-        line-height: 1.8;
-    }
-
-
-    /* No results */
-
-    .no-results {
-        display: none;
-        padding: 30px 20px;
-        background: #d6c58f;
-        border: 1px solid rgba(17,17,17,.10);
-        border-radius: 18px;
-        text-align: center;
-        color: #555555;
-    }
-
-
-    /* Tablet */
-
-    @media (max-width: 950px) {
-
-        .dictionary-grid {
-            grid-template-columns: repeat(2, minmax(0,1fr));
+        .dictionary-page {
+            padding-bottom: 45px;
+            overflow-x: hidden;
         }
 
-    }
-
-
-    /* Mobile */
-
-    @media (max-width: 600px) {
-
         .dictionary-hero {
-            width: calc(100% - 20px);
-            margin-top: 18px;
-            padding: 25px 15px;
-            border-radius: 19px;
+            width: min(1180px, calc(100% - 30px));
+            margin: 28px auto 20px;
+            padding: 34px 25px;
+            background: linear-gradient(135deg, #d6c58f 0%, #eee3bd 100%);
+            border: 1px solid rgba(17,17,17,.12);
+            border-radius: 24px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .dictionary-badge {
+            display: inline-flex;
+            padding: 7px 15px;
+            background: #111111;
+            color: #d6c58f;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
         }
 
         .dictionary-hero h1 {
-            font-size: 25px;
+            margin: 14px 0 8px;
+            color: #111111;
+            font-size: 32px;
+            line-height: 1.3;
         }
 
         .dictionary-hero p {
-            font-size: 12px;
+            margin: 0;
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.7;
         }
 
         .dictionary-wrapper {
-            width: calc(100% - 20px);
+            width: min(1180px, calc(100% - 30px));
+            margin: auto;
+            box-sizing: border-box;
         }
 
         .dictionary-search {
-            margin-bottom: 25px;
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .dictionary-search::before {
+            content: "⌕";
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 23px;
+            color: #075985;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .dictionary-search input {
-            height: 50px;
-            font-size: 14px;
-            border-radius: 14px;
+            width: 100%;
+            height: 58px;
+            padding: 0 55px 0 18px;
+            border: 1px solid rgba(17,17,17,.13);
+            border-radius: 17px;
+            background: #f4eac8;
+            color: #111111;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+            transition: .2s ease;
+        }
+
+        .dictionary-search input:focus {
+            border-color: #075985;
+            box-shadow: 0 0 0 4px rgba(7,89,133,.09);
+        }
+
+        .dictionary-search input::placeholder {
+            color: #777777;
         }
 
         .dictionary-section {
-            margin-bottom: 30px;
+            margin-bottom: 38px;
         }
 
         .dictionary-section h2 {
-            font-size: 18px;
-            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 17px;
+            color: #111111;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .dictionary-section h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(17,17,17,.14);
         }
 
         .dictionary-grid {
-            grid-template-columns: repeat(2, minmax(0,1fr));
-            gap: 9px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 15px;
         }
 
         .dictionary-card {
-            padding: 14px 11px;
-            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+            padding: 20px;
+            background: #d6c58f;
+            border: 1px solid rgba(17,17,17,.10);
+            border-radius: 18px;
+            box-sizing: border-box;
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                border-color .2s ease;
         }
 
         .dictionary-card::before {
-            width: 3px;
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #075985;
+        }
+
+        .dictionary-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(7,89,133,.28);
+            box-shadow: 0 10px 25px rgba(17,17,17,.09);
         }
 
         .dictionary-card strong {
-            font-size: 19px;
-        }
-
-        .dictionary-card .english-name {
             display: block;
-            font-size: 8.5px;
-            overflow-wrap: anywhere;
-        }
-
-        .dictionary-card p {
-            margin-top: 8px;
-            font-size: 10px;
-            line-height: 1.65;
-        }
-
-    }
-
-
-    /* Very small screens */
-
-    @media (max-width: 370px) {
-
-        .dictionary-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .dictionary-card strong {
-            font-size: 21px;
+            margin-bottom: 7px;
+            color: #075985;
+            font-size: 25px;
+            font-weight: 900;
+            line-height: 1.1;
         }
 
         .dictionary-card .english-name {
-            font-size: 10px;
+            display: inline-block;
+            max-width: 100%;
+            padding: 5px 8px;
+            background: rgba(17,17,17,.07);
+            border-radius: 7px;
+            direction: ltr;
+            text-align: left;
+            color: #222222;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.5;
+            box-sizing: border-box;
         }
 
         .dictionary-card p {
-            font-size: 11px;
+            margin: 13px 0 0;
+            color: #4f4f4f;
+            font-size: 13px;
+            line-height: 1.8;
         }
 
-    }
-</style>
+        .no-results {
+            display: none;
+            padding: 30px 20px;
+            background: #d6c58f;
+            border: 1px solid rgba(17,17,17,.10);
+            border-radius: 18px;
+            text-align: center;
+            color: #555555;
+        }
 
+        @media (max-width: 950px) {
+            .dictionary-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .dictionary-hero {
+                width: calc(100% - 20px);
+                margin-top: 18px;
+                padding: 25px 15px;
+                border-radius: 19px;
+            }
+
+            .dictionary-hero h1 {
+                font-size: 25px;
+            }
+
+            .dictionary-hero p {
+                font-size: 12px;
+            }
+
+            .dictionary-wrapper {
+                width: calc(100% - 20px);
+            }
+
+            .dictionary-search {
+                margin-bottom: 25px;
+            }
+
+            .dictionary-search input {
+                height: 50px;
+                font-size: 14px;
+                border-radius: 14px;
+            }
+
+            .dictionary-section {
+                margin-bottom: 30px;
+            }
+
+            .dictionary-section h2 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .dictionary-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+                gap: 9px;
+            }
+
+            .dictionary-card {
+                padding: 14px 11px;
+                border-radius: 14px;
+            }
+
+            .dictionary-card::before {
+                width: 3px;
+            }
+
+            .dictionary-card strong {
+                font-size: 19px;
+            }
+
+            .dictionary-card .english-name {
+                display: block;
+                font-size: 8.5px;
+                overflow-wrap: anywhere;
+            }
+
+            .dictionary-card p {
+                margin-top: 8px;
+                font-size: 10px;
+                line-height: 1.65;
+            }
+        }
+
+        @media (max-width: 370px) {
+
+            .dictionary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dictionary-card strong {
+                font-size: 21px;
+            }
+
+            .dictionary-card .english-name {
+                font-size: 10px;
+            }
+
+            .dictionary-card p {
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
 
 <body class="dictionary-page">
 
-    <!-- =========================
-         Navbar
-         ========================= -->
+    <!-- ================= NAVBAR ================= -->
 
     <nav class="navbar">
 
@@ -348,27 +318,27 @@
             <div class="brand-icon">
 
                 <svg class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    xmlns="http://www.w3.org/2000/svg">
+                     viewBox="0 0 100 100"
+                     xmlns="http://www.w3.org/2000/svg">
 
                     <circle cx="50" cy="18" r="9" fill="currentColor"/>
                     <circle cx="22" cy="72" r="9" fill="currentColor"/>
                     <circle cx="78" cy="72" r="9" fill="currentColor"/>
 
                     <line x1="50" y1="27"
-                        x2="27" y2="64"
-                        stroke="currentColor"
-                        stroke-width="7"/>
+                          x2="27" y2="64"
+                          stroke="currentColor"
+                          stroke-width="7"/>
 
                     <line x1="50" y1="27"
-                        x2="73" y2="64"
-                        stroke="currentColor"
-                        stroke-width="7"/>
+                          x2="73" y2="64"
+                          stroke="currentColor"
+                          stroke-width="7"/>
 
                     <line x1="31" y1="72"
-                        x2="69" y2="72"
-                        stroke="currentColor"
-                        stroke-width="7"/>
+                          x2="69" y2="72"
+                          stroke="currentColor"
+                          stroke-width="7"/>
 
                 </svg>
 
@@ -389,9 +359,11 @@
 
             <a href="quiz.html">🧠 اختبر معلوماتك</a>
 
-            <a href="config.html">💻 أوامر الشبكات</a>
-
-            <a href="dictionary.html" class="active">📖 قاموس الشبكات</a>
+    
+    <a href="config.html" class="nav-button">
+        💻 الاوامـر 
+    </a>
+            </a>
 
             <a href="profile.html">👤 حسابي</a>
 
@@ -400,9 +372,7 @@
     </nav>
 
 
-    <!-- =========================
-         Header
-         ========================= -->
+    <!-- ================= HERO ================= -->
 
     <header class="dictionary-hero">
 
@@ -413,419 +383,860 @@
         <h1>📖 قاموس الشبكات</h1>
 
         <p>
-            أهم اختصارات ومصطلحات الشبكات مع الاسم الكامل والمعنى بالعربي.
+            مرجع سريع لأهم مصطلحات الشبكات بطريقة بسيطة وسهلة للفهم.
         </p>
 
     </header>
 
 
-    <!-- =========================
-         Content
-         ========================= -->
+    <!-- ================= CONTENT ================= -->
 
     <main class="dictionary-wrapper">
+
+        <!-- SEARCH -->
 
         <div class="dictionary-search">
 
             <input
                 type="text"
                 id="dictionarySearch"
-                placeholder="🔍 ابحث عن VLAN أو OSPF أو أي مصطلح..."
-                autocomplete="off">
+                placeholder="ابحث عن IP، VLAN، OSPF، SSH..."
+                autocomplete="off"
+            >
 
         </div>
 
 
         <div id="dictionaryContent">
-<!-- =========================
-     01 - أساسيات الشبكات
-     ========================= -->
 
-<section class="dictionary-section">
 
-    <h2>🌐 أساسيات الشبكات</h2>
+            <!-- ================= 01 BASICS ================= -->
 
-    <div class="dictionary-grid">
+            <section class="dictionary-section">
 
-        <div class="dictionary-card">
-            <strong>IP</strong>
-            <span class="english-name">Internet Protocol</span>
-            <p>بروتوكول يستخدم لعنونة الأجهزة وتوجيه البيانات.</p>
+                <h2>🌐 أساسيات الشبكات</h2>
+
+                <div class="dictionary-grid">
+
+
+                    <article class="dictionary-card">
+
+                        <strong>IP</strong>
+
+                        <span class="english-name">
+                            Internet Protocol
+                        </span>
+
+                        <p>
+                            عنوان منطقي يُستخدم لتحديد الجهاز والوصول إليه داخل الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>MAC</strong>
+
+                        <span class="english-name">
+                            Media Access Control
+                        </span>
+
+                        <p>
+                            عنوان فريد مرتبط ببطاقة الشبكة ويُستخدم داخل الشبكة المحلية.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>LAN</strong>
+
+                        <span class="english-name">
+                            Local Area Network
+                        </span>
+
+                        <p>
+                            شبكة محلية تربط الأجهزة في مكان محدود مثل المنزل أو المكتب.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>WAN</strong>
+
+                        <span class="english-name">
+                            Wide Area Network
+                        </span>
+
+                        <p>
+                            شبكة واسعة تربط شبكات أو مواقع موجودة في مناطق مختلفة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>WLAN</strong>
+
+                        <span class="english-name">
+                            Wireless LAN
+                        </span>
+
+                        <p>
+                            شبكة محلية لاسلكية تعتمد على الاتصال عبر Wi-Fi.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>VLAN</strong>
+
+                        <span class="english-name">
+                            Virtual LAN
+                        </span>
+
+                        <p>
+                            تقسيم منطقي للشبكة إلى شبكات منفصلة بدون الحاجة إلى فصلها فعلياً.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>TCP</strong>
+
+                        <span class="english-name">
+                            Transmission Control Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يعتمد على الاتصال الموثوق ويضمن وصول البيانات بالترتيب.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>UDP</strong>
+
+                        <span class="english-name">
+                            User Datagram Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول سريع لا يحتاج إلى إنشاء اتصال قبل إرسال البيانات.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>ICMP</strong>
+
+                        <span class="english-name">
+                            Internet Control Message Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يُستخدم لرسائل الشبكة واختبار الاتصال مثل أمر Ping.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>MTU</strong>
+
+                        <span class="english-name">
+                            Maximum Transmission Unit
+                        </span>
+
+                        <p>
+                            أكبر حجم لحزمة البيانات يمكن إرسالها عبر واجهة الشبكة.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= 02 SWITCHING ================= -->
+
+            <section class="dictionary-section">
+
+                <h2>🔀 Switching</h2>
+
+                <div class="dictionary-grid">
+
+
+                    <article class="dictionary-card">
+
+                        <strong>STP</strong>
+
+                        <span class="english-name">
+                            Spanning Tree Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يمنع حدوث Loop بين السويتشات.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>RSTP</strong>
+
+                        <span class="english-name">
+                            Rapid Spanning Tree Protocol
+                        </span>
+
+                        <p>
+                            نسخة أسرع من STP لتقليل وقت استعادة الشبكة بعد حدوث تغيير.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>LACP</strong>
+
+                        <span class="english-name">
+                            Link Aggregation Control Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يجمع عدة روابط في رابط منطقي واحد.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>EtherChannel</strong>
+
+                        <span class="english-name">
+                            EtherChannel
+                        </span>
+
+                        <p>
+                            تقنية Cisco لدمج عدة منافذ في رابط منطقي واحد.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Trunk</strong>
+
+                        <span class="english-name">
+                            Trunk Port
+                        </span>
+
+                        <p>
+                            منفذ يسمح بمرور أكثر من VLAN عبر نفس الرابط.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Access</strong>
+
+                        <span class="english-name">
+                            Access Port
+                        </span>
+
+                        <p>
+                            منفذ يُستخدم عادةً لتوصيل جهاز نهائي داخل VLAN واحدة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>CAM</strong>
+
+                        <span class="english-name">
+                            Content Addressable Memory
+                        </span>
+
+                        <p>
+                            ذاكرة في السويتش تُستخدم لتخزين عناوين MAC والمنافذ المرتبطة بها.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>FDB</strong>
+
+                        <span class="english-name">
+                            Forwarding Database
+                        </span>
+
+                        <p>
+                            جدول يستخدمه السويتش لمعرفة المنفذ المرتبط بعنوان MAC.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>BPDU</strong>
+
+                        <span class="english-name">
+                            Bridge Protocol Data Unit
+                        </span>
+
+                        <p>
+                            رسائل تستخدمها بروتوكولات STP لتبادل معلومات حالة الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>PVID</strong>
+
+                        <span class="english-name">
+                            Port VLAN ID
+                        </span>
+
+                        <p>
+                            رقم VLAN الافتراضية المرتبطة بالمنفذ للـ Untagged traffic.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= 03 ROUTING ================= -->
+
+            <section class="dictionary-section">
+
+                <h2>🛣️ Routing</h2>
+
+                <div class="dictionary-grid">
+
+
+                    <article class="dictionary-card">
+
+                        <strong>OSPF</strong>
+
+                        <span class="english-name">
+                            Open Shortest Path First
+                        </span>
+
+                        <p>
+                            بروتوكول Routing ديناميكي يعتمد على حالة الروابط.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>BGP</strong>
+
+                        <span class="english-name">
+                            Border Gateway Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يستخدم لتبادل مسارات الشبكات بين الأنظمة المستقلة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>RIP</strong>
+
+                        <span class="english-name">
+                            Routing Information Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول Routing يعتمد على عدد القفزات كـ Metric.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>AS</strong>
+
+                        <span class="english-name">
+                            Autonomous System
+                        </span>
+
+                        <p>
+                            مجموعة شبكات تعمل تحت إدارة Routing واحدة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>AD</strong>
+
+                        <span class="english-name">
+                            Administrative Distance
+                        </span>
+
+                        <p>
+                            قيمة تساعد الراوتر في اختيار مصدر المسار المفضل.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Metric</strong>
+
+                        <span class="english-name">
+                            Routing Metric
+                        </span>
+
+                        <p>
+                            قيمة يستخدمها بروتوكول التوجيه للمفاضلة بين المسارات.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Next-Hop</strong>
+
+                        <span class="english-name">
+                            Next Hop
+                        </span>
+
+                        <p>
+                            عنوان الجهاز التالي الذي سيتم إرسال الحزمة إليه.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Default Route</strong>
+
+                        <span class="english-name">
+                            Default Route
+                        </span>
+
+                        <p>
+                            مسار يستخدم عندما لا يوجد مسار أكثر تحديداً للوجهة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>FIB</strong>
+
+                        <span class="english-name">
+                            Forwarding Information Base
+                        </span>
+
+                        <p>
+                            جدول يستخدمه الجهاز لاتخاذ قرار تمرير الحزم بسرعة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>VRF</strong>
+
+                        <span class="english-name">
+                            Virtual Routing and Forwarding
+                        </span>
+
+                        <p>
+                            يسمح بإنشاء جداول Routing مستقلة داخل نفس الجهاز.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= 04 SECURITY ================= -->
+
+            <section class="dictionary-section">
+
+                <h2>🔐 Security</h2>
+
+                <div class="dictionary-grid">
+
+
+                    <article class="dictionary-card">
+
+                        <strong>ACL</strong>
+
+                        <span class="english-name">
+                            Access Control List
+                        </span>
+
+                        <p>
+                            مجموعة قواعد تسمح أو تمنع أنواعاً معينة من حركة الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>SSH</strong>
+
+                        <span class="english-name">
+                            Secure Shell
+                        </span>
+
+                        <p>
+                            بروتوكول آمن للدخول وإدارة أجهزة الشبكة عن بُعد.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>AAA</strong>
+
+                        <span class="english-name">
+                            Authentication Authorization Accounting
+                        </span>
+
+                        <p>
+                            إطار لإدارة المصادقة والصلاحيات وتسجيل نشاط المستخدمين.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>802.1X</strong>
+
+                        <span class="english-name">
+                            IEEE 802.1X
+                        </span>
+
+                        <p>
+                            معيار للتحكم في وصول الأجهزة إلى الشبكة باستخدام المصادقة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>VPN</strong>
+
+                        <span class="english-name">
+                            Virtual Private Network
+                        </span>
+
+                        <p>
+                            اتصال منطقي آمن يسمح بربط المستخدم أو الشبكة بشبكة أخرى.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>NAT</strong>
+
+                        <span class="english-name">
+                            Network Address Translation
+                        </span>
+
+                        <p>
+                            تقنية لترجمة عناوين IP بين شبكات مختلفة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>PAT</strong>
+
+                        <span class="english-name">
+                            Port Address Translation
+                        </span>
+
+                        <p>
+                            نوع من NAT يسمح لعدة أجهزة بمشاركة عنوان IP واحد.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>IDS</strong>
+
+                        <span class="english-name">
+                            Intrusion Detection System
+                        </span>
+
+                        <p>
+                            نظام يراقب الشبكة لاكتشاف الأنشطة المشبوهة أو محاولات الاختراق.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>IPS</strong>
+
+                        <span class="english-name">
+                            Intrusion Prevention System
+                        </span>
+
+                        <p>
+                            نظام يكتشف الأنشطة المشبوهة ويمكنه منعها.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Port Security</strong>
+
+                        <span class="english-name">
+                            Port Security
+                        </span>
+
+                        <p>
+                            ميزة للتحكم في عناوين MAC المسموح لها باستخدام منفذ السويتش.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= 05 SERVICES ================= -->
+
+            <section class="dictionary-section">
+
+                <h2>🛠️ Troubleshooting & Services</h2>
+
+                <div class="dictionary-grid">
+
+
+                    <article class="dictionary-card">
+
+                        <strong>DHCP</strong>
+
+                        <span class="english-name">
+                            Dynamic Host Configuration Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يوزع إعدادات الشبكة مثل IP وGateway وDNS تلقائياً.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>DNS</strong>
+
+                        <span class="english-name">
+                            Domain Name System
+                        </span>
+
+                        <p>
+                            يحول أسماء المواقع مثل example.com إلى عناوين IP.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>ARP</strong>
+
+                        <span class="english-name">
+                            Address Resolution Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يستخدم لمعرفة عنوان MAC المرتبط بعنوان IPv4.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>QoS</strong>
+
+                        <span class="english-name">
+                            Quality of Service
+                        </span>
+
+                        <p>
+                            تقنيات لإدارة أولوية وتدفق البيانات داخل الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>SNMP</strong>
+
+                        <span class="english-name">
+                            Simple Network Management Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول يستخدم لمراقبة وإدارة أجهزة الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Syslog</strong>
+
+                        <span class="english-name">
+                            System Logging Protocol
+                        </span>
+
+                        <p>
+                            نظام لتجميع وتسجيل رسائل وأحداث الأجهزة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>NTP</strong>
+
+                        <span class="english-name">
+                            Network Time Protocol
+                        </span>
+
+                        <p>
+                            بروتوكول لمزامنة الوقت بين أجهزة الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>PoE</strong>
+
+                        <span class="english-name">
+                            Power over Ethernet
+                        </span>
+
+                        <p>
+                            تقنية تسمح بتمرير الطاقة الكهربائية عبر كابل الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Ping</strong>
+
+                        <span class="english-name">
+                            Ping
+                        </span>
+
+                        <p>
+                            أداة لاختبار إمكانية الوصول بين جهازين عبر الشبكة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="dictionary-card">
+
+                        <strong>Traceroute</strong>
+
+                        <span class="english-name">
+                            Traceroute
+                        </span>
+
+                        <p>
+                            أداة تعرض المسار الذي تسلكه الحزم للوصول إلى الوجهة.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
         </div>
 
-        <div class="dictionary-card">
-            <strong>MAC</strong>
-            <span class="english-name">Media Access Control</span>
-            <p>عنوان فريد لواجهة الشبكة يستخدم للتعرف على الجهاز داخل الشبكة.</p>
-        </div>
 
-        <div class="dictionary-card">
-            <strong>LAN</strong>
-            <span class="english-name">Local Area Network</span>
-            <p>شبكة محلية تربط الأجهزة ضمن نطاق جغرافي محدود.</p>
-        </div>
+        <!-- ================= NO RESULTS ================= -->
 
-        <div class="dictionary-card">
-            <strong>WAN</strong>
-            <span class="english-name">Wide Area Network</span>
-            <p>شبكة واسعة تربط شبكات ومواقع جغرافية مختلفة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>WLAN</strong>
-            <span class="english-name">Wireless Local Area Network</span>
-            <p>شبكة محلية لاسلكية تعتمد على الاتصال عبر Wi-Fi.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>VLAN</strong>
-            <span class="english-name">Virtual Local Area Network</span>
-            <p>تقسيم منطقي للشبكة إلى شبكات منفصلة داخل السويتش.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>TCP</strong>
-            <span class="english-name">Transmission Control Protocol</span>
-            <p>بروتوكول نقل موثوق يضمن وصول البيانات بالترتيب الصحيح.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>UDP</strong>
-            <span class="english-name">User Datagram Protocol</span>
-            <p>بروتوكول نقل سريع لا يعتمد على إنشاء اتصال مسبق.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>ICMP</strong>
-            <span class="english-name">Internet Control Message Protocol</span>
-            <p>يستخدم لرسائل التحكم والتشخيص مثل اختبار الاتصال باستخدام Ping.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>MTU</strong>
-            <span class="english-name">Maximum Transmission Unit</span>
-            <p>أكبر حجم لحزمة البيانات يمكن إرسالها عبر الواجهة دون تجزئة.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     02 - Switching
-     ========================= -->
-
-<section class="dictionary-section">
-
-    <h2>🔀 Switching</h2>
-
-    <div class="dictionary-grid">
-
-        <div class="dictionary-card">
-            <strong>STP</strong>
-            <span class="english-name">Spanning Tree Protocol</span>
-            <p>بروتوكول يمنع حدوث حلقات الشبكة بين السويتشات.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>RSTP</strong>
-            <span class="english-name">Rapid Spanning Tree Protocol</span>
-            <p>نسخة أسرع من STP لتقليل وقت استعادة الشبكة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>LACP</strong>
-            <span class="english-name">Link Aggregation Control Protocol</span>
-            <p>بروتوكول يستخدم لتجميع عدة روابط في رابط منطقي واحد.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>EtherChannel</strong>
-            <span class="english-name">EtherChannel</span>
-            <p>تقنية لتجميع عدة وصلات Ethernet في قناة واحدة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Trunk</strong>
-            <span class="english-name">Trunk Link</span>
-            <p>وصلة تسمح بمرور عدة VLANs عبر رابط واحد.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Access</strong>
-            <span class="english-name">Access Port</span>
-            <p>منفذ سويتش مخصص عادةً لـ VLAN واحدة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>CAM</strong>
-            <span class="english-name">Content Addressable Memory</span>
-            <p>ذاكرة يستخدمها السويتش لتخزين معلومات عناوين MAC والمنافذ.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>FDB</strong>
-            <span class="english-name">Forwarding Database</span>
-            <p>جدول يحتوي على معلومات تساعد السويتش في تمرير الإطارات.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>BPDU</strong>
-            <span class="english-name">Bridge Protocol Data Unit</span>
-            <p>رسائل تستخدمها بروتوكولات STP لتبادل معلومات الشبكة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>PVID</strong>
-            <span class="english-name">Port VLAN ID</span>
-            <p>رقم VLAN المرتبط بالإطارات غير الموسومة على المنفذ.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     03 - Routing
-     ========================= -->
-
-<section class="dictionary-section">
-
-    <h2>🛣️ Routing</h2>
-
-    <div class="dictionary-grid">
-
-        <div class="dictionary-card">
-            <strong>OSPF</strong>
-            <span class="english-name">Open Shortest Path First</span>
-            <p>بروتوكول توجيه ديناميكي يعتمد على حالة الروابط.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>BGP</strong>
-            <span class="english-name">Border Gateway Protocol</span>
-            <p>بروتوكول توجيه يستخدم لتبادل معلومات المسارات بين الأنظمة المستقلة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>RIP</strong>
-            <span class="english-name">Routing Information Protocol</span>
-            <p>بروتوكول توجيه ديناميكي يعتمد على عدد القفزات.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>AS</strong>
-            <span class="english-name">Autonomous System</span>
-            <p>مجموعة من الشبكات تحت إدارة واحدة وتستخدم سياسة توجيه مشتركة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>AD</strong>
-            <span class="english-name">Administrative Distance</span>
-            <p>قيمة تستخدم لتحديد موثوقية مصدر مسار التوجيه.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Metric</strong>
-            <span class="english-name">Routing Metric</span>
-            <p>قيمة يستخدمها بروتوكول التوجيه لاختيار المسار المناسب.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Next-Hop</strong>
-            <span class="english-name">Next Hop</span>
-            <p>عنوان الجهاز التالي الذي تمر إليه حزمة البيانات.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Default Route</strong>
-            <span class="english-name">Default Route</span>
-            <p>مسار يستخدم عندما لا يوجد مسار أكثر تحديدًا للوجهة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>FIB</strong>
-            <span class="english-name">Forwarding Information Base</span>
-            <p>جدول يستخدم لاتخاذ قرارات تمرير الحزم.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>VRF</strong>
-            <span class="english-name">Virtual Routing and Forwarding</span>
-            <p>تقنية تسمح بوجود جداول توجيه مستقلة على نفس الجهاز.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     04 - Security
-     ========================= -->
-
-<section class="dictionary-section">
-
-    <h2>🔐 Security</h2>
-
-    <div class="dictionary-grid">
-
-        <div class="dictionary-card">
-            <strong>ACL</strong>
-            <span class="english-name">Access Control List</span>
-            <p>قائمة قواعد للتحكم في حركة المرور المسموح بها أو الممنوعة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>SSH</strong>
-            <span class="english-name">Secure Shell</span>
-            <p>بروتوكول آمن للوصول وإدارة أجهزة الشبكة عن بُعد.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>AAA</strong>
-            <span class="english-name">Authentication, Authorization and Accounting</span>
-            <p>إطار لإدارة التحقق من الهوية والصلاحيات وتسجيل النشاط.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>802.1X</strong>
-            <span class="english-name">IEEE 802.1X</span>
-            <p>معيار للتحكم في الوصول إلى الشبكة بناءً على التحقق من هوية المستخدم أو الجهاز.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>VPN</strong>
-            <span class="english-name">Virtual Private Network</span>
-            <p>تقنية لإنشاء اتصال خاص وآمن عبر شبكة عامة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>NAT</strong>
-            <span class="english-name">Network Address Translation</span>
-            <p>تقنية لترجمة عناوين IP بين شبكات مختلفة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>PAT</strong>
-            <span class="english-name">Port Address Translation</span>
-            <p>نوع من NAT يسمح لعدة أجهزة بمشاركة عنوان IP واحد باستخدام أرقام المنافذ.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>IDS</strong>
-            <span class="english-name">Intrusion Detection System</span>
-            <p>نظام يراقب الشبكة لاكتشاف الأنشطة المشبوهة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>IPS</strong>
-            <span class="english-name">Intrusion Prevention System</span>
-            <p>نظام يراقب التهديدات ويمكنه منع الأنشطة الضارة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Port Security</strong>
-            <span class="english-name">Switch Port Security</span>
-            <p>ميزة لحماية منافذ السويتش والتحكم في عناوين MAC المسموح بها.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     05 - Troubleshooting & Services
-     ========================= -->
-
-<section class="dictionary-section">
-
-    <h2>🛠️ Troubleshooting & Services</h2>
-
-    <div class="dictionary-grid">
-
-        <div class="dictionary-card">
-            <strong>DHCP</strong>
-            <span class="english-name">Dynamic Host Configuration Protocol</span>
-            <p>بروتوكول يوزع إعدادات الشبكة مثل IP تلقائيًا على الأجهزة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>DNS</strong>
-            <span class="english-name">Domain Name System</span>
-            <p>نظام يحول أسماء النطاقات إلى عناوين IP.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>ARP</strong>
-            <span class="english-name">Address Resolution Protocol</span>
-            <p>بروتوكول يستخدم لمعرفة عنوان MAC المرتبط بعنوان IPv4.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>DNS</strong>
-            <span class="english-name">Domain Name System</span>
-            <p>خدمة تساعد الأجهزة على الوصول إلى الخدمات باستخدام أسماء النطاقات.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>QoS</strong>
-            <span class="english-name">Quality of Service</span>
-            <p>تقنيات لإدارة أولوية حركة المرور وجودة الخدمات على الشبكة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>SNMP</strong>
-            <span class="english-name">Simple Network Management Protocol</span>
-            <p>بروتوكول لمراقبة وإدارة أجهزة الشبكة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>Syslog</strong>
-            <span class="english-name">System Logging Protocol</span>
-            <p>آلية لإرسال وتسجيل رسائل وأحداث الأجهزة والأنظمة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>NTP</strong>
-            <span class="english-name">Network Time Protocol</span>
-            <p>بروتوكول لمزامنة الوقت بين أجهزة الشبكة.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>PoE</strong>
-            <span class="english-name">Power over Ethernet</span>
-            <p>تقنية تسمح بنقل الطاقة الكهربائية عبر كابل Ethernet مع البيانات.</p>
-        </div>
-
-        <div class="dictionary-card">
-            <strong>ICMP</strong>
-            <span class="english-name">Internet Control Message Protocol</span>
-            <p>يستخدم في تشخيص الاتصال وإرسال رسائل التحكم والأخطاء.</p>
-        </div>
-
-    </div>
-
-</section>->
-
-        </div>
-
-
-        <div class="no-results" id="noResults">
-
+        <div id="noResults" class="no-results">
             لا توجد نتائج مطابقة للبحث.
-
         </div>
 
     </main>
 
 
-    <!-- =========================
-         Footer
-         ========================= -->
+    <!-- ================= FOOTER ================= -->
 
     <footer class="footer">
 
@@ -836,71 +1247,91 @@
     </footer>
 
 
+    <!-- ================= SCRIPTS ================= -->
+
     <script>
 
-        const searchInput =
+        const dictionarySearch =
             document.getElementById("dictionarySearch");
 
-        const content =
-            document.getElementById("dictionaryContent");
+        const dictionarySections =
+            document.querySelectorAll(".dictionary-section");
 
         const noResults =
             document.getElementById("noResults");
 
 
-        searchInput.addEventListener("input", function () {
+        if (dictionarySearch) {
 
-            const searchText =
-                this.value.trim().toLowerCase();
+            dictionarySearch.addEventListener("input", function () {
 
-            const cards =
-                document.querySelectorAll(".dictionary-card");
+                const searchText =
+                    this.value.trim().toLowerCase();
 
-            const sections =
-                document.querySelectorAll(".dictionary-section");
-
-            let found = false;
+                let totalResults = 0;
 
 
-            cards.forEach(function (card) {
+                dictionarySections.forEach(function (section) {
 
-                const text =
-                    card.textContent.toLowerCase();
+                    const cards =
+                        section.querySelectorAll(".dictionary-card");
 
-                if (text.includes(searchText)) {
+                    let sectionHasResult = false;
 
-                    card.style.display = "";
 
-                    found = true;
+                    cards.forEach(function (card) {
+
+                        const text =
+                            card.textContent.toLowerCase();
+
+
+                        if (text.includes(searchText)) {
+
+                            card.style.display = "";
+
+                            sectionHasResult = true;
+
+                            totalResults++;
+
+                        } else {
+
+                            card.style.display = "none";
+
+                        }
+
+                    });
+
+
+                    if (searchText === "") {
+
+                        section.style.display = "";
+
+                    } else {
+
+                        section.style.display =
+                            sectionHasResult ? "" : "none";
+
+                    }
+
+                });
+
+
+                if (searchText !== "" && totalResults === 0) {
+
+                    noResults.style.display = "block";
 
                 } else {
 
-                    card.style.display = "none";
+                    noResults.style.display = "none";
 
                 }
 
             });
 
-
-            sections.forEach(function (section) {
-
-                const visibleCards =
-                    section.querySelectorAll(
-                        ".dictionary-card:not([style*='display: none'])"
-                    );
-
-                section.style.display =
-                    visibleCards.length > 0 ? "" : "none";
-
-            });
-
-
-            noResults.style.display =
-                found ? "none" : "block";
-
-        });
+        }
 
     </script>
+
 
     <script src="user.js"></script>
 
