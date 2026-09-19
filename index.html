@@ -871,21 +871,41 @@
 
     </div>
 
-</footer>
+    </footer>
+
 <div class="visitor-counter">
-    👥 زوار الموقع: <span id="visitor-count">...</span>
+    👥 زوار الموقع:
+    <strong id="visitorCount"></strong>
 </div>
 
 <script src="script.js"></script>
 <script src="user.js"></script>
 
-<script data-goatcounter="https://mish3l11.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+<script
+    data-goatcounter="https://mish3l11.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js">
+</script>
 
 <script>
-    window.goatcounter.visit_count({
-        append: '#visitor-count'
-    });
+    window.goatcounter = window.goatcounter || {};
+
+    function showVisitorCount() {
+        if (window.goatcounter.visit_count) {
+            window.goatcounter.visit_count({
+                append: '#visitorCount',
+                path: 'TOTAL',
+                no_branding: true
+            });
+        }
+    }
+
+    const visitorTimer = setInterval(function () {
+        if (window.goatcounter && window.goatcounter.visit_count) {
+            clearInterval(visitorTimer);
+            showVisitorCount();
+        }
+    }, 100);
 </script>
 
 </body>
