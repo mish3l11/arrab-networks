@@ -4343,30 +4343,33 @@ transition-duration: 0.01ms !important;
     font-weight: 700;
 }
 /* =====================================================
-   📱 MOBILE RESPONSIVE - عرّاب الشبكات
+   📱 MOBILE DESIGN - عرّاب الشبكات
    ===================================================== */
 
 @media (max-width: 768px) {
 
-    /* الصفحة */
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         overflow-x: hidden;
     }
+
 
     /* ================= NAVBAR ================= */
 
     .navbar {
         padding: 10px 12px;
-        flex-wrap: wrap;
         gap: 8px;
     }
 
     .nav-links {
         width: 100%;
         display: flex;
+        gap: 7px;
         overflow-x: auto;
-        gap: 6px;
-        padding-bottom: 5px;
+        padding: 3px 0 7px;
         scrollbar-width: none;
     }
 
@@ -4375,25 +4378,87 @@ transition-duration: 0.01ms !important;
     }
 
     .nav-links a {
+        flex: 0 0 auto;
         white-space: nowrap;
         font-size: 13px;
-        padding: 8px 10px;
+        padding: 8px 11px;
+        border-radius: 9px;
     }
 
 
-    /* ================= COMMAND PAGE ================= */
+    /* ================= MAIN CONTAINER ================= */
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 12px;
+        margin: 0 auto;
+    }
+
+
+    /* ================= COMMAND LAYOUT ================= */
 
     .commands-layout {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
     }
+
+
+    /* ================= SIDEBAR ================= */
 
     .commands-sidebar {
         width: 100%;
-        margin-bottom: 20px;
+        margin: 0;
+        padding: 12px;
+        border-radius: 16px;
+        overflow: hidden;
     }
+
+    /*
+       الأقسام تصبح شريط أفقي
+       بدل قائمة طويلة
+    */
+
+    .commands-sidebar ul {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 3px 2px 9px;
+        margin: 0;
+        list-style: none;
+        scrollbar-width: none;
+    }
+
+    .commands-sidebar ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    .commands-sidebar li {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+
+    .commands-sidebar a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 125px;
+        min-height: 44px;
+        padding: 8px 12px;
+        border-radius: 11px;
+        font-size: 12px;
+        line-height: 1.4;
+        text-align: center;
+        white-space: normal;
+    }
+
+
+    /* ================= COMMAND CONTENT ================= */
 
     .commands-content {
         width: 100%;
+        min-width: 0;
     }
 
 
@@ -4401,13 +4466,12 @@ transition-duration: 0.01ms !important;
 
     .search-box {
         width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
 
     .search-box input {
         width: 100%;
-        box-sizing: border-box;
+        min-height: 46px;
         font-size: 16px;
     }
 
@@ -4416,7 +4480,7 @@ transition-duration: 0.01ms !important;
 
     .command-filters {
         display: flex;
-        gap: 6px;
+        gap: 7px;
         overflow-x: auto;
         padding-bottom: 5px;
         scrollbar-width: none;
@@ -4427,68 +4491,71 @@ transition-duration: 0.01ms !important;
     }
 
     .filter-button {
-        flex-shrink: 0;
-        white-space: nowrap;
-        padding: 9px 13px;
+        flex: 0 0 auto;
+        min-height: 42px;
+        padding: 8px 14px;
         font-size: 13px;
+        white-space: nowrap;
     }
 
 
     /* ================= COMMAND ROW ================= */
 
     .command-row {
-        display: block;
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .command-cell {
         width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 12px;
+        min-width: 0;
+        padding: 14px;
+        border-radius: 14px;
     }
+
+
+    /* ================= COMMAND CODE ================= */
 
     .command-cell pre {
         width: 100%;
-        box-sizing: border-box;
+        max-width: 100%;
+        margin: 10px 0;
+        padding: 12px;
         overflow-x: auto;
         white-space: pre-wrap;
-        word-break: break-word;
+        overflow-wrap: anywhere;
+        border-radius: 10px;
     }
 
     .command-cell code {
         font-size: 13px;
         line-height: 1.7;
+        word-break: break-word;
     }
 
 
-    /* ================= COPY BUTTON ================= */
+    /* ================= COPY ================= */
 
     .copy-button {
         width: 100%;
         min-height: 44px;
+        margin-top: 6px;
         font-size: 14px;
-        margin-top: 8px;
+        border-radius: 10px;
     }
 
 
-    /* ================= SIDEBAR ================= */
-
-    .commands-sidebar a,
-    .commands-sidebar button {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-
-    /* ================= HEADINGS ================= */
+    /* ================= TITLES ================= */
 
     h1 {
-        font-size: 28px;
+        font-size: 27px;
         line-height: 1.3;
     }
 
     h2 {
-        font-size: 22px;
+        font-size: 21px;
+        line-height: 1.4;
     }
 
     h3 {
@@ -4496,19 +4563,11 @@ transition-duration: 0.01ms !important;
     }
 
 
-    /* ================= GENERAL ================= */
+    /* ================= FOOTER ================= */
 
-    .container {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 12px;
-        padding-right: 12px;
-        box-sizing: border-box;
-    }
-
-    .card {
-        width: 100%;
-        box-sizing: border-box;
+    .footer {
+        padding: 20px 12px;
+        text-align: center;
     }
 
 }
