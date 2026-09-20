@@ -575,3 +575,19 @@
     }
 
 }
+/* إصلاح أزرار تحدي الميدان على الجوال */
+@media (max-width: 700px) {
+    .next-button,
+    #nextButton,
+    button {
+        touch-action: manipulation;
+    }
+
+    .next-button,
+    #nextButton {
+        position: relative;
+        z-index: 20;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+}

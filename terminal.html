@@ -1,0 +1,538 @@
+<!--
+  عرّاب الشبكات
+  Copyright (c) 2026 Mishal AL-Mishal
+  All Rights Reserved.
+-->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Terminal Simulator | عرّاب الشبكات</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="terminal.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="terminal-page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg">
+
+                    <circle cx="50" cy="18" r="9" fill="currentColor"/>
+                    <circle cx="22" cy="72" r="9" fill="currentColor"/>
+                    <circle cx="78" cy="72" r="9" fill="currentColor"/>
+
+                    <line
+                        x1="50"
+                        y1="27"
+                        x2="27"
+                        y2="64"
+                        stroke="currentColor"
+                        stroke-width="7"/>
+
+                    <line
+                        x1="50"
+                        y1="27"
+                        x2="73"
+                        y2="64"
+                        stroke="currentColor"
+                        stroke-width="7"/>
+
+                    <line
+                        x1="31"
+                        y1="72"
+                        x2="69"
+                        y2="72"
+                        stroke="currentColor"
+                        stroke-width="7"/>
+
+                </svg>
+
+            </div>
+
+            <span>عرّاب الشبكات</span>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                🏠 الرئيسية
+            </a>
+
+            <a href="lessons.html">
+                📚 الدروس
+            </a>
+
+            <a href="index.html#network-lab">
+                🧪 المختبر
+            </a>
+
+            <a href="quiz.html">
+                🧠 اختبر معلوماتك
+            </a>
+
+            <a href="dictionary.html">
+                📖 القاموس
+            </a>
+
+            <a href="config.html">
+                💻  مرجع الأوامر  
+            </a>
+
+            <a href="command-practice.html">
+                🎯 تحدي الميدان
+            </a>
+
+
+            <a href="profile.html">
+                👤 حسابي
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <header class="terminal-hero">
+
+        <span class="terminal-badge">
+            NETWORK TERMINAL
+        </span>
+
+        <h1>
+            ⌨️ Terminal Simulator
+        </h1>
+
+        <p>
+            تدرّب على أوامر الشبكات داخل بيئة CLI تفاعلية.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="terminal-wrapper">
+
+
+        <!-- =========================
+             DEVICE CONTROLS
+        ========================== -->
+
+        <section class="terminal-controls">
+
+
+            <div class="terminal-control-group">
+
+                <span class="terminal-label">
+                    النظام
+                </span>
+
+
+                <button
+                    type="button"
+                    class="terminal-device active"
+                    data-device="cisco">
+
+                    🔵 Cisco
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="terminal-device"
+                    data-device="huawei">
+
+                    🟢 Huawei
+
+                </button>
+
+            </div>
+
+
+            <div class="terminal-control-group">
+
+                <span class="terminal-label">
+                    الجهاز
+                </span>
+
+                <span
+                    class="device-name"
+                    id="deviceName">
+
+                    Switch
+
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="terminal-reset"
+                id="resetTerminal">
+
+                🔄 إعادة تشغيل
+
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             TERMINAL WINDOW
+        ========================== -->
+
+        <section class="terminal-window">
+
+
+            <!-- TOP BAR -->
+
+            <div class="terminal-topbar">
+
+                <div class="terminal-status">
+
+                    <span class="status-dot"></span>
+
+                    <span id="terminalStatus">
+                        Connected
+                    </span>
+
+                </div>
+
+
+                <span
+                    class="terminal-model"
+                    id="terminalModel">
+
+                    Cisco IOS
+
+                </span>
+
+            </div>
+
+
+            <!-- OUTPUT -->
+
+            <div
+                class="terminal-output"
+                id="terminalOutput"
+                aria-live="polite">
+            </div>
+
+
+            <!-- INPUT -->
+
+            <form
+                class="terminal-input-area"
+                id="terminalForm">
+
+                <span
+                    class="terminal-prompt"
+                    id="terminalPrompt">
+
+                    SW1&gt;
+
+                </span>
+
+
+                <input
+                    type="text"
+                    id="terminalInput"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    aria-label="Terminal command"
+                    placeholder="اكتب الأمر هنا...">
+
+            </form>
+
+        </section>
+
+
+        <!-- =========================
+             HELP
+        ========================== -->
+
+        <section class="terminal-help">
+
+            <div class="help-icon">
+                💡
+            </div>
+
+
+            <div>
+
+                <h2>
+                    كيف تستخدم المحاكي؟
+                </h2>
+
+                <p>
+
+                    اكتب الأمر في الطرفية ثم اضغط Enter.
+                    يمكنك اختيار Cisco أو Huawei
+                    وتجربة الأوامر المناسبة لكل نظام.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUPPORTED COMMANDS
+        ========================== -->
+<section class="fault-scenarios">
+
+    <div class="section-heading">
+
+        <span>
+            NETWORK TROUBLESHOOTING
+        </span>
+
+        <h2>
+            🛠️ أعطال تدريبية
+        </h2>
+
+    </div>
+
+    <p class="fault-scenarios-intro">
+        اختر عطلًا وحاول اكتشاف المشكلة وإصلاحها باستخدام أوامر الشبكات.
+    </p>
+
+    <div class="fault-scenario-grid">
+
+        <button
+            type="button"
+            class="fault-scenario-button"
+            data-scenario="shutdown-port">
+
+            🔴
+            <strong>منفذ Shutdown</strong>
+
+        </button>
+
+        <button
+            type="button"
+            class="fault-scenario-button"
+            data-scenario="wrong-vlan">
+
+            🟠
+            <strong>VLAN خاطئة</strong>
+
+        </button>
+
+        <button
+            type="button"
+            class="fault-scenario-button"
+            data-scenario="missing-vlan">
+
+            🟡
+            <strong>VLAN غير موجودة</strong>
+
+        </button>
+
+        <button
+            type="button"
+            class="fault-scenario-button"
+            data-scenario="interface-down">
+
+            🔵
+            <strong>Interface غير مفعّل</strong>
+
+        </button>
+
+        <button
+            type="button"
+            class="fault-scenario-button"
+            data-scenario="svi-error">
+
+            🟣
+            <strong>VLAN Interface خاطئ</strong>
+
+        </button>
+
+    </div>
+
+    <div
+        class="fault-scenario-status"
+        id="faultScenarioStatus">
+
+        اختر أحد الأعطال للبدء.
+
+    </div>
+
+</section>
+        <section class="supported-commands">
+
+
+            <div class="section-heading">
+
+                <span>
+                    COMMANDS
+                </span>
+
+                <h2>
+                    الأوامر المتاحة
+                </h2>
+
+            </div>
+
+
+            <!--
+                هذا القسم يتم تحديثه من terminal.js
+                حسب النظام المختار:
+                Cisco / Huawei
+            -->
+
+            <div
+                class="command-chips"
+                id="commandChips">
+
+                <!-- Cisco commands -->
+
+                <button
+                    type="button"
+                    data-command="enable">
+
+                    enable
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="configure terminal">
+
+                    configure terminal
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="show version">
+
+                    show version
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="show vlan brief">
+
+                    show vlan brief
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="show interfaces">
+
+                    show interfaces
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="show ip interface brief">
+
+                    show ip interface brief
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="show running-config">
+
+                    show running-config
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-command="?">
+
+                    ?
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <p>
+            ©️ 2026 عرّاب الشبكات — Network Learning Platform
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="terminal.js"></script>
+
+    <script src="user.js"></script>
+
+
+    <!-- GOATCOUNTER -->
+
+    <script
+        data-goatcounter="https://mish3l11.goatcounter.com/count"
+        async
+        src="//gc.zgo.at/count.js">
+    </script>
+
+</body>
+
+</html>
