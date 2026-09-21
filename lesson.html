@@ -1,14 +1,5 @@
-<!--
-  عرّاب الشبكات
-  Copyright (c) 2026 Mishal AL-Mishal
-  All Rights Reserved.
-  
-  يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
-  أو أي جزء جوهري منه دون إذن صاحب الحقوق.
--->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,12 +8,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 * {
 box-sizing: border-box;
 }
@@ -31,7 +19,7 @@ body {
 margin: 0;
 font-family: "Tajawal", sans-serif;
 background: #cbb77a;
-color: #111;
+color: #111111;
 }
 
 /* =========================
@@ -53,7 +41,7 @@ display: flex;
 align-items: center;
 gap: 10px;
 text-decoration: none;
-color: #111;
+color: #111111;
 }
 
 .brand-icon {
@@ -93,12 +81,14 @@ nav {
 display: flex;
 gap: 22px;
 align-items: center;
+flex-wrap: wrap;
 }
 
 nav a {
-color: #111;
+color: #111111;
 text-decoration: none;
 font-weight: 700;
+transition: 0.2s;
 }
 
 nav a:hover {
@@ -116,7 +106,7 @@ margin: 45px auto 80px;
 
 .back-link {
 display: inline-block;
-color: #111;
+color: #111111;
 text-decoration: none;
 font-weight: 700;
 margin-bottom: 20px;
@@ -131,8 +121,8 @@ HERO
 ========================= */
 
 .lesson-hero {
-background: #111;
-color: white;
+background: #111111;
+color: #ffffff;
 border-radius: 24px;
 padding: 40px;
 margin-bottom: 28px;
@@ -165,10 +155,6 @@ line-height: 1.9;
 font-size: 17px;
 }
 
-/* =========================
-PROGRESS
-========================= */
-
 .progress-area {
 margin-top: 30px;
 }
@@ -183,7 +169,7 @@ font-size: 14px;
 
 .progress-bar {
 height: 10px;
-background: #333;
+background: #333333;
 border-radius: 20px;
 overflow: hidden;
 }
@@ -192,12 +178,11 @@ overflow: hidden;
 height: 100%;
 background: #075985;
 border-radius: 20px;
-width: 8.33%;
 transition: width 0.4s ease;
 }
 
 /* =========================
-CONTENT
+LESSON LAYOUT
 ========================= */
 
 .lesson-layout {
@@ -223,7 +208,7 @@ margin-bottom: 15px;
 .lesson-sidebar a {
 display: block;
 text-decoration: none;
-color: #111;
+color: #111111;
 padding: 11px 12px;
 border-radius: 10px;
 margin-bottom: 6px;
@@ -234,6 +219,15 @@ transition: 0.2s;
 .lesson-sidebar a:hover {
 background: rgba(7,89,133,0.12);
 }
+
+.lesson-sidebar a.active {
+background: #111111;
+color: #ffffff;
+}
+
+/* =========================
+ARTICLE
+========================= */
 
 .lesson-article {
 background: #d6c58f;
@@ -250,16 +244,9 @@ scroll-margin-top: 30px;
 margin-bottom: 0;
 }
 
-.lesson-article h2 {
-font-size: 30px;
-margin-top: 0;
-margin-bottom: 15px;
-}
-
 .lesson-article h3 {
 font-size: 25px;
-margin-top: 0;
-margin-bottom: 15px;
+margin: 0 0 15px;
 }
 
 .lesson-article h4 {
@@ -286,38 +273,49 @@ margin-bottom: 7px;
 INFO BOXES
 ========================= */
 
-.info-box {
-background: rgba(7,89,133,0.10);
-border-right: 5px solid #075985;
+.info-box,
+.gold-box,
+.warning-box,
+.practice-box {
 padding: 18px 20px;
 border-radius: 12px;
 margin: 20px 0;
 }
 
-.info-box strong {
-display: block;
-margin-bottom: 8px;
-font-size: 17px;
-}
-
-.info-box p {
-margin: 5px 0;
+.info-box {
+background: rgba(7,89,133,0.10);
+border-right: 5px solid #075985;
 }
 
 .gold-box {
 background: rgba(214,197,143,0.45);
-border-right: 5px solid #111;
-padding: 18px 20px;
-border-radius: 12px;
-margin: 20px 0;
+border-right: 5px solid #111111;
 }
 
 .warning-box {
 background: rgba(180,70,60,0.10);
 border-right: 5px solid #9c4038;
-padding: 18px 20px;
-border-radius: 12px;
-margin: 20px 0;
+}
+
+.practice-box {
+background: rgba(47,111,69,0.10);
+border-right: 5px solid #2f6f45;
+}
+
+.info-box strong,
+.gold-box strong,
+.warning-box strong,
+.practice-box strong {
+display: block;
+margin-bottom: 8px;
+font-size: 17px;
+}
+
+.info-box p,
+.gold-box p,
+.warning-box p,
+.practice-box p {
+margin: 5px 0;
 }
 
 /* =========================
@@ -325,8 +323,8 @@ CODE
 ========================= */
 
 .code-box {
-background: #111;
-color: #eee;
+background: #111111;
+color: #eeeeee;
 border-radius: 15px;
 padding: 20px;
 margin: 20px 0;
@@ -386,12 +384,12 @@ text-align: center;
 }
 
 #completeLessonButton {
-border: none;
+border: 0;
 background: #075985;
-color: white;
+color: #ffffff;
 padding: 15px 28px;
 border-radius: 12px;
-font-family: "Tajawal", sans-serif;
+font-family: inherit;
 font-size: 16px;
 font-weight: 700;
 cursor: pointer;
@@ -426,8 +424,8 @@ gap: 15px;
 
 .lesson-navigation a {
 text-decoration: none;
-background: #111;
-color: white;
+background: #111111;
+color: #ffffff;
 padding: 15px 22px;
 border-radius: 12px;
 font-weight: 700;
@@ -443,8 +441,8 @@ FOOTER
 ========================= */
 
 footer {
-background: #111;
-color: white;
+background: #111111;
+color: #ffffff;
 text-align: center;
 padding: 30px;
 margin-top: 70px;
@@ -464,7 +462,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 background: #d6c58f;
-color: #111;
+color: #111111;
 border-radius: 14px;
 overflow: hidden;
 }
@@ -480,7 +478,7 @@ font-size: 18px;
 
 footer p {
 margin: 8px 0 0;
-color: #bbb;
+color: #bbbbbb;
 }
 
 /* =========================
@@ -498,11 +496,6 @@ nav {
 width: 100%;
 justify-content: space-between;
 gap: 10px;
-flex-wrap: wrap;
-}
-
-nav a {
-font-size: 14px;
 }
 
 .lesson-layout {
@@ -537,9 +530,7 @@ margin-top: 30px;
 .comparison {
 grid-template-columns: 1fr;
 }
-
 }
-
 </style>
 </head>
 
@@ -551,122 +542,85 @@ grid-template-columns: 1fr;
 
 <div class="brand-icon">
 
-<svg
-class="network-logo-svg"
+<svg class="network-logo-svg"
 viewBox="0 0 100 100"
 role="img"
-aria-label="شعار عرّاب الشبكات"
->
+aria-label="شعار عرّاب الشبكات">
 
-<g fill="none" stroke="currentColor" stroke-width="2"
-stroke-linecap="round" opacity="0.75">
+<g fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+opacity=".75">
 
-<path d="M50 64 L22 82" />
-<path d="M50 64 L78 82" />
-<path d="M50 64 L50 91" />
-
-<path d="M22 82 L12 72" />
-<path d="M78 82 L88 72" />
-
-<path d="M50 91 L38 96" />
-<path d="M50 91 L62 96" />
+<path d="M50 64 L22 82"/>
+<path d="M50 64 L78 82"/>
+<path d="M50 64 L50 91"/>
+<path d="M22 82 L12 72"/>
+<path d="M78 82 L88 72"/>
+<path d="M50 91 L38 96"/>
+<path d="M50 91 L62 96"/>
 
 </g>
 
 <g fill="currentColor">
 
-<circle cx="22" cy="82" r="3" />
-<circle cx="78" cy="82" r="3" />
-<circle cx="50" cy="91" r="3" />
-
-<circle cx="12" cy="72" r="2.5" />
-<circle cx="88" cy="72" r="2.5" />
-
-<circle cx="38" cy="96" r="2.5" />
-<circle cx="62" cy="96" r="2.5" />
+<circle cx="22" cy="82" r="3"/>
+<circle cx="78" cy="82" r="3"/>
+<circle cx="50" cy="91" r="3"/>
+<circle cx="12" cy="72" r="2.5"/>
+<circle cx="88" cy="72" r="2.5"/>
+<circle cx="38" cy="96" r="2.5"/>
+<circle cx="62" cy="96" r="2.5"/>
 
 </g>
 
-<text
-x="39"
+<text x="39"
 y="45"
 text-anchor="middle"
-font-family="Tajawal, Arial, sans-serif"
+font-family="Tajawal,Arial,sans-serif"
 font-size="34"
 font-weight="800"
-fill="currentColor"
->ع</text>
+fill="currentColor">ع</text>
 
-<text
-x="64"
+<text x="64"
 y="38"
 text-anchor="middle"
-font-family="Arial, sans-serif"
+font-family="Arial,sans-serif"
 font-size="22"
 font-weight="800"
-fill="currentColor"
->N</text>
+fill="currentColor">N</text>
 
 <path d="M47 31 H57"
 fill="none"
 stroke="currentColor"
 stroke-width="2"
-stroke-linecap="round" />
+stroke-linecap="round"/>
 
-<path
-d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
-fill="currentColor"
-opacity="0.95"
-/>
+<path d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
+fill="currentColor"/>
 
 </svg>
 
 </div>
 
 <div>
-
-<div class="brand-name">
-عرّاب الشبكات
-</div>
-
-<div class="brand-subtitle">
-NETWORKS
-</div>
-
+<div class="brand-name">عرّاب الشبكات</div>
+<div class="brand-subtitle">NETWORKS</div>
 </div>
 
 </a>
 
 <nav>
-
-<a href="index.html">
-الرئيسية
-</a>
-
-<a href="lessons.html">
-الدروس
-</a>
-
-<a href="quiz.html">
-الاختبارات
-</a>
-
-<a href="config.html">
-                💻  مرجع الأوامر  
-</a>
-
-<a href="terminal.html" class="feature-card">
-              CLI   ⌨️
-
-</a>
-        <a href="profile.html" class="nav-button profile-link">
-        👤 حسابي
-    </a>
-
+<a href="index.html">الرئيسية</a>
+<a href="lessons.html">الدروس</a>
+<a href="quiz.html">الاختبارات</a>
+<a href="config.html">💻 مرجع الأوامر</a>
+<a href="terminal.html">CLI ⌨️</a>
+<a href="profile.html">👤 حسابي</a>
 </nav>
 
 </header>
-
 
 <main class="lesson-page">
 
@@ -674,49 +628,35 @@ NETWORKS
 ← العودة إلى قائمة الدروس
 </a>
 
-
 <section class="lesson-hero">
 
 <div class="lesson-badges">
 
-<span class="badge" id="lessonCategory">
-🌐 أساسيات الشبكات
-</span>
+<span class="badge" id="lessonCategory"></span>
 
-<span class="badge" id="lessonLevel">
-🟢 سهل
-</span>
+<span class="badge" id="lessonLevel"></span>
 
 </div>
 
-<h1 id="lessonTitle">
-أساسيات الشبكات
-</h1>
+<h1 id="lessonTitle"></h1>
 
-<p class="lesson-description" id="lessonDescription">
-تعرّف على أساسيات الشبكات والمفاهيم التي تحتاجها.
-</p>
+<p class="lesson-description"
+id="lessonDescription"></p>
 
 <div class="progress-area">
 
 <div class="progress-info">
 
-<span id="lessonProgressText">
-الدرس 1 من 12
-</span>
+<span id="lessonProgressText"></span>
 
-<span id="lessonProgressPercent">
-8%
-</span>
+<span id="lessonProgressPercent"></span>
 
 </div>
 
 <div class="progress-bar">
 
-<div
-class="progress-fill"
-id="lessonProgressFill"
-></div>
+<div class="progress-fill"
+id="lessonProgressFill"></div>
 
 </div>
 
@@ -724,35 +664,30 @@ id="lessonProgressFill"
 
 </section>
 
-
 <div class="lesson-layout">
 
 <aside class="lesson-sidebar">
 
-<h3>
-محتويات الدرس
-</h3>
+<h3>محتويات الدرس</h3>
 
 <div id="lessonSidebar"></div>
 
 </aside>
 
+<article class="lesson-article"
+id="lessonContent">
 
-<article
-class="lesson-article"
-id="lessonContent"
-></article>
+</article>
 
 </div>
 
-
 <div class="lesson-complete">
 
-<button
-id="completeLessonButton"
-type="button"
->
+<button id="completeLessonButton"
+type="button">
+
 ✓ تم إكمال الدرس
+
 </button>
 
 <div id="completionMessage">
@@ -761,14 +696,15 @@ type="button"
 
 </div>
 
-
 <div class="lesson-navigation">
 
-<a href="#" id="previousLesson">
+<a href="#"
+id="previousLesson">
 ← الدرس السابق
 </a>
 
-<a href="#" id="nextLesson">
+<a href="#"
+id="nextLesson">
 الدرس التالي →
 </a>
 
@@ -776,109 +712,88 @@ type="button"
 
 </main>
 
-
-<footer>
+<footer class="site-footer">
 
 <div class="footer-brand">
 
-<div class="footer-logo">
+<div class="brand-icon">
 
 <svg
 class="network-logo-svg"
 viewBox="0 0 100 100"
-role="img"
+xmlns="http://www.w3.org/2000/svg"
 aria-label="شعار عرّاب الشبكات"
 >
 
-<g fill="none" stroke="currentColor" stroke-width="2"
-stroke-linecap="round" opacity="0.75">
-
-<path d="M50 64 L22 82" />
-<path d="M50 64 L78 82" />
-<path d="M50 64 L50 91" />
-
-<path d="M22 82 L12 72" />
-<path d="M78 82 L88 72" />
-
-<path d="M50 91 L38 96" />
-<path d="M50 91 L62 96" />
-
-</g>
-
-<g fill="currentColor">
-
-<circle cx="22" cy="82" r="3" />
-<circle cx="78" cy="82" r="3" />
-<circle cx="50" cy="91" r="3" />
-
-<circle cx="12" cy="72" r="2.5" />
-<circle cx="88" cy="72" r="2.5" />
-
-<circle cx="38" cy="96" r="2.5" />
-<circle cx="62" cy="96" r="2.5" />
-
-</g>
-
-<text
-x="39"
-y="45"
-text-anchor="middle"
-font-family="Tajawal, Arial, sans-serif"
-font-size="34"
-font-weight="800"
-fill="currentColor"
->ع</text>
-
-<text
-x="64"
-y="38"
-text-anchor="middle"
-font-family="Arial, sans-serif"
-font-size="22"
-font-weight="800"
-fill="currentColor"
->N</text>
-
-<path d="M47 31 H57"
+<circle
+cx="50"
+cy="50"
+r="42"
 fill="none"
 stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round" />
+stroke-width="5"
+/>
 
-<path
-d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
-fill="currentColor"
-opacity="0.95"
+<circle cx="50" cy="25" r="7" fill="currentColor"/>
+<circle cx="25" cy="65" r="7" fill="currentColor"/>
+<circle cx="75" cy="65" r="7" fill="currentColor"/>
+
+<line
+x1="50"
+y1="32"
+x2="28"
+y2="59"
+stroke="currentColor"
+stroke-width="5"
+/>
+
+<line
+x1="50"
+y1="32"
+x2="72"
+y2="59"
+stroke="currentColor"
+stroke-width="5"
+/>
+
+<line
+x1="32"
+y1="65"
+x2="68"
+y2="65"
+stroke="currentColor"
+stroke-width="5"
 />
 
 </svg>
 
 </div>
 
-<strong>
-عرّاب الشبكات
-</strong>
-
-<p>
-منصة تعليمية لتعلم الشبكات بطريقة عملية وبسيطة
-</p>
+<div>
+<strong>عرّاب الشبكات</strong>
+<span>NETWORKS</span>
+</div>
 
 </div>
+
+<p>
+منصة تعليمية متخصصة في شبكات الحاسب وتقنية المعلومات.
+</p>
+
+<small>
+© 2026 عرّاب الشبكات — جميع الحقوق محفوظة
+</small>
 
 </footer>
 
 
 <script>
 
-/* ==================================================
-DATABASE — الدروس
-================================================== */
-
 const lessons = [
 
-/* ==================================================
-01 — أساسيات الشبكات
-================================================== */
+/* =========================================================
+الدرس 1
+========================================================= */
 
 {
 id: 1,
@@ -893,100 +808,109 @@ sections: [
 title: "ما هي الشبكة؟",
 content: `
 <p>
-الشبكة هي مجموعة من الأجهزة المتصلة مع بعضها
-بهدف تبادل البيانات والموارد والخدمات.
-</p>
-
-<p>
-الأجهزة يمكن أن تكون أجهزة كمبيوتر أو جوالات
-أو طابعات أو سيرفرات أو أجهزة شبكات مثل
-Switch وRouter.
+الشبكة هي مجموعة من الأجهزة المتصلة مع بعضها بهدف تبادل البيانات
+ومشاركة الموارد والخدمات.
 </p>
 
 <div class="info-box">
 <strong>💡 الفكرة الأساسية</strong>
 <p>
-الشبكة = أجهزة + اتصال + عناوين + بروتوكولات.
+عندما يكون لديك جهاز كمبيوتر وهاتف وطابعة وسويتش
+متصلة مع بعضها، فأنت أمام شبكة.
 </p>
 </div>
 
-<div class="gold-box">
-<strong>📌 مثال من الواقع</strong>
 <p>
-عندما يكون الكمبيوتر والطابعة والسويتش
-متصلين مع بعض داخل مكتب، فهذه شبكة محلية.
-</p>
-</div>
-`
-},
-
-{
-title: "كيف تتواصل الأجهزة؟",
-content: `
-<p>
-لكي يتواصل جهازان، يحتاجان إلى طريقة لمعرفة
-مكان الجهاز الآخر وكيفية إرسال البيانات إليه.
-</p>
-
-<p>
-في الشبكات نستخدم عناوين مختلفة حسب المستوى،
-وأشهرها:
+الاتصال لا يعتمد فقط على وجود كابل أو Wi-Fi، بل يحتاج إلى
+عناوين وقواعد وبروتوكولات تحدد كيف يتم إرسال البيانات واستقبالها.
 </p>
 
 <ul>
-<li><strong>MAC Address</strong> للتواصل داخل الشبكة المحلية.</li>
-<li><strong>IP Address</strong> لتحديد الأجهزة والشبكات.</li>
-<li><strong>Port</strong> لتحديد الخدمة أو التطبيق.</li>
+<li>الأجهزة Devices</li>
+<li>وسيلة الاتصال Media</li>
+<li>العناوين Addresses</li>
+<li>البروتوكولات Protocols</li>
 </ul>
+`
+},
 
-<div class="code-box">
-<div class="code-title">مثال مبسط</div>
+{
+title: "لماذا نستخدم الشبكات؟",
+content: `
+<p>
+الشبكات تجعل الأجهزة قادرة على التواصل ومشاركة الموارد
+بدلاً من عمل كل جهاز بشكل منفصل.
+</p>
 
-<pre>
-PC
-|
-| Ethernet
-|
-Switch
-|
-Router
-|
-Internet
-</pre>
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>📁 مشاركة الملفات</h4>
+<p>
+يمكن للأجهزة الوصول إلى ملفات موجودة على خادم أو جهاز آخر.
+</p>
+</div>
+
+<div class="compare-card">
+<h4>🖨️ مشاركة الطابعات</h4>
+<p>
+عدة أجهزة يمكنها استخدام طابعة واحدة عبر الشبكة.
+</p>
+</div>
+
+<div class="compare-card">
+<h4>🌍 الوصول للإنترنت</h4>
+<p>
+الراوتر يربط الشبكة المحلية بشبكات أخرى مثل الإنترنت.
+</p>
+</div>
+
+<div class="compare-card">
+<h4>💬 التواصل</h4>
+<p>
+التطبيقات والخدمات تعتمد على الشبكات لتبادل البيانات.
+</p>
+</div>
+
 </div>
 `
 },
 
 {
-title: "أنواع الشبكات",
+title: "كيف تنتقل البيانات؟",
 content: `
-<div class="info-box">
-<strong>🏠 LAN — Local Area Network</strong>
 <p>
-شبكة محلية داخل منزل أو مكتب أو مدرسة.
+عندما ترسل ملفاً أو تفتح موقعاً إلكترونياً، لا تنتقل البيانات
+عادةً ككتلة واحدة، بل يتم تقسيمها إلى وحدات بيانات صغيرة.
 </p>
+
+<div class="gold-box">
+
+<strong>📦 مثال مبسط</strong>
+
+<p>
+جهازك → البيانات → Packet → Switch → Router →
+الشبكة الأخرى → الجهاز أو السيرفر المستهدف
+</p>
+
 </div>
 
-<div class="info-box">
-<strong>🌍 WAN — Wide Area Network</strong>
 <p>
-شبكة واسعة تربط مواقع أو شبكات بعيدة عن بعضها.
+السويتش يهتم غالباً بتوصيل الإطارات داخل الشبكة المحلية
+اعتماداً على عناوين MAC، بينما الراوتر يقرر أين يتم توجيه
+حزم IP بين الشبكات المختلفة.
 </p>
-</div>
 
-<div class="info-box">
-<strong>📡 WLAN — Wireless LAN</strong>
-<p>
-شبكة محلية لاسلكية تعتمد على Wi-Fi.
-</p>
-</div>
-
-<div class="info-box">
-<strong>🌐 Internet</strong>
-<p>
-شبكة عالمية تتكون من عدد ضخم من الشبكات
-المترابطة.
-</p>
+<div class="code-box">
+PC 💻
+↓
+Switch 🔵
+↓
+Router 🟠
+↓
+Internet 🌍
+↓
+Server 🖥️
 </div>
 `
 },
@@ -994,67 +918,50 @@ content: `
 {
 title: "أجهزة الشبكة الأساسية",
 content: `
-<h4>🔀 Switch</h4>
+<div class="comparison-grid">
 
+<div class="compare-card">
+<h4>💻 PC</h4>
 <p>
-يربط الأجهزة داخل الشبكة المحلية، ويستخدم
-MAC Address لاتخاذ قرارات تمرير الإطارات.
+جهاز يستخدم الشبكة لإرسال واستقبال البيانات.
 </p>
+</div>
 
-<h4>🚦 Router</h4>
-
-<p>
-يربط الشبكات المختلفة ويستخدم Routing Table
-لاتخاذ قرارات التوجيه.
-</p>
-
-<h4>📡 Access Point</h4>
-
-<p>
-يوفر اتصال Wi-Fi ويسمح للأجهزة اللاسلكية
-بالوصول إلى الشبكة.
-</p>
-
-<h4>🛡️ Firewall</h4>
-
-<p>
-يراقب حركة البيانات ويسمح أو يمنع الاتصالات
-وفقًا لقواعد الحماية.
-</p>
-`
-},
-
-{
-title: "Switch مقابل Router",
-content: `
-<div class="comparison">
-
-<div class="comparison-card">
-
+<div class="compare-card">
 <h4>🔵 Switch</h4>
-
 <p>
-يستخدم غالبًا داخل نفس الشبكة المحلية.
+يربط الأجهزة داخل الشبكة المحلية ويستخدم MAC Address
+لاتخاذ قرار التوجيه داخل الـLAN.
 </p>
-
-<p>
-يعتمد على MAC Address في عملية Switching.
-</p>
-
 </div>
 
-<div class="comparison-card">
-
+<div class="compare-card">
 <h4>🟠 Router</h4>
-
 <p>
-يربط شبكات مختلفة مع بعضها.
+يربط الشبكات المختلفة ويستخدم IP Address
+لاختيار المسار المناسب.
 </p>
+</div>
 
+<div class="compare-card">
+<h4>📡 Access Point</h4>
 <p>
-يعتمد على IP Address في عملية Routing.
+يوفر اتصالاً لاسلكياً للأجهزة.
 </p>
+</div>
 
+<div class="compare-card">
+<h4>🛡️ Firewall</h4>
+<p>
+يتحكم في حركة المرور وفق سياسات وقواعد أمنية.
+</p>
+</div>
+
+<div class="compare-card">
+<h4>🖥️ Server</h4>
+<p>
+يقدم خدمات وموارد لأجهزة أخرى داخل الشبكة.
+</p>
 </div>
 
 </div>
@@ -1062,20 +969,252 @@ content: `
 },
 
 {
-title: "الخلاصة",
+title: "أنواع الشبكات",
 content: `
-<div class="info-box">
+<h4>LAN</h4>
+<p>
+شبكة محلية داخل منزل أو مكتب أو مبنى.
+</p>
 
-<strong>🧠 أهم الأشياء التي يجب أن تتذكرها</strong>
+<h4>WAN</h4>
+<p>
+شبكة واسعة تربط مواقع وشبكات بعيدة.
+</p>
 
-<p>Switch → يربط الأجهزة داخل الشبكة.</p>
-<p>Router → يربط الشبكات المختلفة.</p>
-<p>MAC → عنوان مرتبط بواجهة الشبكة.</p>
-<p>IP → عنوان منطقي للجهاز داخل الشبكة.</p>
-<p>LAN → شبكة محلية.</p>
-<p>WAN → شبكة واسعة.</p>
+<h4>WLAN</h4>
+<p>
+شبكة محلية لاسلكية تعتمد على Wi-Fi.
+</p>
+
+<h4>Internet</h4>
+<p>
+شبكة عالمية ضخمة تتكون من عدد هائل من الشبكات المترابطة.
+</p>
+`
+},
+
+{
+title: "MAC Address مقابل IP Address",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+
+<h4>🔐 MAC Address</h4>
+
+<p>
+عنوان مرتبط بواجهة الشبكة ويستخدم على مستوى
+طبقة ربط البيانات.
+</p>
+
+<div class="code-box">
+00:1A:2B:3C:4D:5E
+</div>
 
 </div>
+
+<div class="compare-card">
+
+<h4>🌐 IP Address</h4>
+
+<p>
+عنوان منطقي يستخدم لتحديد الجهاز والشبكة
+على مستوى طبقة الشبكة.
+</p>
+
+<div class="code-box">
+192.168.1.10
+</div>
+
+</div>
+
+</div>
+
+<div class="warning-box">
+<strong>⚠️ انتبه</strong>
+<p>
+MAC وIP ليسا نفس الشيء. كلاهما عنوان، لكن لكل واحد
+وظيفة مختلفة في عملية الاتصال.
+</p>
+</div>
+`
+},
+
+{
+title: "مصطلحات مهمة",
+content: `
+<ul>
+
+<li>
+<strong>Interface:</strong>
+واجهة الشبكة التي يتم من خلالها الاتصال.
+</li>
+
+<li>
+<strong>Port:</strong>
+منفذ فعلي أو منطقي يستخدم للاتصال.
+</li>
+
+<li>
+<strong>VLAN:</strong>
+تقسيم منطقي للشبكة المحلية.
+</li>
+
+<li>
+<strong>Gateway:</strong>
+الجهاز الذي تستخدمه الشبكة للوصول إلى شبكة أخرى.
+</li>
+
+<li>
+<strong>Packet:</strong>
+وحدة بيانات تستخدم في الاتصال على مستوى الشبكة.
+</li>
+
+<li>
+<strong>Protocol:</strong>
+مجموعة قواعد تحدد طريقة الاتصال.
+</li>
+
+<li>
+<strong>Client:</strong>
+جهاز أو برنامج يطلب خدمة.
+</li>
+
+<li>
+<strong>Server:</strong>
+جهاز أو برنامج يقدم خدمة.
+</li>
+
+</ul>
+`
+},
+
+{
+title: "🎯 تطبيق عملي",
+content: `
+<p>
+تخيل شبكة مكتب صغيرة تحتوي على:
+</p>
+
+<div class="code-box">
+PC1 = 192.168.1.10
+PC2 = 192.168.1.20
+Switch = يربط الجهازين
+Router = 192.168.1.1
+</div>
+
+<p>
+إذا أراد PC1 التواصل مع PC2، فسيتم الاتصال داخل الشبكة
+المحلية.
+</p>
+
+<p>
+أما إذا أراد PC1 الوصول إلى شبكة أخرى، فسيحتاج غالباً
+إلى استخدام الـDefault Gateway.
+</p>
+
+<div class="gold-box">
+<strong>🧠 فكر فيها بهذه الطريقة</strong>
+<p>
+Switch = داخل الشبكة
+<br>
+Router = بين الشبكات
+</p>
+</div>
+`
+},
+
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+
+<li>اعتقاد أن Switch وRouter نفس الجهاز.</li>
+
+<li>الخلط بين MAC Address وIP Address.</li>
+
+<li>اعتقاد أن كل الأجهزة تحتاج Router للتواصل مع بعضها.</li>
+
+<li>الخلط بين LAN وWAN.</li>
+
+<li>نسيان أن الاتصال يحتاج عناوين وبروتوكولات بالإضافة إلى وسيلة الاتصال.</li>
+
+</ul>
+`
+},
+
+{
+title: "📝 اختبار سريع",
+content: `
+<div class="gold-box">
+
+<strong>السؤال 1</strong>
+
+<p>
+أي جهاز يستخدم عادةً لربط أجهزة متعددة داخل LAN؟
+</p>
+
+<p>
+الإجابة: Switch
+</p>
+
+</div>
+
+<div class="gold-box">
+
+<strong>السؤال 2</strong>
+
+<p>
+أي عنوان يستخدم لتحديد الجهاز منطقياً داخل الشبكة؟
+</p>
+
+<p>
+الإجابة: IP Address
+</p>
+
+</div>
+
+<div class="gold-box">
+
+<strong>السؤال 3</strong>
+
+<p>
+ما وظيفة Router الأساسية؟
+</p>
+
+<p>
+الإجابة: ربط الشبكات واختيار المسار المناسب للبيانات.
+</p>
+
+</div>
+`
+},
+
+{
+title: "🏁 الخلاصة",
+content: `
+<p>
+الشبكات هي أساس الاتصال بين الأجهزة والأنظمة الحديثة.
+</p>
+
+<p>
+أهم شيء في هذه المرحلة أن تفهم الفرق بين:
+</p>
+
+<div class="code-box">
+Device
+↓
+Switch
+↓
+Router
+↓
+Network
+</div>
+
+<p>
+في الدرس القادم سنبدأ بالتعرف بشكل أعمق على أجهزة الشبكة
+ووظيفة كل جهاز.
+</p>
 `
 }
 
@@ -1083,13 +1222,13 @@ content: `
 },
 
 
-/* ==================================================
-02 — أجهزة الشبكة
-================================================== */
+/* =========================================================
+الدرس 2
+========================================================= */
 
 {
 id: 2,
-category: "🖥️ أجهزة الشبكة",
+category: "🔧 أجهزة الشبكة",
 level: "🟢 سهل",
 title: "أجهزة الشبكة",
 description: "تعرف على أهم أجهزة الشبكات ووظيفة كل جهاز ومتى نستخدمه.",
@@ -1101,16 +1240,9 @@ title: "مقدمة",
 content: `
 <p>
 كل جهاز في الشبكة له وظيفة مختلفة.
-فهم وظيفة الأجهزة يسهل عليك فهم تصميم الشبكات.
+فهم وظيفة الجهاز يساعدك لاحقاً في فهم الـRouting والـSwitching
+والـSecurity واستكشاف الأخطاء.
 </p>
-
-<div class="info-box">
-<strong>💡 قاعدة بسيطة</strong>
-<p>
-لا تحفظ أسماء الأجهزة فقط، افهم المشكلة
-التي يحلها كل جهاز.
-</p>
-</div>
 `
 },
 
@@ -1118,29 +1250,22 @@ content: `
 title: "Switch",
 content: `
 <p>
-الـSwitch يستخدم لربط عدة أجهزة داخل
-الشبكة المحلية.
+الـSwitch يربط الأجهزة داخل الشبكة المحلية.
 </p>
 
 <p>
-عندما يستقبل السويتش Frame، يستطيع استخدام
-MAC Address Table لمعرفة المنفذ المناسب.
+يتعلم السويتش عناوين MAC من الإطارات التي يستقبلها،
+ثم يستخدم جدول MAC لتحديد المنفذ المناسب لإرسال البيانات.
 </p>
 
-<div class="code-box">
-<div class="code-title">مثال</div>
-
-<pre>
-PC1 ──┐
-PC2 ──┼── Switch
-PC3 ──┘
-</pre>
-</div>
-
-<div class="info-box">
-<strong>🔑 تذكر</strong>
+<div class="gold-box">
+<strong>مثال</strong>
 <p>
-Switch → Layer 2 بشكل أساسي → MAC Address.
+PC1 → Switch → PC2
+</p>
+<p>
+إذا كان السويتش يعرف MAC الخاص بـPC2،
+فإنه يرسل الإطار إلى المنفذ المناسب.
 </p>
 </div>
 `
@@ -1150,22 +1275,25 @@ Switch → Layer 2 بشكل أساسي → MAC Address.
 title: "Router",
 content: `
 <p>
-الـRouter يستخدم لربط شبكات مختلفة.
+الـRouter يربط بين شبكات مختلفة.
+</p>
+
+<p>
+يعتمد على عناوين IP وجدول التوجيه Routing Table
+لاتخاذ قرار المسار.
 </p>
 
 <div class="code-box">
-<pre>
 192.168.1.0/24
-|
+↓
 Router
-|
+↓
 192.168.2.0/24
-</pre>
 </div>
 
 <p>
-الراوتر ينظر إلى Destination IP ويبحث
-عن أفضل مسار في Routing Table.
+إذا كانت الوجهة موجودة في شبكة مختلفة، يحتاج الجهاز
+إلى إرسال البيانات إلى الـDefault Gateway.
 </p>
 `
 },
@@ -1174,17 +1302,13 @@ Router
 title: "Access Point",
 content: `
 <p>
-الـAccess Point يوفر اتصالًا لاسلكيًا
-للأجهزة مثل الجوالات واللابتوبات.
+الـAccess Point يسمح للأجهزة اللاسلكية بالاتصال بالشبكة.
 </p>
 
-<div class="info-box">
-<strong>📡 مثال</strong>
 <p>
-جهازك يتصل بالـWi-Fi، ثم يستطيع الوصول
-إلى الشبكة من خلال Access Point.
+الهاتف واللابتوب يمكنهما الاتصال بالـAccess Point
+عبر Wi-Fi ثم الوصول إلى موارد الشبكة.
 </p>
-</div>
 `
 },
 
@@ -1192,38 +1316,104 @@ content: `
 title: "Firewall",
 content: `
 <p>
-الـFirewall جهاز أو نظام أمني يتحكم في
-حركة البيانات حسب قواعد محددة.
+الـFirewall يستخدم للتحكم في حركة المرور وفق قواعد أمنية.
+</p>
+
+<div class="warning-box">
+<strong>⚠️ مهم</strong>
+<p>
+وجود Firewall لا يعني أن الشبكة أصبحت آمنة تلقائياً.
+يجب تصميم القواعد والسياسات بشكل صحيح ومراجعتها باستمرار.
+</p>
+</div>
+`
+},
+
+{
+title: "مقارنة سريعة",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Switch</h4>
+<p>يربط الأجهزة داخل الشبكة المحلية.</p>
+</div>
+
+<div class="compare-card">
+<h4>Router</h4>
+<p>يربط الشبكات المختلفة.</p>
+</div>
+
+<div class="compare-card">
+<h4>Access Point</h4>
+<p>يوفر اتصال Wi-Fi.</p>
+</div>
+
+<div class="compare-card">
+<h4>Firewall</h4>
+<p>يتحكم في حركة المرور وفق سياسات أمنية.</p>
+</div>
+
+</div>
+`
+},
+
+{
+title: "🎯 تطبيق عملي",
+content: `
+<p>
+صمم في ذهنك شبكة صغيرة:
 </p>
 
 <div class="code-box">
-<pre>
-Source → Firewall → Destination
-
-Allow
-Deny
-</pre>
+PCs 💻
+↓
+Switch 🔵
+↓
+Router 🟠
+↓
+Internet 🌍
 </div>
 
 <p>
-الهدف هو التحكم في الاتصالات وحماية الموارد
-من الوصول غير المصرح به.
+إذا كان جهازان في نفس الشبكة المحلية، فغالباً
+سيكون الـSwitch هو العنصر الأساسي في الاتصال بينهما.
+</p>
+
+<p>
+وإذا احتاج أحد الأجهزة الوصول إلى شبكة مختلفة،
+فسيظهر دور الـRouter.
 </p>
 `
 },
 
 {
-title: "الخلاصة",
+title: "⚠️ أخطاء شائعة",
 content: `
-<div class="info-box">
+<ul>
+<li>اعتقاد أن Switch يقوم دائماً بالـRouting.</li>
+<li>اعتقاد أن Router يستخدم MAC فقط لاتخاذ قرار المسار.</li>
+<li>الخلط بين Access Point وRouter اللاسلكي.</li>
+<li>اعتقاد أن Firewall بديل عن جميع وسائل الحماية.</li>
+</ul>
+`
+},
 
-<strong>🧠 تذكر</strong>
+{
+title: "🏁 الخلاصة",
+content: `
+<p>
+أهم الأجهزة التي يجب أن تعرفها الآن:
+</p>
 
-<p>Switch → يربط الأجهزة.</p>
-<p>Router → يربط الشبكات.</p>
-<p>Access Point → يوفر Wi-Fi.</p>
-<p>Firewall → يتحكم في حركة البيانات.</p>
-
+<div class="code-box">
+Switch = داخل الشبكة
+<br>
+Router = بين الشبكات
+<br>
+Access Point = اتصال لاسلكي
+<br>
+Firewall = تحكم وحماية
 </div>
 `
 }
@@ -1232,16 +1422,16 @@ content: `
 },
 
 
-/* ==================================================
-03 — IPv4
-================================================== */
+/* =========================================================
+الدرس 3
+========================================================= */
 
 {
 id: 3,
-category: "🔢 IPv4",
+category: "🌐 IPv4",
 level: "🟢 سهل",
 title: "IPv4",
-description: "افهم عنوان IPv4 والـSubnet Mask والفرق بين Network Address وHost Address.",
+description: "افهم عنوان IPv4 وكيف يتكون وما الفرق بين Network وHost والـGateway.",
 
 sections: [
 
@@ -1249,21 +1439,16 @@ sections: [
 title: "ما هو IPv4؟",
 content: `
 <p>
-IPv4 هو نظام عنونة يستخدم لتحديد الأجهزة
-والشبكات في بيئات الشبكات.
+IPv4 هو أحد أنظمة العنونة المستخدمة لتحديد الأجهزة
+والشبكات في بروتوكول الإنترنت.
 </p>
 
 <div class="code-box">
-<div class="code-title">مثال IPv4</div>
-
-<pre>
 192.168.1.10
-</pre>
 </div>
 
 <p>
-عنوان IPv4 يتكون من 32 Bit ويتم عرضه عادة
-على شكل أربعة أجزاء تسمى Octets.
+يتكون IPv4 من 32 Bit مقسمة إلى أربعة أجزاء تسمى Octets.
 </p>
 `
 },
@@ -1272,67 +1457,81 @@ IPv4 هو نظام عنونة يستخدم لتحديد الأجهزة
 title: "Octets",
 content: `
 <p>
-عنوان IPv4 يتكون من أربعة Octets.
 كل Octet يحتوي على 8 Bits.
 </p>
 
 <div class="code-box">
-<pre>
-192 . 168 . 1 . 10
-↓ ↓ ↓ ↓
-Octet Octet Octet Octet
-</pre>
+8 + 8 + 8 + 8 = 32 Bit
 </div>
 
-<div class="info-box">
-<strong>💡 معلومة مهمة</strong>
 <p>
-4 Octets × 8 Bits = 32 Bits.
+قيمة كل Octet تتراوح من 0 إلى 255.
+</p>
+
+<div class="info-box">
+<strong>مثال</strong>
+<p>
+192.168.1.10
+</p>
+<p>
+192 = Octet 1
+<br>
+168 = Octet 2
+<br>
+1 = Octet 3
+<br>
+10 = Octet 4
 </p>
 </div>
 `
 },
 
 {
-title: "Network و Host",
+title: "Network وHost",
 content: `
 <p>
-عنوان IP يحتوي منطقيًا على جزء يمثل الشبكة
-وجزء يمثل الجهاز داخل الشبكة.
+عنوان IP يتكون من جزء يحدد الشبكة وجزء يحدد الجهاز داخل الشبكة.
 </p>
 
 <div class="code-box">
-<pre>
 192.168.1.10/24
-
-Network → 192.168.1.0
-Host → 10
-</pre>
 </div>
 
 <p>
-الـ/24 يحدد عدد الـBits المستخدمة لجزء الشبكة.
+في شبكة /24 تكون أول 24 Bit للشبكة،
+والـ8 Bits المتبقية للأجهزة.
 </p>
+
+<div class="gold-box">
+<strong>الفكرة</strong>
+<p>
+Network = أين توجد الشبكة؟
+</p>
+<p>
+Host = أي جهاز داخل الشبكة؟
+</p>
+</div>
 `
 },
 
 {
 title: "Private IP",
 content: `
-<div class="info-box">
+<p>
+هناك نطاقات خاصة تستخدم عادةً داخل الشبكات الداخلية.
+</p>
 
-<strong>📌 Private IPv4 Ranges</strong>
-
-<p>10.0.0.0/8</p>
-<p>172.16.0.0/12</p>
-<p>192.168.0.0/16</p>
-
+<div class="code-box">
+10.0.0.0/8
+<br>
+172.16.0.0/12
+<br>
+192.168.0.0/16
 </div>
 
 <p>
-تستخدم العناوين الخاصة عادة داخل الشبكات
-الداخلية ولا يتم توجيهها مباشرة عبر الإنترنت
-العام.
+هذه العناوين تستخدم داخل الشبكات الخاصة ولا تكون
+عناوين Internet عامة بشكل مباشر.
 </p>
 `
 },
@@ -1341,44 +1540,88 @@ content: `
 title: "Default Gateway",
 content: `
 <p>
-الـDefault Gateway هو الجهاز الذي يرسل إليه
-الجهاز البيانات عندما تكون الوجهة خارج الشبكة
-المحلية.
+الـDefault Gateway هو الجهاز الذي يرسل إليه الجهاز
+البيانات عندما تكون الوجهة خارج الشبكة المحلية.
 </p>
 
 <div class="code-box">
-<pre>
 PC
+<br>
 IP: 192.168.1.10
-Mask: 255.255.255.0
+<br>
 Gateway: 192.168.1.1
-</pre>
 </div>
 
-<div class="info-box">
-<strong>🧠 تذكر</strong>
 <p>
-إذا كانت الوجهة خارج الشبكة المحلية،
-يحتاج الجهاز غالبًا إلى استخدام الـGateway.
+إذا أراد PC الوصول إلى شبكة أخرى، فإنه يستخدم الـGateway
+للوصول إلى الراوتر.
 </p>
-</div>
 `
 },
 
 {
-title: "الخلاصة",
+title: "🎯 تطبيق عملي",
 content: `
-<div class="info-box">
+<p>
+لديك جهاز:
+</p>
 
-<strong>🧠 أهم النقاط</strong>
-
-<p>IPv4 = 32 Bits.</p>
-<p>IPv4 = أربعة Octets.</p>
-<p>/24 = 24 Bits للشبكة.</p>
-<p>Private IP يستخدم غالبًا داخل الشبكات الداخلية.</p>
-<p>Default Gateway يساعد الجهاز على الوصول إلى شبكات أخرى.</p>
-
+<div class="code-box">
+IP = 192.168.1.50
+<br>
+Mask = 255.255.255.0
+<br>
+Gateway = 192.168.1.1
 </div>
+
+<p>
+هنا الجهاز موجود في الشبكة:
+</p>
+
+<div class="code-box">
+192.168.1.0/24
+</div>
+
+<p>
+وأي وجهة خارج هذه الشبكة تحتاج إلى استخدام الـGateway.
+</p>
+`
+},
+
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+<li>كتابة Octet أكبر من 255.</li>
+<li>الخلط بين IP وSubnet Mask.</li>
+<li>نسيان الـDefault Gateway.</li>
+<li>اعتقاد أن /24 يعني 24 جهازاً.</li>
+</ul>
+`
+},
+
+{
+title: "🏁 الخلاصة",
+content: `
+<p>
+IPv4 = 32 Bit.
+</p>
+
+<p>
+أهم شيء الآن هو فهم العلاقة بين:
+</p>
+
+<div class="code-box">
+IP Address
++
+Subnet Mask
++
+Default Gateway
+</div>
+
+<p>
+وفي الدرس القادم سنستخدم هذه المعلومات لفهم Subnetting.
+</p>
 `
 }
 
@@ -1386,16 +1629,16 @@ content: `
 },
 
 
-/* ==================================================
-04 — SUBNETTING
-================================================== */
+/* =========================================================
+الدرس 4
+========================================================= */
 
 {
 id: 4,
 category: "🧮 Subnetting",
 level: "🟡 متوسط",
 title: "Subnetting",
-description: "تعلم كيف نقسم شبكة كبيرة إلى شبكات أصغر ونحسب عدد الشبكات والأجهزة.",
+description: "تعلم كيف تقسم الشبكة إلى شبكات أصغر وتحسب عدد العناوين والأجهزة.",
 
 sections: [
 
@@ -1403,20 +1646,19 @@ sections: [
 title: "ما هو Subnetting؟",
 content: `
 <p>
-Subnetting هو تقسيم شبكة IP كبيرة إلى عدة
-شبكات أصغر.
+Subnetting هو تقسيم شبكة كبيرة إلى شبكات أصغر.
 </p>
 
 <p>
-الهدف منه تنظيم الشبكة وتوزيع العناوين بشكل
-أفضل وتقليل نطاق Broadcast.
+الهدف هو تنظيم الشبكة وتقليل نطاق الـBroadcast
+واستخدام العناوين بشكل أفضل.
 </p>
 
-<div class="info-box">
-<strong>💡 الفكرة</strong>
+<div class="gold-box">
+<strong>مثال</strong>
 <p>
-بدل شبكة واحدة كبيرة، نقسمها إلى عدة
-شبكات صغيرة حسب احتياجنا.
+بدلاً من استخدام شبكة واحدة ضخمة،
+يمكن تقسيمها إلى عدة شبكات أصغر.
 </p>
 </div>
 `
@@ -1426,21 +1668,18 @@ Subnetting هو تقسيم شبكة IP كبيرة إلى عدة
 title: "Subnet Mask",
 content: `
 <p>
-الـSubnet Mask يحدد أي جزء من عنوان IP
-يمثل الشبكة وأي جزء يمثل الأجهزة.
+الـSubnet Mask يحدد الجزء الخاص بالشبكة والجزء الخاص بالأجهزة.
 </p>
 
 <div class="code-box">
-<pre>
-255.255.255.0
-
-CIDR:
 /24
-</pre>
+=
+255.255.255.0
 </div>
 
 <p>
-في /24 يوجد 24 Bit للشبكة و8 Bits للأجهزة.
+كلما زاد Prefix Length مثل /25 أو /26،
+أصبح جزء الشبكة أكبر وعدد الأجهزة في كل Subnet أقل.
 </p>
 `
 },
@@ -1449,31 +1688,28 @@ CIDR:
 title: "حساب عدد العناوين",
 content: `
 <p>
-عدد العناوين يعتمد على عدد Bits المتبقية
-للـHost.
+القاعدة الأساسية:
 </p>
 
 <div class="code-box">
-<pre>
-/24
+عدد العناوين = 2^عدد Host Bits
+</div>
 
-Host Bits = 8
+<p>
+في شبكة /24:
+</p>
 
+<div class="code-box">
+32 - 24 = 8 Host Bits
+<br>
 2^8 = 256 عنوان
-</pre>
 </div>
 
 <p>
-في الشبكات التقليدية، بعض العناوين تكون
-محجوزة مثل Network Address وBroadcast Address.
+في الشبكات التقليدية يكون عدد العناوين القابلة للاستخدام
+للأجهزة عادةً 254، لأن عنوان الشبكة وعنوان الـBroadcast
+لا يستخدمان كعناوين Host عادية.
 </p>
-
-<div class="info-box">
-<strong>📌 مثال</strong>
-<p>
-192.168.1.0/24 تحتوي على 256 عنوانًا إجماليًا.
-</p>
-</div>
 `
 },
 
@@ -1481,29 +1717,26 @@ Host Bits = 8
 title: "مثال Subnetting",
 content: `
 <p>
-لنفترض أن لدينا الشبكة:
+لدينا:
 </p>
 
 <div class="code-box">
-<pre>
 192.168.1.0/24
-</pre>
 </div>
 
 <p>
-ونريد تقسيمها إلى شبكتين.
+إذا قسمناها إلى /25:
 </p>
 
 <div class="code-box">
-<pre>
 192.168.1.0/25
+<br>
 192.168.1.128/25
-</pre>
 </div>
 
 <p>
-هنا قمنا باستخدام Bit إضافي من جزء الـHost
-لتقسيم الشبكة إلى Subnets أصغر.
+كل شبكة تحتوي على 128 عنواناً،
+وعادةً 126 عنواناً قابلاً للاستخدام للأجهزة.
 </p>
 `
 },
@@ -1511,47 +1744,87 @@ content: `
 {
 title: "طريقة التفكير",
 content: `
-<div class="gold-box">
+<p>
+عند حل أي سؤال Subnetting اسأل نفسك بالترتيب:
+</p>
 
-<strong>🧠 لا تحفظ الأرقام فقط</strong>
+<ol>
+<li>ما هو الـPrefix الحالي؟</li>
+<li>ما هو الـPrefix المطلوب؟</li>
+<li>كم Host Bit بقي؟</li>
+<li>كم عدد العناوين؟</li>
+<li>ما هو حجم الـBlock؟</li>
+<li>ما هي عناوين الشبكات الناتجة؟</li>
+</ol>
+`
+},
+
+{
+title: "🎯 تطبيق عملي",
+content: `
+<p>
+لديك:
+</p>
+
+<div class="code-box">
+192.168.10.0/24
+</div>
 
 <p>
-اسأل نفسك دائمًا:
+وتريد تقسيمها إلى شبكتين متساويتين.
 </p>
 
 <p>
-كم جهاز أحتاج؟
+نحتاج إلى استعارة Bit واحدة من جزء الـHost.
 </p>
+
+<div class="code-box">
+/24 → /25
+</div>
 
 <p>
-كم Subnet أحتاج؟
+النتيجة:
 </p>
 
-<p>
-كم Host Bit أملك؟
-</p>
-
-<p>
-ثم اختر الـPrefix المناسب.
-</p>
-
+<div class="code-box">
+192.168.10.0/25
+<br>
+192.168.10.128/25
 </div>
 `
 },
 
 {
-title: "الخلاصة",
+title: "⚠️ أخطاء شائعة",
 content: `
-<div class="info-box">
+<ul>
+<li>الخلط بين عدد العناوين وعدد الأجهزة القابلة للاستخدام.</li>
+<li>نسيان عنوان Network.</li>
+<li>نسيان عنوان Broadcast في الشبكات التقليدية.</li>
+<li>اعتقاد أن زيادة Prefix تعني زيادة عدد الأجهزة.</li>
+</ul>
+`
+},
 
-<strong>🧠 تذكر</strong>
+{
+title: "🏁 الخلاصة",
+content: `
+<p>
+Subnetting مهارة أساسية لأي شخص يعمل في الشبكات.
+</p>
 
-<p>Subnetting = تقسيم الشبكة.</p>
-<p>Subnet Mask يحدد Network وHost.</p>
-<p>زيادة Prefix تعني عادةً Subnets أصغر.</p>
-<p>فهم Subnetting مهم جدًا في Routing وVLAN.</p>
-
+<div class="code-box">
+Prefix أكبر
+→
+Subnet أصغر
+→
+Hosts أقل
 </div>
+
+<p>
+كلما أتقنت هذه الفكرة أصبح فهم الـRouting والـVLAN
+وتصميم الشبكات أسهل.
+</p>
 `
 }
 
@@ -1559,16 +1832,16 @@ content: `
 },
 
 
-/* ==================================================
-05 — SWITCHING
-================================================== */
+/* =========================================================
+الدرس 5
+========================================================= */
 
 {
 id: 5,
 category: "🔀 Switching",
 level: "🟢 سهل",
 title: "Switching",
-description: "افهم كيف يتعلم السويتش عناوين MAC وكيف يقرر إلى أي منفذ يرسل البيانات.",
+description: "افهم كيف يتعلم السويتش عناوين MAC وكيف يقرر أين يرسل البيانات.",
 
 sections: [
 
@@ -1576,13 +1849,13 @@ sections: [
 title: "ما هو Switching؟",
 content: `
 <p>
-Switching هو عملية تمرير Frames بين الأجهزة
-داخل الشبكة المحلية.
+Switching هو عملية تمرير الإطارات داخل الشبكة المحلية
+من منفذ إلى منفذ مناسب.
 </p>
 
 <p>
-السويتش يستخدم MAC Address Table لمعرفة
-المنفذ المرتبط بعنوان MAC معين.
+يعتمد السويتش بشكل أساسي على MAC Address Table
+لاتخاذ قرار الإرسال.
 </p>
 `
 },
@@ -1592,23 +1865,21 @@ title: "كيف يتعلم السويتش؟",
 content: `
 <p>
 عندما يستقبل السويتش Frame من منفذ معين،
-يستطيع تسجيل Source MAC وعلاقة هذا العنوان
-بالمنفذ.
+ينظر إلى Source MAC ويعرف أن هذا العنوان موجود
+خلف ذلك المنفذ.
 </p>
 
 <div class="code-box">
-<pre>
-PC1
-MAC: AA:AA:AA:AA
-|
-Port 1
-|
-Switch
-
-MAC Table:
-AA:AA:AA:AA → Port 1
-</pre>
+Port 1 → MAC A
+<br>
+Port 2 → MAC B
+<br>
+Port 3 → MAC C
 </div>
+
+<p>
+هذه العملية تسمى MAC Learning.
+</p>
 `
 },
 
@@ -1616,22 +1887,23 @@ AA:AA:AA:AA → Port 1
 title: "MAC Address Table",
 content: `
 <p>
-جدول MAC يحتوي عادة على معلومات تساعد
-السويتش في معرفة مكان الأجهزة.
+جدول MAC يربط بين MAC Address والمنفذ الذي تم تعلمه منه.
 </p>
 
 <div class="code-box">
-<div class="code-title">
-MAC Address Table
+Cisco:
+<br>
+show mac address-table
+<br><br>
+Huawei:
+<br>
+display mac-address
 </div>
 
-<pre>
-MAC Address Port
-AA:AA:AA:AA G0/1
-BB:BB:BB:BB G0/2
-CC:CC:CC:CC G0/3
-</pre>
-</div>
+<p>
+يستخدم المهندس هذه الأوامر لمعرفة مكان ظهور عناوين MAC
+على السويتش.
+</p>
 `
 },
 
@@ -1639,17 +1911,20 @@ CC:CC:CC:CC G0/3
 title: "ماذا يحدث إذا لم يعرف السويتش MAC؟",
 content: `
 <p>
-إذا لم يجد السويتش Destination MAC في جدوله،
-فقد يقوم بعمل Flooding للإطار على المنافذ
-المناسبة داخل نفس نطاق Layer 2.
+إذا لم يكن Destination MAC موجوداً في الجدول،
+يتعامل السويتش معه كـUnknown Unicast.
+</p>
+
+<p>
+فيقوم عادةً بعمل Flood للإطار إلى المنافذ المناسبة
+داخل نفس الـVLAN، باستثناء المنفذ الذي استقبل منه الإطار.
 </p>
 
 <div class="warning-box">
-<strong>⚠️ انتبه</strong>
+<strong>⚠️ مهم</strong>
 <p>
-Flooding لا يعني أن السويتش لا يعمل؛
-قد يكون السبب أن عنوان الوجهة غير موجود
-بعد في جدول MAC.
+Flooding ليس معناه أن السويتش لا يعمل.
+قد يكون السويتش لم يتعلم Destination MAC بعد.
 </p>
 </div>
 `
@@ -1659,50 +1934,67 @@ Flooding لا يعني أن السويتش لا يعمل؛
 title: "أوامر مهمة",
 content: `
 <div class="code-box">
-
-<div class="code-title">
 Cisco
-</div>
-
-<pre>
+<br>
 show mac address-table
-</pre>
-
-</div>
-
-<div class="code-box">
-
-<div class="code-title">
+<br><br>
 Huawei
-</div>
-
-<pre>
+<br>
 display mac-address
-</pre>
-
 </div>
+
+<p>
+هذه الأوامر مفيدة جداً أثناء Troubleshooting.
+</p>
 `
 },
 
 {
-title: "الخلاصة",
+title: "🎯 تطبيق عملي",
 content: `
-<div class="info-box">
-
-<strong>🧠 تذكر</strong>
+<div class="code-box">
+PC1 → Port 1
+<br>
+PC2 → Port 2
+</div>
 
 <p>
-Switch → Layer 2 بشكل أساسي.
+عندما يرسل PC1 Frame، يتعلم السويتش MAC الخاص بـPC1
+على Port 1.
 </p>
 
 <p>
-Switching → يعتمد على MAC Address.
+وعندما يعرف MAC الخاص بـPC2 على Port 2،
+يستطيع إرسال الإطار مباشرة إلى Port 2.
 </p>
+`
+},
 
-<p>
-MAC Table → تساعد السويتش في معرفة المنفذ.
-</p>
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+<li>الخلط بين MAC Table وRouting Table.</li>
+<li>اعتقاد أن السويتش يقرر المسار باستخدام IP في كل الحالات.</li>
+<li>نسيان أن MAC Table يمكن أن تتغير مع الوقت.</li>
+<li>اعتقاد أن Unknown MAC يعني وجود عطل مباشر.</li>
+</ul>
+`
+},
 
+{
+title: "🏁 الخلاصة",
+content: `
+<div class="code-box">
+Source MAC
+↓
+Learning
+↓
+MAC Table
+↓
+Destination MAC
+↓
+Forward / Flood
 </div>
 `
 }
@@ -1711,16 +2003,16 @@ MAC Table → تساعد السويتش في معرفة المنفذ.
 },
 
 
-/* ==================================================
-06 — VLAN
-================================================== */
+/* =========================================================
+الدرس 6
+========================================================= */
 
 {
 id: 6,
-category: "🏷️ VLAN",
+category: "🧩 VLAN",
 level: "🟡 متوسط",
 title: "VLAN",
-description: "تعلم كيف نقسم شبكة السويتش إلى شبكات منطقية مستقلة باستخدام VLAN.",
+description: "تعلم كيف تقسم الشبكة منطقياً باستخدام VLAN وAccess وTrunk.",
 
 sections: [
 
@@ -1728,23 +2020,17 @@ sections: [
 title: "ما هي VLAN؟",
 content: `
 <p>
-VLAN تعني Virtual Local Area Network.
-وهي طريقة لتقسيم شبكة Layer 2 إلى شبكات
-منطقية منفصلة.
+VLAN هي طريقة لتقسيم شبكة Layer 2 إلى شبكات منطقية
+منفصلة داخل نفس البنية الفيزيائية.
 </p>
 
 <div class="code-box">
-<pre>
-VLAN 10 → USERS
-VLAN 20 → ADMIN
-VLAN 30 → SERVERS
-</pre>
+VLAN 10 = USERS
+<br>
+VLAN 20 = SERVERS
+<br>
+VLAN 30 = GUEST
 </div>
-
-<p>
-الأجهزة الموجودة في VLAN مختلفة لا تتواصل
-مباشرة عبر Layer 2 دون وجود Routing.
-</p>
 `
 },
 
@@ -1752,50 +2038,47 @@ VLAN 30 → SERVERS
 title: "لماذا نستخدم VLAN؟",
 content: `
 <ul>
-<li>تنظيم الشبكة.</li>
+<li>تقسيم الشبكة.</li>
+<li>تنظيم الأجهزة.</li>
 <li>تقليل نطاق Broadcast.</li>
-<li>فصل الأقسام منطقيًا.</li>
-<li>تحسين الإدارة والأمان.</li>
+<li>تحسين الإدارة.</li>
+<li>المساعدة في تطبيق سياسات الأمن.</li>
 </ul>
-
-<div class="info-box">
-<strong>💡 مثال</strong>
-<p>
-يمكن وضع أجهزة الموظفين في VLAN 10
-وأجهزة الإدارة في VLAN 20.
-</p>
-</div>
 `
 },
 
 {
 title: "إنشاء VLAN",
 content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+
+<h4>🟦 Cisco</h4>
+
 <div class="code-box">
-
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
 configure terminal
+<br>
 vlan 10
+<br>
 name USERS
-</pre>
+</div>
 
 </div>
+
+<div class="compare-card">
+
+<h4>🟨 Huawei</h4>
 
 <div class="code-box">
-
-<div class="code-title">
-Huawei
+system-view
+<br>
+vlan 10
+<br>
+name USERS
 </div>
 
-<pre>
-system-view
-vlan 10
-name USERS
-</pre>
+</div>
 
 </div>
 `
@@ -1805,35 +2088,39 @@ name USERS
 title: "Access Port",
 content: `
 <p>
-Access Port يستخدم عادة لربط جهاز نهائي
-مثل PC أو Printer مع VLAN واحدة.
+Access Port يستخدم عادةً لتوصيل جهاز نهائي مثل PC
+إلى VLAN محددة.
 </p>
 
+<div class="comparison-grid">
+
+<div class="compare-card">
+
+<h4>Cisco</h4>
+
 <div class="code-box">
-
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
 interface GigabitEthernet0/1
+<br>
 switchport mode access
+<br>
 switchport access vlan 10
-</pre>
+</div>
 
 </div>
+
+<div class="compare-card">
+
+<h4>Huawei</h4>
 
 <div class="code-box">
-
-<div class="code-title">
-Huawei
+interface GigabitEthernet0/0/1
+<br>
+port link-type access
+<br>
+port default vlan 10
 </div>
 
-<pre>
-interface GigabitEthernet0/0/1
-port link-type access
-port default vlan 10
-</pre>
+</div>
 
 </div>
 `
@@ -1843,52 +2130,96 @@ port default vlan 10
 title: "Trunk",
 content: `
 <p>
-Trunk Port يسمح بمرور أكثر من VLAN عبر
-رابط واحد، ويستخدم غالبًا بين السويتشات
-أو بين Switch وأجهزة تدعم Trunk.
+Trunk يسمح بمرور أكثر من VLAN عبر رابط واحد
+بين أجهزة الشبكة، وفق إعدادات الجهاز والمنفذ.
 </p>
 
+<div class="comparison-grid">
+
+<div class="compare-card">
+
+<h4>Cisco</h4>
+
 <div class="code-box">
-
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
 interface GigabitEthernet0/1
+<br>
 switchport mode trunk
-</pre>
+<br>
+switchport trunk allowed vlan 10 20 30
+</div>
 
 </div>
+
+<div class="compare-card">
+
+<h4>Huawei</h4>
 
 <div class="code-box">
-
-<div class="code-title">
-Huawei
+interface GigabitEthernet0/0/1
+<br>
+port link-type trunk
+<br>
+port trunk allow-pass vlan 10 20 30
 </div>
 
-<pre>
-interface GigabitEthernet0/0/1
-port link-type trunk
-port trunk allow-pass vlan 10 20 30
-</pre>
+</div>
 
+</div>
+
+<div class="warning-box">
+<strong>⚠️ ملاحظة</strong>
+<p>
+صيغة الأوامر قد تختلف حسب موديل الجهاز وإصدار النظام.
+</p>
 </div>
 `
 },
 
 {
-title: "الخلاصة",
+title: "🎯 تطبيق عملي",
 content: `
-<div class="info-box">
+<div class="code-box">
+PC1 → VLAN 10
+<br>
+PC2 → VLAN 10
+<br>
+PC3 → VLAN 20
+</div>
 
-<strong>🧠 تذكر</strong>
+<p>
+PC1 وPC2 ينتميان إلى نفس VLAN،
+بينما PC3 موجود في VLAN مختلفة.
+</p>
 
-<p>VLAN → تقسيم منطقي للشبكة.</p>
-<p>Access → غالبًا VLAN واحدة.</p>
-<p>Trunk → يحمل عدة VLANs.</p>
-<p>VLAN مختلفة تحتاج Routing للتواصل بينها.</p>
+<p>
+التواصل بين VLAN مختلفة يحتاج إلى Layer 3 Routing.
+</p>
+`
+},
 
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+<li>نسيان إنشاء VLAN قبل وضع المنفذ عليها.</li>
+<li>وضع منفذ الجهاز النهائي كـTrunk بدون سبب.</li>
+<li>عدم السماح بالـVLAN المطلوبة على Trunk.</li>
+<li>الاعتقاد أن VLAN مختلفة تتواصل تلقائياً بدون Routing.</li>
+</ul>
+`
+},
+
+{
+title: "🏁 الخلاصة",
+content: `
+<div class="code-box">
+VLAN
+↓
+تقسيم منطقي
+↓
+Access / Trunk
+↓
+تنظيم الشبكة
 </div>
 `
 }
@@ -1897,16 +2228,16 @@ content: `
 },
 
 
-/* ==================================================
-07 — ROUTING
-================================================== */
+/* =========================================================
+الدرس 7
+========================================================= */
 
 {
 id: 7,
-category: "🚦 Routing",
+category: "🛣️ Routing",
 level: "🟡 متوسط",
 title: "Routing",
-description: "افهم كيف يختار الراوتر المسار المناسب لإرسال البيانات بين الشبكات.",
+description: "افهم كيف يقرر الراوتر أين يرسل البيانات وكيف تعمل Routing Table.",
 
 sections: [
 
@@ -1914,20 +2245,16 @@ sections: [
 title: "ما هو Routing؟",
 content: `
 <p>
-Routing هو عملية تحديد المسار الذي ستسلكه
-البيانات للوصول إلى شبكة أخرى.
+Routing هو عملية اختيار المسار المناسب لإرسال حزم البيانات
+من شبكة إلى شبكة أخرى.
 </p>
 
 <div class="code-box">
-<pre>
 Network A
-192.168.1.0/24
-|
+↓
 Router
-|
+↓
 Network B
-192.168.2.0/24
-</pre>
 </div>
 `
 },
@@ -1936,24 +2263,18 @@ Network B
 title: "Routing Table",
 content: `
 <p>
-الراوتر يستخدم Routing Table لمعرفة الشبكات
-التي يعرفها والطريق المناسب للوصول إليها.
+الراوتر يحتفظ بجدول يسمى Routing Table.
+يحتوي على الشبكات التي يعرفها والمسارات المستخدمة للوصول إليها.
 </p>
 
 <div class="code-box">
-<pre>
-Destination Next Hop
-192.168.2.0/24 10.0.0.2
-192.168.3.0/24 10.0.0.6
-</pre>
-</div>
-
-<div class="info-box">
-<strong>💡 الفكرة</strong>
-<p>
-الراوتر لا يرسل البيانات عشوائيًا؛
-يبحث عن مسار مناسب للوجهة.
-</p>
+Cisco:
+<br>
+show ip route
+<br><br>
+Huawei:
+<br>
+display ip routing-table
 </div>
 `
 },
@@ -1962,49 +2283,39 @@ Destination Next Hop
 title: "Connected Route",
 content: `
 <p>
-عندما تكون شبكة متصلة مباشرة بواجهة الراوتر،
-يستطيع الراوتر معرفة الشبكة من خلال تلك الواجهة.
+عندما يتم تكوين Interface بعنوان IP وتكون الواجهة
+Up، يستطيع الراوتر معرفة الشبكة المتصلة مباشرة بها.
 </p>
 
 <div class="code-box">
-<pre>
-Router
-|
-G0/0
-|
-192.168.1.1/24
-
+Interface:
+<br>
+10.0.0.1/30
+<br><br>
 Connected Network:
-192.168.1.0/24
-</pre>
+<br>
+10.0.0.0/30
 </div>
 `
 },
 
 {
-title: "Static و Dynamic Routing",
+title: "Static وDynamic Routing",
 content: `
-<div class="comparison">
+<div class="comparison-grid">
 
-<div class="comparison-card">
-
-<h4>📌 Static Routing</h4>
-
+<div class="compare-card">
+<h4>Static Routing</h4>
 <p>
-يتم إدخال المسار يدويًا.
+المسار يتم إدخاله يدوياً بواسطة المهندس.
 </p>
-
 </div>
 
-<div class="comparison-card">
-
-<h4>📡 Dynamic Routing</h4>
-
+<div class="compare-card">
+<h4>Dynamic Routing</h4>
 <p>
-يتم تعلم المسارات باستخدام
-بروتوكولات مثل OSPF.
+بروتوكولات مثل OSPF تتعلم المسارات وتتبادل معلومات التوجيه.
 </p>
-
 </div>
 
 </div>
@@ -2012,57 +2323,66 @@ content: `
 },
 
 {
-title: "أوامر الفحص",
+title: "Longest Prefix Match",
+content: `
+<p>
+عند وجود أكثر من Route ينطبق على الوجهة،
+يستخدم الراوتر المسار الأكثر تحديداً.
+</p>
+
+<div class="gold-box">
+<strong>الفكرة</strong>
+<p>
+Prefix أطول = Route أكثر تحديداً.
+</p>
+</div>
+`
+},
+
+{
+title: "🎯 تطبيق عملي",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Cisco
+PC
+↓
+Router A
+↓
+Router B
+↓
+Server
 </div>
 
-<pre>
-show ip route
-</pre>
-
-</div>
-
-<div class="code-box">
-
-<div class="code-title">
-Huawei
-</div>
-
-<pre>
-display ip routing-table
-</pre>
-
-</div>
+<p>
+إذا لم يعرف Router A الشبكة الموجودة خلف Router B،
+فلن يستطيع إرسال الحزمة إليها حتى يتوفر Route مناسب.
+</p>
 `
 },
 
 {
-title: "الخلاصة",
+title: "⚠️ أخطاء شائعة",
 content: `
-<div class="info-box">
+<ul>
+<li>وجود Route في اتجاه واحد فقط.</li>
+<li>Next-Hop غير قابل للوصول.</li>
+<li>Interface غير Up.</li>
+<li>Subnet Mask خاطئ.</li>
+<li>الخلط بين Routing Table وMAC Table.</li>
+</ul>
+`
+},
 
-<strong>🧠 تذكر</strong>
-
-<p>
-Routing = اختيار مسار.
-</p>
-
-<p>
-Routing Table = جدول المسارات.
-</p>
-
-<p>
-Static = يدوي.
-</p>
-
-<p>
-Dynamic = يتعلم المسارات تلقائيًا.
-</p>
-
+{
+title: "🏁 الخلاصة",
+content: `
+<div class="code-box">
+Destination IP
+↓
+Routing Table
+↓
+Best Route
+↓
+Next-Hop / Interface
 </div>
 `
 }
@@ -2071,16 +2391,16 @@ Dynamic = يتعلم المسارات تلقائيًا.
 },
 
 
-/* ==================================================
-08 — STATIC ROUTING
-================================================== */
+/* =========================================================
+الدرس 8
+========================================================= */
 
 {
 id: 8,
-category: "🚦 Static Routing",
+category: "🛣️ Static Routing",
 level: "🟡 متوسط",
 title: "Static Routing",
-description: "تعلم كيفية إضافة مسار ثابت في Cisco وHuawei وفهم مكوناته.",
+description: "تعلم إنشاء Static Route وفهم مكوناته وطريقة التحقق منه.",
 
 sections: [
 
@@ -2088,45 +2408,30 @@ sections: [
 title: "ما هو Static Route؟",
 content: `
 <p>
-Static Route هو مسار يتم إدخاله يدويًا
-إلى Routing Table.
+Static Route هو مسار يتم تعريفه يدوياً على الراوتر.
 </p>
 
-<div class="info-box">
-<strong>💡 متى يفيد؟</strong>
 <p>
-يفيد في الشبكات الصغيرة أو المسارات
-التي لا تتغير كثيرًا.
+يستخدم في الشبكات الصغيرة أو في بعض الحالات التي
+يكون فيها المسار الثابت مناسباً.
 </p>
-</div>
 `
 },
 
 {
 title: "مكونات Static Route",
 content: `
-<p>
-عند كتابة Static Route تحتاج عادة إلى معرفة:
-</p>
-
-<ul>
-<li>Destination Network</li>
-<li>Subnet Mask</li>
-<li>Next Hop أو Exit Interface</li>
-</ul>
-
 <div class="code-box">
-<pre>
-Destination:
-192.168.20.0
-
-Mask:
-255.255.255.0
-
-Next Hop:
-10.0.0.2
-</pre>
+Destination Network
+<br>
+Subnet Mask
+<br>
+Next-Hop
 </div>
+
+<p>
+يجب أن يكون الـNext-Hop قابلاً للوصول من الراوتر.
+</p>
 `
 },
 
@@ -2134,21 +2439,12 @@ Next Hop:
 title: "Cisco",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Cisco IOS
-</div>
-
-<pre>
 ip route 192.168.20.0 255.255.255.0 10.0.0.2
-</pre>
-
 </div>
 
 <p>
-هذا يعني أن الوصول إلى الشبكة
-192.168.20.0/24 سيكون عن طريق
-Next Hop وهو 10.0.0.2.
+هذا يعني أن الشبكة 192.168.20.0/24
+يمكن الوصول إليها عبر 10.0.0.2.
 </p>
 `
 },
@@ -2157,20 +2453,11 @@ Next Hop وهو 10.0.0.2.
 title: "Huawei",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Huawei VRP
-</div>
-
-<pre>
 ip route-static 192.168.20.0 255.255.255.0 10.0.0.2
-</pre>
-
 </div>
 
 <p>
-الفكرة نفسها، لكن صيغة الأمر تختلف
-بين Cisco وHuawei.
+المبدأ نفسه، لكن صيغة الأمر تختلف بين Cisco وHuawei.
 </p>
 `
 },
@@ -2178,51 +2465,85 @@ ip route-static 192.168.20.0 255.255.255.0 10.0.0.2
 {
 title: "فحص المسار",
 content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
 <div class="code-box">
-
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
 show ip route
-</pre>
-
+</div>
 </div>
 
+<div class="compare-card">
+<h4>Huawei</h4>
 <div class="code-box">
-
-<div class="code-title">
-Huawei
-</div>
-
-<pre>
 display ip routing-table
-</pre>
+</div>
+</div>
 
 </div>
 `
 },
 
 {
-title: "الخلاصة",
+title: "🎯 تطبيق عملي",
 content: `
-<div class="info-box">
-
-<strong>🧠 قاعدة مهمة</strong>
+<div class="code-box">
+LAN A
+<br>
+192.168.10.0/24
+<br>
+↓
+<br>
+Router A
+<br>
+↓ 10.0.0.1/30
+<br>
+Router B
+<br>
+↓
+<br>
+LAN B
+<br>
+192.168.20.0/24
+</div>
 
 <p>
-Destination → إلى أين أريد الذهاب؟
+Router A يحتاج إلى معرفة أن 192.168.20.0/24
+يمكن الوصول إليها عبر Router B.
 </p>
 
 <p>
-Mask → ما حجم الشبكة؟
+وكذلك يجب التأكد من وجود Route عكسي على Router B
+إذا أردنا اتصالاً ثنائي الاتجاه.
 </p>
+`
+},
 
-<p>
-Next Hop → من هو الراوتر التالي؟
-</p>
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+<li>كتابة Network Destination بشكل خاطئ.</li>
+<li>كتابة Mask غير صحيحة.</li>
+<li>Next-Hop غير صحيح.</li>
+<li>نسيان المسار العكسي.</li>
+<li>محاولة استخدام Next-Hop غير قابل للوصول.</li>
+</ul>
+`
+},
 
+{
+title: "🏁 الخلاصة",
+content: `
+<div class="code-box">
+Destination
++
+Mask
++
+Next-Hop
+=
+Static Route
 </div>
 `
 }
@@ -2231,16 +2552,16 @@ Next Hop → من هو الراوتر التالي؟
 },
 
 
-/* ==================================================
-09 — OSPF
-================================================== */
+/* =========================================================
+الدرس 9
+========================================================= */
 
 {
 id: 9,
-category: "📡 OSPF",
+category: "🔄 OSPF",
 level: "🔴 متقدم",
 title: "OSPF",
-description: "تعرف على أساسيات OSPF وكيف تتبادل أجهزة الراوتر معلومات الشبكات.",
+description: "تعرف على OSPF وكيف تتكون الجيرة وكيف يتبادل الراوتر معلومات الشبكات.",
 
 sections: [
 
@@ -2248,22 +2569,14 @@ sections: [
 title: "ما هو OSPF؟",
 content: `
 <p>
-OSPF هو بروتوكول Dynamic Routing يستخدم
-لتبادل معلومات المسارات بين أجهزة الراوتر.
+OSPF هو بروتوكول Dynamic Routing من نوع Link-State
+يستخدم داخل الشبكات.
 </p>
 
 <p>
-بدل إدخال كل Route يدويًا، يستطيع OSPF
-مساعدة الراوترات على تعلم الشبكات من بعضها.
+بدلاً من إدخال كل Route يدوياً،
+يستطيع الراوتر تعلم الشبكات من راوترات OSPF الأخرى.
 </p>
-
-<div class="info-box">
-<strong>💡 الفكرة الأساسية</strong>
-<p>
-Router A يتعلم من Router B،
-وRouter B يتعلم من Router A حسب تصميم الشبكة.
-</p>
-</div>
 `
 },
 
@@ -2271,26 +2584,14 @@ Router A يتعلم من Router B،
 title: "OSPF Area",
 content: `
 <p>
-OSPF يستخدم مفهوم Areas لتنظيم شبكة الـOSPF.
-أكثر Area شائعة في الأمثلة هي Area 0.
+OSPF يقسم الشبكة إلى Areas.
 </p>
 
-<div class="code-box">
-<pre>
-Area 0
-|
-Router A
-|
-Router B
-</pre>
-</div>
-
-<div class="warning-box">
-<strong>⚠️ انتبه</strong>
+<div class="gold-box">
+<strong>Area 0</strong>
 <p>
-وجود OSPF على جهازين لا يعني بالضرورة
-أن الجيرة ستعمل؛ يجب أن تكون إعدادات
-أساسية معينة متوافقة.
+تسمى Backbone Area وهي محور أساسي في تصميمات OSPF
+متعددة الـAreas.
 </p>
 </div>
 `
@@ -2300,21 +2601,13 @@ Router B
 title: "Cisco",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Cisco IOS
-</div>
-
-<pre>
 router ospf 1
+<br>
 network 10.0.0.0 0.0.0.3 area 0
-</pre>
-
 </div>
 
 <p>
-الأمر يعرّف عملية OSPF ثم يحدد الشبكة
-التي ستدخل في OSPF.
+في Cisco يتم استخدام Wildcard Mask في أمر network.
 </p>
 `
 },
@@ -2323,67 +2616,127 @@ network 10.0.0.0 0.0.0.3 area 0
 title: "Huawei",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Huawei VRP
-</div>
-
-<pre>
 ospf 1
+<br>
 area 0
+<br>
 network 10.0.0.0 0.0.0.3
-</pre>
-
 </div>
+
+<p>
+الصيغة تختلف عن Cisco حسب نظام الجهاز وإصداره.
+</p>
+`
+},
+
+{
+title: "OSPF Neighbor",
+content: `
+<p>
+لكي يتبادل الراوتران معلومات OSPF،
+يجب أن تتكون بينهما Neighbor Relationship.
+</p>
+
+<p>
+من الأشياء المهمة التي تؤثر على تكوين الجيرة:
+</p>
+
+<ul>
+<li>IP Configuration</li>
+<li>Area</li>
+<li>Hello / Dead Timers</li>
+<li>Network Type</li>
+<li>Authentication عند استخدامها</li>
+<li>الواجهة وحالتها</li>
+</ul>
 `
 },
 
 {
 title: "فحص OSPF",
 content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+
+<h4>Cisco</h4>
+
 <div class="code-box">
-
-<div class="code-title">
-Cisco
-</div>
-
-<pre>
 show ip ospf neighbor
-</pre>
+</div>
 
 </div>
+
+<div class="compare-card">
+
+<h4>Huawei</h4>
 
 <div class="code-box">
-
-<div class="code-title">
-Huawei
+display ospf peer
 </div>
 
-<pre>
-display ospf peer
-</pre>
+</div>
 
+</div>
+`
+},
+
+{
+title: "🎯 تطبيق عملي",
+content: `
+<div class="code-box">
+Router A
+<br>
+10.0.0.1/30
+<br>
+↓
+<br>
+Router B
+<br>
+10.0.0.2/30
 </div>
 
 <p>
-هذه الأوامر تساعدك في معرفة حالة OSPF
-والجيران الذين تم اكتشافهم.
+إذا كان OSPF مضبوطاً بشكل صحيح على الطرفين،
+يمكن أن تتكون Neighbor Relationship.
+</p>
+
+<p>
+بعد ذلك يمكن أن يتعلم كل Router الشبكات التي يعرفها
+الطرف الآخر.
 </p>
 `
 },
 
 {
-title: "الخلاصة",
+title: "⚠️ أخطاء شائعة",
 content: `
-<div class="info-box">
+<ul>
+<li>Area مختلفة بين الطرفين.</li>
+<li>IP أو Subnet Mask خاطئ.</li>
+<li>Interface Down.</li>
+<li>Wildcard Mask خاطئة في Cisco.</li>
+<li>اختلاف Timers في بعض السيناريوهات.</li>
+<li>وجود ACL أو مشكلة تمنع بروتوكول OSPF.</li>
+</ul>
+`
+},
 
-<strong>🧠 تذكر</strong>
-
-<p>OSPF = Dynamic Routing Protocol.</p>
-<p>Area 0 هي الـBackbone Area في تصميم OSPF.</p>
-<p>Neighbor = جهاز OSPF آخر تم تكوين علاقة معه.</p>
-<p>يمكن فحص الجيران باستخدام أوامر show/display.</p>
-
+{
+title: "🏁 الخلاصة",
+content: `
+<div class="code-box">
+OSPF
+↓
+Hello
+↓
+Neighbor
+↓
+LSDB
+↓
+SPF
+↓
+Routing Table
 </div>
 `
 }
@@ -2392,16 +2745,16 @@ content: `
 },
 
 
-/* ==================================================
-10 — SSH
-================================================== */
+/* =========================================================
+الدرس 10
+========================================================= */
 
 {
 id: 10,
 category: "🔐 SSH",
 level: "🟡 متوسط",
 title: "SSH",
-description: "تعلم أساسيات الإدارة الآمنة لأجهزة الشبكة عن بعد باستخدام SSH.",
+description: "تعلم كيف يتم الوصول الآمن إلى أجهزة الشبكة وإدارة جلسات SSH.",
 
 sections: [
 
@@ -2409,33 +2762,15 @@ sections: [
 title: "ما هو SSH؟",
 content: `
 <p>
-SSH هو بروتوكول يستخدم للوصول إلى أجهزة
-الشبكة وإدارتها عن بعد بطريقة مشفرة.
+SSH هو بروتوكول يستخدم للوصول وإدارة الأجهزة عن بعد
+بطريقة مشفرة.
 </p>
 
-<div class="comparison">
-
-<div class="comparison-card">
-
-<h4>🔐 SSH</h4>
-
+<div class="gold-box">
+<strong>المنفذ الافتراضي</strong>
 <p>
-اتصال آمن ومشفر.
+TCP 22
 </p>
-
-</div>
-
-<div class="comparison-card">
-
-<h4>⚠️ Telnet</h4>
-
-<p>
-بروتوكول قديم ولا يوفر نفس مستوى
-الحماية والتشفير.
-</p>
-
-</div>
-
 </div>
 `
 },
@@ -2444,26 +2779,16 @@ SSH هو بروتوكول يستخدم للوصول إلى أجهزة
 title: "لماذا نستخدم SSH؟",
 content: `
 <p>
-في إدارة الشبكات، قد تحتاج إلى الدخول إلى
-Switch أو Router موجود في موقع آخر.
+لأنه يوفر قناة مشفرة لإدارة أجهزة الشبكة بدلاً من
+إرسال بيانات الإدارة بشكل غير مشفر.
 </p>
 
-<div class="code-box">
-<pre>
-Administrator
-|
-Network
-|
-Switch
-|
-SSH
-</pre>
-</div>
-
-<p>
-بهذه الطريقة يستطيع مسؤول الشبكة إدارة الجهاز
-عن بعد بدل الحاجة إلى الوصول إليه فعليًا.
-</p>
+<ul>
+<li>تشفير الاتصال.</li>
+<li>مصادقة المستخدم.</li>
+<li>إدارة الأجهزة عن بعد.</li>
+<li>تقليل مخاطر اعتراض بيانات الإدارة.</li>
+</ul>
 `
 },
 
@@ -2471,25 +2796,16 @@ SSH
 title: "Cisco",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Cisco IOS
-</div>
-
-<pre>
 hostname SW1
-
+<br>
 ip domain-name example.local
-
+<br>
 crypto key generate rsa
-</pre>
-
 </div>
 
 <p>
-هذه أوامر من أساسيات إعداد SSH في Cisco،
-لكن إعداد المستخدم وVTY يعتمد على تصميم
-الجهاز والإصدار.
+إعداد SSH الكامل قد يتطلب أيضاً إعداد المستخدمين
+وVTY وAAA حسب تصميم الجهاز.
 </p>
 `
 },
@@ -2498,20 +2814,12 @@ crypto key generate rsa
 title: "Huawei",
 content: `
 <div class="code-box">
-
-<div class="code-title">
-Huawei VRP
-</div>
-
-<pre>
 stelnet server enable
-</pre>
-
 </div>
 
 <p>
-Huawei يستخدم اسم STelnet لخدمة SSH الآمنة
-عبر أجهزة VRP.
+في Huawei يستخدم STelnet للوصول الآمن عبر SSH.
+تفاصيل إعداد المستخدم وAAA تختلف حسب الإصدار.
 </p>
 `
 },
@@ -2520,39 +2828,65 @@ Huawei يستخدم اسم STelnet لخدمة SSH الآمنة
 title: "فحص الاتصال",
 content: `
 <p>
-عند وجود مشكلة في SSH، افحص الشبكة أولًا:
+قبل اختبار SSH تأكد من:
 </p>
 
-<ul>
-<li>هل Interface Up؟</li>
-<li>هل يوجد IP صحيح؟</li>
-<li>هل يوجد Routing؟</li>
-<li>هل الخدمة مفعلة؟</li>
-<li>هل بيانات الدخول صحيحة؟</li>
-</ul>
-
-<div class="info-box">
-<strong>🧠 لا تبدأ من SSH دائمًا</strong>
-<p>
-إذا كان الجهاز لا يستطيع الوصول إلى الجهاز
-الآخر أصلًا، فلن يحل SSH المشكلة.
-</p>
-</div>
+<ol>
+<li>وجود Management IP.</li>
+<li>الـInterface Up.</li>
+<li>وجود Connectivity.</li>
+<li>إعداد المستخدم والمصادقة.</li>
+<li>السماح بالوصول إلى خدمة SSH.</li>
+</ol>
 `
 },
 
 {
-title: "الخلاصة",
+title: "🎯 تطبيق عملي",
 content: `
-<div class="info-box">
+<div class="code-box">
+Laptop
+↓
+Network
+↓
+Switch
+↓
+Management IP
+</div>
 
-<strong>🧠 تذكر</strong>
+<p>
+إذا كان جهازك يستطيع الوصول إلى Management IP للسويتش
+وكانت خدمة SSH مفعلة والمصادقة صحيحة،
+يمكن إنشاء جلسة SSH.
+</p>
+`
+},
 
-<p>SSH → إدارة آمنة عن بعد.</p>
-<p>Cisco → يستخدم أوامر SSH الخاصة بـIOS.</p>
-<p>Huawei → يستخدم STelnet.</p>
-<p>افحص الاتصال الشبكي قبل تشخيص SSH.</p>
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+<li>Management IP غير صحيح.</li>
+<li>عدم وجود Route للوصول إلى الجهاز.</li>
+<li>SSH غير مفعل.</li>
+<li>اسم المستخدم أو كلمة المرور غير صحيحة.</li>
+<li>ACL تمنع الوصول.</li>
+<li>الـVTY أو AAA غير مضبوط بشكل صحيح.</li>
+</ul>
+`
+},
 
+{
+title: "🏁 الخلاصة",
+content: `
+<div class="code-box">
+Connectivity
++
+Authentication
++
+SSH Service
+=
+Remote Management
 </div>
 `
 }
@@ -2561,16 +2895,16 @@ content: `
 },
 
 
-/* ==================================================
-11 — NETWORK SECURITY
-================================================== */
+/* =========================================================
+الدرس 11
+========================================================= */
 
 {
 id: 11,
 category: "🛡️ Network Security",
 level: "🔴 متقدم",
 title: "Network Security",
-description: "تعرف على المبادئ الأساسية لحماية الشبكات والأجهزة والخدمات.",
+description: "تعرف على أساسيات حماية الشبكات والأجهزة وتقليل المخاطر.",
 
 sections: [
 
@@ -2578,17 +2912,37 @@ sections: [
 title: "ما هي Network Security؟",
 content: `
 <p>
-Network Security هي مجموعة من السياسات
-والتقنيات والإجراءات المستخدمة لحماية الشبكات
-والأنظمة والبيانات.
+Network Security هي مجموعة من التقنيات والسياسات
+والإجراءات التي تهدف إلى حماية الشبكة والأنظمة والبيانات.
 </p>
 
-<div class="info-box">
-<strong>🎯 الهدف</strong>
 <p>
-منع الوصول غير المصرح به وتقليل المخاطر
-وحماية البيانات والخدمات.
+الحماية ليست جهازاً واحداً أو أمراً واحداً،
+بل مجموعة طبقات تعمل معاً.
 </p>
+`
+},
+
+{
+title: "CIA Triad",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Confidentiality</h4>
+<p>حماية البيانات من الوصول غير المصرح به.</p>
+</div>
+
+<div class="compare-card">
+<h4>Integrity</h4>
+<p>منع التعديل غير المصرح به على البيانات.</p>
+</div>
+
+<div class="compare-card">
+<h4>Availability</h4>
+<p>الحفاظ على توفر الخدمات والأنظمة.</p>
+</div>
+
 </div>
 `
 },
@@ -2597,57 +2951,37 @@ Network Security هي مجموعة من السياسات
 title: "Access Control",
 content: `
 <p>
-Access Control يعني التحكم في الأشخاص والأجهزة
-والخدمات التي يسمح لها بالوصول إلى الموارد.
+التحكم في الوصول يعني تحديد من يستطيع الوصول
+إلى ماذا، وما العمليات التي يسمح له بتنفيذها.
 </p>
 
-<div class="code-box">
-<pre>
-User
-↓
-Authentication
-↓
-Authorization
-↓
-Resource
-</pre>
-</div>
+<ul>
+<li>Authentication</li>
+<li>Authorization</li>
+<li>Accounting</li>
+</ul>
 
 <p>
-Authentication يجيب عن سؤال:
-من أنت؟
-</p>
-
-<p>
-Authorization يحدد:
-ماذا يسمح لك أن تفعل؟
+وهذه هي عناصر AAA.
 </p>
 `
 },
 
 {
-title: "Firewall",
+title: "Firewall وACL",
 content: `
 <p>
-Firewall يساعد على التحكم في حركة البيانات
-بين مناطق أو شبكات مختلفة وفق قواعد محددة.
+ACL وFirewall يمكن استخدامهما للتحكم في حركة المرور
+وفق شروط محددة.
 </p>
 
-<div class="code-box">
-<pre>
-Internet
-|
-Firewall
-|
-Internal Network
-</pre>
-</div>
-
+<div class="warning-box">
+<strong>⚠️ مهم</strong>
 <p>
-يمكن أن تعتمد القواعد على عناصر مثل
-Source وDestination وProtocol وPort حسب
-نوع النظام.
+يجب أن تكون القواعد محددة ومفهومة، لأن Rule خاطئة
+قد تمنع خدمة صحيحة أو تسمح بحركة مرور غير مرغوبة.
 </p>
+</div>
 `
 },
 
@@ -2655,21 +2989,14 @@ Source وDestination وProtocol وPort حسب
 title: "حماية أجهزة الشبكة",
 content: `
 <ul>
+<li>استخدام SSH بدلاً من البروتوكولات غير المشفرة عند الإمكان.</li>
 <li>استخدام كلمات مرور قوية.</li>
-<li>تقييد الوصول الإداري.</li>
-<li>استخدام SSH بدل البروتوكولات غير الآمنة عند الإمكان.</li>
-<li>تحديث الأنظمة والبرامج الثابتة.</li>
-<li>تعطيل الخدمات غير المستخدمة.</li>
-<li>مراقبة السجلات والأحداث.</li>
+<li>تطبيق أقل صلاحية ممكنة.</li>
+<li>تحديث الأنظمة والبرمجيات.</li>
+<li>تقييد Management Access.</li>
+<li>أخذ نسخ احتياطية من الإعدادات.</li>
+<li>مراقبة Logs.</li>
 </ul>
-
-<div class="warning-box">
-<strong>⚠️ قاعدة مهمة</strong>
-<p>
-لا تعتبر كلمة المرور وحدها حماية كاملة؛
-الأمن يعتمد على عدة طبقات.
-</p>
-</div>
 `
 },
 
@@ -2677,41 +3004,83 @@ content: `
 title: "Defense in Depth",
 content: `
 <p>
-Defense in Depth يعني استخدام عدة طبقات
-من الحماية بدل الاعتماد على وسيلة واحدة.
+Defense in Depth يعني عدم الاعتماد على وسيلة حماية واحدة.
 </p>
 
 <div class="code-box">
-<pre>
-Users
+Physical Security
 ↓
-Authentication
+Segmentation
 ↓
-Network Controls
+ACL
 ↓
 Firewall
 ↓
-Server Security
+Authentication
 ↓
-Data Protection
-</pre>
+Monitoring
 </div>
 `
 },
 
 {
-title: "الخلاصة",
+title: "🎯 تطبيق عملي",
 content: `
-<div class="info-box">
+<p>
+تخيل شركة لديها:
+</p>
 
-<strong>🧠 تذكر</strong>
+<div class="code-box">
+USERS
+<br>
+SERVERS
+<br>
+GUEST
+<br>
+MANAGEMENT
+</div>
 
-<p>Security ليست جهازًا واحدًا.</p>
-<p>Firewall → التحكم في حركة البيانات.</p>
-<p>Authentication → التحقق من الهوية.</p>
-<p>Authorization → تحديد الصلاحيات.</p>
-<p>Defense in Depth → عدة طبقات من الحماية.</p>
+<p>
+يمكن فصلها باستخدام VLAN،
+ثم استخدام Routing وACL وFirewall
+لتحديد الاتصالات المسموح بها.
+</p>
+`
+},
 
+{
+title: "⚠️ أخطاء شائعة",
+content: `
+<ul>
+<li>استخدام حساب واحد لجميع الموظفين.</li>
+<li>السماح بالإدارة من أي مكان بدون قيود.</li>
+<li>عدم مراجعة ACL.</li>
+<li>عدم تحديث الأجهزة.</li>
+<li>عدم الاحتفاظ بنسخ احتياطية.</li>
+<li>عدم مراقبة Logs.</li>
+</ul>
+`
+},
+
+{
+title: "🏁 الخلاصة",
+content: `
+<p>
+أمن الشبكات عملية مستمرة وليست إعداداً يتم مرة واحدة.
+</p>
+
+<div class="code-box">
+Identity
++
+Access Control
++
+Segmentation
++
+Monitoring
++
+Updates
+=
+Stronger Security
 </div>
 `
 }
@@ -2719,1537 +3088,747 @@ content: `
 ]
 },
 
-/* ==================================================
-12 — TROUBLESHOOTING
-================================================== */
+
+/* =========================================================
+الدرس 12
+========================================================= */
 
 {
-    id: 12,
-    category: "🧰 Troubleshooting",
-    level: "🔴 متقدم",
-    title: "Troubleshooting",
-    description: "تعلم منهجية عملية ومنظمة لاكتشاف مشاكل الشبكة وتحديد سبب العطل قبل تغيير الإعدادات.",
-
-    sections: [
-
-        /* =========================
-           01 — INTRO
-           ========================= */
-
-        {
-            title: "🧠 ما هو Troubleshooting؟",
-            content: `
-                <p>
-                    Troubleshooting هو عملية البحث عن سبب المشكلة في الشبكة
-                    ثم تحديد مكانها وإصلاحها بطريقة منظمة.
-                </p>
-
-                <div class="info-box">
-                    <strong>💡 القاعدة الذهبية</strong>
-                    <p>
-                        لا تغيّر الإعدادات بشكل عشوائي.
-                        أولًا اكتشف أين توجد المشكلة، ثم حدد سببها.
-                    </p>
-                </div>
-
-                <p>
-                    الهدف ليس فقط أن تجعل الشبكة تعمل،
-                    بل أن تعرف <strong>لماذا توقفت عن العمل</strong>.
-                </p>
-
-                <div class="gold-box">
-                    <strong>🎯 فكر بهذه الطريقة</strong>
-                    <p>
-                        المشكلة → أين تحدث؟ → لماذا تحدث؟ → كيف أصلحها؟
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           02 — METHODOLOGY
-           ========================= */
-
-        {
-            title: "🪜 منهجية Troubleshooting",
-            content: `
-                <p>
-                    أفضل طريقة لحل مشاكل الشبكات هي الانتقال من الأساسيات
-                    إلى الأشياء الأكثر تعقيدًا.
-                </p>
-
-                <div class="code-box">
-                    <pre>
-1. Physical
-↓
-2. Interface
-↓
-3. IP / Subnet / Gateway
-↓
-4. VLAN
-↓
-5. Trunk
-↓
-6. ARP / MAC
-↓
-7. Routing
-↓
-8. Services
-↓
-9. Security
-                    </pre>
-                </div>
-
-                <div class="info-box">
-                    <strong>🧠 لماذا بهذا الترتيب؟</strong>
-                    <p>
-                        لأنك لا تريد أن تفحص OSPF مثلًا
-                        بينما الكيبل نفسه غير متصل.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           03 — PHYSICAL
-           ========================= */
-
-        {
-            title: "🔌 الخطوة الأولى — Physical",
-            content: `
-                <p>
-                    ابدأ دائمًا بالطبقة الفيزيائية.
-                </p>
-
-                <ul>
-                    <li>هل الجهاز يعمل؟</li>
-                    <li>هل الكيبل متصل؟</li>
-                    <li>هل الكيبل سليم؟</li>
-                    <li>هل منفذ الشبكة يعمل؟</li>
-                    <li>هل لمبات المنفذ تعمل؟</li>
-                    <li>هل يوجد مشكلة في الـ SFP أو Fiber؟</li>
-                </ul>
-
-                <div class="warning-box">
-                    <strong>⚠️ مثال</strong>
-                    <p>
-                        إذا كان الكيبل مفصولًا، فلن يفيدك تعديل
-                        Routing Table أو OSPF.
-                    </p>
-                </div>
-
-                <div class="gold-box">
-                    <strong>🎯 سؤال سريع</strong>
-                    <p>
-                        إذا كان المنفذ Down، لا تبدأ بفحص Routing.
-                        ابدأ من الكيبل والمنفذ.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           04 — INTERFACE
-           ========================= */
-
-        {
-            title: "🔗 الخطوة الثانية — Interface",
-            content: `
-                <p>
-                    بعد التأكد من التوصيلات، افحص حالة الواجهة.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ip interface brief</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display ip interface brief</pre>
-
-                </div>
-
-                <p>
-                    ركز على:
-                </p>
-
-                <ul>
-                    <li>Interface Status</li>
-                    <li>Protocol Status</li>
-                    <li>IP Address</li>
-                    <li>Subnet Mask</li>
-                </ul>
-
-                <div class="info-box">
-                    <strong>💡 مثال</strong>
-                    <p>
-                        إذا كانت الواجهة Administratively Down،
-                        تحقق هل تم إيقافها باستخدام shutdown.
-                    </p>
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>no shutdown</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>undo shutdown</pre>
-
-                </div>
-            `
-        },
-
-
-        /* =========================
-           05 — INTERFACE DETAILS
-           ========================= */
-
-        {
-            title: "🔎 فحص تفاصيل المنفذ",
-            content: `
-                <p>
-                    أحيانًا تحتاج إلى معلومات أكثر من مجرد حالة المنفذ.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show interfaces GigabitEthernet0/1</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display interface GigabitEthernet 0/0/1</pre>
-
-                </div>
-
-                <p>
-                    ابحث عن:
-                </p>
-
-                <ul>
-                    <li>Input errors</li>
-                    <li>Output errors</li>
-                    <li>CRC errors</li>
-                    <li>Packets</li>
-                    <li>Speed</li>
-                    <li>Duplex</li>
-                    <li>Physical state</li>
-                </ul>
-
-                <div class="warning-box">
-                    <strong>⚠️ انتبه</strong>
-                    <p>
-                        وجود CRC أو Errors بشكل متكرر قد يشير إلى
-                        مشكلة في الكيبل أو الاتصال أو العتاد.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           06 — IP
-           ========================= */
-
-        {
-            title: "🌐 الخطوة الثالثة — IP وSubnet وGateway",
-            content: `
-                <p>
-                    إذا كانت الواجهة تعمل، انتقل إلى إعدادات Layer 3.
-                </p>
-
-                <div class="code-box">
-                    <pre>
-IP Address
-Subnet Mask
-Default Gateway
-                    </pre>
-                </div>
-
-                <p>
-                    تأكد أن عنوان IP والـSubnet Mask متوافقان
-                    وأن الـGateway صحيح.
-                </p>
-
-                <div class="warning-box">
-                    <strong>⚠️ خطأ شائع</strong>
-                    <p>
-                        عنوان IP صحيح مع Subnet Mask خاطئ
-                        قد يمنع الجهاز من الوصول إلى الشبكات المطلوبة.
-                    </p>
-                </div>
-
-                <div class="info-box">
-                    <strong>💡 مثال</strong>
-                    <p>
-                        إذا كان جهازك في شبكة
-                        192.168.10.0/24
-                        فلا تفترض أن Gateway الموجود في
-                        192.168.20.0/24 صحيح له.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           07 — PING
-           ========================= */
-
-        {
-            title: "📡 الخطوة الرابعة — Ping",
-            content: `
-                <p>
-                    Ping من أهم الأدوات المستخدمة في Troubleshooting.
-                    لكنه لا يخبرك وحده بمكان المشكلة.
-                </p>
-
-                <div class="code-box">
-                    <pre>ping 10.0.0.2</pre>
-                </div>
-
-                <p>
-                    اختبر الاتصال بالتدرج:
-                </p>
-
-                <div class="code-box">
-                    <pre>
-الجهاز
-↓
-Gateway
-↓
-جهاز داخل نفس الشبكة
-↓
-شبكة بعيدة
-↓
-الخدمة المطلوبة
-                    </pre>
-                </div>
-
-                <div class="info-box">
-                    <strong>🧠 مثال منطقي</strong>
-
-                    <p>
-                        إذا استطعت Ping للـGateway
-                        ولكن لا تستطيع الوصول إلى شبكة بعيدة،
-                        فابدأ بفحص Routing.
-                    </p>
-                </div>
-
-                <div class="gold-box">
-                    <strong>🎯 لا تختبر الوجهة فقط</strong>
-
-                    <p>
-                        اسأل نفسك:
-                        من أين أرسل Ping؟
-                        وإلى أين؟
-                        وما أول نقطة يفشل عندها الاتصال؟
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           08 — VLAN
-           ========================= */
-
-        {
-            title: "🏷️ الخطوة الخامسة — VLAN",
-            content: `
-                <p>
-                    إذا كان الجهاز لا يستطيع الوصول إلى أجهزة
-                    داخل نفس الشبكة المحلية، افحص VLAN.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show vlan brief</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display vlan</pre>
-
-                </div>
-
-                <p>
-                    تحقق من:
-                </p>
-
-                <ul>
-                    <li>هل VLAN موجودة؟</li>
-                    <li>هل المنفذ في VLAN الصحيحة؟</li>
-                    <li>هل الجهاز متصل بالمنفذ الصحيح؟</li>
-                    <li>هل VLAN مسموحة عبر الـTrunk؟</li>
-                </ul>
-
-                <div class="warning-box">
-                    <strong>⚠️ مثال</strong>
-
-                    <p>
-                        جهاز المفروض يكون في VLAN 10
-                        لكنه موجود في VLAN 20.
-                        قد يكون الجهاز شغال والكيبل سليم،
-                        ولكن الاتصال لن يعمل بالشكل المتوقع.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           09 — ACCESS PORT
-           ========================= */
-
-        {
-            title: "🔌 فحص Access Port",
-            content: `
-                <p>
-                    إذا كان جهاز المستخدم متصلًا بالسويتش،
-                    تأكد أن المنفذ Access وفي VLAN الصحيحة.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>
-show interfaces GigabitEthernet0/1 switchport
-                    </pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>
-display port vlan
-                    </pre>
-
-                </div>
-
-                <p>
-                    في Cisco يجب أن تتأكد من:
-                </p>
-
-                <ul>
-                    <li>Administrative Mode</li>
-                    <li>Operational Mode</li>
-                    <li>Access VLAN</li>
-                </ul>
-
-                <p>
-                    وفي Huawei تحقق من نوع الرابط والـVLAN المرتبطة بالمنفذ.
-                </p>
-            `
-        },
-
-
-        /* =========================
-           10 — TRUNK
-           ========================= */
-
-        {
-            title: "🔀 الخطوة السادسة — Trunk",
-            content: `
-                <p>
-                    إذا كانت المشكلة بين سويتشين أو بين Switch وCore،
-                    افحص الـTrunk.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show interfaces trunk</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display port vlan</pre>
-
-                </div>
-
-                <p>
-                    تأكد من:
-                </p>
-
-                <ul>
-                    <li>المنفذ يعمل.</li>
-                    <li>المنفذ Trunk.</li>
-                    <li>VLAN المطلوبة موجودة.</li>
-                    <li>VLAN مسموحة بالمرور.</li>
-                    <li>الطرف الآخر لديه إعداد متوافق.</li>
-                </ul>
-
-                <div class="warning-box">
-                    <strong>⚠️ مثال</strong>
-
-                    <p>
-                        إذا كانت VLAN 30 موجودة في السويتشين
-                        ولكنها غير مسموحة على الـTrunk،
-                        فلن تعبر الترافيك بينهما.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           11 — MAC
-           ========================= */
-
-        {
-            title: "📋 الخطوة السابعة — MAC Address Table",
-            content: `
-                <p>
-                    إذا كان الجهاز متصلًا ولكنك غير متأكد
-                    من مكان ظهوره في السويتش،
-                    ابحث عن MAC Address.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show mac address-table</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display mac-address</pre>
-
-                </div>
-
-                <p>
-                    ويمكنك تحديد VLAN أو منفذ معين.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show mac address-table vlan 10</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display mac-address vlan 10</pre>
-
-                </div>
-
-                <div class="info-box">
-                    <strong>🧠 الفكرة</strong>
-                    <p>
-                        MAC Address يساعدك في معرفة
-                        أي منفذ تعلم منه السويتش الجهاز.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           12 — ARP
-           ========================= */
-
-        {
-            title: "🔎 الخطوة الثامنة — ARP",
-            content: `
-                <p>
-                    ARP مهم عندما يكون الاتصال باستخدام IPv4.
-                    فهو يربط عنوان IP بعنوان MAC.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show arp</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display arp</pre>
-
-                </div>
-
-                <p>
-                    إذا كنت تبحث عن جهاز معين:
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show arp 192.168.1.10</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display arp | include 192.168.1.10</pre>
-
-                </div>
-
-                <div class="info-box">
-                    <strong>💡 ماذا تبحث عنه؟</strong>
-                    <p>
-                        هل يوجد ARP Entry للعنوان المطلوب؟
-                        وهل عنوان MAC ظاهر؟
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           13 — ROUTING
-           ========================= */
-
-        {
-            title: "🛣️ الخطوة التاسعة — Routing",
-            content: `
-                <p>
-                    إذا كان الجهاز يستطيع الوصول إلى الـGateway
-                    لكنه لا يستطيع الوصول إلى شبكة أخرى،
-                    افحص جدول التوجيه.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ip route</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display ip routing-table</pre>
-
-                </div>
-
-                <p>
-                    ابحث عن:
-                </p>
-
-                <ul>
-                    <li>هل الشبكة المطلوبة موجودة؟</li>
-                    <li>ما هو الـNext-Hop؟</li>
-                    <li>ما هو الـOutgoing Interface؟</li>
-                    <li>هل يوجد Default Route؟</li>
-                </ul>
-
-                <div class="warning-box">
-                    <strong>⚠️ مثال</strong>
-
-                    <p>
-                        إذا لم يجد الراوتر Route للشبكة المطلوبة،
-                        فلن يعرف أين يرسل الـPacket.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           14 — STATIC ROUTE
-           ========================= */
-
-        {
-            title: "🧭 فحص Static Route",
-            content: `
-                <p>
-                    إذا كنت تستخدم Static Routing،
-                    تأكد أن المسار موجود وصحيح.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>
-show ip route static
-                    </pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>
-display ip routing-table protocol static
-                    </pre>
-
-                </div>
-
-                <p>
-                    مثال على Static Route:
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>
-ip route 192.168.20.0 255.255.255.0 10.0.0.2
-                    </pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>
-ip route-static 192.168.20.0 255.255.255.0 10.0.0.2
-                    </pre>
-
-                </div>
-
-                <div class="warning-box">
-                    <strong>⚠️ انتبه</strong>
-                    <p>
-                        تأكد من Network Address وMask وNext-Hop.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           15 — OSPF
-           ========================= */
-
-        {
-            title: "🔄 فحص OSPF",
-            content: `
-                <p>
-                    إذا كانت الشبكة تستخدم OSPF،
-                    افحص أولًا حالة الـNeighbors ثم الـRoutes.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ip ospf neighbor</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display ospf peer</pre>
-
-                </div>
-
-                <p>
-                    وبعدها افحص المسارات:
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ip route ospf</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>
-display ip routing-table protocol ospf
-                    </pre>
-
-                </div>
-
-                <div class="info-box">
-                    <strong>🧠 التسلسل الصحيح</strong>
-                    <p>
-                        Interface → IP → OSPF Neighbor → OSPF Route
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           16 — DHCP
-           ========================= */
-
-        {
-            title: "📦 فحص DHCP",
-            content: `
-                <p>
-                    إذا كان الجهاز لا يحصل على IP تلقائيًا،
-                    افحص DHCP.
-                </p>
-
-                <p>
-                    تأكد من:
-                </p>
-
-                <ul>
-                    <li>هل DHCP Server يعمل؟</li>
-                    <li>هل يوجد DHCP Pool؟</li>
-                    <li>هل VLAN الصحيحة تصل إلى DHCP Server؟</li>
-                    <li>هل يوجد DHCP Relay عند الحاجة؟</li>
-                    <li>هل يوجد عنوان متاح في الـPool؟</li>
-                </ul>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ip dhcp binding</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display ip pool</pre>
-
-                </div>
-
-                <div class="warning-box">
-                    <strong>⚠️ مثال</strong>
-                    <p>
-                        إذا كان الجهاز يأخذ IP غير متوقع،
-                        لا تفترض أن المشكلة من الجهاز نفسه.
-                        افحص مصدر DHCP أولًا.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           17 — DNS
-           ========================= */
-
-        {
-            title: "🌍 فحص DNS",
-            content: `
-                <p>
-                    أحيانًا يكون الإنترنت أو الشبكة تعمل،
-                    لكن أسماء المواقع لا تفتح.
-                </p>
-
-                <div class="info-box">
-                    <strong>🧠 فرق مهم</strong>
-                    <p>
-                        إذا كان Ping إلى عنوان IP يعمل،
-                        لكن اسم الموقع لا يعمل،
-                        فقد تكون المشكلة مرتبطة بـDNS.
-                    </p>
-                </div>
-
-                <p>
-                    افحص:
-                </p>
-
-                <ul>
-                    <li>DNS Server</li>
-                    <li>إعدادات الجهاز</li>
-                    <li>الوصول إلى DNS Server</li>
-                    <li>حل أسماء النطاقات</li>
-                </ul>
-
-                <div class="gold-box">
-                    <strong>🎯 لا تخلط بين المشاكل</strong>
-                    <p>
-                        نجاح Ping لا يعني أن DNS يعمل،
-                        وفشل DNS لا يعني بالضرورة أن الشبكة بالكامل متوقفة.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           18 — SSH
-           ========================= */
-
-        {
-            title: "🔐 فحص SSH",
-            content: `
-                <p>
-                    إذا كان الجهاز يعمل ويمكن الوصول إليه،
-                    لكن SSH لا يعمل، افحص خدمة الإدارة نفسها.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ssh</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display ssh server status</pre>
-
-                </div>
-
-                <p>
-                    تحقق من:
-                </p>
-
-                <ul>
-                    <li>هل SSH Server يعمل؟</li>
-                    <li>هل عنوان الإدارة صحيح؟</li>
-                    <li>هل يوجد ACL تمنع الاتصال؟</li>
-                    <li>هل بيانات الدخول صحيحة؟</li>
-                </ul>
-            `
-        },
-
-
-        /* =========================
-           19 — ACL
-           ========================= */
-
-        {
-            title: "🛡️ فحص ACL وSecurity",
-            content: `
-                <p>
-                    إذا كانت الشبكة تبدو صحيحة ولكن نوعًا معينًا
-                    من الترافيك لا يمر، افحص ACL أو سياسات الأمان.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show access-lists</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display acl 3000</pre>
-
-                </div>
-
-                <p>
-                    اسأل:
-                </p>
-
-                <ul>
-                    <li>هل يوجد Rule تمنع الترافيك؟</li>
-                    <li>هل الـACL مطبقة على الواجهة الصحيحة؟</li>
-                    <li>هل اتجاه التطبيق Inbound أو Outbound؟</li>
-                </ul>
-
-                <div class="warning-box">
-                    <strong>⚠️ ملاحظة</strong>
-                    <p>
-                        صياغة ACL تختلف بين Cisco وHuawei
-                        وبين الموديلات والإصدارات،
-                        لذلك تعامل مع الأوامر هنا كمرجع عملي وقد تحتاج لتعديلها حسب الجهاز.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           20 — LOGS
-           ========================= */
-
-        {
-            title: "📝 فحص Logs وCPU",
-            content: `
-                <p>
-                    عندما لا تجد السبب بسهولة،
-                    راجع سجلات الجهاز واستخدام الموارد.
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show logging</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display logbuffer</pre>
-
-                </div>
-
-                <p>
-                    وافحص استخدام المعالج:
-                </p>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show processes cpu</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display cpu-usage</pre>
-
-                </div>
-
-                <div class="info-box">
-                    <strong>💡 الفكرة</strong>
-                    <p>
-                        أحيانًا المشكلة ليست في الإعدادات،
-                        وإنما في ضغط مرتفع على الجهاز أو حدث مسجل في الـLogs.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           21 — SCENARIO 1
-           ========================= */
-
-        {
-            title: "🧪 سيناريو 1 — الجهاز لا يأخذ IP",
-            content: `
-                <p>
-                    لديك جهاز متصل بالسويتش لكنه لا يحصل على IP من DHCP.
-                </p>
-
-                <div class="gold-box">
-                    <strong>🎯 كيف تبدأ؟</strong>
-                    <p>
-                        لا تبدأ بتغيير إعدادات DHCP مباشرة.
-                    </p>
-                </div>
-
-                <div class="code-box">
-                    <pre>
-1. افحص الكيبل
-↓
-2. افحص حالة المنفذ
-↓
-3. افحص VLAN
-↓
-4. افحص Access Port
-↓
-5. افحص Trunk
-↓
-6. افحص DHCP
-                    </pre>
-                </div>
-
-                <div class="info-box">
-                    <strong>🧠 مثال</strong>
-                    <p>
-                        إذا كان الجهاز في VLAN 20
-                        بينما منفذ المستخدم مضبوط على VLAN 10،
-                        فقد لا يصل DHCP إلى الجهاز بالطريقة المطلوبة.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           22 — SCENARIO 2
-           ========================= */
-
-        {
-            title: "🧪 سيناريو 2 — الجهاز يأخذ IP لكن لا يوجد Internet",
-            content: `
-                <p>
-                    الجهاز حصل على IP من DHCP،
-                    لكن لا يستطيع الوصول إلى الإنترنت.
-                </p>
-
-                <div class="code-box">
-                    <pre>
-1. Ping Gateway
-↓
-2. Ping جهاز داخل الشبكة
-↓
-3. Ping عنوان IP خارجي
-↓
-4. اختبر DNS
-↓
-5. افحص Routing
-↓
-6. افحص NAT / Firewall حسب التصميم
-                    </pre>
-                </div>
-
-                <div class="info-box">
-                    <strong>💡 مثال منطقي</strong>
-                    <p>
-                        إذا كان Ping للـGateway يعمل
-                        لكن Ping للوجهة الخارجية لا يعمل،
-                        انتقل لفحص Routing أو NAT أو Firewall
-                        حسب تصميم الشبكة.
-                    </p>
-                </div>
-            `
-        },
-
-
-        /* =========================
-           23 — SCENARIO 3
-           ========================= */
-
-        {
-            title: "🧪 سيناريو 3 — VLAN لا تتواصل",
-            content: `
-                <p>
-                    لديك VLAN 10 وVLAN 20،
-                    والأجهزة تعمل داخل كل VLAN،
-                    لكن لا يوجد اتصال بينهما.
-                </p>
-
-                <div class="code-box">
-                    <pre>
-VLAN 10
-   ↓
-Gateway
-   ↓
-Inter-VLAN Routing
-   ↓
-VLAN 20
-                    </pre>
-                </div>
-
-                <p>
-                    افحص:
-                </p>
-
-                <ul>
-                    <li>هل VLAN 10 و20 موجودتان؟</li>
-                    <li>هل المنافذ في VLAN الصحيحة؟</li>
-                    <li>هل الـTrunk يسمح بالـVLANs؟</li>
-                    <li>هل يوجد SVI / VLANIF؟</li>
-                    <li>هل عناوين Gateway صحيحة؟</li>
-                    <li>هل يوجد ACL تمنع الاتصال؟</li>
-                </ul>
-            `
-        },
-
-
-        /* =========================
-           24 — SCENARIO 4
-           ========================= */
-
-        {
-            title: "🧪 سيناريو 4 — OSPF Neighbor لا يظهر",
-            content: `
-                <p>
-                    لديك راوتران متصلان،
-                    لكن OSPF Neighbor لا يظهر.
-                </p>
-
-                <div class="code-box">
-                    <pre>
-Interface
-↓
-IP Address
-↓
-Reachability
-↓
-OSPF Configuration
-↓
-Area
-↓
-Network
-↓
-Hello / Dead Timers
-↓
-Authentication
-                    </pre>
-                </div>
-
-                <div class="warning-box">
-                    <strong>⚠️ لا تبدأ بإعادة تشغيل OSPF</strong>
-                    <p>
-                        افحص الواجهة والـIP أولًا.
-                        إذا كان الرابط نفسه غير سليم،
-                        فلن تنجح مشكلة OSPF بإعادة تشغيل البروتوكول فقط.
-                    </p>
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>show ip ospf neighbor</pre>
-
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>display ospf peer</pre>
-
-                </div>
-            `
-        },
-
-
-        /* =========================
-           25 — COMMAND CHEAT SHEET
-           ========================= */
-
-        {
-            title: "⚡ أهم أوامر Troubleshooting",
-            content: `
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Cisco
-                    </div>
-
-                    <pre>
+id: 12,
+category: "🛠️ Troubleshooting",
+level: "🔴 متقدم",
+title: "Troubleshooting",
+description: "تعلم منهجية احترافية لاستكشاف مشاكل الشبكات من الكابل حتى الـRouting والخدمات.",
+
+sections: [
+
+{
+title: "🧠 ما هو Troubleshooting؟",
+content: `
+<p>
+Troubleshooting هو عملية منظمة لتحديد سبب المشكلة
+ثم اختبار الفرضيات وإصلاح السبب والتحقق من النتيجة.
+</p>
+
+<div class="gold-box">
+<strong>القاعدة الذهبية</strong>
+<p>
+لا تخمن المشكلة، اجمع الأدلة ثم اختبر.
+</p>
+</div>
+`
+},
+
+{
+title: "🪜 منهجية Troubleshooting",
+content: `
+<ol>
+<li>حدد المشكلة.</li>
+<li>اجمع المعلومات.</li>
+<li>افحص Physical Layer.</li>
+<li>افحص Interface.</li>
+<li>افحص IP وSubnet وGateway.</li>
+<li>اختبر Ping.</li>
+<li>افحص VLAN وTrunk.</li>
+<li>افحص MAC وARP.</li>
+<li>افحص Routing.</li>
+<li>افحص الخدمات والأمن.</li>
+<li>اختبر الحل.</li>
+<li>وثق التغيير.</li>
+</ol>
+`
+},
+
+{
+title: "🔌 الخطوة الأولى — Physical",
+content: `
+<p>
+ابدأ دائماً من الأشياء الأساسية.
+</p>
+
+<ul>
+<li>هل الكابل متصل؟</li>
+<li>هل المنفذ يعمل؟</li>
+<li>هل توجد Link Lights؟</li>
+<li>هل الجهاز يعمل؟</li>
+</ul>
+
+<div class="warning-box">
+<strong>⚠️ لا تتجاوز الأساسيات</strong>
+<p>
+كثير من المشاكل البسيطة يمكن اكتشافها قبل الدخول
+في إعدادات معقدة.
+</p>
+</div>
+`
+},
+
+{
+title: "🔗 الخطوة الثانية — Interface",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
 show ip interface brief
-show interfaces
-show vlan brief
-show interfaces trunk
-show mac address-table
-show arp
-show ip route
-show ip ospf neighbor
-show ip route ospf
-show access-lists
-show logging
-show processes cpu
-show ssh
-                    </pre>
+</div>
+</div>
 
-                </div>
-
-                <div class="code-box">
-
-                    <div class="code-title">
-                        Huawei
-                    </div>
-
-                    <pre>
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
 display ip interface brief
+</div>
+</div>
+
+</div>
+
+<p>
+ابحث عن حالة Interface وحالة Line Protocol
+والعنوان الموجود عليها.
+</p>
+`
+},
+
+{
+title: "🔎 فحص تفاصيل المنفذ",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show interfaces
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
 display interface
+</div>
+</div>
+
+</div>
+
+<p>
+يمكن أن تكشف التفاصيل عن أخطاء مثل CRC أو Drops
+أو مشاكل في السرعة والـDuplex.
+</p>
+`
+},
+
+{
+title: "🌐 الخطوة الثالثة — IP وSubnet وGateway",
+content: `
+<p>
+تأكد من:
+</p>
+
+<div class="code-box">
+IP Address
+<br>
+Subnet Mask
+<br>
+Default Gateway
+</div>
+
+<p>
+خطأ واحد في هذه القيم قد يمنع الاتصال.
+</p>
+`
+},
+
+{
+title: "📡 الخطوة الرابعة — Ping",
+content: `
+<p>
+Ping أداة أساسية لاختبار الوصول بين نقطتين.
+</p>
+
+<div class="code-box">
+PC
+↓
+Gateway
+↓
+Remote Network
+↓
+Server
+</div>
+
+<p>
+اختبر بالتدريج بدلاً من اختبار الوجهة النهائية فقط.
+</p>
+`
+},
+
+{
+title: "🏷️ الخطوة الخامسة — VLAN",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show vlan brief
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
 display vlan
-display port vlan
-display mac-address
-display arp
-display ip routing-table
-display ospf peer
-display ip routing-table protocol ospf
-display acl 3000
-display logbuffer
-display cpu-usage
-display ssh server status
-                    </pre>
+</div>
+</div>
 
-                </div>
+</div>
 
-                <div class="info-box">
-                    <strong>💡 نصيحة</strong>
-                    <p>
-                        لا تحفظ الأوامر كقائمة فقط.
-                        اربط كل أمر بالسؤال الذي تريد الإجابة عنه.
-                    </p>
-                </div>
-            `
-        },
+<p>
+تأكد أن المنفذ موجود في VLAN الصحيحة.
+</p>
+`
+},
 
+{
+title: "🔌 فحص Access Port",
+content: `
+<p>
+إذا كان جهاز واحد لا يتصل، افحص نوع المنفذ والـVLAN.
+</p>
 
-        /* =========================
-           26 — FINAL METHODOLOGY
-           ========================= */
-
-        {
-            title: "🏁 منهجية العمل الاحترافية",
-            content: `
-                <div class="code-box">
-                    <pre>
-المشكلة
-   ↓
-حدد نطاق المشكلة
-   ↓
-Physical
-   ↓
-Interface
-   ↓
-IP
-   ↓
+<div class="code-box">
+PC
+→
+Access Port
+→
 VLAN
-   ↓
+</div>
+
+<p>
+أي خطأ في هذه السلسلة قد يمنع الاتصال.
+</p>
+`
+},
+
+{
+title: "🔀 الخطوة السادسة — Trunk",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show interfaces trunk
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
+display port vlan
+</div>
+</div>
+
+</div>
+
+<p>
+تأكد من أن الـVLAN المطلوبة مسموح بمرورها عبر الرابط.
+</p>
+`
+},
+
+{
+title: "📋 الخطوة السابعة — MAC Address Table",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show mac address-table
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
+display mac-address
+</div>
+</div>
+
+</div>
+
+<p>
+ابحث عن MAC الجهاز وتأكد أنه يظهر على المنفذ المتوقع.
+</p>
+`
+},
+
+{
+title: "🔎 الخطوة الثامنة — ARP",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show arp
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
+display arp
+</div>
+</div>
+
+</div>
+
+<p>
+ARP يربط بين IPv4 Address وMAC Address داخل الشبكة المحلية.
+</p>
+`
+},
+
+{
+title: "🛣️ الخطوة التاسعة — Routing",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show ip route
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
+display ip routing-table
+</div>
+</div>
+
+</div>
+
+<p>
+تأكد من وجود Route للشبكة المطلوبة.
+</p>
+`
+},
+
+{
+title: "🧭 فحص Static Route",
+content: `
+<p>
+عند استخدام Static Routing تأكد من:
+</p>
+
+<ul>
+<li>Destination Network.</li>
+<li>Subnet Mask.</li>
+<li>Next-Hop.</li>
+<li>الوصول إلى Next-Hop.</li>
+<li>وجود Return Route.</li>
+</ul>
+`
+},
+
+{
+title: "🔄 فحص OSPF",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show ip ospf neighbor
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
+display ospf peer
+</div>
+</div>
+
+</div>
+
+<p>
+إذا لم تظهر Neighbor، ارجع إلى IP وArea وInterface
+وHello/Dead Timers وباقي متطلبات تكوين الجيرة.
+</p>
+`
+},
+
+{
+title: "📦 فحص DHCP",
+content: `
+<p>
+إذا كان الجهاز لا يحصل على IP، افحص:
+</p>
+
+<ul>
+<li>هل DHCP Server يعمل؟</li>
+<li>هل VLAN صحيحة؟</li>
+<li>هل Trunk يسمح بالـVLAN؟</li>
+<li>هل DHCP Relay مطلوب؟</li>
+<li>هل توجد ACL تمنع الطلبات؟</li>
+</ul>
+`
+},
+
+{
+title: "🌍 فحص DNS",
+content: `
+<p>
+إذا كان Ping إلى IP يعمل ولكن اسم الموقع لا يعمل،
+فقد تكون المشكلة في DNS.
+</p>
+
+<div class="code-box">
+IP works
+✓
+<br>
+Domain name fails
+✕
+</div>
+`
+},
+
+{
+title: "🔐 فحص SSH",
+content: `
+<p>
+افحص:
+</p>
+
+<ul>
+<li>Management IP.</li>
+<li>Connectivity.</li>
+<li>SSH Service.</li>
+<li>Username.</li>
+<li>Authentication.</li>
+<li>VTY / AAA.</li>
+</ul>
+
+<div class="comparison-grid">
+
+<div class="compare-card">
+<h4>Cisco</h4>
+<div class="code-box">
+show ssh
+</div>
+</div>
+
+<div class="compare-card">
+<h4>Huawei</h4>
+<div class="code-box">
+display ssh server status
+</div>
+</div>
+
+</div>
+`
+},
+
+{
+title: "🛡️ فحص ACL وSecurity",
+content: `
+<p>
+أحياناً تكون الشبكة تعمل لكن ACL أو Firewall
+يمنع نوعاً معيناً من الاتصال.
+</p>
+
+<div class="code-box">
+Cisco:
+<br>
+show access-lists
+<br><br>
+Huawei:
+<br>
+display acl 3000
+</div>
+`
+},
+
+{
+title: "📝 فحص Logs وCPU",
+content: `
+<div class="comparison-grid">
+
+<div class="compare-card">
+
+<h4>Cisco</h4>
+
+<div class="code-box">
+show logging
+<br>
+show processes cpu
+</div>
+
+</div>
+
+<div class="compare-card">
+
+<h4>Huawei</h4>
+
+<div class="code-box">
+display logbuffer
+<br>
+display cpu-usage
+</div>
+
+</div>
+
+</div>
+
+<p>
+الـLogs واستخدام CPU يمكن أن يكشفا عن أحداث أو ضغط
+قد لا يظهر من خلال Ping فقط.
+</p>
+`
+},
+
+{
+title: "🧪 سيناريو 1 — الجهاز لا يأخذ IP",
+content: `
+<div class="code-box">
+PC
+↓
+Switch
+↓
+VLAN
+↓
+DHCP
+</div>
+
+<p>
+افحص السلسلة كاملة من الجهاز إلى DHCP Server.
+</p>
+
+<ol>
+<li>Physical.</li>
+<li>Access VLAN.</li>
+<li>Trunk.</li>
+<li>DHCP Relay إن وجد.</li>
+<li>DHCP Pool.</li>
+</ol>
+`
+},
+
+{
+title: "🧪 سيناريو 2 — الجهاز يأخذ IP لكن لا يوجد Internet",
+content: `
+<p>
+إذا كان الجهاز حصل على IP، افحص بالتدريج:
+</p>
+
+<div class="code-box">
+PC
+↓
+Gateway
+↓
+Router
+↓
+Default Route
+↓
+NAT / Firewall
+↓
+Internet
+</div>
+`
+},
+
+{
+title: "🧪 سيناريو 3 — VLAN لا تتواصل",
+content: `
+<p>
+إذا كان الجهازان في VLAN مختلفة،
+فتأكد من وجود Layer 3 Gateway أو Inter-VLAN Routing.
+</p>
+
+<div class="code-box">
+VLAN 10
+↓
+Layer 3
+↓
+VLAN 20
+</div>
+`
+},
+
+{
+title: "🧪 سيناريو 4 — OSPF Neighbor لا يظهر",
+content: `
+<ol>
+<li>تأكد أن Interface Up.</li>
+<li>تأكد من IP.</li>
+<li>تأكد من Subnet.</li>
+<li>تأكد من Area.</li>
+<li>افحص Hello/Dead.</li>
+<li>افحص Network Type.</li>
+<li>افحص ACL أو Security.</li>
+</ol>
+`
+},
+
+{
+title: "⚡ أهم أوامر Troubleshooting",
+content: `
+<div class="code-box">
+
+Cisco
+<br>
+show ip interface brief
+<br>
+show interfaces
+<br>
+show vlan brief
+<br>
+show interfaces trunk
+<br>
+show mac address-table
+<br>
+show arp
+<br>
+show ip route
+<br>
+show ip ospf neighbor
+<br>
+show ip route ospf
+<br>
+show access-lists
+<br>
+show logging
+<br>
+show processes cpu
+<br>
+show ssh
+
+<br><br>
+
+Huawei
+<br>
+display ip interface brief
+<br>
+display interface
+<br>
+display vlan
+<br>
+display port vlan
+<br>
+display mac-address
+<br>
+display arp
+<br>
+display ip routing-table
+<br>
+display ospf peer
+<br>
+display ip routing-table protocol ospf
+<br>
+display acl 3000
+<br>
+display logbuffer
+<br>
+display cpu-usage
+<br>
+display ssh server status
+
+</div>
+`
+},
+
+{
+title: "🏁 منهجية العمل الاحترافية",
+content: `
+<div class="gold-box">
+
+<strong>تذكر هذا التسلسل:</strong>
+
+<p>
+Physical
+→
+Interface
+→
+IP
+→
+VLAN
+→
 Trunk
-   ↓
-MAC / ARP
-   ↓
+→
+MAC
+→
+ARP
+→
 Routing
-   ↓
+→
 Services
-   ↓
+→
 Security
-   ↓
-حدد السبب
-   ↓
-طبّق الإصلاح
-   ↓
-اختبر من جديد
-                    </pre>
-                </div>
+</p>
 
-                <div class="gold-box">
-                    <strong>🎯 القاعدة الذهبية</strong>
+</div>
 
-                    <p>
-                        لا تسأل فقط:
-                        "وش الأمر اللي يصلح المشكلة؟"
-                    </p>
+<p>
+لا تنتقل إلى خطوة متقدمة قبل التأكد من الخطوات الأساسية.
+</p>
 
-                    <p>
-                        اسأل:
-                        "وين توقفت البيانات؟ وليش توقفت؟"
-                    </p>
-                </div>
-            `
-        },
+<p>
+بهذه الطريقة تقلل التخمين وتصل إلى سبب المشكلة بشكل أسرع.
+</p>
+`
+},
 
+{
+title: "🧠 الخلاصة",
+content: `
+<p>
+Troubleshooting ليست حفظ أوامر فقط.
+هي طريقة تفكير.
+</p>
 
-        /* =========================
-           27 — SUMMARY
-           ========================= */
+<div class="code-box">
+Observe
+↓
+Identify
+↓
+Test
+↓
+Fix
+↓
+Verify
+↓
+Document
+</div>
 
-        {
-            title: "🧠 الخلاصة",
-            content: `
-                <div class="info-box">
+<div class="info-box">
+<strong>🎓 أنت الآن وصلت لنهاية المسار الأساسي للدروس.</strong>
+<p>
+بعد إتقان هذه المفاهيم يصبح الانتقال إلى التدريب العملي
+والـCLI واختبارات الشبكات أكثر فائدة.
+</p>
+</div>
+`
+}
 
-                    <strong>تذكر دائمًا:</strong>
-
-                    <p>
-                        🔌 افحص Physical أولًا.
-                    </p>
-
-                    <p>
-                        🔗 افحص Interface.
-                    </p>
-
-                    <p>
-                        🌐 افحص IP وSubnet وGateway.
-                    </p>
-
-                    <p>
-                        🏷️ افحص VLAN وAccess.
-                    </p>
-
-                    <p>
-                        🔀 افحص Trunk.
-                    </p>
-
-                    <p>
-                        📋 افحص MAC وARP.
-                    </p>
-
-                    <p>
-                        🛣️ افحص Routing.
-                    </p>
-
-                    <p>
-                        🔄 افحص OSPF إذا كان مستخدمًا.
-                    </p>
-
-                    <p>
-                        📦 افحص DHCP وDNS والخدمات.
-                    </p>
-
-                    <p>
-                        🔐 افحص ACL وSecurity.
-                    </p>
-
-                    <p>
-                        📝 راجع Logs عند الحاجة.
-                    </p>
-
-                </div>
-
-                <div class="gold-box">
-
-                    <strong>🏆 مهارة مسؤول الشبكة</strong>
-
-                    <p>
-                        مسؤول الشبكة الجيد لا يغيّر الإعدادات عشوائيًا.
-                        بل يحدد مكان المشكلة، يجمع الأدلة،
-                        يختبر الفرضيات، ثم يطبق الحل.
-                    </p>
-
-                </div>
-            `
-        }
-
-    ]
+]
 }
 
 ];
 
 
-/* ==================================================
-قراءة رقم الدرس من الرابط
-================================================== */
+/* =========================================================
+تشغيل الدرس الحالي
+========================================================= */
 
 const params = new URLSearchParams(window.location.search);
 
 let lessonId = parseInt(params.get("id")) || 1;
-
-
-/* حماية من رقم غير صحيح */
 
 if (
 !Number.isInteger(lessonId) ||
@@ -4259,68 +3838,96 @@ lessonId > lessons.length
 lessonId = 1;
 }
 
-
-/* ==================================================
-جلب الدرس
-================================================== */
-
 const lesson = lessons.find(function(item) {
 return item.id === lessonId;
 });
 
 
-/* ==================================================
-بيانات الهيدر
-================================================== */
+/* =========================================================
+عناصر الصفحة
+========================================================= */
 
-document.getElementById("lessonCategory").textContent =
-lesson.category;
+const lessonCategory =
+document.getElementById("lessonCategory");
 
-document.getElementById("lessonLevel").textContent =
-lesson.level;
+const lessonLevel =
+document.getElementById("lessonLevel");
 
-document.getElementById("lessonTitle").textContent =
-lesson.title;
+const lessonTitle =
+document.getElementById("lessonTitle");
 
-document.getElementById("lessonDescription").textContent =
-lesson.description;
+const lessonDescription =
+document.getElementById("lessonDescription");
+
+const lessonProgressText =
+document.getElementById("lessonProgressText");
+
+const lessonProgressPercent =
+document.getElementById("lessonProgressPercent");
+
+const lessonProgressFill =
+document.getElementById("lessonProgressFill");
+
+const lessonSidebar =
+document.getElementById("lessonSidebar");
+
+const lessonContent =
+document.getElementById("lessonContent");
+
+const completeLessonButton =
+document.getElementById("completeLessonButton");
+
+const completionMessage =
+document.getElementById("completionMessage");
+
+const previousLesson =
+document.getElementById("previousLesson");
+
+const nextLesson =
+document.getElementById("nextLesson");
 
 
-/* ==================================================
-Progress
-================================================== */
+/* =========================================================
+بيانات الدرس
+========================================================= */
+
+lessonCategory.textContent = lesson.category;
+
+lessonLevel.textContent = lesson.level;
+
+lessonTitle.textContent = lesson.title;
+
+lessonDescription.textContent = lesson.description;
+
+
+/* =========================================================
+نسبة التقدم
+========================================================= */
 
 const progress =
 (lessonId / lessons.length) * 100;
 
-document.getElementById("lessonProgressText").textContent =
-"الدرس " + lessonId + " من " + lessons.length;
+lessonProgressText.textContent =
+"الدرس " +
+lessonId +
+" من " +
+lessons.length;
 
-document.getElementById("lessonProgressPercent").textContent =
+lessonProgressPercent.textContent =
 Math.round(progress) + "%";
 
-document.getElementById("lessonProgressFill").style.width =
+lessonProgressFill.style.width =
 progress + "%";
 
 
-/* ==================================================
-Sidebar + Content
-================================================== */
-
-const sidebar =
-document.getElementById("lessonSidebar");
-
-const content =
-document.getElementById("lessonContent");
-
+/* =========================================================
+بناء القائمة والمحتوى
+========================================================= */
 
 lesson.sections.forEach(function(section, index) {
 
 const sectionId =
 "section-" + index;
-
-
-/* Sidebar */
 
 const link =
 document.createElement("a");
@@ -4333,10 +3940,8 @@ String(index + 1).padStart(2, "0") +
 " — " +
 section.title;
 
-sidebar.appendChild(link);
+lessonSidebar.appendChild(link);
 
-
-/* Content */
 
 const sectionElement =
 document.createElement("section");
@@ -4345,45 +3950,37 @@ sectionElement.id =
 sectionId;
 
 sectionElement.innerHTML = `
-
 <h3>
-${String(index + 1).padStart(2, "0")} — ${section.title}
+${String(index + 1).padStart(2, "0")} —
+${section.title}
 </h3>
 
 ${section.content}
-
 `;
 
-content.appendChild(sectionElement);
+lessonContent.appendChild(sectionElement);
 
 });
 
 
-/* ==================================================
-Previous / Next
-================================================== */
-
-const previousButton =
-document.getElementById("previousLesson");
-
-const nextButton =
-document.getElementById("nextLesson");
-
+/* =========================================================
+التنقل بين الدروس
+========================================================= */
 
 if (lessonId > 1) {
 
-previousButton.href =
+previousLesson.href =
 "lesson.html?id=" + (lessonId - 1);
 
-previousButton.textContent =
+previousLesson.textContent =
 "← الدرس السابق";
 
 } else {
 
-previousButton.href =
+previousLesson.href =
 "lessons.html";
 
-previousButton.textContent =
+previousLesson.textContent =
 "← قائمة الدروس";
 
 }
@@ -4391,33 +3988,26 @@ previousButton.textContent =
 
 if (lessonId < lessons.length) {
 
-nextButton.href =
+nextLesson.href =
 "lesson.html?id=" + (lessonId + 1);
 
-nextButton.textContent =
+nextLesson.textContent =
 "الدرس التالي →";
 
 } else {
 
-nextButton.href =
+nextLesson.href =
 "quiz.html";
 
-nextButton.textContent =
+nextLesson.textContent =
 "اذهب للاختبار →";
 
 }
 
 
-/* ==================================================
-Complete Lesson
-================================================== */
-
-const completeLessonButton =
-document.getElementById("completeLessonButton");
-
-const completionMessage =
-document.getElementById("completionMessage");
-
+/* =========================================================
+حفظ الدروس المكتملة
+========================================================= */
 
 function getCompletedLessons() {
 
@@ -4443,11 +4033,14 @@ return [];
 }
 
 
+/* =========================================================
+تحديث زر الإكمال
+========================================================= */
+
 function updateCompletionButton() {
 
 const completedLessons =
 getCompletedLessons();
-
 
 if (completedLessons.includes(lessonId)) {
 
@@ -4478,6 +4071,10 @@ completionMessage.textContent =
 }
 
 
+/* =========================================================
+زر إكمال الدرس
+========================================================= */
+
 completeLessonButton.addEventListener(
 "click",
 function() {
@@ -4485,13 +4082,14 @@ function() {
 let completedLessons =
 getCompletedLessons();
 
+if (!completedLessons.includes(lessonId)) {
 
-if (
-!completedLessons.includes(lessonId)
-) {
+completedLessons.push(lessonId);
 
-completedLessons.push(
-lessonId
+completedLessons.sort(
+function(a, b) {
+return a - b;
+}
 );
 
 localStorage.setItem(
@@ -4501,27 +4099,19 @@ JSON.stringify(completedLessons)
 
 }
 
-
 updateCompletionButton();
 
 }
 );
 
 
-/* ==================================================
-تشغيل حالة الدرس
-================================================== */
+/* =========================================================
+القائمة الجانبية Smooth Scroll
+========================================================= */
 
-updateCompletionButton();
-
-
-/* ==================================================
-Smooth Scroll
-================================================== */
-
-document.querySelectorAll(
-".lesson-sidebar a"
-).forEach(function(link) {
+document
+.querySelectorAll(".lesson-sidebar a")
+.forEach(function(link) {
 
 link.addEventListener(
 "click",
@@ -4549,9 +4139,24 @@ block: "start"
 
 });
 
+
+/* =========================================================
+تشغيل حالة الإكمال
+========================================================= */
+
+updateCompletionButton();
+
 </script>
+
+
 <script src="user.js"></script>
-<script data-goatcounter="https://mish3l11.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+
+<script
+data-goatcounter="https://mish3l11.goatcounter.com/count"
+async
+src="//gc.zgo.at/count.js">
+</script>
+
 </body>
 </html>
+
