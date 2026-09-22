@@ -4352,3 +4352,125 @@ transition-duration: 0.01ms !important;
     font-weight: 700;
 }
  
+
+/* =====================================================
+   CTA CARDS
+   Learning + Network Detective
+===================================================== */
+
+.cta-grid {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+
+/* جعل البطاقتين بنفس الارتفاع */
+
+.cta-grid .cta-card {
+    height: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* أيقونة البطاقة */
+
+.cta-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+
+/* شارة NEW */
+
+.cta-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    padding: 5px 10px;
+
+    background: #111111;
+    color: #cbb77a;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+
+/* بطاقة محقق الشبكة */
+
+.detective-cta-card {
+    border: 1px solid rgba(17, 17, 17, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* حركة بسيطة عند المرور */
+
+.detective-cta-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 30px rgba(17, 17, 17, 0.16);
+}
+
+
+/* زر محقق الشبكة */
+
+.detective-cta-button {
+    position: relative;
+}
+
+
+/* الجوال */
+
+@media (max-width: 700px) {
+
+    .cta-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .cta-grid .cta-card {
+        min-height: 260px;
+    }
+
+}
+
+
+/* شاشات صغيرة جدًا */
+
+@media (max-width: 420px) {
+
+    .cta-grid {
+        gap: 15px;
+    }
+
+    .cta-grid .cta-card {
+        min-height: 245px;
+        padding: 25px 18px;
+    }
+
+    .cta-icon {
+        font-size: 38px;
+    }
+
+}

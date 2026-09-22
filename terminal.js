@@ -78,6 +78,8 @@ cisco: [
 "show interfaces",
 "show ip interface brief",
 "show running-config",
+"show arp",
+"show mac address-table",
 "ping 192.168.10.1",
 "?"
 ],
@@ -89,6 +91,8 @@ huawei: [
 "display interface brief",
 "display ip interface brief",
 "display current-configuration",
+"display arp",
+"display mac-address",
 "ping 192.168.10.1",
 "?"
 ]
@@ -131,18 +135,24 @@ interfaces: {
 "GigabitEthernet0/1": {
 status: "up",
 vlan: "10",
+ip: "",
+mask: "",
 description: ""
 },
 
 "GigabitEthernet0/2": {
 status: "up",
 vlan: "20",
+ip: "",
+mask: "",
 description: ""
 },
 
 "GigabitEthernet0/3": {
 status: "administratively down",
 vlan: "1",
+ip: "",
+mask: "",
 description: ""
 }
 
@@ -204,18 +214,24 @@ interfaces: {
 "GigabitEthernet0/0/1": {
 status: "up",
 vlan: "10",
+ip: "",
+mask: "",
 description: ""
 },
 
 "GigabitEthernet0/0/2": {
 status: "up",
 vlan: "20",
+ip: "",
+mask: "",
 description: ""
 },
 
 "GigabitEthernet0/0/3": {
 status: "administratively down",
 vlan: "1",
+ip: "",
+mask: "",
 description: ""
 }
 
@@ -289,7 +305,10 @@ printLine(
 "terminal-info"
 );
 
-printLine("", "terminal-info");
+printLine(
+"",
+"terminal-info"
+);
 
 if (faultScenarioStatus && !activeScenario) {
 
@@ -332,20 +351,8 @@ terminalPrompt.textContent =
 
 } else if (currentMode === "interface") {
 
-if (
-currentInterface &&
-currentInterface.startsWith("Vlan")
-) {
-
 terminalPrompt.textContent =
 `${hostname}(config-if)#`;
-
-} else {
-
-terminalPrompt.textContent =
-`${hostname}(config-if)#`;
-
-}
 
 } else if (currentMode === "vlan") {
 
@@ -423,6 +430,250 @@ return command
 
 
 /* =========================================
+IPv4 Validation
+========================================= */
+
+function isValidIPv4(ip) {
+
+const parts =
+ip.split(".");
+
+if (parts.length !== 4) {
+return false;
+}
+
+return parts.every(function (part) {
+
+if (!/^\d+$/.test(part)) {
+return false;
+}
+
+const number =
+Number(part);
+
+return (
+number >= 0 &&
+number <= 255
+);
+
+});
+
+}
+
+
+/* =========================================
+Subnet Mask Validation
+========================================= */
+
+function isValidSubnetMask(mask) {
+
+if (!isValidIPv4(mask)) {
+return false;
+}
+
+const parts =
+mask
+.split(".")
+.map(Number);
+
+const binary =
+parts
+.map(function (part) {
+
+return part
+.toString(2)
+.padStart(8, "0");
+
+})
+.join("");
+
+return /^1*0*$/.test(binary);
+
+}
+
+
+/* =========================================
+Prefix To Subnet Mask
+========================================= */
+
+function prefixToSubnetMask(prefix) {
+
+if (prefix === 0) {
+return "0.0.0.0";
+}
+
+const binary =
+"1".repeat(prefix) +
+"0".repeat(32 - prefix);
+
+const octets = [];
+
+for (
+let i = 0;
+i < 32;
+i += 8
+) {
+
+octets.push(
+parseInt(
+binary.substring(i, i + 8),
+2
+)
+);
+
+}
+
+return octets.join(".");
+
+}
+
+
+/* =========================================
+Parse IP Address Command
+========================================= */
+
+function parseIpAddressCommand(command) {
+
+const value =
+command
+.substring("ip address ".length)
+.trim();
+
+if (!value) {
+
+return {
+valid: false,
+message: "Invalid IP address."
+};
+
+}
+
+
+/* -----------------------------------------
+CIDR format
+
+Example:
+ip address 192.168.50.1/24
+----------------------------------------- */
+
+if (value.includes("/")) {
+
+const parts =
+value.split("/");
+
+if (parts.length !== 2) {
+
+return {
+valid: false,
+message: "Invalid IP address."
+};
+
+}
+
+const ip =
+parts[0].trim();
+
+const prefix =
+Number(
+parts[1].trim()
+);
+
+if (!isValidIPv4(ip)) {
+
+return {
+valid: false,
+message: "Invalid IP address."
+};
+
+}
+
+if (
+!Number.isInteger(prefix) ||
+prefix < 0 ||
+prefix > 32
+) {
+
+return {
+valid: false,
+message: "Invalid subnet prefix."
+};
+
+}
+
+return {
+
+valid: true,
+
+ip: ip,
+
+mask:
+prefixToSubnetMask(prefix)
+
+};
+
+}
+
+
+/* -----------------------------------------
+Normal format
+
+Example:
+ip address
+192.168.50.1
+255.255.255.0
+----------------------------------------- */
+
+const parts =
+value.split(/\s+/);
+
+if (parts.length !== 2) {
+
+return {
+valid: false,
+message:
+"Use: ip address <IP> <MASK>"
+};
+
+}
+
+const ip =
+parts[0];
+
+const mask =
+parts[1];
+
+if (!isValidIPv4(ip)) {
+
+return {
+valid: false,
+message: "Invalid IP address."
+};
+
+}
+
+if (!isValidSubnetMask(mask)) {
+
+return {
+valid: false,
+message: "Invalid subnet mask."
+};
+
+}
+
+return {
+
+valid: true,
+
+ip: ip,
+
+mask: mask
+
+};
+
+}
+
+
+/* =========================================
 Execute Command
 ========================================= */
 
@@ -442,15 +693,20 @@ printLine(
 
 history.push(command);
 
-historyIndex = history.length;
+historyIndex =
+history.length;
 
 if (currentDevice === "cisco") {
 
-executeCiscoCommand(normalized);
+executeCiscoCommand(
+normalized
+);
 
 } else {
 
-executeHuaweiCommand(normalized);
+executeHuaweiCommand(
+normalized
+);
 
 }
 
@@ -491,7 +747,8 @@ return;
 
 if (command === "enable") {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
 updatePrompt();
 
@@ -523,22 +780,22 @@ if (currentMode === "privileged") {
 if (command === "?") {
 
 printLine(
-"configure terminal Enter configuration mode",
+"configure terminal",
 "terminal-info"
 );
 
 printLine(
-"show version Show system information",
+"show version",
 "terminal-info"
 );
 
 printLine(
-"show vlan brief Show VLANs",
+"show vlan brief",
 "terminal-info"
 );
 
 printLine(
-"show interfaces Show interfaces",
+"show interfaces",
 "terminal-info"
 );
 
@@ -549,6 +806,16 @@ printLine(
 
 printLine(
 "show running-config",
+"terminal-info"
+);
+
+printLine(
+"show arp",
+"terminal-info"
+);
+
+printLine(
+"show mac address-table",
 "terminal-info"
 );
 
@@ -570,7 +837,8 @@ command === "configure terminal" ||
 command === "conf t"
 ) {
 
-currentMode = "config";
+currentMode =
+"config";
 
 updatePrompt();
 
@@ -579,7 +847,8 @@ return;
 
 if (command === "disable") {
 
-currentMode = "user";
+currentMode =
+"user";
 
 updatePrompt();
 
@@ -588,7 +857,8 @@ return;
 
 if (command === "exit") {
 
-currentMode = "user";
+currentMode =
+"user";
 
 updatePrompt();
 
@@ -616,16 +886,39 @@ printCiscoInterfaces();
 return;
 }
 
-if (command === "show ip interface brief") {
+if (
+command ===
+"show ip interface brief"
+) {
 
 printCiscoIpInterfaces();
 
 return;
 }
 
-if (command === "show running-config") {
+if (
+command ===
+"show running-config"
+) {
 
 printCiscoRunningConfig();
+
+return;
+}
+
+if (command === "show arp") {
+
+printCiscoArp();
+
+return;
+}
+
+if (
+command ===
+"show mac address-table"
+) {
+
+printCiscoMacTable();
 
 return;
 }
@@ -684,7 +977,8 @@ return;
 
 if (command === "exit") {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
 updatePrompt();
 
@@ -693,19 +987,27 @@ return;
 
 if (command === "end") {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
 return;
 }
 
-if (command.startsWith("hostname ")) {
+if (
+command.startsWith(
+"hostname "
+)
+) {
 
 const name =
-command.substring(9).trim();
+command
+.substring(9)
+.trim();
 
 if (name) {
 
@@ -724,10 +1026,16 @@ printLine(
 return;
 }
 
-if (command.startsWith("vlan ")) {
+if (
+command.startsWith(
+"vlan "
+)
+) {
 
 const vlanId =
-command.substring(5).trim();
+command
+.substring(5)
+.trim();
 
 if (!/^\d+$/.test(vlanId)) {
 
@@ -739,10 +1047,15 @@ printLine(
 return;
 }
 
-if (!configuration.vlans[vlanId]) {
+if (
+!configuration.vlans[vlanId]
+) {
 
 configuration.vlans[vlanId] = {
-name: "VLAN" + vlanId
+
+name:
+"VLAN" + vlanId
+
 };
 
 printLine(
@@ -752,7 +1065,8 @@ printLine(
 
 }
 
-currentMode = "vlan";
+currentMode =
+"vlan";
 
 currentInterface =
 `VLAN:${vlanId}`;
@@ -762,15 +1076,23 @@ updatePrompt();
 return;
 }
 
-if (command.startsWith("interface ")) {
+if (
+command.startsWith(
+"interface "
+)
+) {
 
 const interfaceName =
 normalizeCiscoInterfaceName(
-command.substring(10).trim()
+command
+.substring(10)
+.trim()
 );
 
 const found =
-findCiscoInterface(interfaceName);
+findCiscoInterface(
+interfaceName
+);
 
 if (!found) {
 
@@ -782,9 +1104,11 @@ printLine(
 return;
 }
 
-currentMode = "interface";
+currentMode =
+"interface";
 
-currentInterface = found;
+currentInterface =
+found;
 
 updatePrompt();
 
@@ -806,9 +1130,11 @@ if (currentMode === "vlan") {
 
 if (command === "exit") {
 
-currentMode = "config";
+currentMode =
+"config";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
@@ -817,16 +1143,20 @@ return;
 
 if (command === "end") {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
 return;
 }
 
-if (command.startsWith("name ")) {
+if (
+command.startsWith("name ")
+) {
 
 const vlanId =
 currentInterface.replace(
@@ -835,11 +1165,17 @@ currentInterface.replace(
 );
 
 const name =
-command.substring(5).trim();
+command
+.substring(5)
+.trim();
 
-if (configuration.vlans[vlanId]) {
+if (
+configuration.vlans[vlanId]
+) {
 
-configuration.vlans[vlanId].name =
+configuration
+.vlans[vlanId]
+.name =
 name.toUpperCase();
 
 printLine(
@@ -866,8 +1202,12 @@ return;
 if (currentMode === "interface") {
 
 const interfaceData =
-configuration.interfaces[currentInterface] ||
-configuration.vlanInterfaces[currentInterface];
+configuration.interfaces[
+currentInterface
+] ||
+configuration.vlanInterfaces[
+currentInterface
+];
 
 if (!interfaceData) {
 
@@ -881,9 +1221,11 @@ return;
 
 if (command === "exit") {
 
-currentMode = "config";
+currentMode =
+"config";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
@@ -892,9 +1234,11 @@ return;
 
 if (command === "end") {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
@@ -916,7 +1260,8 @@ return;
 
 if (command === "no shutdown") {
 
-interfaceData.status = "up";
+interfaceData.status =
+"up";
 
 printLine(
 `${currentInterface} enabled`,
@@ -926,44 +1271,108 @@ printLine(
 return;
 }
 
+
+/* =====================================
+IP Address
+===================================== */
+
 if (
-currentInterface.startsWith("Vlan")
+command.startsWith(
+"ip address "
+)
 ) {
 
-if (command.startsWith("ip address ")) {
-
-const parts =
+const result =
+parseIpAddressCommand(
 command
-.substring(11)
-.trim()
-.split(" ");
-
-if (parts.length >= 2) {
-
-interfaceData.ip =
-parts[0];
-
-interfaceData.mask =
-parts[1];
-
-printLine(
-`IP address ${interfaceData.ip} configured.`,
-"terminal-success"
 );
 
-} else {
+if (!result.valid) {
 
 printLine(
-"% Invalid IP address.",
+`% ${result.message}`,
 "terminal-error"
 );
-
-}
 
 return;
 }
 
-} else {
+interfaceData.ip =
+result.ip;
+
+interfaceData.mask =
+result.mask;
+
+printLine(
+`IP address ${result.ip} ${result.mask} configured.`,
+"terminal-success"
+);
+
+return;
+}
+
+
+/* =====================================
+Physical Interface
+===================================== */
+
+if (
+configuration.interfaces[
+currentInterface
+]
+) {
+
+if (command === "switchport mode access") {
+    interfaceData.mode = "access";
+
+    printLine(
+        "Switchport mode set to access.",
+        "terminal-success"
+    );
+
+    return;
+}
+
+if (command === "switchport mode trunk") {
+    interfaceData.mode = "trunk";
+
+    printLine(
+        "Switchport mode set to trunk.",
+        "terminal-success"
+    );
+
+    return;
+}
+
+if (command.startsWith("switchport trunk allowed vlan ")) {
+
+    const vlanList = command
+        .substring("switchport trunk allowed vlan ".length)
+        .trim()
+        .split(",");
+
+    for (let i = 0; i < vlanList.length; i++) {
+
+        const vlanId = vlanList[i].trim();
+
+        if (!configuration.vlans[vlanId]) {
+            printLine(
+                "Error: VLAN " + vlanId + " does not exist.",
+                "terminal-error"
+            );
+            return;
+        }
+    }
+
+    interfaceData.allowedVlans = vlanList;
+
+    printLine(
+        "Trunk VLANs allowed: " + vlanList.join(", ") + ".",
+        "terminal-success"
+    );
+
+    return;
+}
 
 if (
 command.startsWith(
@@ -978,7 +1387,11 @@ command
 )
 .trim();
 
-if (!configuration.vlans[vlanId]) {
+if (
+!configuration.vlans[
+vlanId
+]
+) {
 
 printLine(
 `% Access VLAN ${vlanId} does not exist.`,
@@ -1000,7 +1413,9 @@ return;
 }
 
 if (
-command.startsWith("description ")
+command.startsWith(
+"description "
+)
 ) {
 
 interfaceData.description =
@@ -1041,7 +1456,7 @@ if (currentMode === "user") {
 if (command === "?") {
 
 printLine(
-"system-view Enter system view",
+"system-view",
 "terminal-info"
 );
 
@@ -1066,6 +1481,16 @@ printLine(
 );
 
 printLine(
+"display arp",
+"terminal-info"
+);
+
+printLine(
+"display mac-address",
+"terminal-info"
+);
+
+printLine(
 "ping <ip>",
 "terminal-info"
 );
@@ -1078,7 +1503,8 @@ command === "system-view" ||
 command === "sys"
 ) {
 
-currentMode = "config";
+currentMode =
+"config";
 
 updatePrompt();
 
@@ -1094,21 +1520,30 @@ command.substring(5).trim()
 return;
 }
 
-if (command === "display version") {
+if (
+command ===
+"display version"
+) {
 
 printHuaweiVersion();
 
 return;
 }
 
-if (command === "display vlan") {
+if (
+command ===
+"display vlan"
+) {
 
 printHuaweiVlans();
 
 return;
 }
 
-if (command === "display interface brief") {
+if (
+command ===
+"display interface brief"
+) {
 
 printHuaweiInterfaces();
 
@@ -1116,10 +1551,28 @@ return;
 }
 
 if (
-command === "display ip interface brief"
+command ===
+"display ip interface brief"
 ) {
 
 printHuaweiIpInterfaces();
+
+return;
+}
+
+if (command === "display arp") {
+
+printHuaweiArp();
+
+return;
+}
+
+if (
+command ===
+"display mac-address"
+) {
+
+printHuaweiMacTable();
 
 return;
 }
@@ -1159,14 +1612,21 @@ printLine(
 "terminal-info"
 );
 
+printLine(
+"return",
+"terminal-info"
+);
+
 return;
 }
 
 if (command === "quit") {
 
-currentMode = "user";
+currentMode =
+"user";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
@@ -1175,19 +1635,27 @@ return;
 
 if (command === "return") {
 
-currentMode = "user";
+currentMode =
+"user";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
 return;
 }
 
-if (command.startsWith("sysname ")) {
+if (
+command.startsWith(
+"sysname "
+)
+) {
 
 const name =
-command.substring(8).trim();
+command
+.substring(8)
+.trim();
 
 if (name) {
 
@@ -1206,10 +1674,14 @@ printLine(
 return;
 }
 
-if (command.startsWith("vlan ")) {
+if (
+command.startsWith("vlan ")
+) {
 
 const vlanId =
-command.substring(5).trim();
+command
+.substring(5)
+.trim();
 
 if (!/^\d+$/.test(vlanId)) {
 
@@ -1221,10 +1693,19 @@ printLine(
 return;
 }
 
-if (!configuration.vlans[vlanId]) {
+if (
+!configuration.vlans[
+vlanId
+]
+) {
 
-configuration.vlans[vlanId] = {
-name: "VLAN" + vlanId
+configuration.vlans[
+vlanId
+] = {
+
+name:
+"VLAN" + vlanId
+
 };
 
 printLine(
@@ -1234,7 +1715,8 @@ printLine(
 
 }
 
-currentMode = "vlan";
+currentMode =
+"vlan";
 
 currentInterface =
 `VLAN:${vlanId}`;
@@ -1244,15 +1726,23 @@ updatePrompt();
 return;
 }
 
-if (command.startsWith("interface ")) {
+if (
+command.startsWith(
+"interface "
+)
+) {
 
 const interfaceName =
 normalizeHuaweiInterfaceName(
-command.substring(10).trim()
+command
+.substring(10)
+.trim()
 );
 
 const found =
-findHuaweiInterface(interfaceName);
+findHuaweiInterface(
+interfaceName
+);
 
 if (!found) {
 
@@ -1264,9 +1754,11 @@ printLine(
 return;
 }
 
-currentMode = "interface";
+currentMode =
+"interface";
 
-currentInterface = found;
+currentInterface =
+found;
 
 updatePrompt();
 
@@ -1274,7 +1766,8 @@ return;
 }
 
 if (
-command === "display vlan"
+command ===
+"display vlan"
 ) {
 
 printHuaweiVlans();
@@ -1283,7 +1776,8 @@ return;
 }
 
 if (
-command === "display current-configuration"
+command ===
+"display current-configuration"
 ) {
 
 printHuaweiRunningConfig();
@@ -1292,7 +1786,8 @@ return;
 }
 
 if (
-command === "display version"
+command ===
+"display version"
 ) {
 
 printHuaweiVersion();
@@ -1315,9 +1810,11 @@ if (currentMode === "vlan") {
 
 if (command === "quit") {
 
-currentMode = "config";
+currentMode =
+"config";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
@@ -1326,16 +1823,22 @@ return;
 
 if (command === "return") {
 
-currentMode = "user";
+currentMode =
+"user";
 
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
 return;
 }
 
-if (command.startsWith("description ")) {
+if (
+command.startsWith(
+"description "
+)
+) {
 
 const vlanId =
 currentInterface.replace(
@@ -1344,11 +1847,19 @@ currentInterface.replace(
 );
 
 const name =
-command.substring(12).trim();
+command
+.substring(12)
+.trim();
 
-if (configuration.vlans[vlanId]) {
+if (
+configuration.vlans[
+vlanId
+]
+) {
 
-configuration.vlans[vlanId].name =
+configuration
+.vlans[vlanId]
+.name =
 name.toUpperCase();
 
 printLine(
@@ -1375,8 +1886,12 @@ return;
 if (currentMode === "interface") {
 
 const interfaceData =
-configuration.interfaces[currentInterface] ||
-configuration.vlanInterfaces[currentInterface];
+configuration.interfaces[
+currentInterface
+] ||
+configuration.vlanInterfaces[
+currentInterface
+];
 
 if (!interfaceData) {
 
@@ -1388,35 +1903,33 @@ printLine(
 return;
 }
 
-if (
-command === "quit"
-) {
+if (command === "quit") {
 
-currentMode = "config";
+currentMode =
+"config";
 
-currentInterface = null;
-
-updatePrompt();
-
-return;
-}
-
-if (
-command === "return"
-) {
-
-currentMode = "user";
-
-currentInterface = null;
+currentInterface =
+null;
 
 updatePrompt();
 
 return;
 }
 
-if (
-command === "shutdown"
-) {
+if (command === "return") {
+
+currentMode =
+"user";
+
+currentInterface =
+null;
+
+updatePrompt();
+
+return;
+}
+
+if (command === "shutdown") {
 
 interfaceData.status =
 "administratively down";
@@ -1430,10 +1943,12 @@ return;
 }
 
 if (
-command === "undo shutdown"
+command ===
+"undo shutdown"
 ) {
 
-interfaceData.status = "up";
+interfaceData.status =
+"up";
 
 printLine(
 `${currentInterface} enabled`,
@@ -1443,49 +1958,104 @@ printLine(
 return;
 }
 
-if (
-currentInterface.startsWith("Vlanif")
-) {
+
+/* =====================================
+IP Address
+===================================== */
 
 if (
-command.startsWith("ip address ")
+command.startsWith(
+"ip address "
+)
 ) {
 
-const parts =
+const result =
+parseIpAddressCommand(
 command
-.substring(11)
-.trim()
-.split(" ");
-
-if (parts.length >= 2) {
-
-interfaceData.ip =
-parts[0];
-
-interfaceData.mask =
-parts[1];
-
-printLine(
-`IP address ${interfaceData.ip} configured.`,
-"terminal-success"
 );
 
-} else {
+if (!result.valid) {
 
 printLine(
-"Error: Invalid IP address.",
+`Error: ${result.message}`,
 "terminal-error"
 );
-
-}
 
 return;
 }
 
-} else {
+interfaceData.ip =
+result.ip;
+
+interfaceData.mask =
+result.mask;
+
+printLine(
+`IP address ${result.ip} ${result.mask} configured.`,
+"terminal-success"
+);
+
+return;
+}
+
+
+/* =====================================
+Physical Interface
+===================================== */
 
 if (
-command.startsWith("port default vlan ")
+configuration.interfaces[
+currentInterface
+]
+) {
+
+    if (command === "port link-type trunk") {
+
+    interfaceData.mode = "trunk";
+
+    printLine(
+        "Port link-type set to trunk.",
+        "terminal-success"
+    );
+
+    return;
+}
+
+if (command.startsWith("port trunk allow-pass vlan ")) {
+
+    const vlanList = command
+        .substring("port trunk allow-pass vlan ".length)
+        .trim()
+        .split(/\s+/);
+
+    for (let i = 0; i < vlanList.length; i++) {
+
+        const vlanId = vlanList[i];
+
+        if (!configuration.vlans[vlanId]) {
+            printLine(
+                "Error: VLAN " + vlanId + " does not exist.",
+                "terminal-error"
+            );
+            return;
+        }
+    }
+
+    interfaceData.allowedVlans = vlanList;
+
+    printLine(
+        "Trunk VLANs allowed: " + vlanList.join(", ") + ".",
+        "terminal-success"
+    );
+
+    return;
+}
+
+
+if (
+command.startsWith(
+"port default vlan "
+)
 ) {
 
 const vlanId =
@@ -1495,7 +2065,11 @@ command
 )
 .trim();
 
-if (!configuration.vlans[vlanId]) {
+if (
+!configuration.vlans[
+vlanId
+]
+) {
 
 printLine(
 `Error: VLAN ${vlanId} does not exist.`,
@@ -1517,7 +2091,9 @@ return;
 }
 
 if (
-command.startsWith("description ")
+command.startsWith(
+"description "
+)
 ) {
 
 interfaceData.description =
@@ -1588,6 +2164,7 @@ return "Vlan20";
 }
 
 return name;
+
 }
 
 
@@ -1630,6 +2207,7 @@ return "Vlanif20";
 }
 
 return name;
+
 }
 
 
@@ -1639,29 +2217,39 @@ Find Interfaces
 
 function findCiscoInterface(name) {
 
-if (configuration.interfaces[name]) {
+if (
+configuration.interfaces[name]
+) {
 return name;
 }
 
-if (configuration.vlanInterfaces[name]) {
+if (
+configuration.vlanInterfaces[name]
+) {
 return name;
 }
 
 return null;
+
 }
 
 
 function findHuaweiInterface(name) {
 
-if (configuration.interfaces[name]) {
+if (
+configuration.interfaces[name]
+) {
 return name;
 }
 
-if (configuration.vlanInterfaces[name]) {
+if (
+configuration.vlanInterfaces[name]
+) {
 return name;
 }
 
 return null;
+
 }
 
 
@@ -1707,18 +2295,25 @@ printLine(
 );
 
 Object.keys(configuration.vlans)
-.sort((a, b) => Number(a) - Number(b))
+.sort(
+(a, b) =>
+Number(a) - Number(b)
+)
 .forEach(function (id) {
 
 const vlan =
 configuration.vlans[id];
 
 const ports =
-Object.keys(configuration.interfaces)
+Object.keys(
+configuration.interfaces
+)
 .filter(function (name) {
 
 return (
-configuration.interfaces[name].vlan === id
+configuration
+.interfaces[name]
+.vlan === id
 );
 
 })
@@ -1737,23 +2332,26 @@ printLine(
 function printCiscoInterfaces() {
 
 printLine(
-"Interface Status VLAN",
+"Interface Status VLAN IP Address",
 "terminal-info"
 );
 
 printLine(
-"--------------------------------------------------------",
+"--------------------------------------------------------------",
 "terminal-info"
 );
 
-Object.keys(configuration.interfaces)
+Object.keys(
+configuration.interfaces
+)
 .forEach(function (name) {
 
 const data =
-configuration.interfaces[name];
+configuration
+.interfaces[name];
 
 printLine(
-`${name.padEnd(22)} ${data.status.padEnd(22)} ${data.vlan}`,
+`${name.padEnd(22)} ${data.status.padEnd(22)} ${data.vlan.padEnd(5)} ${data.ip || "unassigned"}`,
 "terminal-info"
 );
 
@@ -1770,18 +2368,37 @@ printLine(
 );
 
 printLine(
-"------------------------------------------------",
+"------------------------------------------------------------",
 "terminal-info"
 );
 
-Object.keys(configuration.vlanInterfaces)
+Object.keys(
+configuration.interfaces
+)
 .forEach(function (name) {
 
 const data =
-configuration.vlanInterfaces[name];
+configuration
+.interfaces[name];
 
 printLine(
-`${name.padEnd(22)} ${data.ip.padEnd(16)} ${data.status}`,
+`${name.padEnd(22)} ${(data.ip || "unassigned").padEnd(16)} ${data.status}`,
+"terminal-info"
+);
+
+});
+
+Object.keys(
+configuration.vlanInterfaces
+)
+.forEach(function (name) {
+
+const data =
+configuration
+.vlanInterfaces[name];
+
+printLine(
+`${name.padEnd(22)} ${(data.ip || "unassigned").padEnd(16)} ${data.status}`,
 "terminal-info"
 );
 
@@ -1807,7 +2424,9 @@ printLine(
 "terminal-info"
 );
 
-Object.keys(configuration.vlans)
+Object.keys(
+configuration.vlans
+)
 .forEach(function (id) {
 
 const vlan =
@@ -1825,7 +2444,9 @@ printLine(
 
 });
 
-Object.keys(configuration.interfaces)
+Object.keys(
+configuration.interfaces
+)
 .forEach(function (name) {
 
 const data =
@@ -1840,6 +2461,18 @@ if (data.description) {
 
 printLine(
 ` description ${data.description}`,
+"terminal-info"
+);
+
+}
+
+if (
+data.ip &&
+data.mask
+) {
+
+printLine(
+` ip address ${data.ip} ${data.mask}`,
 "terminal-info"
 );
 
@@ -1864,7 +2497,9 @@ printLine(
 
 });
 
-Object.keys(configuration.vlanInterfaces)
+Object.keys(
+configuration.vlanInterfaces
+)
 .forEach(function (name) {
 
 const data =
@@ -1875,10 +2510,17 @@ printLine(
 "terminal-info"
 );
 
+if (
+data.ip &&
+data.mask
+) {
+
 printLine(
 ` ip address ${data.ip} ${data.mask}`,
 "terminal-info"
 );
+
+}
 
 if (
 data.status ===
@@ -1898,13 +2540,71 @@ printLine(
 
 
 /* =========================================
+Cisco ARP
+========================================= */
+
+function printCiscoArp() {
+
+printLine(
+"Protocol Address Age (min) Hardware Addr",
+"terminal-info"
+);
+
+printLine(
+"Internet 192.168.10.1 - Local",
+"terminal-info"
+);
+
+printLine(
+"Internet 192.168.20.1 - Local",
+"terminal-info"
+);
+
+}
+
+
+/* =========================================
+Cisco MAC Table
+========================================= */
+
+function printCiscoMacTable() {
+
+printLine(
+"Vlan Mac Address Type Ports",
+"terminal-info"
+);
+
+printLine(
+"---- ----------- -------- ----------------",
+"terminal-info"
+);
+
+Object.keys(
+configuration.interfaces
+)
+.forEach(function (name, index) {
+
+const data =
+configuration.interfaces[name];
+
+printLine(
+`${data.vlan.padEnd(7)} 0000.0000.000${index + 1} DYNAMIC ${name}`,
+"terminal-info"
+);
+
+});
+
+}
+
+
+/* =========================================
 Cisco Ping
 ========================================= */
 
 function printCiscoPing(ip) {
 
 printLine(
-`Type escape sequence to abort.`,
+"Type escape sequence to abort.",
 "terminal-info"
 );
 
@@ -1954,7 +2654,9 @@ function printHuaweiVlans() {
 
 printLine(
 "The total number of VLANs is : " +
-Object.keys(configuration.vlans).length,
+Object.keys(
+configuration.vlans
+).length,
 "terminal-info"
 );
 
@@ -1968,8 +2670,13 @@ printLine(
 "terminal-info"
 );
 
-Object.keys(configuration.vlans)
-.sort((a, b) => Number(a) - Number(b))
+Object.keys(
+configuration.vlans
+)
+.sort(
+(a, b) =>
+Number(a) - Number(b)
+)
 .forEach(function (id) {
 
 const vlan =
@@ -1988,16 +2695,18 @@ printLine(
 function printHuaweiInterfaces() {
 
 printLine(
-"Interface PHY VLAN",
+"Interface PHY VLAN IP Address",
 "terminal-info"
 );
 
 printLine(
-"-------------------------------------------",
+"------------------------------------------------------------",
 "terminal-info"
 );
 
-Object.keys(configuration.interfaces)
+Object.keys(
+configuration.interfaces
+)
 .forEach(function (name) {
 
 const data =
@@ -2009,7 +2718,7 @@ data.status === "up"
 : "down";
 
 printLine(
-`${name.padEnd(28)} ${phy.padEnd(5)} ${data.vlan}`,
+`${name.padEnd(28)} ${phy.padEnd(5)} ${data.vlan.padEnd(5)} ${data.ip || "unassigned"}`,
 "terminal-info"
 );
 
@@ -2026,18 +2735,35 @@ printLine(
 );
 
 printLine(
-"---------------------------------------------------",
+"------------------------------------------------------------",
 "terminal-info"
 );
 
-Object.keys(configuration.vlanInterfaces)
+Object.keys(
+configuration.interfaces
+)
+.forEach(function (name) {
+
+const data =
+configuration.interfaces[name];
+
+printLine(
+`${name.padEnd(22)} ${(data.ip || "unassigned").padEnd(16)} ${data.status}`,
+"terminal-info"
+);
+
+});
+
+Object.keys(
+configuration.vlanInterfaces
+)
 .forEach(function (name) {
 
 const data =
 configuration.vlanInterfaces[name];
 
 printLine(
-`${name.padEnd(28)} ${data.ip.padEnd(16)} ${data.status}`,
+`${name.padEnd(22)} ${(data.ip || "unassigned").padEnd(16)} ${data.status}`,
 "terminal-info"
 );
 
@@ -2063,7 +2789,9 @@ printLine(
 "terminal-info"
 );
 
-Object.keys(configuration.vlans)
+Object.keys(
+configuration.vlans
+)
 .forEach(function (id) {
 
 const vlan =
@@ -2081,7 +2809,9 @@ printLine(
 
 });
 
-Object.keys(configuration.interfaces)
+Object.keys(
+configuration.interfaces
+)
 .forEach(function (name) {
 
 const data =
@@ -2091,6 +2821,18 @@ printLine(
 `interface ${name}`,
 "terminal-info"
 );
+
+if (
+data.ip &&
+data.mask
+) {
+
+printLine(
+` ip address ${data.ip} ${data.mask}`,
+"terminal-info"
+);
+
+}
 
 printLine(
 ` port default vlan ${data.vlan}`,
@@ -2120,7 +2862,9 @@ printLine(
 
 });
 
-Object.keys(configuration.vlanInterfaces)
+Object.keys(
+configuration.vlanInterfaces
+)
 .forEach(function (name) {
 
 const data =
@@ -2131,10 +2875,17 @@ printLine(
 "terminal-info"
 );
 
+if (
+data.ip &&
+data.mask
+) {
+
 printLine(
 ` ip address ${data.ip} ${data.mask}`,
 "terminal-info"
 );
+
+}
 
 if (
 data.status ===
@@ -2154,6 +2905,59 @@ printLine(
 
 
 /* =========================================
+Huawei ARP
+========================================= */
+
+function printHuaweiArp() {
+
+printLine(
+"IP ADDRESS MAC ADDRESS INTERFACE",
+"terminal-info"
+);
+
+printLine(
+"192.168.10.1 Local Vlanif10",
+"terminal-info"
+);
+
+printLine(
+"192.168.20.1 Local Vlanif20",
+"terminal-info"
+);
+
+}
+
+
+/* =========================================
+Huawei MAC Table
+========================================= */
+
+function printHuaweiMacTable() {
+
+printLine(
+"MAC Address VLAN Interface",
+"terminal-info"
+);
+
+Object.keys(
+configuration.interfaces
+)
+.forEach(function (name, index) {
+
+const data =
+configuration.interfaces[name];
+
+printLine(
+`0000-0000-000${index + 1} ${data.vlan.padEnd(5)} ${name}`,
+"terminal-info"
+);
+
+});
+
+}
+
+
+/* =========================================
 Huawei Ping
 ========================================= */
 
@@ -2165,17 +2969,17 @@ printLine(
 );
 
 printLine(
-"Reply from " + ip + ": bytes=56 Sequence=1 ttl=128 time<1 ms",
+`Reply from ${ip}: bytes=56 Sequence=1 ttl=128 time<1 ms`,
 "terminal-success"
 );
 
 printLine(
-"Reply from " + ip + ": bytes=56 Sequence=2 ttl=128 time<1 ms",
+`Reply from ${ip}: bytes=56 Sequence=2 ttl=128 time<1 ms`,
 "terminal-success"
 );
 
 printLine(
-"Reply from " + ip + ": bytes=56 Sequence=3 ttl=128 time<1 ms",
+`Reply from ${ip}: bytes=56 Sequence=3 ttl=128 time<1 ms`,
 "terminal-success"
 );
 
@@ -2205,7 +3009,8 @@ supportedCommands[currentDevice]
 const button =
 document.createElement("button");
 
-button.type = "button";
+button.type =
+"button";
 
 button.dataset.command =
 command;
@@ -2225,7 +3030,9 @@ terminalInput.focus();
 }
 );
 
-commandChips.appendChild(button);
+commandChips.appendChild(
+button
+);
 
 });
 
@@ -2238,25 +3045,23 @@ Fault Scenarios
 
 function startFaultScenario(scenario) {
 
-activeScenario = scenario;
+activeScenario =
+scenario;
 
 configuration =
 currentDevice === "cisco"
 ? createCiscoConfig()
 : createHuaweiConfig();
 
-
 const interfaceName =
 currentDevice === "cisco"
 ? "GigabitEthernet0/3"
 : "GigabitEthernet0/0/3";
 
-
 const accessInterface =
 currentDevice === "cisco"
 ? "GigabitEthernet0/1"
 : "GigabitEthernet0/0/1";
-
 
 const vlanInterface =
 currentDevice === "cisco"
@@ -2266,11 +3071,16 @@ currentDevice === "cisco"
 
 /* Fault 1 */
 
-if (scenario === "shutdown-port") {
+if (
+scenario ===
+"shutdown-port"
+) {
 
-configuration.interfaces[
+configuration
+.interfaces[
 interfaceName
-].status =
+]
+.status =
 "administratively down";
 
 showScenarioMessage(
@@ -2282,11 +3092,17 @@ showScenarioMessage(
 
 /* Fault 2 */
 
-if (scenario === "wrong-vlan") {
+if (
+scenario ===
+"wrong-vlan"
+) {
 
-configuration.interfaces[
+configuration
+.interfaces[
 accessInterface
-].vlan = "20";
+]
+.vlan =
+"20";
 
 showScenarioMessage(
 "🟠 تم تشغيل العطل: VLAN خاطئة. اكتشف الـ VLAN الصحيحة وعدّلها."
@@ -2297,11 +3113,17 @@ showScenarioMessage(
 
 /* Fault 3 */
 
-if (scenario === "missing-vlan") {
+if (
+scenario ===
+"missing-vlan"
+) {
 
-configuration.interfaces[
+configuration
+.interfaces[
 accessInterface
-].vlan = "40";
+]
+.vlan =
+"40";
 
 delete configuration.vlans["40"];
 
@@ -2314,11 +3136,16 @@ showScenarioMessage(
 
 /* Fault 4 */
 
-if (scenario === "interface-down") {
+if (
+scenario ===
+"interface-down"
+) {
 
-configuration.vlanInterfaces[
+configuration
+.vlanInterfaces[
 vlanInterface
-].status =
+]
+.status =
 "administratively down";
 
 showScenarioMessage(
@@ -2330,11 +3157,16 @@ showScenarioMessage(
 
 /* Fault 5 */
 
-if (scenario === "svi-error") {
+if (
+scenario ===
+"svi-error"
+) {
 
-configuration.vlanInterfaces[
+configuration
+.vlanInterfaces[
 vlanInterface
-].ip =
+]
+.ip =
 "192.168.99.1";
 
 showScenarioMessage(
@@ -2382,32 +3214,32 @@ currentDevice === "cisco"
 ? "GigabitEthernet0/1"
 : "GigabitEthernet0/0/1";
 
-
 const shutdownInterface =
 currentDevice === "cisco"
 ? "GigabitEthernet0/3"
 : "GigabitEthernet0/0/3";
-
 
 const vlanInterface =
 currentDevice === "cisco"
 ? "Vlan10"
 : "Vlanif10";
 
-
-let completed = false;
+let completed =
+false;
 
 
 /* Fault 1 */
 
 if (
-activeScenario === "shutdown-port" &&
+activeScenario ===
+"shutdown-port" &&
 configuration.interfaces[
 shutdownInterface
 ].status === "up"
 ) {
 
-completed = true;
+completed =
+true;
 
 }
 
@@ -2415,13 +3247,15 @@ completed = true;
 /* Fault 2 */
 
 if (
-activeScenario === "wrong-vlan" &&
+activeScenario ===
+"wrong-vlan" &&
 configuration.interfaces[
 accessInterface
 ].vlan === "10"
 ) {
 
-completed = true;
+completed =
+true;
 
 }
 
@@ -2429,14 +3263,16 @@ completed = true;
 /* Fault 3 */
 
 if (
-activeScenario === "missing-vlan" &&
+activeScenario ===
+"missing-vlan" &&
 configuration.vlans["40"] &&
 configuration.interfaces[
 accessInterface
 ].vlan === "40"
 ) {
 
-completed = true;
+completed =
+true;
 
 }
 
@@ -2444,13 +3280,15 @@ completed = true;
 /* Fault 4 */
 
 if (
-activeScenario === "interface-down" &&
+activeScenario ===
+"interface-down" &&
 configuration.vlanInterfaces[
 vlanInterface
 ].status === "up"
 ) {
 
-completed = true;
+completed =
+true;
 
 }
 
@@ -2458,16 +3296,20 @@ completed = true;
 /* Fault 5 */
 
 if (
-activeScenario === "svi-error" &&
+activeScenario ===
+"svi-error" &&
 configuration.vlanInterfaces[
 vlanInterface
-].ip === "192.168.10.1" &&
+].ip ===
+"192.168.10.1" &&
 configuration.vlanInterfaces[
 vlanInterface
-].mask === "255.255.255.0"
+].mask ===
+"255.255.255.0"
 ) {
 
-completed = true;
+completed =
+true;
 
 }
 
@@ -2498,7 +3340,8 @@ printLine(
 "terminal-success"
 );
 
-activeScenario = null;
+activeScenario =
+null;
 
 }
 
@@ -2509,7 +3352,8 @@ activeScenario = null;
 Device Switching
 ========================================= */
 
-deviceButtons.forEach(function (button) {
+deviceButtons.forEach(
+function (button) {
 
 button.addEventListener(
 "click",
@@ -2525,7 +3369,9 @@ btn.classList.remove(
 }
 );
 
-button.classList.add("active");
+button.classList.add(
+"active"
+);
 
 currentDevice =
 button.dataset.device;
@@ -2535,9 +3381,13 @@ currentDevice === "cisco"
 ? createCiscoConfig()
 : createHuaweiConfig();
 
-activeScenario = null;
+activeScenario =
+null;
 
-if (currentDevice === "cisco") {
+if (
+currentDevice ===
+"cisco"
+) {
 
 terminalModel.textContent =
 "Cisco IOS";
@@ -2560,18 +3410,22 @@ startTerminal();
 }
 );
 
-});
+}
+);
 
 
 /* =========================================
 Reset Terminal
 ========================================= */
 
+if (resetTerminal) {
+
 resetTerminal.addEventListener(
 "click",
 function () {
 
-activeScenario = null;
+activeScenario =
+null;
 
 configuration =
 currentDevice === "cisco"
@@ -2583,10 +3437,14 @@ startTerminal();
 }
 );
 
+}
+
 
 /* =========================================
 Terminal Form
 ========================================= */
+
+if (terminalForm) {
 
 terminalForm.addEventListener(
 "submit",
@@ -2601,27 +3459,39 @@ if (!command) {
 return;
 }
 
-executeCommand(command);
+executeCommand(
+command
+);
 
-terminalInput.value = "";
+terminalInput.value =
+"";
 
 }
 );
+
+}
 
 
 /* =========================================
 Command History
 ========================================= */
 
+if (terminalInput) {
+
 terminalInput.addEventListener(
 "keydown",
 function (event) {
 
-if (event.key === "ArrowUp") {
+if (
+event.key ===
+"ArrowUp"
+) {
 
 event.preventDefault();
 
-if (history.length === 0) {
+if (
+history.length === 0
+) {
 return;
 }
 
@@ -2632,16 +3502,23 @@ historyIndex - 1
 );
 
 terminalInput.value =
-history[historyIndex];
+history[
+historyIndex
+];
 
 }
 
 
-if (event.key === "ArrowDown") {
+if (
+event.key ===
+"ArrowDown"
+) {
 
 event.preventDefault();
 
-if (history.length === 0) {
+if (
+history.length === 0
+) {
 return;
 }
 
@@ -2652,15 +3529,19 @@ historyIndex + 1
 );
 
 if (
-historyIndex >= history.length
+historyIndex >=
+history.length
 ) {
 
-terminalInput.value = "";
+terminalInput.value =
+"";
 
 } else {
 
 terminalInput.value =
-history[historyIndex];
+history[
+historyIndex
+];
 
 }
 
@@ -2668,6 +3549,8 @@ history[historyIndex];
 
 }
 );
+
+}
 
 
 /* =========================================

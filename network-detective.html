@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>محقق الشبكة | عرّاب الشبكات</title>
+
+    <link rel="stylesheet" href="network-detective.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-content">
+
+        <a href="index.html" class="brand">
+            <span class="brand-icon">🌐</span>
+
+            <div>
+                <strong>عرّاب الشبكات</strong>
+                <small>NETWORKS</small>
+            </div>
+        </a>
+
+        <a href="index.html" class="back-home">
+            🏠 الرئيسية
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="detective-page">
+
+    <!-- HERO -->
+
+    <section class="detective-hero">
+
+        <div class="hero-icon">
+            🕵️
+        </div>
+
+        <div>
+
+            <span class="hero-label">
+                NETWORK DETECTIVE
+            </span>
+
+            <h1>
+                محقق الشبكة
+            </h1>
+
+            <p>
+                لا تبحث عن الخطأ فقط...
+                <strong>اكتشف الحقيقة من الأدلة.</strong>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PLAYER -->
+
+    <section class="player-card">
+
+        <div class="player-main">
+
+            <div class="player-avatar">
+                🕵️
+            </div>
+
+            <div>
+
+                <h2>
+                    ملف المحقق
+                </h2>
+
+                <p>
+                    مستكشف أعطال الشبكات
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="player-stats">
+
+            <div class="stat">
+                <strong id="detectiveLevel">
+                    1
+                </strong>
+
+                <span>
+                    المستوى
+                </span>
+            </div>
+
+
+            <div class="stat">
+                <strong id="detectiveXP">
+                    0
+                </strong>
+
+                <span>
+                    XP
+                </span>
+            </div>
+
+
+            <div class="stat">
+                <strong id="solvedCases">
+                    0
+                </strong>
+
+                <span>
+                    القضايا
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section class="progress-card">
+
+        <div class="progress-top">
+
+            <div>
+                <strong>
+                    تقدم التحقيق
+                </strong>
+
+                <span id="progressText">
+                    0 / 10
+                </span>
+            </div>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                id="progressFill"
+                class="progress-fill">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CASES -->
+
+    <section id="casesSection" class="cases-section">
+
+        <div class="section-heading">
+
+            <span>
+                📁 ملفات التحقيق
+            </span>
+
+            <h2>
+                القضايا
+            </h2>
+
+            <p>
+                كل قضية تكشف لك جزءًا جديدًا من عالم الشبكات.
+            </p>
+
+        </div>
+
+
+        <div
+            id="casesGrid"
+            class="cases-grid">
+        </div>
+
+    </section>
+
+
+    <!-- INVESTIGATION -->
+
+    <section
+        id="investigationSection"
+        class="investigation-section hidden">
+
+        <button
+            id="backToCases"
+            class="back-button">
+
+            ← العودة إلى القضايا
+
+        </button>
+
+
+        <!-- CASE HEADER -->
+
+        <div class="case-header-card">
+
+            <div class="case-header-number">
+                <span id="currentCaseNumber">
+                    القضية 01
+                </span>
+            </div>
+
+            <div class="case-header-icon"
+                 id="currentCaseIcon">
+                🚨
+            </div>
+
+            <h2 id="currentCaseTitle">
+                السيرفر اختفى
+            </h2>
+
+            <p id="currentCaseStory">
+            </p>
+
+        </div>
+
+
+        <!-- INVESTIGATION FLOW -->
+
+        <div class="investigation-flow">
+
+            <div class="flow-step active">
+                <span>1</span>
+                <small>البلاغ</small>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-step">
+                <span>2</span>
+                <small>استكشاف</small>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-step">
+                <span>3</span>
+                <small>الأدلة</small>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-step">
+                <span>4</span>
+                <small>الاستنتاج</small>
+            </div>
+
+        </div>
+
+
+        <!-- NETWORK -->
+
+        <section class="investigation-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <span class="mini-label">
+                        NETWORK VIEW
+                    </span>
+
+                    <h3>
+                        🔌 استكشف الشبكة
+                    </h3>
+                </div>
+
+                <span class="hint">
+                    اضغط على الجهاز للتحقيق
+                </span>
+
+            </div>
+
+
+            <div
+                id="networkMap"
+                class="network-map">
+            </div>
+
+
+            <div
+                id="deviceDetails"
+                class="device-details hidden">
+            </div>
+
+        </section>
+
+
+        <!-- EVIDENCE -->
+
+        <section class="investigation-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <span class="mini-label">
+                        EVIDENCE
+                    </span>
+
+                    <h3>
+                        🔎 الأدلة
+                    </h3>
+                </div>
+
+                <span id="evidenceCount"
+                      class="evidence-count">
+                    0 / 0
+                </span>
+
+            </div>
+
+
+            <p class="section-note">
+                استكشف الأجهزة والأحداث للعثور على الأدلة.
+            </p>
+
+
+            <div
+                id="evidenceGrid"
+                class="evidence-grid">
+            </div>
+
+        </section>
+
+
+        <!-- EVENTS -->
+
+        <section class="investigation-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <span class="mini-label">
+                        EVENT LOG
+                    </span>
+
+                    <h3>
+                        🕐 سجل الأحداث
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="eventsTimeline"
+                class="events-timeline">
+            </div>
+
+        </section>
+
+
+        <!-- NOTEBOOK -->
+
+        <section class="investigation-card notebook-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <span class="mini-label">
+                        DETECTIVE NOTEBOOK
+                    </span>
+
+                    <h3>
+                        📓 دفتر المحقق
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="detectiveNotes"
+                placeholder="اكتب ملاحظاتك وتحليلك هنا...">
+            </textarea>
+
+        </section>
+
+
+        <!-- CONCLUSION -->
+
+        <section class="conclusion-card">
+
+            <div class="conclusion-icon">
+                🧩
+            </div>
+
+            <div class="conclusion-content">
+
+                <span>
+                    FINAL ANALYSIS
+                </span>
+
+                <h3>
+                    ما استنتاجك؟
+                </h3>
+
+                <p>
+                    اربط الأدلة التي جمعتها واختر التفسير
+                    الذي تراه منطقيًا للحادثة.
+                </p>
+
+            </div>
+
+
+            <div
+                id="hypotheses"
+                class="hypotheses">
+            </div>
+
+
+            <div
+                id="selectedEvidence"
+                class="selected-evidence">
+            </div>
+
+
+            <button
+                id="submitConclusion"
+                class="submit-conclusion">
+
+                تقديم الاستنتاج
+
+            </button>
+
+        </section>
+
+
+        <!-- RESULT -->
+
+        <section
+            id="resultPanel"
+            class="result-panel hidden">
+
+            <div
+                id="resultIcon"
+                class="result-icon">
+            </div>
+
+            <h2 id="resultTitle">
+            </h2>
+
+            <p id="resultText">
+            </p>
+
+            <div
+                id="resultXP"
+                class="result-xp">
+            </div>
+
+
+            <div class="result-actions">
+
+                <button
+                    id="retryCase"
+                    class="result-button">
+                    🔄 إعادة التحقيق
+                </button>
+
+                <button
+                    id="nextCase"
+                    class="result-button primary">
+                    القضية التالية →
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <strong>
+        🌐 عرّاب الشبكات
+    </strong>
+
+    <p>
+        تعلم الشبكات بطريقة عملية وتفاعلية.
+    </p>
+
+</footer>
+
+
+<script src="network-detective.js"></script>
+
+</body>
+</html>
