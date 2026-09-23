@@ -159,18 +159,19 @@
             <a href="terminal.html" class="feature-card">
                 CLI ⌨️
             </a>
-<a href="profile.html" class="nav-button profile-link">
-    👤 حسابي
-</a>
 
-<a
-    href="admin.html"
-    class="nav-button"
-    id="adminNavLink"
-    style="display: none;"
->
-    🛠️ لوحة الإدارة
-</a>
+            <a href="profile.html" class="nav-button profile-link">
+                👤 حسابي
+            </a>
+
+            <a
+                href="admin.html"
+                class="nav-button"
+                id="adminNavLink"
+                style="display: none;"
+            >
+                🛠️ لوحة الإدارة
+            </a>
 
         </nav>
 
@@ -944,20 +945,178 @@
      SCRIPTS
 ===================================================== -->
 
-<!-- Supabase Library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- Supabase Configuration -->
 <script src="supabase.js"></script>
 
-<!-- Website Scripts -->
 <script src="script.js"></script>
 
-<!-- User System -->
 <script src="user.js"></script>
 
 
-<!-- GoatCounter tracking -->
+<!-- =====================================================
+     ADMIN NAVIGATION
+===================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const adminLink =
+            document.getElementById("adminNavLink");
+
+        if (!adminLink) {
+            return;
+        }
+
+        /*
+        نبدأ مخفيًا
+        */
+
+        adminLink.style.display = "none";
+
+
+        /*
+        التأكد من Supabase
+        */
+
+        if (
+            typeof supabaseClient ===
+            "undefined"
+        ) {
+
+            console.error(
+                "Supabase غير متوفر في الصفحة الرئيسية."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            /*
+            ==========================================
+            قراءة جلسة تسجيل الدخول
+            ==========================================
+            */
+
+            const {
+                data: sessionData,
+                error: sessionError
+            } =
+            await supabaseClient.auth.getSession();
+
+
+            if (sessionError) {
+
+                console.error(
+                    "خطأ في قراءة Session:",
+                    sessionError
+                );
+
+                return;
+            }
+
+
+            const session =
+                sessionData?.session;
+
+
+            /*
+            إذا لم يكن المستخدم مسجل دخول
+            */
+
+            if (
+                !session ||
+                !session.user
+            ) {
+
+                return;
+            }
+
+
+            const user =
+                session.user;
+
+
+            /*
+            ==========================================
+            قراءة صلاحية المدير
+            ==========================================
+            */
+
+            const {
+                data: profile,
+                error: profileError
+            } =
+            await supabaseClient
+                .from("users")
+                .select("is_admin")
+                .eq("auth_id", user.id)
+                .maybeSingle();
+
+
+            if (profileError) {
+
+                console.error(
+                    "خطأ في قراءة صلاحية المدير:",
+                    profileError
+                );
+
+                return;
+            }
+
+
+            /*
+            ==========================================
+            إظهار لوحة الإدارة
+            ==========================================
+            */
+
+            if (
+                profile &&
+                profile.is_admin === true
+            ) {
+
+                adminLink.style.display =
+                    "inline-flex";
+
+                adminLink.href =
+                    "admin.html";
+
+                adminLink.textContent =
+                    "🛠️ لوحة الإدارة";
+
+            } else {
+
+                adminLink.style.display =
+                    "none";
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "خطأ أثناء التحقق من صلاحية المدير:",
+                error
+            );
+
+            adminLink.style.display =
+                "none";
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- =====================================================
+     GOATCOUNTER
+===================================================== -->
 
 <script
     data-goatcounter="https://mish3l11.goatcounter.com/count"
@@ -966,7 +1125,9 @@
 </script>
 
 
-<!-- Custom visitor counter -->
+<!-- =====================================================
+     VISITOR COUNTER
+===================================================== -->
 
 <script>
 
@@ -979,11 +1140,6 @@
         return;
     }
 
-    /*
-     * GoatCounter direct JSON endpoint.
-     * TOTAL = إجمالي الموقع.
-     */
-
     const counterUrl =
         "https://mish3l11.goatcounter.com/counter/TOTAL.json";
 
@@ -992,7 +1148,9 @@
         .then(function (response) {
 
             if (!response.ok) {
-                throw new Error("Visitor counter request failed");
+                throw new Error(
+                    "Visitor counter request failed"
+                );
             }
 
             return response.json();
