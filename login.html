@@ -6,22 +6,18 @@
 
     <title>تسجيل الدخول | عرّاب الشبكات</title>
 
-    <!-- خط Tajawal -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
-            font-family: "Tajawal", sans-serif;
+            margin: 0;
             min-height: 100vh;
-            background: #075985;
+            font-family: "Tajawal", sans-serif;
+            background: #cbb77a;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -31,122 +27,128 @@
         .login-card {
             width: 100%;
             max-width: 430px;
-            background: #cbb77a;
-            border-radius: 22px;
+            background: rgba(255,255,255,0.96);
+            border-radius: 24px;
             padding: 35px 30px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
         }
 
         .logo {
             text-align: center;
-            margin-bottom: 25px;
+            font-size: 48px;
+            margin-bottom: 5px;
         }
 
-        .logo-icon {
-            font-size: 50px;
-            margin-bottom: 8px;
-        }
-
-        .logo h1 {
+        h1 {
+            text-align: center;
+            margin: 0;
             color: #111;
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 800;
         }
 
-        .logo p {
-            color: #333;
-            margin-top: 5px;
-            font-size: 14px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-
-        .tab {
-            flex: 1;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.35);
-            color: #111;
-            font-family: inherit;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .tab.active {
-            background: #111;
-            color: #cbb77a;
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin: 8px 0 28px;
         }
 
         .form-group {
-            margin-bottom: 17px;
+            margin-bottom: 18px;
         }
 
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 7px;
-            color: #111;
+            margin-bottom: 8px;
             font-weight: 700;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 13px 14px;
-            border: 2px solid transparent;
-            border-radius: 10px;
-            outline: none;
-            font-family: inherit;
-            font-size: 15px;
-            background: #fff;
             color: #111;
         }
 
-        .form-group input:focus {
-            border-color: #075985;
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-family: "Tajawal", sans-serif;
+            font-size: 16px;
+            outline: none;
         }
 
-        .main-button {
+        input:focus {
+            border-color: #cbb77a;
+            box-shadow: 0 0 0 3px rgba(203,183,122,0.25);
+        }
+
+        .login-btn {
             width: 100%;
             border: none;
-            border-radius: 10px;
-            padding: 14px;
-            margin-top: 5px;
-            background: #075985;
+            background: #111;
             color: white;
-            font-family: inherit;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: "Tajawal", sans-serif;
             font-size: 17px;
-            font-weight: 800;
+            font-weight: 700;
             cursor: pointer;
+            margin-top: 5px;
         }
 
-        .main-button:hover {
+        .login-btn:hover {
             opacity: 0.9;
         }
 
-        .message {
-            min-height: 24px;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .back {
+        .forgot-password {
             display: block;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 16px;
             color: #111;
             text-decoration: none;
             font-weight: 700;
         }
 
-        .back:hover {
+        .forgot-password:hover {
             text-decoration: underline;
+        }
+
+        .message {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+        }
+
+        .register-link a {
+            color: #111;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -155,408 +157,88 @@
 
     <div class="login-card">
 
-        <div class="logo">
-            <div class="logo-icon">🌐</div>
-            <h1>عرّاب الشبكات</h1>
-            <p>NETWORKS</p>
-        </div>
+        <div class="logo">🌐</div>
 
+        <h1>عرّاب الشبكات</h1>
 
-        <!-- أزرار التبديل -->
-
-        <div class="tabs">
-
-            <button
-                class="tab active"
-                id="loginTab"
-                onclick="showLogin()">
-                تسجيل الدخول
-            </button>
-
-            <button
-                class="tab"
-                id="signupTab"
-                onclick="showSignup()">
-                إنشاء حساب
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             تسجيل الدخول
-        ========================== -->
+        <p class="subtitle">تسجيل الدخول إلى حسابك</p>
 
         <form id="loginForm">
 
             <div class="form-group">
-
-                <label for="loginEmail">
-                    البريد الإلكتروني
-                </label>
+                <label for="email">البريد الإلكتروني</label>
 
                 <input
                     type="email"
-                    id="loginEmail"
+                    id="email"
                     placeholder="example@email.com"
                     required
                 >
-
             </div>
 
-
             <div class="form-group">
-
-                <label for="loginPassword">
-                    كلمة المرور
-                </label>
+                <label for="password">كلمة المرور</label>
 
                 <input
                     type="password"
-                    id="loginPassword"
-                    placeholder="كلمة المرور"
+                    id="password"
+                    placeholder="أدخل كلمة المرور"
                     required
                 >
-
             </div>
 
-
-            <button
-                type="submit"
-                class="main-button">
-                دخول
+            <button type="submit" class="login-btn">
+                تسجيل الدخول
             </button>
 
         </form>
 
+        <a href="reset-password.html" class="forgot-password">
+            نسيت كلمة المرور؟
+        </a>
 
-        <!-- =========================
-             إنشاء حساب
-        ========================== -->
+        <div id="message" class="message"></div>
 
-        <form
-            id="signupForm"
-            style="display: none;">
-
-            <div class="form-group">
-
-                <label for="signupUsername">
-                    اسم المستخدم
-                </label>
-
-                <input
-                    type="text"
-                    id="signupUsername"
-                    placeholder="اسم المستخدم"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="signupEmail">
-                    البريد الإلكتروني
-                </label>
-
-                <input
-                    type="email"
-                    id="signupEmail"
-                    placeholder="example@email.com"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="signupPassword">
-                    كلمة المرور
-                </label>
-
-                <input
-                    type="password"
-                    id="signupPassword"
-                    placeholder="كلمة المرور"
-                    minlength="6"
-                    required
-                >
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="main-button">
-                إنشاء الحساب
-            </button>
-
-        </form>
-
-
-        <!-- الرسائل -->
-
-        <div
-            id="message"
-            class="message">
+        <div class="register-link">
+            ليس لديك حساب؟
+            <a href="signup.html">إنشاء حساب</a>
         </div>
 
-
-        <!-- العودة للرئيسية -->
-
-        <a
-            href="index.html"
-            class="back">
-            ← العودة للرئيسية
+        <a href="index.html" class="home-link">
+            العودة إلى الرئيسية
         </a>
 
     </div>
 
-
-    <!-- =========================
-         Supabase
-    ========================== -->
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script src="supabase.js"></script>
 
-
     <script>
+        const loginForm = document.getElementById("loginForm");
+        const message = document.getElementById("message");
 
-        const loginForm =
-            document.getElementById("loginForm");
+        loginForm.addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-        const signupForm =
-            document.getElementById("signupForm");
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
 
-        const loginTab =
-            document.getElementById("loginTab");
-
-        const signupTab =
-            document.getElementById("signupTab");
-
-        const message =
-            document.getElementById("message");
-
-
-        /* =========================
-           عرض تسجيل الدخول
-        ========================== */
-
-        function showLogin() {
-
-            loginForm.style.display = "block";
-
-            signupForm.style.display = "none";
-
-            loginTab.classList.add("active");
-
-            signupTab.classList.remove("active");
-
+            message.className = "message";
             message.textContent = "";
-        }
 
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
 
-        /* =========================
-           عرض إنشاء الحساب
-        ========================== */
-
-        function showSignup() {
-
-            loginForm.style.display = "none";
-
-            signupForm.style.display = "block";
-
-            signupTab.classList.add("active");
-
-            loginTab.classList.remove("active");
-
-            message.textContent = "";
-        }
-
-
-        /* =========================
-           تسجيل الدخول
-        ========================== */
-
-        loginForm.addEventListener(
-            "submit",
-            async function(event) {
-
-                event.preventDefault();
-
-
-                const email =
-                    document.getElementById(
-                        "loginEmail"
-                    ).value;
-
-                const password =
-                    document.getElementById(
-                        "loginPassword"
-                    ).value;
-
-
-                message.textContent =
-                    "جاري تسجيل الدخول...";
-
-
-                const { data, error } =
-                    await supabaseClient.auth.signInWithPassword({
-
-                        email: email,
-
-                        password: password
-
-                    });
-
-
-                if (error) {
-
-                    console.error(error);
-
-                    message.textContent =
-                        "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
-
-                    return;
-                }
-
-
-                message.textContent =
-                    "تم تسجيل الدخول بنجاح.";
-
-
-                setTimeout(function() {
-
-                    window.location.href =
-                        "profile.html";
-
-                }, 700);
-
+            if (error) {
+                message.className = "message error";
+                message.textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+                return;
             }
-        );
 
-
-        /* =========================
-           إنشاء الحساب
-        ========================== */
-
-        signupForm.addEventListener(
-            "submit",
-            async function(event) {
-
-                event.preventDefault();
-
-
-                const username =
-                    document.getElementById(
-                        "signupUsername"
-                    ).value;
-
-                const email =
-                    document.getElementById(
-                        "signupEmail"
-                    ).value;
-
-                const password =
-                    document.getElementById(
-                        "signupPassword"
-                    ).value;
-
-
-                message.textContent =
-                    "جاري إنشاء الحساب...";
-
-
-                /* إنشاء المستخدم في Auth */
-
-                const { data, error } =
-                    await supabaseClient.auth.signUp({
-
-                        email: email,
-
-                        password: password,
-
-                        options: {
-
-                            data: {
-
-                                username: username
-
-                            }
-
-                        }
-
-                    });
-
-
-                /* فشل إنشاء الحساب */
-
-                if (error) {
-
-                    console.error(error);
-
-                    message.textContent =
-                        error.message;
-
-                    return;
-                }
-
-
-                /* التأكد من وجود المستخدم */
-
-                if (!data.user) {
-
-                    message.textContent =
-                        "تعذر إنشاء الحساب.";
-
-                    return;
-                }
-
-
-                /* =========================
-                   حفظ بيانات المستخدم
-                   في جدول users
-                ========================== */
-
-                const { error: profileError } =
-                    await supabaseClient
-                        .from("users")
-                        .insert({
-
-                            auth_id: data.user.id,
-
-                            username: username,
-
-                            email: email
-
-                        });
-
-
-                /* فشل حفظ بيانات المستخدم */
-
-                if (profileError) {
-
-                    console.error(profileError);
-
-                    message.textContent =
-                        "تم إنشاء الحساب لكن حدثت مشكلة في حفظ بيانات المستخدم.";
-
-                    return;
-                }
-
-
-                /* نجاح كامل */
-
-                message.textContent =
-                    "تم إنشاء الحساب وحفظ بياناتك بنجاح.";
-
-            }
-        );
-
+            window.location.href = "profile.html";
+        });
     </script>
 
 </body>
