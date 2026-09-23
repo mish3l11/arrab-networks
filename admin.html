@@ -16,8 +16,11 @@
         body {
             margin: 0;
             font-family: "Tajawal", sans-serif;
-            background: #cbb77a;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 30%),
+                #cbb77a;
             color: #111;
+            min-height: 100vh;
         }
 
         .navbar {
@@ -27,6 +30,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
         }
 
         .brand {
@@ -37,28 +41,139 @@
         .admin-badge {
             background: #cbb77a;
             color: #111;
-            padding: 7px 14px;
+            padding: 7px 15px;
             border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 13px;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 20px 50px;
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
+        .hero {
+            background: #111;
+            color: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
         }
 
-        .card {
-            background: rgba(255,255,255,0.35);
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: #ddd;
+        }
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.55);
+            border: 1px solid rgba(17,17,17,0.12);
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .stat-title {
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0.75;
+        }
+
+        .stat-value {
+            font-size: 30px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .action-card {
+            background: #111;
+            color: white;
+            border-radius: 20px;
+            padding: 24px;
+            text-decoration: none;
+            transition: 0.2s ease;
+            display: block;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            background: #075985;
+        }
+
+        .action-icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .action-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .action-text {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .security {
+            background: rgba(255,255,255,0.55);
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 25px;
+        }
+
+        .security-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(17,17,17,0.12);
+        }
+
+        .security-row:last-child {
+            border-bottom: none;
+        }
+
+        .status {
+            background: #166534;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 700;
         }
 
         .loading {
@@ -75,6 +190,52 @@
             text-align: center;
             display: none;
         }
+
+        @media (max-width: 850px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .navbar {
+                padding: 15px 18px;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .container {
+                margin-top: 25px;
+                padding: 0 15px 40px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 17px;
+            }
+
+            .stat-value {
+                font-size: 25px;
+            }
+        }
     </style>
 </head>
 
@@ -87,22 +248,101 @@
 
     <main class="container">
 
-        <h1>🛠️ لوحة الإدارة</h1>
+        <div id="loading" class="loading">
+            جاري التحقق من صلاحيات الحساب...
+        </div>
 
-        <div class="card">
+        <div id="error" class="error"></div>
 
-            <div id="loading" class="loading">
-                جاري التحقق من صلاحيات الحساب...
-            </div>
+        <div id="adminContent" style="display:none;">
 
-            <div id="error" class="error"></div>
+            <section class="hero">
+                <h1>🛠️ لوحة الإدارة</h1>
+                <p>إدارة ومتابعة منصة عرّاب الشبكات من مكان واحد.</p>
+            </section>
 
-            <div id="adminContent" style="display:none;">
-                <h2>مرحباً بك في لوحة الإدارة 👋</h2>
-                <p>
-                    تم التحقق من أن هذا الحساب يمتلك صلاحية Admin.
-                </p>
-            </div>
+            <div class="section-title">📊 نظرة عامة</div>
+
+            <section class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-title">المستخدمون</div>
+                    <div class="stat-value" id="usersCount">—</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-title">الدروس المكتملة</div>
+                    <div class="stat-value" id="lessonsCount">—</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🧪</div>
+                    <div class="stat-title">تقدم المختبر</div>
+                    <div class="stat-value" id="labCount">—</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-title">أفضل نتائج الاختبار</div>
+                    <div class="stat-value" id="quizCount">—</div>
+                </div>
+
+            </section>
+
+            <div class="section-title">⚙️ إدارة الموقع</div>
+
+            <section class="actions">
+
+                <a href="#" class="action-card">
+                    <div class="action-icon">👥</div>
+                    <div class="action-title">إدارة المستخدمين</div>
+                    <div class="action-text">
+                        عرض المستخدمين ومتابعة حساباتهم وصلاحياتهم.
+                    </div>
+                </a>
+
+                <a href="#" class="action-card">
+                    <div class="action-icon">📚</div>
+                    <div class="action-title">إدارة الدروس</div>
+                    <div class="action-text">
+                        متابعة تقدم الطلاب والدروس المكتملة.
+                    </div>
+                </a>
+
+                <a href="#" class="action-card">
+                    <div class="action-icon">📈</div>
+                    <div class="action-title">الإحصائيات</div>
+                    <div class="action-text">
+                        عرض نشاط المستخدمين ونتائج التعلم.
+                    </div>
+                </a>
+
+            </section>
+
+            <section class="security">
+
+                <div class="section-title" style="margin-top:0;">
+                    🔐 حالة النظام
+                </div>
+
+                <div class="security-row">
+                    <span>Supabase Authentication</span>
+                    <span class="status">متصل</span>
+                </div>
+
+                <div class="security-row">
+                    <span>صلاحيات Admin</span>
+                    <span class="status">مفعلة</span>
+                </div>
+
+                <div class="security-row">
+                    <span>حماية لوحة الإدارة</span>
+                    <span class="status">مفعلة</span>
+                </div>
+
+            </section>
 
         </div>
 
