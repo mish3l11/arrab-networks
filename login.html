@@ -93,8 +93,9 @@
             margin-top: 5px;
         }
 
-        .login-btn:hover {
-            opacity: 0.9;
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .forgot-password {
@@ -117,6 +118,7 @@
             text-align: center;
             display: none;
             font-weight: 600;
+            line-height: 1.7;
         }
 
         .message.error {
@@ -155,91 +157,327 @@
 
 <body>
 
-    <div class="login-card">
+<div class="login-card">
 
-        <div class="logo">🌐</div>
+    <div class="logo">🌐</div>
 
-        <h1>عرّاب الشبكات</h1>
+    <h1>عرّاب الشبكات</h1>
 
-        <p class="subtitle">تسجيل الدخول إلى حسابك</p>
+    <p class="subtitle">
+        تسجيل الدخول إلى حسابك
+    </p>
 
-        <form id="loginForm">
+    <form id="loginForm">
 
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني</label>
+        <div class="form-group">
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="example@email.com"
-                    required
-                >
-            </div>
+            <label for="email">
+                البريد الإلكتروني
+            </label>
 
-            <div class="form-group">
-                <label for="password">كلمة المرور</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="example@email.com"
+                required
+            >
 
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="أدخل كلمة المرور"
-                    required
-                >
-            </div>
-
-            <button type="submit" class="login-btn">
-                تسجيل الدخول
-            </button>
-
-        </form>
-
-        <a href="reset-password.html" class="forgot-password">
-            نسيت كلمة المرور؟
-        </a>
-
-        <div id="message" class="message"></div>
-
-        <div class="register-link">
-            ليس لديك حساب؟
-            <a href="signup.html">إنشاء حساب</a>
         </div>
 
-        <a href="index.html" class="home-link">
-            العودة إلى الرئيسية
+
+        <div class="form-group">
+
+            <label for="password">
+                كلمة المرور
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="أدخل كلمة المرور"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-btn"
+            id="loginBtn"
+        >
+            تسجيل الدخول
+        </button>
+
+    </form>
+
+
+    <a
+        href="reset-password.html"
+        class="forgot-password"
+    >
+        نسيت كلمة المرور؟
+    </a>
+
+
+    <div
+        id="message"
+        class="message">
+    </div>
+
+
+    <div class="register-link">
+
+        ليس لديك حساب؟
+
+        <a href="signup.html">
+            إنشاء حساب
         </a>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase.js"></script>
 
-    <script>
-        const loginForm = document.getElementById("loginForm");
-        const message = document.getElementById("message");
+    <a
+        href="index.html"
+        class="home-link"
+    >
+        العودة إلى الرئيسية
+    </a>
 
-        loginForm.addEventListener("submit", async function(event) {
-            event.preventDefault();
+</div>
 
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
 
-            message.className = "message";
-            message.textContent = "";
+<!-- Supabase -->
 
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+
+<script>
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const message =
+    document.getElementById("message");
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+
+function showMessage(text, type) {
+
+    message.className =
+        "message " + type;
+
+    message.textContent =
+        text;
+}
+
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        message.className =
+            "message";
+
+        message.textContent =
+            "";
+
+
+        loginBtn.disabled =
+            true;
+
+        loginBtn.textContent =
+            "جاري تسجيل الدخول...";
+
+
+        try {
+
+            /*
+            ================================
+            تسجيل الدخول
+            ================================
+            */
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.auth
+                .signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
 
             if (error) {
-                message.className = "message error";
-                message.textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+                showMessage(
+                    "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+                    "error"
+                );
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "تسجيل الدخول";
+
                 return;
             }
 
-            window.location.href = "profile.html";
-        });
-    </script>
+
+            /*
+            ================================
+            التأكد من وجود المستخدم
+            ================================
+            */
+
+            if (!data || !data.user) {
+
+                showMessage(
+                    "تم تسجيل الدخول ولكن لم يتم العثور على بيانات المستخدم.",
+                    "error"
+                );
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "تسجيل الدخول";
+
+                return;
+            }
+
+
+            /*
+            ================================
+            التأكد من وجود Session
+            ================================
+            */
+
+            const {
+                data: sessionData,
+                error: sessionError
+            } =
+            await supabaseClient.auth
+                .getSession();
+
+
+            if (sessionError) {
+
+                console.error(
+                    "Session error:",
+                    sessionError
+                );
+
+                showMessage(
+                    "تم تسجيل الدخول ولكن تعذر إنشاء جلسة الدخول.",
+                    "error"
+                );
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "تسجيل الدخول";
+
+                return;
+            }
+
+
+            if (
+                !sessionData ||
+                !sessionData.session
+            ) {
+
+                showMessage(
+                    "تم تسجيل الدخول ولكن جلسة الحساب غير موجودة. أعد المحاولة.",
+                    "error"
+                );
+
+                loginBtn.disabled =
+                    false;
+
+                loginBtn.textContent =
+                    "تسجيل الدخول";
+
+                return;
+            }
+
+
+            /*
+            ================================
+            نجاح تسجيل الدخول
+            ================================
+            */
+
+            showMessage(
+                "تم تسجيل الدخول بنجاح، جاري فتح الحساب...",
+                "success"
+            );
+
+
+            /*
+            نعطي Supabase لحظة قصيرة
+            لحفظ الجلسة قبل الانتقال.
+            */
+
+            setTimeout(function() {
+
+                window.location.replace(
+                    "profile.html"
+                );
+
+            }, 300);
+
+        } catch (error) {
+
+            console.error(
+                "Unexpected login error:",
+                error
+            );
+
+            showMessage(
+                "حدث خطأ غير متوقع أثناء تسجيل الدخول: " +
+                (error.message || "خطأ غير معروف"),
+                "error"
+            );
+
+            loginBtn.disabled =
+                false;
+
+            loginBtn.textContent =
+                "تسجيل الدخول";
+        }
+
+    });
+
+</script>
 
 </body>
 </html>

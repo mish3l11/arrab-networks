@@ -1,7 +1,3 @@
-// ===============================
-// عرّاب الشبكات - إدارة المستخدمين
-// ===============================
-
 let users = [];
 let selectedUser = null;
 
@@ -9,53 +5,101 @@ let selectedUser = null;
 // ===============================
 // التحقق من صلاحية المدير
 // ===============================
-
 async function checkAdminAccess() {
 
-    const loading = document.getElementById("loading");
-    const error = document.getElementById("error");
-    const adminContent = document.getElementById("adminContent");
+    const loading =
+        document.getElementById("loading");
+
+    const errorBox =
+        document.getElementById("error");
+
+    const adminContent =
+        document.getElementById("adminContent");
 
     try {
 
         const {
             data: { user },
             error: authError
-        } = await supabaseClient.auth.getUser();
+        } =
+        await supabaseClient.auth.getUser();
+
 
         if (authError || !user) {
-            throw new Error("يجب تسجيل الدخول أولاً.");
+            throw new Error(
+                "يجب تسجيل الدخول أولاً."
+            );
         }
+
 
         const {
             data: adminUser,
             error: adminError
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("users")
             .select("is_admin")
             .eq("auth_id", user.id)
             .single();
 
-        if (
-            adminError ||
-            !adminUser ||
-            adminUser.is_admin !== true
-        ) {
+
+        if (adminError) {
+
+            console.error(
+                "Admin check error:",
+                adminError
+            );
+
             throw new Error(
-                "ليس لديك صلاحية للوصول إلى إدارة المستخدمين."
+                "تعذر التحقق من صلاحيات المدير."
             );
         }
 
-        loading.style.display = "none";
-        adminContent.style.display = "block";
+
+        if (
+            !adminUser ||
+            adminUser.is_admin !== true
+        ) {
+
+            throw new Error(
+                "ليس لديك صلاحية للوصول إلى هذه الصفحة."
+            );
+        }
+
+
+        if (loading) {
+            loading.style.display = "none";
+        }
+
+
+        if (adminContent) {
+            adminContent.style.display = "block";
+        }
+
 
         await loadUsers();
 
-    } catch (err) {
+    } catch (error) {
 
-        loading.style.display = "none";
-        error.style.display = "block";
-        error.textContent = err.message;
+        console.error(
+            "Admin access error:",
+            error
+        );
+
+
+        if (loading) {
+            loading.style.display = "none";
+        }
+
+
+        if (errorBox) {
+
+            errorBox.style.display = "block";
+
+            errorBox.textContent =
+                error.message ||
+                "حدث خطأ غير متوقع.";
+        }
     }
 }
 
@@ -63,13 +107,32 @@ async function checkAdminAccess() {
 // ===============================
 // تحميل المستخدمين
 // ===============================
-
 async function loadUsers() {
+
+    const tableBody =
+        document.getElementById(
+            "usersTableBody"
+        );
+
+
+    if (tableBody) {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="7"
+                    style="text-align:center; padding:30px;">
+                    جاري تحميل المستخدمين...
+                </td>
+            </tr>
+        `;
+    }
+
 
     const {
         data,
         error
-    } = await supabaseClient
+    } =
+    await supabaseClient
         .from("users")
         .select(`
             id,
@@ -81,81 +144,174 @@ async function loadUsers() {
             quiz_best_score,
             is_admin
         `)
-        .order("id", { ascending: true });
+        .order("id", {
+            ascending: true
+        });
+
 
     if (error) {
 
-        console.error("Load users error:", error);
+        console.error(
+            "Load users error:",
+            error
+        );
 
-        document.getElementById("usersTableBody").innerHTML = `
-            <tr>
-                <td colspan="6">
-                    حدث خطأ أثناء تحميل المستخدمين
-                </td>
-            </tr>
-        `;
+
+        alert(
+            "خطأ أثناء تحميل المستخدمين:\n\n" +
+            error.message
+        );
+
+
+        if (tableBody) {
+
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="7"
+                        style="
+                            text-align:center;
+                            padding:30px;
+                            color:#b91c1c;
+                        ">
+                        تعذر تحميل المستخدمين
+                    </td>
+                </tr>
+            `;
+        }
+
 
         return;
     }
 
+
     users = data || [];
+
+
+    console.log(
+        "Users loaded:",
+        users
+    );
+
 
     updateStatistics();
 
-    renderUsers(users);
+    renderUsers();
 }
 
 
 // ===============================
-// الإحصائيات
+// تحديث الإحصائيات
 // ===============================
-
 function updateStatistics() {
 
-    const totalUsers = users.length;
+    const totalUsers =
+        document.getElementById(
+            "totalUsers"
+        );
 
-    let totalLessons = 0;
-    let totalQuiz = 0;
+    const totalLessons =
+        document.getElementById(
+            "totalLessons"
+        );
+
+    const averageQuiz =
+        document.getElementById(
+            "averageQuiz"
+        );
+
+
+    let lessons = 0;
+
+    let quizTotal = 0;
+
 
     users.forEach(user => {
 
-        if (Array.isArray(user.completed_lessons)) {
-            totalLessons += user.completed_lessons.length;
+        if (
+            Array.isArray(
+                user.completed_lessons
+            )
+        ) {
+
+            lessons +=
+                user.completed_lessons.length;
         }
 
-        totalQuiz += Number(user.quiz_best_score || 0);
+
+        quizTotal +=
+            Number(
+                user.quiz_best_score || 0
+            );
     });
 
-    const averageQuiz =
-        totalUsers > 0
-            ? Math.round(totalQuiz / totalUsers)
+
+    const average =
+        users.length > 0
+            ? Math.round(
+                quizTotal /
+                users.length
+            )
             : 0;
 
-    document.getElementById("totalUsers").textContent =
-        totalUsers;
 
-    document.getElementById("totalLessons").textContent =
-        totalLessons;
+    if (totalUsers) {
 
-    document.getElementById("averageQuiz").textContent =
-        averageQuiz + "%";
+        totalUsers.textContent =
+            users.length;
+    }
+
+
+    if (totalLessons) {
+
+        totalLessons.textContent =
+            lessons;
+    }
+
+
+    if (averageQuiz) {
+
+        averageQuiz.textContent =
+            average + "%";
+    }
 }
 
 
 // ===============================
 // عرض المستخدمين
 // ===============================
-
-function renderUsers(list) {
+function renderUsers(
+    filteredUsers = users
+) {
 
     const tableBody =
-        document.getElementById("usersTableBody");
+        document.getElementById(
+            "usersTableBody"
+        );
 
-    if (!list.length) {
+
+    if (!tableBody) {
+
+        console.error(
+            "usersTableBody غير موجود"
+        );
+
+        alert(
+            "المشكلة: usersTableBody غير موجود في admin-users.html"
+        );
+
+        return;
+    }
+
+
+    if (!filteredUsers.length) {
 
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6">
+                <td colspan="7"
+                    style="
+                        text-align:center;
+                        padding:30px;
+                    ">
                     لا يوجد مستخدمون
                 </td>
             </tr>
@@ -164,87 +320,140 @@ function renderUsers(list) {
         return;
     }
 
-    tableBody.innerHTML = list.map(user => {
 
-        const lessons =
-            Array.isArray(user.completed_lessons)
-                ? user.completed_lessons.length
-                : 0;
+    tableBody.innerHTML =
+        filteredUsers
+            .map(user => {
 
-        const lab =
-            Number(user.lab_progress || 0);
+                const completedLessons =
+                    Array.isArray(
+                        user.completed_lessons
+                    )
+                        ? user.completed_lessons.length
+                        : 0;
 
-        const quiz =
-            Number(user.quiz_best_score || 0);
 
-        const adminBadge =
-            user.is_admin === true
-                ? `<span class="admin-badge">ADMIN</span>`
-                : "";
+                const labProgress =
+                    Number(
+                        user.lab_progress || 0
+                    );
 
-        return `
-            <tr>
 
-                <td>
-                    <strong>
-                        ${escapeHtml(user.username || "بدون اسم")}
-                    </strong>
-                    ${adminBadge}
-                </td>
+                const quizScore =
+                    Number(
+                        user.quiz_best_score || 0
+                    );
 
-                <td>
-                    ${escapeHtml(user.email || "-")}
-                </td>
 
-                <td>
-                    ${lessons}
-                </td>
+                const adminBadge =
+                    user.is_admin
+                        ? `
+                            <span style="
+                                display:inline-block;
+                                padding:4px 10px;
+                                border-radius:20px;
+                                background:#cbb77a;
+                                color:#111;
+                                font-size:12px;
+                                font-weight:bold;
+                                margin-right:6px;
+                            ">
+                                ADMIN
+                            </span>
+                        `
+                        : "";
 
-                <td>
-                    ${lab}%
-                </td>
 
-                <td>
-                    ${quiz}%
-                </td>
+                return `
+                    <tr>
 
-                <td>
+                        <td>
+                            <strong>
+                                ${escapeHtml(
+                                    user.username ||
+                                    "بدون اسم"
+                                )}
+                            </strong>
 
-                    <div class="action-buttons">
+                            ${adminBadge}
+                        </td>
 
-                        <button
-                            class="edit-btn"
-                            data-id="${user.id}">
-                            ✏️ تعديل
-                        </button>
 
-                        <button
-                            class="delete-btn"
-                            data-id="${user.id}">
-                            🗑️ حذف
-                        </button>
+                        <td>
+                            ${escapeHtml(
+                                user.email || "-"
+                            )}
+                        </td>
 
-                    </div>
 
-                </td>
+                        <td>
+                            ${completedLessons}
+                        </td>
 
-            </tr>
-        `;
 
-    }).join("");
+                        <td>
+                            ${labProgress}%
+                        </td>
+
+
+                        <td>
+                            ${quizScore}%
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                type="button"
+                                class="edit-user-btn"
+                                data-id="${user.id}">
+                                تعديل
+                            </button>
+
+
+                            ${
+                                user.is_admin
+                                    ? `
+                                        <span style="
+                                            color:#777;
+                                            font-size:13px;
+                                            margin-right:8px;
+                                        ">
+                                            مدير
+                                        </span>
+                                      `
+                                    : `
+                                        <button
+                                            type="button"
+                                            class="delete-user-btn"
+                                            data-id="${user.id}">
+                                            حذف
+                                        </button>
+                                      `
+                            }
+
+                        </td>
+
+                    </tr>
+                `;
+
+            })
+            .join("");
+
 
     addActionEvents();
 }
 
 
 // ===============================
-// أحداث الأزرار
+// أزرار التعديل والحذف
 // ===============================
-
 function addActionEvents() {
 
     document
-        .querySelectorAll(".edit-btn")
+        .querySelectorAll(
+            ".edit-user-btn"
+        )
         .forEach(button => {
 
             button.addEventListener(
@@ -252,7 +461,9 @@ function addActionEvents() {
                 () => {
 
                     const id =
-                        Number(button.dataset.id);
+                        Number(
+                            button.dataset.id
+                        );
 
                     openEditModal(id);
                 }
@@ -261,7 +472,9 @@ function addActionEvents() {
 
 
     document
-        .querySelectorAll(".delete-btn")
+        .querySelectorAll(
+            ".delete-user-btn"
+        )
         .forEach(button => {
 
             button.addEventListener(
@@ -269,7 +482,9 @@ function addActionEvents() {
                 () => {
 
                     const id =
-                        Number(button.dataset.id);
+                        Number(
+                            button.dataset.id
+                        );
 
                     deleteUser(id);
                 }
@@ -279,86 +494,161 @@ function addActionEvents() {
 
 
 // ===============================
-// فتح نافذة التعديل
+// فتح التعديل
 // ===============================
-
 function openEditModal(id) {
 
-    selectedUser =
-        users.find(user => user.id === id);
+    const user =
+        users.find(
+            u =>
+                Number(u.id) === id
+        );
 
-    if (!selectedUser) {
+
+    if (!user) {
         return;
     }
 
-    document.getElementById("editUsername").value =
-        selectedUser.username || "";
 
-    document.getElementById("editLabProgress").value =
-        Number(selectedUser.lab_progress || 0);
+    selectedUser = user;
 
-    document.getElementById("editQuizScore").value =
-        Number(selectedUser.quiz_best_score || 0);
 
-    document.getElementById("editModal").style.display =
-        "flex";
+    const usernameInput =
+        document.getElementById(
+            "editUsername"
+        );
+
+
+    const labInput =
+        document.getElementById(
+            "editLabProgress"
+        );
+
+
+    const quizInput =
+        document.getElementById(
+            "editQuizScore"
+        );
+
+
+    const modal =
+        document.getElementById(
+            "editModal"
+        );
+
+
+    if (usernameInput) {
+
+        usernameInput.value =
+            user.username || "";
+    }
+
+
+    if (labInput) {
+
+        labInput.value =
+            Number(
+                user.lab_progress || 0
+            );
+    }
+
+
+    if (quizInput) {
+
+        quizInput.value =
+            Number(
+                user.quiz_best_score || 0
+            );
+    }
+
+
+    if (modal) {
+
+        modal.style.display =
+            "flex";
+    }
 }
 
 
 // ===============================
-// إغلاق نافذة التعديل
+// إغلاق التعديل
 // ===============================
-
 function closeEditModal() {
 
-    selectedUser = null;
+    const modal =
+        document.getElementById(
+            "editModal"
+        );
 
-    document.getElementById("editModal").style.display =
-        "none";
+
+    if (modal) {
+
+        modal.style.display =
+            "none";
+    }
+
+
+    selectedUser = null;
 }
 
 
 // ===============================
 // حفظ التعديل
 // ===============================
-
 async function saveUserChanges() {
 
     if (!selectedUser) {
         return;
     }
 
+
+    const usernameInput =
+        document.getElementById(
+            "editUsername"
+        );
+
+
+    const labInput =
+        document.getElementById(
+            "editLabProgress"
+        );
+
+
+    const quizInput =
+        document.getElementById(
+            "editQuizScore"
+        );
+
+
     const username =
-        document
-            .getElementById("editUsername")
-            .value
-            .trim();
+        usernameInput
+            ? usernameInput.value.trim()
+            : "";
+
 
     const labProgress =
-        Number(
-            document
-                .getElementById("editLabProgress")
-                .value
-        );
+        labInput
+            ? Number(labInput.value)
+            : 0;
+
 
     const quizScore =
-        Number(
-            document
-                .getElementById("editQuizScore")
-                .value
-        );
+        quizInput
+            ? Number(quizInput.value)
+            : 0;
 
 
     if (!username) {
 
-        alert("اكتب اسم المستخدم.");
+        alert(
+            "اكتب اسم المستخدم."
+        );
 
         return;
     }
 
 
     if (
-        Number.isNaN(labProgress) ||
         labProgress < 0 ||
         labProgress > 100
     ) {
@@ -372,7 +662,6 @@ async function saveUserChanges() {
 
 
     if (
-        Number.isNaN(quizScore) ||
         quizScore < 0 ||
         quizScore > 100
     ) {
@@ -385,39 +674,37 @@ async function saveUserChanges() {
     }
 
 
-    const saveButton =
-        document.getElementById("saveEditBtn");
-
-    if (saveButton) {
-        saveButton.disabled = true;
-        saveButton.textContent = "جاري الحفظ...";
-    }
-
-
     const {
         error
-    } = await supabaseClient
+    } =
+    await supabaseClient
         .from("users")
         .update({
-            username: username,
-            lab_progress: labProgress,
-            quiz_best_score: quizScore
+            username:
+                username,
+
+            lab_progress:
+                labProgress,
+
+            quiz_best_score:
+                quizScore
         })
-        .eq("id", selectedUser.id);
-
-
-    if (saveButton) {
-        saveButton.disabled = false;
-        saveButton.textContent = "حفظ التعديلات";
-    }
+        .eq(
+            "id",
+            selectedUser.id
+        );
 
 
     if (error) {
 
-        console.error("Update user error:", error);
+        console.error(
+            "Update user error:",
+            error
+        );
+
 
         alert(
-            "تعذر تعديل المستخدم:\n" +
+            "تعذر تعديل المستخدم:\n\n" +
             error.message
         );
 
@@ -425,48 +712,47 @@ async function saveUserChanges() {
     }
 
 
+    alert(
+        "تم تعديل المستخدم بنجاح."
+    );
+
+
     closeEditModal();
 
     await loadUsers();
-
-    alert("تم حفظ التعديلات بنجاح.");
 }
 
 
 // ===============================
 // حذف المستخدم
 // ===============================
-
 async function deleteUser(id) {
 
     const user =
-        users.find(item => item.id === id);
+        users.find(
+            u =>
+                Number(u.id) === id
+        );
+
 
     if (!user) {
         return;
     }
 
 
-    // منع حذف المدير من هذه الصفحة
     if (user.is_admin === true) {
 
         alert(
-            "لا يمكن حذف حساب Admin من لوحة المستخدمين."
+            "لا يمكن حذف حساب مدير."
         );
 
         return;
     }
 
 
-    const username =
-        user.username || "هذا المستخدم";
-
-
     const confirmed =
         confirm(
-            `هل أنت متأكد من حذف المستخدم "${username}"؟\n\n` +
-            "سيتم حذف حسابه من Authentication وبياناته من جدول المستخدمين.\n\n" +
-            "هذا الإجراء لا يمكن التراجع عنه."
+            `هل أنت متأكد من حذف المستخدم "${user.username || "بدون اسم"}"؟`
         );
 
 
@@ -475,61 +761,110 @@ async function deleteUser(id) {
     }
 
 
-    const deleteButton =
-        document.querySelector(
-            `.delete-btn[data-id="${id}"]`
+    if (!user.auth_id) {
+
+        alert(
+            "هذا المستخدم لا يملك Auth ID."
         );
 
-
-    if (deleteButton) {
-
-        deleteButton.disabled = true;
-        deleteButton.textContent = "جاري الحذف...";
+        return;
     }
 
 
     try {
 
-        if (!user.auth_id) {
-
-            throw new Error(
-                "هذا المستخدم لا يملك Auth ID."
-            );
-        }
-
+        /*
+        =========================================
+        مهم:
+        الـ Function slug الفعلي عندك هو clever-handler
+        =========================================
+        */
 
         const {
             data,
             error
-        } = await supabaseClient.functions.invoke(
-            "delete-user",
-            {
-                body: {
-                    userId: user.auth_id
+        } =
+        await supabaseClient
+            .functions
+            .invoke(
+                "clever-handler",
+                {
+                    body: {
+                        userId:
+                            user.auth_id
+                    }
                 }
-            }
+            );
+
+
+        console.log(
+            "Delete function data:",
+            data
+        );
+
+
+        console.log(
+            "Delete function error:",
+            error
         );
 
 
         if (error) {
 
-            console.error(
-                "Delete function error:",
-                error
+            let details =
+                error.message ||
+                "خطأ غير معروف";
+
+
+            /*
+            محاولة استخراج تفاصيل
+            إضافية من الخطأ
+            */
+
+            if (error.context) {
+
+                try {
+
+                    const responseText =
+                        await error.context.text();
+
+                    if (responseText) {
+
+                        details +=
+                            "\n\nتفاصيل السيرفر:\n" +
+                            responseText;
+                    }
+
+                } catch (readError) {
+
+                    console.error(
+                        "Could not read error response:",
+                        readError
+                    );
+                }
+            }
+
+
+            alert(
+                "تعذر حذف المستخدم:\n\n" +
+                details
             );
 
-            throw new Error(
-                error.message ||
-                "حدث خطأ أثناء حذف المستخدم."
-            );
+            return;
         }
 
 
-        if (data && data.error) {
+        if (
+            data &&
+            data.error
+        ) {
 
-            throw new Error(
+            alert(
+                "تعذر حذف المستخدم:\n\n" +
                 data.error
             );
+
+            return;
         }
 
 
@@ -540,7 +875,6 @@ async function deleteUser(id) {
 
         await loadUsers();
 
-
     } catch (err) {
 
         console.error(
@@ -548,17 +882,14 @@ async function deleteUser(id) {
             err
         );
 
+
         alert(
-            "تعذر حذف المستخدم:\n" +
-            err.message
+            "حدث خطأ أثناء حذف المستخدم:\n\n" +
+            (
+                err.message ||
+                "خطأ غير معروف"
+            )
         );
-
-
-        if (deleteButton) {
-
-            deleteButton.disabled = false;
-            deleteButton.textContent = "🗑️ حذف";
-        }
     }
 }
 
@@ -566,19 +897,20 @@ async function deleteUser(id) {
 // ===============================
 // البحث
 // ===============================
-
 const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById(
+        "searchInput"
+    );
 
 
 if (searchInput) {
 
     searchInput.addEventListener(
         "input",
-        function () {
+        () => {
 
             const search =
-                this.value
+                searchInput.value
                     .trim()
                     .toLowerCase();
 
@@ -597,12 +929,15 @@ if (searchInput) {
                     const username =
                         String(
                             user.username || ""
-                        ).toLowerCase();
+                        )
+                        .toLowerCase();
+
 
                     const email =
                         String(
                             user.email || ""
-                        ).toLowerCase();
+                        )
+                        .toLowerCase();
 
 
                     return (
@@ -621,9 +956,11 @@ if (searchInput) {
 // ===============================
 // أزرار نافذة التعديل
 // ===============================
-
 const saveEditBtn =
-    document.getElementById("saveEditBtn");
+    document.getElementById(
+        "saveEditBtn"
+    );
+
 
 if (saveEditBtn) {
 
@@ -635,7 +972,10 @@ if (saveEditBtn) {
 
 
 const cancelEditBtn =
-    document.getElementById("cancelEditBtn");
+    document.getElementById(
+        "cancelEditBtn"
+    );
+
 
 if (cancelEditBtn) {
 
@@ -647,19 +987,24 @@ if (cancelEditBtn) {
 
 
 // ===============================
-// إغلاق النافذة عند الضغط خارجها
+// إغلاق النافذة
 // ===============================
-
 const editModal =
-    document.getElementById("editModal");
+    document.getElementById(
+        "editModal"
+    );
+
 
 if (editModal) {
 
     editModal.addEventListener(
         "click",
-        function (event) {
+        event => {
 
-            if (event.target === editModal) {
+            if (
+                event.target === editModal
+            ) {
+
                 closeEditModal();
             }
         }
@@ -670,20 +1015,38 @@ if (editModal) {
 // ===============================
 // حماية النصوص
 // ===============================
-
 function escapeHtml(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
 // ===============================
-// تشغيل لوحة الإدارة
+// تشغيل الصفحة
 // ===============================
-
 checkAdminAccess();

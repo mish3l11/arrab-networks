@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -180,14 +186,6 @@
             background: #f5f0df;
         }
 
-        .username {
-            font-weight: 800;
-        }
-
-        .progress {
-            font-weight: 800;
-        }
-
         .actions {
             display: flex;
             justify-content: center;
@@ -195,7 +193,8 @@
             flex-wrap: wrap;
         }
 
-        .action-btn {
+        .edit-user-btn,
+        .delete-user-btn {
             border: none;
             padding: 9px 13px;
             border-radius: 9px;
@@ -204,17 +203,18 @@
             cursor: pointer;
         }
 
-        .edit-btn {
+        .edit-user-btn {
             background: #111;
             color: white;
         }
 
-        .delete-btn {
+        .delete-user-btn {
             background: #8b1e1e;
             color: white;
         }
 
-        .action-btn:hover {
+        .edit-user-btn:hover,
+        .delete-user-btn:hover {
             opacity: 0.85;
         }
 
@@ -353,58 +353,127 @@
                 width: 100%;
             }
         }
+
     </style>
 </head>
 
 <body>
 
     <nav>
-        <div class="brand">🌐 عرّاب الشبكات</div>
-        <div class="admin-badge">ADMIN</div>
+
+        <div class="brand">
+            🌐 عرّاب الشبكات
+        </div>
+
+        <div class="admin-badge">
+            ADMIN
+        </div>
+
     </nav>
 
-    <main class="container">
+
+    <main
+        id="adminContent"
+        class="container"
+        style="display:none;"
+    >
 
         <section class="top-section">
 
             <div class="title">
-                <h1>👥 إدارة المستخدمين</h1>
-                <p>عرض وتعديل ومتابعة حسابات المستخدمين.</p>
+
+                <h1>
+                    👥 إدارة المستخدمين
+                </h1>
+
+                <p>
+                    عرض وتعديل ومتابعة حسابات المستخدمين.
+                </p>
+
             </div>
 
-            <a href="admin.html" class="back-button">
+
+            <a
+                href="admin.html"
+                class="back-button"
+            >
                 ← لوحة الإدارة
             </a>
 
         </section>
 
+
         <section class="overview">
 
             <div class="overview-card">
-                <div class="overview-icon">👥</div>
-                <div id="totalUsers" class="overview-number">0</div>
-                <div class="overview-title">إجمالي المستخدمين</div>
+
+                <div class="overview-icon">
+                    👥
+                </div>
+
+                <div
+                    id="totalUsers"
+                    class="overview-number"
+                >
+                    0
+                </div>
+
+                <div class="overview-title">
+                    إجمالي المستخدمين
+                </div>
+
             </div>
 
-            <div class="overview-card">
-                <div class="overview-icon">📚</div>
-                <div id="totalLessons" class="overview-number">0</div>
-                <div class="overview-title">إجمالي الدروس المكتملة</div>
-            </div>
 
             <div class="overview-card">
-                <div class="overview-icon">🏆</div>
-                <div id="averageQuiz" class="overview-number">0%</div>
-                <div class="overview-title">متوسط أفضل نتائج الاختبار</div>
+
+                <div class="overview-icon">
+                    📚
+                </div>
+
+                <div
+                    id="totalLessons"
+                    class="overview-number"
+                >
+                    0
+                </div>
+
+                <div class="overview-title">
+                    إجمالي الدروس المكتملة
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🏆
+                </div>
+
+                <div
+                    id="averageQuiz"
+                    class="overview-number"
+                >
+                    0%
+                </div>
+
+                <div class="overview-title">
+                    متوسط أفضل نتائج الاختبار
+                </div>
+
             </div>
 
         </section>
+
 
         <section class="users-card">
 
             <div class="table-header">
 
-                <h2>قائمة المستخدمين</h2>
+                <h2>
+                    قائمة المستخدمين
+                </h2>
 
                 <input
                     type="text"
@@ -415,36 +484,73 @@
 
             </div>
 
-            <div id="loading">
+
+            <div
+                id="loading"
+                style="display:block;"
+            >
                 جاري تحميل المستخدمين...
             </div>
 
-            <div id="error" style="display:none;"></div>
 
-            <div id="empty" style="display:none;">
+            <div
+                id="error"
+                style="display:none;"
+            ></div>
+
+
+            <div
+                id="empty"
+                style="display:none;"
+            >
                 لا يوجد مستخدمون لعرضهم.
             </div>
+
 
             <div
                 id="tableWrapper"
                 class="table-wrapper"
-                style="display:none;"
+                style="display:block;"
             >
 
                 <table>
 
                     <thead>
+
                         <tr>
-                            <th>اسم المستخدم</th>
-                            <th>البريد الإلكتروني</th>
-                            <th>الدروس المكتملة</th>
-                            <th>تقدم المختبر</th>
-                            <th>أفضل نتيجة</th>
-                            <th>الإجراءات</th>
+
+                            <th>
+                                اسم المستخدم
+                            </th>
+
+                            <th>
+                                البريد الإلكتروني
+                            </th>
+
+                            <th>
+                                الدروس المكتملة
+                            </th>
+
+                            <th>
+                                تقدم المختبر
+                            </th>
+
+                            <th>
+                                أفضل نتيجة
+                            </th>
+
+                            <th>
+                                الإجراءات
+                            </th>
+
                         </tr>
+
                     </thead>
 
-                    <tbody id="usersBody"></tbody>
+
+                    <tbody id="usersTableBody">
+
+                    </tbody>
 
                 </table>
 
@@ -454,42 +560,67 @@
 
     </main>
 
+
     <!-- نافذة تعديل المستخدم -->
 
-    <div id="editModal" class="modal">
+    <div
+        id="editModal"
+        class="modal"
+    >
 
         <div class="modal-content">
 
-            <h2>✏️ تعديل المستخدم</h2>
+            <h2>
+                ✏️ تعديل المستخدم
+            </h2>
+
 
             <div class="form-group">
-                <label for="editUsername">اسم المستخدم</label>
+
+                <label for="editUsername">
+                    اسم المستخدم
+                </label>
+
                 <input
                     type="text"
                     id="editUsername"
                     placeholder="اسم المستخدم"
                 >
+
             </div>
 
+
             <div class="form-group">
-                <label for="editLabProgress">تقدم المختبر (%)</label>
+
+                <label for="editLabProgress">
+                    تقدم المختبر (%)
+                </label>
+
                 <input
                     type="number"
                     id="editLabProgress"
                     min="0"
                     max="100"
                 >
+
             </div>
 
+
             <div class="form-group">
-                <label for="editQuizScore">أفضل نتيجة للاختبار (%)</label>
+
+                <label for="editQuizScore">
+                    أفضل نتيجة للاختبار (%)
+                </label>
+
                 <input
                     type="number"
                     id="editQuizScore"
                     min="0"
                     max="100"
                 >
+
             </div>
+
 
             <div class="modal-buttons">
 
@@ -501,6 +632,7 @@
                     حفظ التعديلات
                 </button>
 
+
                 <button
                     type="button"
                     class="cancel-btn"
@@ -511,6 +643,7 @@
 
             </div>
 
+
             <div
                 id="editMessage"
                 class="modal-message"
@@ -520,9 +653,13 @@
 
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="supabase.js"></script>
+
     <script src="admin-users.js"></script>
 
 </body>
+
 </html>
