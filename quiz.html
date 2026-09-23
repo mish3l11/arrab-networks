@@ -192,7 +192,7 @@
 
         /* =========================
            QUIZ CARD
-        ========================= */
+        ========================== */
 
         .quiz-card {
             background: #d6c58f;
@@ -221,7 +221,7 @@
 
         /* =========================
            PROGRESS
-        ========================= */
+        ========================== */
 
         .progress-bar {
             width: 100%;
@@ -242,7 +242,7 @@
 
         /* =========================
            QUESTION
-        ========================= */
+        ========================== */
 
         .question-title {
             font-size: clamp(22px, 4vw, 30px);
@@ -292,7 +292,7 @@
 
         /* =========================
            EXPLANATION
-        ========================= */
+        ========================== */
 
         .explanation {
             display: none;
@@ -315,7 +315,7 @@
 
         /* =========================
            NEXT BUTTON
-        ========================= */
+        ========================== */
 
         .next-area {
             margin-top: 22px;
@@ -345,7 +345,7 @@
 
         /* =========================
            RESULT
-        ========================= */
+        ========================== */
 
         .result-card {
             display: none;
@@ -415,7 +415,7 @@
 
         /* =========================
            LAB CARD
-        ========================= */
+        ========================== */
 
         .lab-card {
             margin-top: 25px;
@@ -451,7 +451,7 @@
 
         /* =========================
            FOOTER
-        ========================= */
+        ========================== */
 
         footer {
             background: #111;
@@ -491,7 +491,7 @@
 
         /* =========================
            MOBILE
-        ========================= */
+        ========================== */
 
         @media (max-width: 800px) {
 
@@ -977,10 +977,55 @@
 
 
 <!-- =========================
-     QUIZ
+     LOGIN CHECK + QUIZ
 ========================= -->
 
-<script src="quiz.js"></script>
+<script>
+(async function () {
+
+    try {
+
+        const {
+            data: sessionData,
+            error: sessionError
+        } = await supabaseClient.auth.getSession();
+
+
+        if (
+            sessionError ||
+            !sessionData ||
+            !sessionData.session ||
+            !sessionData.session.user
+        ) {
+
+            window.location.replace("login.html");
+
+            return;
+        }
+
+
+        const quizScript =
+            document.createElement("script");
+
+        quizScript.src = "quiz.js";
+
+        document.body.appendChild(quizScript);
+
+
+    } catch (error) {
+
+        console.error(
+            "خطأ أثناء التحقق من تسجيل الدخول:",
+            error
+        );
+
+        window.location.replace("login.html");
+
+    }
+
+})();
+</script>
+
 
 <script src="user.js"></script>
 
