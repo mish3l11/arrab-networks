@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,21 +30,30 @@
             min-height: 100vh;
         }
 
+
+        /* =========================
+           NAV
+        ========================= */
+
         nav {
             background: #111;
             color: white;
             padding: 16px 30px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             gap: 20px;
             flex-wrap: wrap;
         }
+
 
         .brand {
             font-size: 22px;
             font-weight: 800;
         }
+
 
         .brand span {
             display: block;
@@ -52,199 +62,489 @@
             color: #cbb77a;
         }
 
+
         .nav-links {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
+
         .nav-links a {
             color: white;
             text-decoration: none;
+
             padding: 9px 13px;
             border-radius: 8px;
+
+            transition: 0.2s;
         }
+
 
         .nav-links a:hover {
             background: #cbb77a;
             color: #111;
         }
 
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
         .container {
             width: min(1100px, 92%);
             margin: 40px auto;
         }
 
+
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
             background: #111;
             color: white;
+
             border-radius: 22px;
             padding: 35px;
+
             margin-bottom: 25px;
+
+            position: relative;
+            overflow: hidden;
         }
+
+
+        .hero::after {
+            content: "🌐";
+
+            position: absolute;
+
+            left: 30px;
+            top: 15px;
+
+            font-size: 90px;
+
+            opacity: 0.07;
+        }
+
 
         .hero h1 {
             margin: 0 0 8px;
             font-size: 34px;
         }
 
+
         .hero p {
             margin: 0;
             color: #ddd;
         }
 
+
+        .welcome-name {
+            color: #cbb77a;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .stat-card {
+            background: rgba(255,255,255,0.9);
+
+            border-radius: 18px;
+            padding: 22px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.12);
+
+            text-align: center;
+        }
+
+
+        .stat-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+
+        .stat-value {
+            display: block;
+
+            font-size: 28px;
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+
+        .stat-label {
+            color: #555;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           MAIN GRID
+        ========================= */
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 20px;
         }
 
+
         .card {
-            background: rgba(255,255,255,0.88);
+            background: rgba(255,255,255,0.9);
+
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.12);
         }
+
 
         .card h2 {
             margin-top: 0;
             font-size: 22px;
         }
 
+
+        /* =========================
+           INFO
+        ========================= */
+
         .info-row {
             display: flex;
+
             justify-content: space-between;
+
             gap: 15px;
+
             padding: 13px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.12);
+
+            border-bottom:
+                1px solid rgba(0,0,0,0.12);
         }
+
 
         .info-row:last-child {
             border-bottom: none;
         }
 
+
         .label {
             font-weight: 700;
         }
 
+
         .value {
             word-break: break-word;
+            text-align: left;
         }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
 
         .progress-box {
             margin-top: 18px;
         }
 
+
         .progress-title {
             display: flex;
+
             justify-content: space-between;
+
             margin-bottom: 8px;
+
             font-weight: 700;
         }
 
+
         .progress {
             height: 12px;
+
             background: #ddd;
+
             border-radius: 20px;
+
             overflow: hidden;
         }
 
+
         .progress-bar {
             height: 100%;
+
             width: 0%;
+
             background: #111;
+
             border-radius: 20px;
-            transition: width 0.4s ease;
+
+            transition:
+                width 0.6s ease;
         }
 
-        .admin-card {
+
+        .progress-bar.gold {
+            background: #cbb77a;
+        }
+
+
+        /* =========================
+           OVERALL PROGRESS
+        ========================= */
+
+        .overall-card {
             grid-column: 1 / -1;
+
             background: #111;
             color: white;
         }
+
+
+        .overall-card h2 {
+            color: #cbb77a;
+        }
+
+
+        .overall-number {
+            font-size: 42px;
+            font-weight: 800;
+
+            margin: 5px 0 15px;
+        }
+
+
+        .overall-progress {
+            height: 16px;
+
+            background: #333;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .overall-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background: #cbb77a;
+
+            border-radius: 20px;
+
+            transition:
+                width 0.7s ease;
+        }
+
+
+        .overall-note {
+            color: #bbb;
+            margin-top: 12px;
+        }
+
+
+        /* =========================
+           ADMIN
+        ========================= */
+
+        .admin-card {
+            grid-column: 1 / -1;
+
+            background: #111;
+            color: white;
+        }
+
 
         .admin-card h2 {
             color: #cbb77a;
         }
 
+
         .admin-card p {
             color: #ddd;
         }
 
+
         .admin-btn {
             display: inline-block;
+
             margin-top: 10px;
+
             background: #cbb77a;
             color: #111;
+
             text-decoration: none;
+
             font-weight: 800;
+
             padding: 13px 22px;
+
             border-radius: 10px;
+
+            transition: 0.2s;
         }
+
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
 
         .logout-btn {
             width: 100%;
+
             margin-top: 20px;
+
             padding: 14px;
+
             border: none;
+
             border-radius: 12px;
+
             background: #111;
             color: white;
+
             font-family: inherit;
+
             font-size: 16px;
             font-weight: 700;
+
             cursor: pointer;
+
+            transition: 0.2s;
         }
+
+
+        .logout-btn:hover {
+            background: #222;
+        }
+
 
         .logout-btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
         }
 
+
+        /* =========================
+           LOADING
+        ========================= */
+
         #loading {
             text-align: center;
+
             padding: 60px 20px;
+
             font-size: 20px;
             font-weight: 700;
         }
 
+
+        /* =========================
+           ERROR
+        ========================= */
+
         #error {
             display: none;
+
             width: min(900px, 92%);
+
             margin: 40px auto;
+
             background: #fff;
+
             border: 3px solid #b00020;
+
             border-radius: 18px;
+
             padding: 25px;
+
             color: #111;
         }
+
 
         #error h2 {
             color: #b00020;
             margin-top: 0;
         }
 
+
         #error p {
             margin: 10px 0;
             line-height: 1.8;
         }
 
+
         #errorDetails {
             background: #111;
             color: #fff;
+
             padding: 18px;
+
             border-radius: 12px;
+
             direction: ltr;
             text-align: left;
+
             white-space: pre-wrap;
             word-break: break-word;
+
             font-family: monospace;
+
             line-height: 1.6;
         }
+
 
         #profileContent {
             display: none;
         }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
 
         @media (max-width: 700px) {
 
@@ -252,13 +552,35 @@
                 grid-template-columns: 1fr;
             }
 
+
+            .overall-card,
             .admin-card {
                 grid-column: auto;
             }
 
+
             .info-row {
                 flex-direction: column;
                 gap: 5px;
+            }
+
+
+            .value {
+                text-align: right;
+            }
+
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -267,7 +589,13 @@
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     NAV
+========================= -->
 
 <nav>
 
@@ -275,7 +603,9 @@
 
         🌐 عرّاب الشبكات
 
-        <span>NETWORKS</span>
+        <span>
+            NETWORKS
+        </span>
 
     </div>
 
@@ -308,7 +638,7 @@
 
 
 <!-- =========================
-     Loading
+     LOADING
 ========================= -->
 
 <div id="loading">
@@ -319,7 +649,7 @@
 
 
 <!-- =========================
-     Error
+     ERROR
 ========================= -->
 
 <div id="error">
@@ -342,7 +672,7 @@
 
 
 <!-- =========================
-     Profile
+     PROFILE
 ========================= -->
 
 <main
@@ -350,25 +680,135 @@
     class="container"
 >
 
+
+    <!-- HERO -->
+
     <section class="hero">
 
         <h1>
-            👤 حسابي
+
+            👋 أهلاً بك
+            <span
+                id="welcomeUsername"
+                class="welcome-name"
+            >
+                —
+            </span>
+
         </h1>
 
         <p>
-            بيانات حسابك وتقدمك في عرّاب الشبكات
+
+            هذه مساحتك الشخصية في
+            <strong>
+                عرّاب الشبكات
+            </strong>
+
+            — تابع تقدمك وطور مهاراتك.
+
         </p>
 
     </section>
 
 
+    <!-- =========================
+         QUICK STATS
+    ========================= -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <span
+                id="statLessons"
+                class="stat-value"
+            >
+                0
+            </span>
+
+            <span class="stat-label">
+                درس مكتمل
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🧪
+            </div>
+
+            <span
+                id="statLab"
+                class="stat-value"
+            >
+                0%
+            </span>
+
+            <span class="stat-label">
+                تقدم المختبر
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <span
+                id="statQuiz"
+                class="stat-value"
+            >
+                0/20
+            </span>
+
+            <span class="stat-label">
+                أفضل نتيجة
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <span
+                id="statOverall"
+                class="stat-value"
+            >
+                0%
+            </span>
+
+            <span class="stat-label">
+                الإنجاز العام
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================
+         MAIN GRID
+    ========================= -->
+
     <section class="grid">
 
 
-        <!-- =========================
-             Account Information
-        ========================= -->
+        <!-- ACCOUNT -->
 
         <div class="card">
 
@@ -427,9 +867,7 @@
         </div>
 
 
-        <!-- =========================
-             Lessons
-        ========================= -->
+        <!-- LESSONS -->
 
         <div class="card">
 
@@ -447,7 +885,7 @@
                     </span>
 
                     <span id="lessonsCount">
-                        0
+                        0 / 12
                     </span>
 
                 </div>
@@ -463,6 +901,17 @@
                 </div>
 
             </div>
+
+        </div>
+
+
+        <!-- LAB -->
+
+        <div class="card">
+
+            <h2>
+                🧪 المختبر
+            </h2>
 
 
             <div class="progress-box">
@@ -484,7 +933,7 @@
 
                     <div
                         id="labProgress"
-                        class="progress-bar"
+                        class="progress-bar gold"
                     ></div>
 
                 </div>
@@ -494,9 +943,7 @@
         </div>
 
 
-        <!-- =========================
-             Quiz
-        ========================= -->
+        <!-- QUIZ -->
 
         <div class="card">
 
@@ -515,17 +962,79 @@
                     class="value"
                     id="quizScore"
                 >
-                    0
+                    0 / 20
                 </span>
+
+            </div>
+
+
+            <div class="progress-box">
+
+                <div class="progress-title">
+
+                    <span>
+                        نسبة الاختبار
+                    </span>
+
+                    <span id="quizPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        id="quizProgress"
+                        class="progress-bar"
+                    ></div>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- =========================
-             Admin Panel
-        ========================= -->
+        <!-- OVERALL -->
+
+        <div class="card overall-card">
+
+            <h2>
+                📊 مستوى الإنجاز
+            </h2>
+
+
+            <div
+                id="overallPercent"
+                class="overall-number"
+            >
+                0%
+            </div>
+
+
+            <div class="overall-progress">
+
+                <div
+                    id="overallProgress"
+                    class="overall-fill"
+                ></div>
+
+            </div>
+
+
+            <p class="overall-note">
+
+                يتم حساب الإنجاز من تقدم الدروس
+                والمختبر والاختبار.
+
+            </p>
+
+        </div>
+
+
+        <!-- ADMIN -->
 
         <div
             id="adminPanel"
@@ -536,6 +1045,7 @@
             <h2>
                 🛠️ لوحة الإدارة
             </h2>
+
 
             <p>
 
@@ -557,9 +1067,7 @@
     </section>
 
 
-    <!-- =========================
-         Logout
-    ========================= -->
+    <!-- LOGOUT -->
 
     <button
         id="logoutBtn"
@@ -570,11 +1078,12 @@
 
     </button>
 
+
 </main>
 
 
 <!-- =========================
-     Supabase
+     SUPABASE
 ========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -612,12 +1121,6 @@ document.addEventListener(
         const logoutBtn =
             document.getElementById("logoutBtn");
 
-
-        /*
-        ==========================================
-        عرض الخطأ
-        ==========================================
-        */
 
         function showError(title, details) {
 
@@ -692,12 +1195,6 @@ document.addEventListener(
                 sessionData?.session;
 
 
-            /*
-            ==========================================
-            لا توجد جلسة
-            ==========================================
-            */
-
             if (
                 !session ||
                 !session.user
@@ -705,11 +1202,6 @@ document.addEventListener(
 
                 loading.style.display =
                     "none";
-
-
-                /*
-                إعادة المستخدم إلى صفحة الدخول
-                */
 
                 window.location.replace(
                     "login.html"
@@ -770,12 +1262,6 @@ document.addEventListener(
             }
 
 
-            /*
-            ==========================================
-            لا يوجد Profile
-            ==========================================
-            */
-
             if (!profile) {
 
                 showError(
@@ -795,11 +1281,21 @@ document.addEventListener(
             ==========================================
             */
 
+            const username =
+                profile.username ||
+                "مستخدم";
+
+
             document
                 .getElementById("username")
                 .textContent =
-                    profile.username ||
-                    "بدون اسم";
+                    username;
+
+
+            document
+                .getElementById("welcomeUsername")
+                .textContent =
+                    username;
 
 
             document
@@ -812,27 +1308,9 @@ document.addEventListener(
 
             /*
             ==========================================
-            5 - التحقق من المدير
+            5 - المدير
             ==========================================
             */
-
-            console.log(
-                "User ID:",
-                user.id
-            );
-
-
-            console.log(
-                "is_admin:",
-                profile.is_admin
-            );
-
-
-            console.log(
-                "is_admin type:",
-                typeof profile.is_admin
-            );
-
 
             if (
                 profile.is_admin === true
@@ -883,14 +1361,6 @@ document.addEventListener(
                 completedLessons.length;
 
 
-            document
-                .getElementById(
-                    "lessonsCount"
-                )
-                .textContent =
-                    lessonsCount;
-
-
             const totalLessons =
                 12;
 
@@ -914,11 +1384,29 @@ document.addEventListener(
 
             document
                 .getElementById(
+                    "lessonsCount"
+                )
+                .textContent =
+                    lessonsCount +
+                    " / " +
+                    totalLessons;
+
+
+            document
+                .getElementById(
                     "lessonsProgress"
                 )
                 .style.width =
                     lessonsPercent +
                     "%";
+
+
+            document
+                .getElementById(
+                    "statLessons"
+                )
+                .textContent =
+                    lessonsCount;
 
 
             /*
@@ -961,25 +1449,126 @@ document.addEventListener(
                     "%";
 
 
+            document
+                .getElementById(
+                    "statLab"
+                )
+                .textContent =
+                    labProgress +
+                    "%";
+
+
             /*
             ==========================================
             8 - الاختبار
             ==========================================
             */
 
+            let quizScore =
+                Number(
+                    profile.quiz_best_score
+                ) || 0;
+
+
+            quizScore =
+                Math.max(
+                    0,
+                    Math.min(
+                        20,
+                        quizScore
+                    )
+                );
+
+
+            const quizPercent =
+                (
+                    quizScore /
+                    20
+                ) * 100;
+
+
             document
                 .getElementById(
                     "quizScore"
                 )
                 .textContent =
-                    Number(
-                        profile.quiz_best_score
-                    ) || 0;
+                    quizScore +
+                    " / 20";
+
+
+            document
+                .getElementById(
+                    "quizPercent"
+                )
+                .textContent =
+                    quizPercent +
+                    "%";
+
+
+            document
+                .getElementById(
+                    "quizProgress"
+                )
+                .style.width =
+                    quizPercent +
+                    "%";
+
+
+            document
+                .getElementById(
+                    "statQuiz"
+                )
+                .textContent =
+                    quizScore +
+                    "/20";
 
 
             /*
             ==========================================
-            9 - إظهار الحساب
+            9 - الإنجاز العام
+            ==========================================
+            */
+
+            const overall =
+                Math.round(
+                    (
+                        lessonsPercent +
+                        labProgress +
+                        quizPercent
+                    ) / 3
+                );
+
+
+            document
+                .getElementById(
+                    "statOverall"
+                )
+                .textContent =
+                    overall +
+                    "%";
+
+
+            document
+                .getElementById(
+                    "overallPercent"
+                )
+                .textContent =
+                    overall +
+                    "%";
+
+
+            document
+                .getElementById(
+                    "overallProgress"
+                )
+                .style.width =
+                    overall +
+                    "%";
+
+
+            /*
+            ==========================================
+            10 - إظهار الحساب
             ==========================================
             */
 
@@ -992,7 +1581,6 @@ document.addEventListener(
 
 
         } catch (error) {
-
 
             showError(
                 "خطأ غير متوقع",
