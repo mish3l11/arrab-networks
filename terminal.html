@@ -546,9 +546,58 @@
 
     <script src="supabase.js"></script>
 
-    <!-- Terminal -->
 
-    <script src="terminal.js"></script>
+    <!--
+        التحقق من تسجيل الدخول
+        Terminal يعمل فقط للمستخدم المسجل
+    -->
+
+    <script>
+        (async function () {
+
+            try {
+
+                const {
+                    data: sessionData,
+                    error: sessionError
+                } = await supabaseClient.auth.getSession();
+
+
+                if (
+                    sessionError ||
+                    !sessionData ||
+                    !sessionData.session ||
+                    !sessionData.session.user
+                ) {
+
+                    window.location.replace("login.html");
+
+                    return;
+                }
+
+
+                const terminalScript =
+                    document.createElement("script");
+
+                terminalScript.src = "terminal.js";
+
+                document.body.appendChild(terminalScript);
+
+
+            } catch (error) {
+
+                console.error(
+                    "خطأ أثناء التحقق من تسجيل الدخول:",
+                    error
+                );
+
+                window.location.replace("login.html");
+
+            }
+
+        })();
+    </script>
+
 
     <!-- Unified User System -->
 
