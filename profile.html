@@ -639,24 +639,90 @@
 
             background: rgba(0,0,0,0.07);
 
-            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.08);
 
-            padding: 12px;
+            border-radius: 14px;
+
+            padding: 14px;
 
             font-size: 13px;
 
             font-weight: 700;
+
+            transition: 0.25s;
 
         }
 
 
         .achievement span {
 
-            font-size: 21px;
+            font-size: 23px;
 
             display: block;
 
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+
+        }
+
+
+        .achievement strong {
+
+            display: block;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .achievement small {
+
+            display: block;
+
+            font-size: 11px;
+
+            opacity: 0.6;
+
+            font-weight: 500;
+
+        }
+
+
+        /* الإنجاز المكتسب */
+
+        .achievement.unlocked {
+
+            background: #111;
+
+            color: #fff;
+
+            border-color: #111;
+
+            box-shadow:
+                0 7px 18px rgba(0,0,0,0.18);
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .achievement.unlocked small {
+
+            color: #cbb77a;
+
+            opacity: 1;
+
+            font-weight: 700;
+
+        }
+
+
+        /* الإنجاز غير المكتسب */
+
+        .achievement.locked {
+
+            opacity: 0.48;
+
+            filter: grayscale(0.8);
 
         }
 
@@ -670,6 +736,8 @@
             flex-direction: column;
 
             gap: 10px;
+
+            margin-top: 20px;
 
         }
 
@@ -816,6 +884,8 @@
 <body>
 
 
+    <!-- ================= LOADING ================= -->
+
     <div id="loadingScreen">
         جاري تحميل حسابك...
     </div>
@@ -875,10 +945,10 @@
     </nav>
 
 
+    <!-- ================= MAIN ================= -->
+
     <main class="container">
 
-
-        <!-- ================= TITLE ================= -->
 
         <div class="page-title">
 
@@ -897,8 +967,12 @@
 
         <section class="profile-card">
 
-            <div class="avatar" id="avatar">
+            <div
+                class="avatar"
+                id="avatar">
+
                 ع
+
             </div>
 
 
@@ -954,8 +1028,12 @@
                     📚
                 </div>
 
-                <div class="stat-number" id="lessonsCount">
+                <div
+                    class="stat-number"
+                    id="lessonsCount">
+
                     0
+
                 </div>
 
                 <div class="stat-title">
@@ -971,8 +1049,12 @@
                     🏆
                 </div>
 
-                <div class="stat-number" id="quizScore">
+                <div
+                    class="stat-number"
+                    id="quizScore">
+
                     0
+
                 </div>
 
                 <div class="stat-title">
@@ -988,8 +1070,12 @@
                     🧪
                 </div>
 
-                <div class="stat-number" id="labProgress">
+                <div
+                    class="stat-number"
+                    id="labProgress">
+
                     0%
+
                 </div>
 
                 <div class="stat-title">
@@ -1007,7 +1093,7 @@
         <section class="content-grid">
 
 
-            <!-- ===== EDUCATIONAL PROGRESS ===== -->
+            <!-- ================= PROGRESS ================= -->
 
             <div class="section-card">
 
@@ -1099,7 +1185,7 @@
             </div>
 
 
-            <!-- ===== LEVEL ===== -->
+            <!-- ================= LEVEL + ACHIEVEMENTS ================= -->
 
             <div class="section-card">
 
@@ -1138,56 +1224,88 @@
                 </div>
 
 
-                <!-- ===== ACHIEVEMENTS ===== -->
-
                 <h3 style="margin-top:25px;">
+
                     🏅 إنجازاتك
+
                 </h3>
 
 
                 <div class="achievement-grid">
 
 
-                    <div class="achievement">
+                    <div
+                        class="achievement locked"
+                        id="achievementStart">
 
                         <span>
                             📖
                         </span>
 
-                        بداية الرحلة
+                        <strong>
+                            بداية الرحلة
+                        </strong>
+
+                        <small>
+                            أكمل أول درس
+                        </small>
 
                     </div>
 
 
-                    <div class="achievement">
+                    <div
+                        class="achievement locked"
+                        id="achievementLearner">
 
                         <span>
                             🧠
                         </span>
 
-                        متعلم الشبكات
+                        <strong>
+                            متعلم الشبكات
+                        </strong>
+
+                        <small>
+                            أكمل 6 دروس
+                        </small>
 
                     </div>
 
 
-                    <div class="achievement">
+                    <div
+                        class="achievement locked"
+                        id="achievementLab">
 
                         <span>
                             🧪
                         </span>
 
-                        مستكشف المختبر
+                        <strong>
+                            مستكشف المختبر
+                        </strong>
+
+                        <small>
+                            وصل المختبر إلى 50%
+                        </small>
 
                     </div>
 
 
-                    <div class="achievement">
+                    <div
+                        class="achievement locked"
+                        id="achievementQuiz">
 
                         <span>
                             🏆
                         </span>
 
-                        بطل الاختبار
+                        <strong>
+                            بطل الاختبار
+                        </strong>
+
+                        <small>
+                            احصل على 80% أو أكثر
+                        </small>
 
                     </div>
 
@@ -1195,11 +1313,10 @@
                 </div>
 
 
-                <!-- ===== ACTIONS ===== -->
+                <!-- ================= ACTIONS ================= -->
 
-                <div
-                    class="actions"
-                    style="margin-top:20px;">
+                <div class="actions">
+
 
                     <a
                         href="lessons.html"
@@ -1227,6 +1344,7 @@
 
                     </button>
 
+
                 </div>
 
             </div>
@@ -1248,6 +1366,10 @@
 
     <script>
 
+        /* ============================================
+           تحميل بيانات المستخدم
+           ============================================ */
+
         async function loadProfile() {
 
             try {
@@ -1255,24 +1377,34 @@
                 const {
 
                     data: {
-
                         user
-
                     },
 
                     error: authError
 
-                } = await supabaseClient.auth.getUser();
+                } =
+                await supabaseClient
+                    .auth
+                    .getUser();
 
+
+                /* =========================
+                   التأكد من تسجيل الدخول
+                   ========================= */
 
                 if (authError || !user) {
 
-                    window.location.href = "login.html";
+                    window.location.href =
+                        "login.html";
 
                     return;
 
                 }
 
+
+                /* =========================
+                   جلب بيانات المستخدم
+                   ========================= */
 
                 const {
 
@@ -1280,26 +1412,17 @@
 
                     error: profileError
 
-                } = await supabaseClient
-
+                } =
+                await supabaseClient
                     .from("users")
-
                     .select(`
-
                         username,
-
                         email,
-
                         completed_lessons,
-
                         quiz_best_score,
-
                         lab_progress
-
                     `)
-
                     .eq("auth_id", user.id)
-
                     .maybeSingle();
 
 
@@ -1310,10 +1433,14 @@
                         profileError
                     );
 
-                    document.getElementById("username").textContent =
+                    document.getElementById(
+                        "username"
+                    ).textContent =
                         "تعذر تحميل الحساب";
 
-                    document.getElementById("email").textContent =
+                    document.getElementById(
+                        "email"
+                    ).textContent =
                         "حدث خطأ أثناء تحميل البيانات";
 
                     return;
@@ -1323,16 +1450,24 @@
 
                 if (!profile) {
 
-                    document.getElementById("username").textContent =
+                    document.getElementById(
+                        "username"
+                    ).textContent =
                         "بيانات الحساب غير موجودة";
 
-                    document.getElementById("email").textContent =
+                    document.getElementById(
+                        "email"
+                    ).textContent =
                         user.email || "";
 
                     return;
 
                 }
 
+
+                /* =========================
+                   بيانات الحساب
+                   ========================= */
 
                 const username =
                     String(
@@ -1347,21 +1482,32 @@
                     "";
 
 
-                document.getElementById("username")
-                    .textContent = username;
+                document.getElementById(
+                    "username"
+                ).textContent =
+                    username;
 
 
-                document.getElementById("email")
-                    .textContent = email;
+                document.getElementById(
+                    "email"
+                ).textContent =
+                    email;
 
 
-                document.getElementById("avatar")
-                    .textContent =
-                    username.charAt(0) || "ع";
+                document.getElementById(
+                    "avatar"
+                ).textContent =
+                    username.charAt(0) ||
+                    "ع";
 
+
+                /* =========================
+                   بيانات التقدم
+                   ========================= */
 
                 let completedLessons =
-                    profile.completed_lessons || [];
+                    profile.completed_lessons ||
+                    [];
 
 
                 let quizBestScore =
@@ -1376,7 +1522,11 @@
                     ) || 0;
 
 
-                if (!Array.isArray(completedLessons)) {
+                if (
+                    !Array.isArray(
+                        completedLessons
+                    )
+                ) {
 
                     completedLessons = [];
 
@@ -1403,24 +1553,35 @@
                     );
 
 
+                /* =========================
+                   الإحصائيات
+                   ========================= */
+
                 const lessonsCount =
                     completedLessons.length;
 
 
-                document.getElementById("lessonsCount")
-                    .textContent =
+                document.getElementById(
+                    "lessonsCount"
+                ).textContent =
                     lessonsCount;
 
 
-                document.getElementById("quizScore")
-                    .textContent =
+                document.getElementById(
+                    "quizScore"
+                ).textContent =
                     quizBestScore;
 
 
-                document.getElementById("labProgress")
-                    .textContent =
+                document.getElementById(
+                    "labProgress"
+                ).textContent =
                     labProgress + "%";
 
+
+                /* =========================
+                   نسبة الدروس
+                   ========================= */
 
                 const totalLessons = 12;
 
@@ -1444,33 +1605,47 @@
                     );
 
 
-                document.getElementById("lessonsPercent")
-                    .textContent =
+                document.getElementById(
+                    "lessonsPercent"
+                ).textContent =
                     lessonsPercent + "%";
 
 
-                document.getElementById("lessonsBar")
-                    .style.width =
+                document.getElementById(
+                    "lessonsBar"
+                ).style.width =
                     lessonsPercent + "%";
 
 
-                document.getElementById("quizPercent")
-                    .textContent =
+                /* =========================
+                   الاختبار
+                   ========================= */
+
+                document.getElementById(
+                    "quizPercent"
+                ).textContent =
                     quizBestScore + "%";
 
 
-                document.getElementById("quizBar")
-                    .style.width =
+                document.getElementById(
+                    "quizBar"
+                ).style.width =
                     quizBestScore + "%";
 
 
-                document.getElementById("labPercent")
-                    .textContent =
+                /* =========================
+                   المختبر
+                   ========================= */
+
+                document.getElementById(
+                    "labPercent"
+                ).textContent =
                     labProgress + "%";
 
 
-                document.getElementById("labBar")
-                    .style.width =
+                document.getElementById(
+                    "labBar"
+                ).style.width =
                     labProgress + "%";
 
 
@@ -1488,13 +1663,15 @@
                     );
 
 
-                document.getElementById("overallPercent")
-                    .textContent =
+                document.getElementById(
+                    "overallPercent"
+                ).textContent =
                     totalProgress + "%";
 
 
-                document.getElementById("overallBar")
-                    .style.width =
+                document.getElementById(
+                    "overallBar"
+                ).style.width =
                     totalProgress + "%";
 
 
@@ -1545,15 +1722,119 @@
                 }
 
 
-                document.getElementById("levelNumber")
-                    .textContent =
+                document.getElementById(
+                    "levelNumber"
+                ).textContent =
                     level;
 
 
-                document.getElementById("levelDescription")
-                    .textContent =
+                document.getElementById(
+                    "levelDescription"
+                ).textContent =
                     description;
 
+
+                /* ============================================
+                   الإنجازات
+                   ============================================ */
+
+                const achievementStart =
+                    document.getElementById(
+                        "achievementStart"
+                    );
+
+
+                const achievementLearner =
+                    document.getElementById(
+                        "achievementLearner"
+                    );
+
+
+                const achievementLab =
+                    document.getElementById(
+                        "achievementLab"
+                    );
+
+
+                const achievementQuiz =
+                    document.getElementById(
+                        "achievementQuiz"
+                    );
+
+
+                /* =========================
+                   دالة فتح الإنجاز
+                   ========================= */
+
+                function unlockAchievement(
+                    element
+                ) {
+
+                    if (!element) {
+                        return;
+                    }
+
+                    element.classList.remove(
+                        "locked"
+                    );
+
+                    element.classList.add(
+                        "unlocked"
+                    );
+
+                }
+
+
+                /* =========================
+                   بداية الرحلة
+                   ========================= */
+
+                if (lessonsCount >= 1) {
+
+                    unlockAchievement(
+                        achievementStart
+                    );
+
+                }
+
+
+                /* =========================
+                   متعلم الشبكات
+                   ========================= */
+
+                if (lessonsCount >= 6) {
+
+                    unlockAchievement(
+                        achievementLearner
+                    );
+
+                }
+
+
+                /* =========================
+                   مستكشف المختبر
+                   ========================= */
+
+                if (labProgress >= 50) {
+
+                    unlockAchievement(
+                        achievementLab
+                    );
+
+                }
+
+
+                /* =========================
+                   بطل الاختبار
+                   ========================= */
+
+                if (quizBestScore >= 80) {
+
+                    unlockAchievement(
+                        achievementQuiz
+                    );
+
+                }
 
             }
 
@@ -1586,47 +1867,52 @@
         }
 
 
-        /* =========================
+        /* ============================================
            تسجيل الخروج
-           ========================= */
+           ============================================ */
 
-        document.getElementById("logoutBtn")
-            .addEventListener(
-                "click",
-                async function () {
+        document.getElementById(
+            "logoutBtn"
+        ).addEventListener(
+            "click",
+            async function () {
 
-                    const {
-                        error
-                    } =
-                    await supabaseClient
-                        .auth
-                        .signOut();
-
-
-                    if (error) {
-
-                        alert(
-                            "حدث خطأ أثناء تسجيل الخروج"
-                        );
-
-                        console.error(error);
-
-                        return;
-
-                    }
+                const {
+                    error
+                } =
+                await supabaseClient
+                    .auth
+                    .signOut();
 
 
-                    localStorage.removeItem(
-                        "networkUserName"
+                if (error) {
+
+                    alert(
+                        "حدث خطأ أثناء تسجيل الخروج"
                     );
 
+                    console.error(error);
 
-                    window.location.href =
-                        "login.html";
+                    return;
 
                 }
-            );
 
+
+                localStorage.removeItem(
+                    "networkUserName"
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+        /* ============================================
+           تشغيل الصفحة
+           ============================================ */
 
         loadProfile();
 
