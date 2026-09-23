@@ -101,16 +101,19 @@
             </a>
 
             <a href="config.html">
-                💻  مرجع الأوامر  
+                💻 مرجع الأوامر
             </a>
 
             <a href="command-practice.html">
                 🎯 تحدي الميدان
             </a>
 
+            <a
+                href="profile.html"
+                class="profile-link">
 
-            <a href="profile.html">
                 👤 حسابي
+
             </a>
 
         </div>
@@ -313,89 +316,105 @@
 
 
         <!-- =========================
+             NETWORK TROUBLESHOOTING
+        ========================== -->
+
+        <section class="fault-scenarios">
+
+            <div class="section-heading">
+
+                <span>
+                    NETWORK TROUBLESHOOTING
+                </span>
+
+                <h2>
+                    🛠️ أعطال تدريبية
+                </h2>
+
+            </div>
+
+
+            <p class="fault-scenarios-intro">
+
+                اختر عطلًا وحاول اكتشاف المشكلة وإصلاحها باستخدام أوامر الشبكات.
+
+            </p>
+
+
+            <div class="fault-scenario-grid">
+
+                <button
+                    type="button"
+                    class="fault-scenario-button"
+                    data-scenario="shutdown-port">
+
+                    🔴
+                    <strong>منفذ Shutdown</strong>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="fault-scenario-button"
+                    data-scenario="wrong-vlan">
+
+                    🟠
+                    <strong>VLAN خاطئة</strong>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="fault-scenario-button"
+                    data-scenario="missing-vlan">
+
+                    🟡
+                    <strong>VLAN غير موجودة</strong>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="fault-scenario-button"
+                    data-scenario="interface-down">
+
+                    🔵
+                    <strong>Interface غير مفعّل</strong>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="fault-scenario-button"
+                    data-scenario="svi-error">
+
+                    🟣
+                    <strong>VLAN Interface خاطئ</strong>
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="fault-scenario-status"
+                id="faultScenarioStatus">
+
+                اختر أحد الأعطال للبدء.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
              SUPPORTED COMMANDS
         ========================== -->
-<section class="fault-scenarios">
 
-    <div class="section-heading">
-
-        <span>
-            NETWORK TROUBLESHOOTING
-        </span>
-
-        <h2>
-            🛠️ أعطال تدريبية
-        </h2>
-
-    </div>
-
-    <p class="fault-scenarios-intro">
-        اختر عطلًا وحاول اكتشاف المشكلة وإصلاحها باستخدام أوامر الشبكات.
-    </p>
-
-    <div class="fault-scenario-grid">
-
-        <button
-            type="button"
-            class="fault-scenario-button"
-            data-scenario="shutdown-port">
-
-            🔴
-            <strong>منفذ Shutdown</strong>
-
-        </button>
-
-        <button
-            type="button"
-            class="fault-scenario-button"
-            data-scenario="wrong-vlan">
-
-            🟠
-            <strong>VLAN خاطئة</strong>
-
-        </button>
-
-        <button
-            type="button"
-            class="fault-scenario-button"
-            data-scenario="missing-vlan">
-
-            🟡
-            <strong>VLAN غير موجودة</strong>
-
-        </button>
-
-        <button
-            type="button"
-            class="fault-scenario-button"
-            data-scenario="interface-down">
-
-            🔵
-            <strong>Interface غير مفعّل</strong>
-
-        </button>
-
-        <button
-            type="button"
-            class="fault-scenario-button"
-            data-scenario="svi-error">
-
-            🟣
-            <strong>VLAN Interface خاطئ</strong>
-
-        </button>
-
-    </div>
-
-    <div
-        class="fault-scenario-status"
-        id="faultScenarioStatus">
-
-        اختر أحد الأعطال للبدء.
-
-    </div>
-
-</section>
         <section class="supported-commands">
 
 
@@ -421,6 +440,7 @@
             <div
                 class="command-chips"
                 id="commandChips">
+
 
                 <!-- Cisco commands -->
 
@@ -520,7 +540,17 @@
          JAVASCRIPT
     ========================== -->
 
+    <!-- Supabase -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <!-- Terminal -->
+
     <script src="terminal.js"></script>
+
+    <!-- Unified User System -->
 
     <script src="user.js"></script>
 

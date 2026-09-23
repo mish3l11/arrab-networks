@@ -695,6 +695,7 @@ function showResult() {
     }
 
 
+    // حفظ أفضل نتيجة
     saveBestScore(
         percentage
     );
@@ -709,14 +710,19 @@ function showResult() {
 
 
 /* ==================================================
-   BEST SCORE
+   SAVE BEST SCORE
+   SUPABASE + LOCAL STORAGE
 ================================================== */
 
-function saveBestScore(
+async function saveBestScore(
     percentage
 ) {
 
-    const saved =
+    /*
+     * أولًا نحفظ محليًا كنسخة احتياطية.
+     */
+
+    const localSaved =
         Number(
             localStorage.getItem(
                 "networkQuizBestScore"
@@ -725,12 +731,145 @@ function saveBestScore(
 
 
     if (
-        percentage > saved
+        percentage > localSaved
     ) {
 
         localStorage.setItem(
             "networkQuizBestScore",
             String(percentage)
+        );
+
+    }
+
+
+    /*
+     * التأكد من وجود Supabase.
+     */
+
+    if (
+        typeof supabaseClient === "undefined"
+    ) {
+
+        console.warn(
+            "Supabase غير متوفر في صفحة الاختبار."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+         * معرفة المستخدم الحالي.
+         */
+
+        const {
+            data: {
+                user
+            },
+            error: userError
+        } = await supabaseClient.auth.getUser();
+
+
+        if (
+            userError ||
+            !user
+        ) {
+
+            console.warn(
+                "لا يوجد مستخدم مسجل الدخول."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * جلب أفضل نتيجة الحالية من Supabase.
+         */
+
+        const {
+            data: profile,
+            error: profileError
+        } = await supabaseClient
+            .from("users")
+            .select("quiz_best_score")
+            .eq("auth_id", user.id)
+            .single();
+
+
+        if (profileError) {
+
+            console.error(
+                "تعذر قراءة أفضل نتيجة:",
+                profileError
+            );
+
+            return;
+
+        }
+
+
+        const databaseBestScore =
+            Number(
+                profile.quiz_best_score
+            ) || 0;
+
+
+        /*
+         * لا نحدث قاعدة البيانات
+         * إلا إذا كانت النتيجة الجديدة أعلى.
+         */
+
+        if (
+            percentage <= databaseBestScore
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * تحديث أفضل نتيجة.
+         */
+
+        const {
+            error: updateError
+        } = await supabaseClient
+            .from("users")
+            .update({
+                quiz_best_score: percentage
+            })
+            .eq("auth_id", user.id);
+
+
+        if (updateError) {
+
+            console.error(
+                "تعذر حفظ أفضل نتيجة:",
+                updateError
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "تم حفظ أفضل نتيجة في Supabase:",
+            percentage
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "حدث خطأ أثناء حفظ نتيجة الاختبار:",
+            error
         );
 
     }

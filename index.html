@@ -132,7 +132,9 @@
                 🏠 الرئيسية
             </a>
 
- <a href="lessons.html">📚 الدروس</a>
+            <a href="lessons.html">
+                📚 الدروس
+            </a>
 
             <a href="#network-lab">
                 🧪 المختبر
@@ -147,7 +149,7 @@
             </a>
 
             <a href="config.html" class="nav-button">
-                💻  مرجع الأوامر  
+                💻 مرجع الأوامر
             </a>
 
             <a href="command-practice.html">
@@ -155,8 +157,10 @@
             </a>
 
             <a href="terminal.html" class="feature-card">
-                          CLI   ⌨️
+                CLI ⌨️
             </a>
+
+            <!-- اسم المستخدم يتم تحديثه تلقائياً من Supabase -->
             <a href="profile.html" class="nav-button profile-link">
                 👤 حسابي
             </a>
@@ -511,66 +515,66 @@
 
     </section>
 
-<!-- =================================================
-     CTA
-===================================================== -->
 
-<section class="cta-section">
+    <!-- =================================================
+         CTA
+    ================================================= -->
 
-    <div class="cta-grid">
+    <section class="cta-section">
 
-        <!-- Learning Card -->
+        <div class="cta-grid">
 
-        <div class="cta-card">
+            <div class="cta-card">
 
-            <div class="cta-icon">
-                🎓
+                <div class="cta-icon">
+                    🎓
+                </div>
+
+                <h2>
+                    جاهز تبدأ رحلتك؟
+                </h2>
+
+                <p>
+                    ابدأ من الأساسيات وابنِ معرفتك في الشبكات خطوة بخطوة.
+                </p>
+
+                <a href="lessons.html" class="cta-button">
+                    🚀 ابدأ التعلم
+                </a>
+
             </div>
 
-            <h2>
-                جاهز تبدأ رحلتك؟
-            </h2>
 
-            <p>
-                ابدأ من الأساسيات وابنِ معرفتك في الشبكات خطوة بخطوة.
-            </p>
+            <div class="cta-card detective-cta-card">
 
-            <a href="lessons.html" class="cta-button">
-                🚀 ابدأ التعلم
-            </a>
+                <div class="cta-icon">
+                    🕵️
+                </div>
+
+                <div class="cta-badge">
+                    NEW
+                </div>
+
+                <h2>
+                    جاهز للتحقيق؟
+                </h2>
+
+                <p>
+                    حل القضايا، اجمع الأدلة، واربط الأحداث للوصول إلى الحقيقة.
+                </p>
+
+                <a
+                    href="network-detective.html"
+                    class="cta-button detective-cta-button"
+                >
+                    🔍 ابدأ التحقيق
+                </a>
+
+            </div>
 
         </div>
 
-
-        <!-- Network Detective Card -->
-
-        <div class="cta-card detective-cta-card">
-
-            <div class="cta-icon">
-                🕵️
-            </div>
-
-            <div class="cta-badge">
-                NEW
-            </div>
-
-            <h2>
-                جاهز للتحقيق؟
-            </h2>
-
-            <p>
-                حل القضايا، اجمع الأدلة، واربط الأحداث للوصول إلى الحقيقة.
-            </p>
-
-            <a href="network-detective.html" class="cta-button detective-cta-button">
-                🔍 ابدأ التحقيق
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
 </main>
 
@@ -933,8 +937,16 @@
      SCRIPTS
 ===================================================== -->
 
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Supabase Configuration -->
+<script src="supabase.js"></script>
+
+<!-- Website Scripts -->
 <script src="script.js"></script>
 
+<!-- User System -->
 <script src="user.js"></script>
 
 

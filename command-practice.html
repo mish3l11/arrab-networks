@@ -20,7 +20,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body class="command-practice-page">
@@ -83,27 +87,37 @@
 
         <div class="nav-links">
 
-            <a href="index.html">🏠 الرئيسية</a>
+            <a href="index.html">
+                🏠 الرئيسية
+            </a>
 
-            <a href="lessons.html">📚 الدروس</a>
+            <a href="lessons.html">
+                📚 الدروس
+            </a>
 
-            <a href="index.html#network-lab">🧪 المختبر</a>
+            <a href="index.html#network-lab">
+                🧪 المختبر
+            </a>
 
-            <a href="quiz.html">🧠 اختبر معلوماتك</a>
+            <a href="quiz.html">
+                🧠 اختبر معلوماتك
+            </a>
 
-<a href="dictionary.html" class="feature-card">
-     📖 القـاموس
-</a>
-    
-    <a href="config.html" class="nav-button">
-                💻  مرجع الأوامر  
-    </a>
+            <a href="dictionary.html" class="feature-card">
+                📖 القـاموس
+            </a>
 
-    
+            <a href="config.html" class="nav-button">
+                💻 مرجع الأوامر
+            </a>
+
             <a href="terminal.html" class="feature-card">
-                          CLI   ⌨️
-            
-            <a href="profile.html">👤 حسابي</a>
+                CLI ⌨️
+            </a>
+
+            <a href="profile.html" class="profile-link">
+                👤 حسابي
+            </a>
 
         </div>
 
@@ -263,11 +277,17 @@
 
             <div class="question-header">
 
-                <span class="question-category" id="questionCategory">
+                <span
+                    class="question-category"
+                    id="questionCategory"
+                >
                     Interface
                 </span>
 
-                <span class="question-level" id="questionLevel">
+                <span
+                    class="question-level"
+                    id="questionLevel"
+                >
                     🟢 مبتدئ
                 </span>
 
@@ -301,6 +321,7 @@
                     class="answer-button"
                     data-answer="0"
                 >
+
                     <span class="answer-letter">
                         A
                     </span>
@@ -317,6 +338,7 @@
                     class="answer-button"
                     data-answer="1"
                 >
+
                     <span class="answer-letter">
                         B
                     </span>
@@ -333,6 +355,7 @@
                     class="answer-button"
                     data-answer="2"
                 >
+
                     <span class="answer-letter">
                         C
                     </span>
@@ -349,6 +372,7 @@
                     class="answer-button"
                     data-answer="3"
                 >
+
                     <span class="answer-letter">
                         D
                     </span>
@@ -444,7 +468,7 @@
     <footer class="footer">
 
         <p>
-            © 2026 عرّاب الشبكات — Network Learning Platform
+            ©️ 2026 عرّاب الشبكات — Network Learning Platform
         </p>
 
     </footer>
@@ -454,10 +478,19 @@
          SCRIPTS
          ========================= -->
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Configuration -->
+    <script src="supabase.js"></script>
+
+    <!-- Page Logic -->
     <script src="command-practice.js"></script>
 
+    <!-- Unified User System -->
     <script src="user.js"></script>
 
+    <!-- GoatCounter -->
     <script
         data-goatcounter="https://mish3l11.goatcounter.com/count"
         async

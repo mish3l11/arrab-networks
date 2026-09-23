@@ -10,1389 +10,1802 @@
 <html lang="ar" dir="rtl">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>الدروس | عرّاب الشبكات</title>
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
-
-<style>
-
-/* =========================
-   LESSONS PAGE
-========================= */
-
-.lessons-page {
-    min-height: calc(100vh - 90px);
-    padding: 45px 18px 80px;
-}
-
-
-/* =========================
-   LOGO
-========================= */
-
-.brand-icon {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #111111;
-    color: #d6c58f;
-    border-radius: 12px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.network-logo-svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.lessons-hero {
-    max-width: 1000px;
-    margin: 0 auto 35px;
-    text-align: center;
-}
-
-.lessons-icon {
-    width: 78px;
-    height: 78px;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(7,89,133,0.12);
-    border: 1px solid rgba(7,89,133,0.18);
-    border-radius: 23px;
-    font-size: 35px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-}
-
-.lessons-label {
-    display: inline-block;
-    margin-bottom: 8px;
-    color: #075985;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 4px;
-}
-
-.lessons-hero h1 {
-    margin: 0 0 10px;
-    color: #111;
-    font-size: clamp(30px,5vw,46px);
-    font-weight: 800;
-}
-
-.lessons-hero p {
-    margin: 0;
-    color: #555;
-    font-size: 14px;
-}
-
-
-/* =========================
-   STATS
-========================= */
-
-.lessons-stats {
-    max-width: 850px;
-    margin: 0 auto 35px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 14px;
-}
-
-.lesson-stat {
-    padding: 18px;
-    text-align: center;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(17,17,17,0.08);
-    border-radius: 17px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-    transition: transform 0.25s ease;
-}
-
-.lesson-stat:hover {
-    transform: translateY(-4px);
-}
-
-.lesson-stat strong {
-    display: block;
-    margin-bottom: 4px;
-    color: #111;
-    font-size: 22px;
-    font-weight: 800;
-}
-
-.lesson-stat span {
-    color: #666;
-    font-size: 10px;
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-.lesson-search {
-    max-width: 850px;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(17,17,17,0.12);
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-}
-
-.lesson-search span {
-    font-size: 19px;
-}
-
-.lesson-search input {
-    width: 100%;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #111;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.lesson-search input::placeholder {
-    color: #111;
-    opacity: 0.45;
-}
-
-
-/* =========================
-   FILTERS
-========================= */
-
-.lesson-filters {
-    max-width: 850px;
-    margin: 0 auto 35px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.lesson-filter {
-    padding: 9px 16px;
-    border: 1px solid rgba(17,17,17,0.13);
-    border-radius: 10px;
-    background: rgba(255,255,255,0.16);
-    color: #111;
-    font-family: inherit;
-    font-size: 10px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.lesson-filter:hover {
-    transform: translateY(-1px);
-    background: rgba(7,89,133,0.10);
-}
-
-.lesson-filter.active {
-    background: #111;
-    color: white;
-    border-color: #111;
-}
-
-
-/* =========================
-   LESSON GRID
-========================= */
-
-.lessons-grid {
-    max-width: 1050px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-}
-
-
-/* =========================
-   LESSON CARD
-========================= */
-
-.lesson-card {
-    position: relative;
-    min-height: 250px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    background: rgba(255,255,255,0.16);
-    border: 1px solid rgba(17,17,17,0.09);
-    border-radius: 21px;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.lesson-card::before {
-    content: "";
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    top: -60px;
-    left: -45px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.16);
-}
-
-.lesson-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 22px 45px rgba(0,0,0,0.14);
-}
-
-.lesson-number {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #777;
-    font-family: Arial,sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    background: rgba(255,255,255,0.35);
-    padding: 5px 8px;
-    border-radius: 7px;
-    z-index: 5;
-}
-
-.lesson-card-icon {
-    width: 55px;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    background: rgba(7,89,133,0.10);
-    border: 1px solid rgba(7,89,133,0.14);
-    border-radius: 16px;
-    font-size: 25px;
-    position: relative;
-}
-
-.lesson-card h2 {
-    margin: 0 0 9px;
-    color: #111;
-    font-size: 18px;
-    font-weight: 800;
-    position: relative;
-}
-
-.lesson-card p {
-    margin: 0;
-    color: #5c5c5c;
-    font-size: 11px;
-    line-height: 1.9;
-    position: relative;
-}
-
-
-/* =========================
-   LESSON INFO
-========================= */
-
-.lesson-info {
-    margin-top: auto;
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-.lesson-level {
-    padding: 6px 9px;
-    border-radius: 7px;
-    font-size: 9px;
-    font-weight: 800;
-}
-
-.level-easy {
-    background: #b7d9c0;
-    color: #244d31;
-}
-
-.level-medium {
-    background: #e1d5a8;
-    color: #66561b;
-}
-
-.level-hard {
-    background: #d9aaa5;
-    color: #633632;
-}
-
-.lesson-open {
-    color: #075985;
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.lesson-arrow {
-    display: inline-flex;
-    width: 30px;
-    height: 30px;
-    align-items: center;
-    justify-content: center;
-    margin-right: 5px;
-    border-radius: 9px;
-    background: rgba(7,89,133,0.10);
-    transition: 0.2s ease;
-}
-
-.lesson-card:hover .lesson-arrow {
-    transform: translateX(-4px);
-}
-
-
-/* =========================
-   HIDDEN SEARCH
-========================= */
-
-.lesson-card.hidden {
-    display: none;
-}
-
-
-/* =========================
-   COURSE PROGRESS
-========================= */
-
-.course-progress {
-    max-width: 1050px;
-    margin: 0 auto 30px;
-    background: #111111;
-    color: white;
-    border-radius: 20px;
-    padding: 25px;
-}
-
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.progress-label {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    opacity: 0.55;
-}
-
-.progress-header h2 {
-    margin: 5px 0 0;
-    font-size: 22px;
-}
-
-.progress-count {
-    font-size: 22px;
-    font-weight: 800;
-}
-
-.course-progress-bar {
-    height: 12px;
-    background: #333333;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 22px;
-}
-
-#courseProgressFill {
-    height: 100%;
-    width: 0%;
-    background: #b7d9c0;
-    border-radius: 20px;
-    transition: width 0.4s ease;
-}
-
-.progress-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-#progressPercent {
-    font-weight: 800;
-    color: #b7d9c0;
-}
-
-
-/* =========================
-   BOTTOM NOTE
-========================= */
-
-.lessons-note {
-    max-width: 1050px;
-    margin: 30px auto 0;
-    padding: 17px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(17,17,17,0.07);
-    border-radius: 14px;
-    color: #555;
-    font-size: 11px;
-}
-
-.lessons-note span {
-    font-size: 18px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px) {
-
-    .lessons-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-}
-
-
-@media(max-width:650px) {
-
-    .lessons-page {
-        padding: 30px 14px 55px;
-    }
-
-    .lessons-icon {
-        width: 68px;
-        height: 68px;
-        font-size: 30px;
-    }
-
-    .lessons-hero h1 {
-        font-size: 30px;
-    }
-
-    .lessons-hero p {
-        font-size: 12px;
-    }
-
-    .lessons-stats {
-        grid-template-columns: repeat(3,1fr);
-        gap: 8px;
-    }
-
-    .lesson-stat {
-        padding: 14px 8px;
-    }
-
-    .lesson-stat strong {
-        font-size: 18px;
-    }
-
-    .lesson-stat span {
-        font-size: 8px;
-    }
-
-    .lesson-search {
-        padding: 12px 14px;
-    }
-
-    .lesson-search input {
-        font-size: 11px;
-    }
-
-    .lesson-filters {
-        margin-bottom: 25px;
-    }
-
-    .lesson-filter {
-        flex: 1;
-        padding: 9px 7px;
-        font-size: 9px;
-        white-space: nowrap;
-    }
-
-    .lessons-grid {
-        grid-template-columns: 1fr;
-        gap: 13px;
-    }
-
-    .lesson-card {
-        min-height: 220px;
-        padding: 22px;
-    }
-
-    .lessons-note {
-        font-size: 10px;
-    }
-
-    .progress-header {
-        align-items: flex-start;
-    }
-
-    .progress-header h2 {
-        font-size: 18px;
-    }
-
-    .progress-count {
-        font-size: 18px;
-    }
-
-}
-
-</style>
+    <title>الدروس | عرّاب الشبكات</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .lessons-page {
+            min-height: 100vh;
+            background: #cbb77a;
+            color: #111111;
+        }
+
+        .lessons-header {
+            background: #111111;
+            color: #ffffff;
+            padding: 18px 5%;
+
+            box-shadow:
+                0 4px 18px rgba(0, 0, 0, 0.22);
+        }
+
+        .lessons-navbar {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .lessons-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+            color: #ffffff;
+
+            flex-shrink: 0;
+        }
+
+        .lessons-brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 26px;
+
+            border-radius: 12px;
+
+            background: #cbb77a;
+            color: #111111;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .lessons-brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .lessons-brand-name {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .lessons-brand-subtitle {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #cbb77a;
+            margin-top: 4px;
+        }
+
+        .lessons-nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .lessons-nav a {
+            color: #eeeeee;
+            text-decoration: none;
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+        .lessons-nav a:hover {
+            background: rgba(203, 183, 122, 0.12);
+            color: #ffffff;
+        }
+
+        .lessons-nav a.active {
+            background: #cbb77a;
+            color: #111111;
+
+            box-shadow:
+                0 4px 12px rgba(203, 183, 122, 0.18);
+        }
+
+        .lessons-main {
+            width: min(1100px, 92%);
+            margin: 45px auto 70px;
+        }
+
+        .lessons-welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .lessons-welcome h2 {
+            font-size: 36px;
+            font-weight: 800;
+
+            color: #111111;
+
+            margin-bottom: 8px;
+        }
+
+        .lessons-welcome p {
+            font-size: 16px;
+            font-weight: 500;
+
+            color: #292929;
+        }
+
+        .lessons-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .lessons-stat-card {
+            background: #f4edda;
+
+            color: #111111;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            text-align: center;
+
+            border: 1px solid rgba(17, 17, 17, 0.12);
+
+            box-shadow:
+                0 8px 22px rgba(17, 17, 17, 0.13);
+
+            transition: 0.25s;
+        }
+
+        .lessons-stat-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 26px rgba(17, 17, 17, 0.17);
+        }
+
+        .lessons-stat-number {
+            font-size: 30px;
+            font-weight: 800;
+
+            color: #075985;
+
+            margin-bottom: 5px;
+        }
+
+        .lessons-stat-label {
+            font-size: 14px;
+            font-weight: 700;
+
+            color: #222222;
+        }
+
+        .lessons-tools {
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .lessons-search-box {
+            flex: 1;
+            min-width: 230px;
+        }
+
+        .lessons-search-box input {
+            width: 100%;
+
+            border: 1px solid rgba(17, 17, 17, 0.16);
+            outline: none;
+
+            background: #f4edda;
+            color: #111111;
+
+            padding: 15px 18px;
+
+            border-radius: 12px;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+
+            box-shadow:
+                0 5px 16px rgba(17, 17, 17, 0.1);
+
+            transition: 0.25s;
+        }
+
+        .lessons-search-box input:focus {
+            border-color: #075985;
+
+            box-shadow:
+                0 0 0 3px rgba(7, 89, 133, 0.12);
+        }
+
+        .lessons-search-box input::placeholder {
+            color: #666666;
+        }
+
+        .lessons-filter {
+            border: 1px solid rgba(17, 17, 17, 0.16);
+            outline: none;
+
+            background: #111111;
+            color: #cbb77a;
+
+            padding: 0 18px;
+
+            border-radius: 12px;
+
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            min-height: 50px;
+
+            box-shadow:
+                0 5px 16px rgba(17, 17, 17, 0.12);
+        }
+
+        .lessons-course-progress {
+            background: #111111;
+            color: #ffffff;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            margin-bottom: 30px;
+
+            border: 1px solid rgba(17, 17, 17, 0.12);
+
+            box-shadow:
+                0 8px 22px rgba(17, 17, 17, 0.18);
+        }
+
+        .lessons-progress-top {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+        .lessons-progress-title {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .lessons-progress-percent {
+            font-size: 15px;
+            font-weight: 800;
+
+            color: #cbb77a;
+        }
+
+        .lessons-progress-track {
+            width: 100%;
+            height: 12px;
+
+            background: #333333;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .lessons-progress-fill {
+            width: 0%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #cbb77a,
+                    #e5d39a
+                );
+
+            border-radius: 20px;
+
+            transition: width 0.5s ease;
+        }
+
+        .lessons-stage {
+            background: #f4edda;
+
+            border-radius: 20px;
+
+            padding: 18px;
+
+            margin-bottom: 25px;
+
+            border: 1px solid rgba(17, 17, 17, 0.12);
+
+            box-shadow:
+                0 8px 22px rgba(17, 17, 17, 0.12);
+        }
+
+        .lessons-stage-header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #075985,
+                    #0c4a6e
+                );
+
+            color: #ffffff;
+
+            border-radius: 14px;
+
+            padding: 17px 20px;
+
+            margin-bottom: 15px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 5px 14px rgba(7, 89, 133, 0.18);
+        }
+
+        .lessons-stage-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .lessons-stage-header span {
+            font-size: 13px;
+            font-weight: 700;
+
+            color: #d8f3ff;
+        }
+
+        .lessons-stage-list {
+            display: grid;
+
+            gap: 10px;
+        }
+
+        .lessons-stage-lesson {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            background: #ffffff;
+
+            color: #111111;
+
+            text-decoration: none;
+
+            padding: 16px 18px;
+
+            border-radius: 13px;
+
+            border: 1px solid rgba(17, 17, 17, 0.1);
+
+            transition: 0.25s;
+
+            box-shadow:
+                0 3px 10px rgba(17, 17, 17, 0.06);
+        }
+
+        .lessons-stage-lesson:hover {
+            transform: translateY(-2px);
+
+            border-color: rgba(7, 89, 133, 0.35);
+
+            box-shadow:
+                0 7px 18px rgba(17, 17, 17, 0.12);
+        }
+
+        .lessons-lesson-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+        .lessons-lesson-number {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #075985,
+                    #0369a1
+                );
+
+            color: #ffffff;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 4px 10px rgba(3, 105, 161, 0.2);
+        }
+
+        .lessons-lesson-text {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+        .lessons-lesson-title {
+            font-size: 16px;
+            font-weight: 800;
+
+            color: #111111;
+        }
+
+        .lessons-lesson-level {
+            font-size: 12px;
+            font-weight: 700;
+
+            color: #555555;
+        }
+
+        .lessons-lesson-status {
+            font-size: 12px;
+            font-weight: 800;
+
+            padding: 7px 10px;
+
+            border-radius: 8px;
+
+            background: #eeeeee;
+
+            color: #222222;
+        }
+
+        .lessons-stage-lesson.completed {
+            border-color: rgba(22, 163, 74, 0.4);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f4fff6,
+                    #ffffff
+                );
+        }
+
+        .lessons-stage-lesson.completed .lessons-lesson-number {
+            background:
+                linear-gradient(
+                    135deg,
+                    #16a34a,
+                    #15803d
+                );
+        }
+
+        .lessons-stage-lesson.completed .lessons-lesson-status {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .lessons-no-results {
+            display: none;
+
+            text-align: center;
+
+            background: #f4edda;
+
+            color: #111111;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            font-weight: 700;
+
+            border: 1px solid rgba(17, 17, 17, 0.12);
+
+            box-shadow:
+                0 7px 18px rgba(17, 17, 17, 0.1);
+        }
+
+        @media (max-width: 800px) {
+
+            .lessons-navbar {
+                flex-direction: column;
+            }
+
+            .lessons-nav {
+                justify-content: center;
+            }
+
+            .lessons-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .lessons-welcome h2 {
+                font-size: 28px;
+            }
+
+            .lessons-stage-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .lessons-main {
+                width: 94%;
+
+                margin-top: 30px;
+            }
+
+            .lessons-nav a {
+                font-size: 12px;
+
+                padding: 8px 9px;
+            }
+
+            .lessons-stage {
+                padding: 12px;
+            }
+
+            .lessons-stage-lesson {
+                padding: 13px;
+            }
+
+            .lessons-lesson-status {
+                display: none;
+            }
+
+            .lessons-lesson-title {
+                font-size: 14px;
+            }
+
+            .lessons-filter {
+                width: 100%;
+            }
+
+            .lessons-brand-name {
+                font-size: 18px;
+            }
+
+        }
+
+    </style>
 </head>
 
 
-<body>
+<body class="lessons-page">
 
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<header class="lessons-header">
 
-<nav class="navbar">
+    <div class="lessons-navbar">
 
-    <div class="brand">
+        <a href="index.html" class="lessons-brand">
 
-        <div class="brand-icon">
-
-            <svg
-                class="network-logo-svg"
-                viewBox="0 0 100 100"
-                role="img"
-                aria-label="شعار عرّاب الشبكات"
-            >
-
-                <g
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    opacity="0.75"
-                >
-
-                    <path d="M50 64 L22 82" />
-                    <path d="M50 64 L78 82" />
-                    <path d="M50 64 L50 91" />
-
-                    <path d="M22 82 L12 72" />
-                    <path d="M78 82 L88 72" />
-
-                    <path d="M50 91 L38 96" />
-                    <path d="M50 91 L62 96" />
-
-                </g>
-
-
-                <g fill="currentColor">
-
-                    <circle cx="22" cy="82" r="3" />
-                    <circle cx="78" cy="82" r="3" />
-                    <circle cx="50" cy="91" r="3" />
-
-                    <circle cx="12" cy="72" r="2.5" />
-                    <circle cx="88" cy="72" r="2.5" />
-
-                    <circle cx="38" cy="96" r="2.5" />
-                    <circle cx="62" cy="96" r="2.5" />
-
-                </g>
-
-
-                <text
-                    x="39"
-                    y="45"
-                    text-anchor="middle"
-                    font-family="Tajawal, Arial, sans-serif"
-                    font-size="34"
-                    font-weight="800"
-                    fill="currentColor"
-                >ع</text>
-
-
-                <text
-                    x="64"
-                    y="38"
-                    text-anchor="middle"
-                    font-family="Arial, sans-serif"
-                    font-size="22"
-                    font-weight="800"
-                    fill="currentColor"
-                >N</text>
-
-
-                <path
-                    d="M47 31 H57"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                />
-
-
-                <path
-                    d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
-                    fill="currentColor"
-                    opacity="0.95"
-                />
-
-            </svg>
-
-        </div>
-
-
-        <div>
-
-            <div class="brand-name">
-                عرّاب الشبكات
-            </div>
-
-            <div class="brand-subtitle">
-                NETWORKS
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="nav-links">
-
-        <a href="index.html" class="nav-button">
-            <span>⌂</span>
-            الرئيسية
-        </a>
-
-        <a href="index.html#network-lab" class="nav-button">
-            <span>🧪</span>
-            المختبر
-        </a>
-
-<a href="quiz.html" class="nav-button">
-        🧠 اختبر معلوماتك
-    </a>
-
-<a href="dictionary.html" class="feature-card">
-     📖 القـاموس
-</a>
-    
-    <a href="config.html" class="nav-button">
-                💻  مرجع الأوامر  
-    
-    </a> 
-
-    <a href="terminal.html" class="feature-card">
-              CLI   ⌨️
-</a>
-    <a href="profile.html" class="nav-button profile-link">
-        👤 حسابي
-    </a>
-
-    </div>
-
-</nav>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="lessons-page">
-
-
-<section class="lessons-hero">
-
-    <div class="lessons-icon">
-        📚
-    </div>
-
-    <span class="lessons-label">
-        NETWORK LESSONS
-    </span>
-
-    <h1>
-        الدروس
-    </h1>
-
-    <p>
-        تعلم الشبكات من الأساسيات إلى المفاهيم المتقدمة خطوة بخطوة
-    </p>
-
-</section>
-
-
-<section class="lessons-stats">
-
-    <div class="lesson-stat">
-
-        <strong>12</strong>
-
-        <span>
-            درس
-        </span>
-
-    </div>
-
-
-    <div class="lesson-stat">
-
-        <strong>3</strong>
-
-        <span>
-            مستويات
-        </span>
-
-    </div>
-
-
-    <div class="lesson-stat">
-
-        <strong>30+</strong>
-
-        <span>
-            موضوع
-        </span>
-
-    </div>
-
-</section>
-
-
-<div class="lesson-search">
-
-    <span>🔎</span>
-
-    <input
-        id="lessonSearch"
-        type="text"
-        placeholder="ابحث عن درس..."
-        oninput="searchLessons()"
-    >
-
-</div>
-
-
-<div class="lesson-filters">
-
-    <button
-        class="lesson-filter active"
-        onclick="filterLessons('all',this)"
-        type="button"
-    >
-        الكل
-    </button>
-
-
-    <button
-        class="lesson-filter"
-        onclick="filterLessons('easy',this)"
-        type="button"
-    >
-        🟢 سهل
-    </button>
-
-
-    <button
-        class="lesson-filter"
-        onclick="filterLessons('medium',this)"
-        type="button"
-    >
-        🟡 متوسط
-    </button>
-
-
-    <button
-        class="lesson-filter"
-        onclick="filterLessons('hard',this)"
-        type="button"
-    >
-        🔴 متقدم
-    </button>
-
-</div>
-
-
-<section class="course-progress">
-
-    <div class="progress-header">
-
-        <div>
-
-            <span class="progress-label">
-                COURSE PROGRESS
+            <span class="lessons-brand-icon">
+                🌐
             </span>
 
-            <h2>
-                تقدمك في الدورة
-            </h2>
+            <span class="lessons-brand-text">
 
-        </div>
+                <span class="lessons-brand-name">
+                    عرّاب الشبكات
+                </span>
+
+                <span class="lessons-brand-subtitle">
+                    NETWORKS
+                </span>
+
+            </span>
+
+        </a>
 
 
-        <div
-            class="progress-count"
-            id="completedCount"
+        <nav class="lessons-nav">
+
+            <a href="index.html">
+                🏠 الرئيسية
+            </a>
+
+            <a
+                href="lessons.html"
+                class="active"
+            >
+                📚 الدروس
+            </a>
+
+            <a href="index.html#network-lab">
+                🧪 المختبر
+            </a>
+
+            <a href="quiz.html">
+                🧠 الاختبارات
+            </a>
+
+            <a href="dictionary.html">
+                📖 القاموس
+            </a>
+
+            <a href="config.html">
+                💻 مرجع الأوامر
+            </a>
+
+            <a href="command-practice.html">
+                🎯 تحدي الميدان
+            </a>
+
+            <a href="terminal.html">
+                CLI ⌨️
+            </a>
+
+            <!-- اسم المستخدم يتم تحديثه تلقائياً من user.js -->
+            <a
+                href="profile.html"
+                class="user-name"
+                data-user-name
+            >
+                👤 حسابي
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="lessons-main">
+
+
+    <section class="lessons-welcome">
+
+        <h2
+            id="welcomeTitle"
+            data-user-name
         >
-            0 / 12
-        </div>
-
-    </div>
-
-
-    <div class="course-progress-bar">
-
-        <div id="courseProgressFill"></div>
-
-    </div>
-
-
-    <div class="progress-footer">
-
-        <span id="progressText">
-            لم تكمل أي درس بعد
-        </span>
-
-        <span id="progressPercent">
-            0%
-        </span>
-
-    </div>
-
-</section>
-
-<!-- =================================================
-     LEARNING JOURNEY
-================================================= -->
-
-<section class="lessons-journey">
-
-    <div class="journey-heading">
-        <span class="journey-label">LEARNING JOURNEY</span>
-
-        <h2>رحلتك التعليمية</h2>
+            رحلتك التعليمية
+        </h2>
 
         <p>
-            تعلّم الشبكات خطوة بخطوة، من الأساسيات حتى التطبيق وحل المشاكل.
+            تعلّم الشبكات خطوة بخطوة من الأساسيات إلى حل المشاكل
         </p>
-    </div>
+
+    </section>
 
 
-    <!-- المرحلة 1 -->
-    <div class="learning-stage">
+    <section class="lessons-stats">
 
-        <div class="stage-header">
-            <div class="stage-number">01</div>
+        <div class="lessons-stat-card">
 
-            <div>
-                <span class="stage-label">المرحلة 1</span>
-                <h3>الأساسيات</h3>
+            <div
+                class="lessons-stat-number"
+                id="completedCount"
+            >
+                0
             </div>
-        </div>
 
-        <div class="stage-lessons">
-
-            <a href="lesson.html?id=1" class="stage-lesson">
-                <span class="lesson-number">01</span>
-                <span class="lesson-name">أساسيات الشبكات</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=2" class="stage-lesson">
-                <span class="lesson-number">02</span>
-                <span class="lesson-name">أجهزة الشبكة</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=3" class="stage-lesson">
-                <span class="lesson-number">03</span>
-                <span class="lesson-name">IPv4</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- المرحلة 2 -->
-    <div class="learning-stage">
-
-        <div class="stage-header">
-            <div class="stage-number">02</div>
-
-            <div>
-                <span class="stage-label">المرحلة 2</span>
-                <h3>فهم الشبكات</h3>
+            <div class="lessons-stat-label">
+                دروس مكتملة
             </div>
-        </div>
-
-        <div class="stage-lessons">
-
-            <a href="lesson.html?id=4" class="stage-lesson">
-                <span class="lesson-number">04</span>
-                <span class="lesson-name">Subnetting</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=5" class="stage-lesson">
-                <span class="lesson-number">05</span>
-                <span class="lesson-name">Switching</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=6" class="stage-lesson">
-                <span class="lesson-number">06</span>
-                <span class="lesson-name">VLAN</span>
-                <span class="lesson-arrow">←</span>
-            </a>
 
         </div>
 
-    </div>
 
+        <div class="lessons-stat-card">
 
-    <!-- المرحلة 3 -->
-    <div class="learning-stage">
-
-        <div class="stage-header">
-            <div class="stage-number">03</div>
-
-            <div>
-                <span class="stage-label">المرحلة 3</span>
-                <h3>Routing</h3>
+            <div
+                class="lessons-stat-number"
+                id="totalCount"
+            >
+                12
             </div>
-        </div>
 
-        <div class="stage-lessons">
-
-            <a href="lesson.html?id=7" class="stage-lesson">
-                <span class="lesson-number">07</span>
-                <span class="lesson-name">Routing</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=8" class="stage-lesson">
-                <span class="lesson-number">08</span>
-                <span class="lesson-name">Static Routing</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=9" class="stage-lesson">
-                <span class="lesson-number">09</span>
-                <span class="lesson-name">OSPF</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- المرحلة 4 -->
-    <div class="learning-stage">
-
-        <div class="stage-header">
-            <div class="stage-number">04</div>
-
-            <div>
-                <span class="stage-label">المرحلة 4</span>
-                <h3>الإدارة والحماية</h3>
+            <div class="lessons-stat-label">
+                إجمالي الدروس
             </div>
-        </div>
-
-        <div class="stage-lessons">
-
-            <a href="lesson.html?id=10" class="stage-lesson">
-                <span class="lesson-number">10</span>
-                <span class="lesson-name">SSH</span>
-                <span class="lesson-arrow">←</span>
-            </a>
-
-            <a href="lesson.html?id=11" class="stage-lesson">
-                <span class="lesson-number">11</span>
-                <span class="lesson-name">Network Security</span>
-                <span class="lesson-arrow">←</span>
-            </a>
 
         </div>
 
-    </div>
 
+        <div class="lessons-stat-card">
 
-    <!-- المرحلة 5 -->
-    <div class="learning-stage">
-
-        <div class="stage-header">
-            <div class="stage-number">05</div>
-
-            <div>
-                <span class="stage-label">المرحلة 5</span>
-                <h3>التطبيق وحل المشاكل</h3>
+            <div
+                class="lessons-stat-number"
+                id="remainingCount"
+            >
+                12
             </div>
+
+            <div class="lessons-stat-label">
+                الدروس المتبقية
+            </div>
+
         </div>
 
-        <div class="stage-lessons">
+    </section>
 
-            <a href="lesson.html?id=12" class="stage-lesson">
-                <span class="lesson-number">12</span>
-                <span class="lesson-name">Troubleshooting</span>
-                <span class="lesson-arrow">←</span>
+
+    <section class="lessons-tools">
+
+        <div class="lessons-search-box">
+
+            <input
+                type="text"
+                id="lessonSearch"
+                placeholder="🔍 ابحث عن درس..."
+            >
+
+        </div>
+
+
+        <select
+            id="levelFilter"
+            class="lessons-filter"
+        >
+
+            <option value="all">
+                جميع المستويات
+            </option>
+
+            <option value="مبتدئ">
+                مبتدئ
+            </option>
+
+            <option value="متوسط">
+                متوسط
+            </option>
+
+            <option value="متقدم">
+                متقدم
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <section class="lessons-course-progress">
+
+        <div class="lessons-progress-top">
+
+            <div class="lessons-progress-title">
+                تقدمك في مسار الشبكات
+            </div>
+
+            <div
+                class="lessons-progress-percent"
+                id="progressPercent"
+            >
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="lessons-progress-track">
+
+            <div
+                class="lessons-progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <section class="lessons-stage">
+
+        <div class="lessons-stage-header">
+
+            <h3>
+                المرحلة الأولى: الأساسيات
+            </h3>
+
+            <span>
+                3 دروس
+            </span>
+
+        </div>
+
+
+        <div class="lessons-stage-list">
+
+            <a
+                href="lesson.html?id=1"
+                class="lessons-stage-lesson"
+                data-lesson-id="1"
+                data-level="مبتدئ"
+                data-search="أساسيات الشبكات الشبكة شبكات network basics"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">1</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            أساسيات الشبكات
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: مبتدئ
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=2"
+                class="lessons-stage-lesson"
+                data-lesson-id="2"
+                data-level="مبتدئ"
+                data-search="أجهزة الشبكة network devices router switch"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">2</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            أجهزة الشبكة
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: مبتدئ
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=3"
+                class="lessons-stage-lesson"
+                data-lesson-id="3"
+                data-level="مبتدئ"
+                data-search="IPv4 IP عنوان ip address"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">3</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            IPv4 وعناوين IP
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: مبتدئ
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
             </a>
 
         </div>
 
+    </section>
+
+
+    <section class="lessons-stage">
+
+        <div class="lessons-stage-header">
+
+            <h3>
+                المرحلة الثانية: فهم الشبكات
+            </h3>
+
+            <span>
+                3 دروس
+            </span>
+
+        </div>
+
+
+        <div class="lessons-stage-list">
+
+            <a
+                href="lesson.html?id=4"
+                class="lessons-stage-lesson"
+                data-lesson-id="4"
+                data-level="متوسط"
+                data-search="Subnetting subnet تقسيم الشبكات"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">4</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            Subnetting
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متوسط
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=5"
+                class="lessons-stage-lesson"
+                data-lesson-id="5"
+                data-level="متوسط"
+                data-search="Switching switch سويتش switching"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">5</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            Switching
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متوسط
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=6"
+                class="lessons-stage-lesson"
+                data-lesson-id="6"
+                data-level="متوسط"
+                data-search="VLAN vlan شبكات افتراضية"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">6</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            VLAN
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متوسط
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="lessons-stage">
+
+        <div class="lessons-stage-header">
+
+            <h3>
+                المرحلة الثالثة: Routing
+            </h3>
+
+            <span>
+                3 دروس
+            </span>
+
+        </div>
+
+
+        <div class="lessons-stage-list">
+
+            <a
+                href="lesson.html?id=7"
+                class="lessons-stage-lesson"
+                data-lesson-id="7"
+                data-level="متوسط"
+                data-search="Routing routing راوتنج التوجيه"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">7</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            Routing
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متوسط
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=8"
+                class="lessons-stage-lesson"
+                data-lesson-id="8"
+                data-level="متوسط"
+                data-search="Static Routing static route ip route"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">8</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            Static Routing
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متوسط
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=9"
+                class="lessons-stage-lesson"
+                data-lesson-id="9"
+                data-level="متقدم"
+                data-search="OSPF ospf routing protocol بروتوكول"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">9</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            OSPF
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متقدم
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="lessons-stage">
+
+        <div class="lessons-stage-header">
+
+            <h3>
+                المرحلة الرابعة: الإدارة والحماية
+            </h3>
+
+            <span>
+                درسان
+            </span>
+
+        </div>
+
+
+        <div class="lessons-stage-list">
+
+            <a
+                href="lesson.html?id=10"
+                class="lessons-stage-lesson"
+                data-lesson-id="10"
+                data-level="متوسط"
+                data-search="SSH إدارة الأجهزة remote management"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">10</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            SSH وإدارة الأجهزة
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متوسط
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+
+            <a
+                href="lesson.html?id=11"
+                class="lessons-stage-lesson"
+                data-lesson-id="11"
+                data-level="متقدم"
+                data-search="Network Security security أمن الشبكات firewall"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">11</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            Network Security
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متقدم
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="lessons-stage">
+
+        <div class="lessons-stage-header">
+
+            <h3>
+                المرحلة الخامسة: التطبيق وحل المشاكل
+            </h3>
+
+            <span>
+                درس واحد
+            </span>
+
+        </div>
+
+
+        <div class="lessons-stage-list">
+
+            <a
+                href="lesson.html?id=12"
+                class="lessons-stage-lesson"
+                data-lesson-id="12"
+                data-level="متقدم"
+                data-search="Troubleshooting troubleshooting حل المشاكل network problems"
+            >
+
+                <div class="lessons-lesson-info">
+
+                    <div class="lessons-lesson-number">12</div>
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            Troubleshooting
+                        </div>
+
+                        <div class="lessons-lesson-level">
+                            المستوى: متقدم
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <div
+        class="lessons-no-results"
+        id="noResults"
+    >
+        لا توجد دروس مطابقة للبحث.
     </div>
-
-</section>
-
-
-<div class="lessons-note">
-
-    <span>💡</span>
-
-    <div>
-        ابدأ من الدرس الأول، وبعدها انتقل تدريجيًا
-        إلى Subnetting و VLAN و Routing ثم المواضيع المتقدمة.
-    </div>
-
-</div>
-
 
 </main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
-<footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <div class="brand">
-
-        <div class="brand-icon">
-
-            <svg
-                class="network-logo-svg"
-                viewBox="0 0 100 100"
-                role="img"
-                aria-label="شعار عرّاب الشبكات"
-            >
-
-                <g
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    opacity="0.75"
-                >
-
-                    <path d="M50 64 L22 82" />
-                    <path d="M50 64 L78 82" />
-                    <path d="M50 64 L50 91" />
-
-                    <path d="M22 82 L12 72" />
-                    <path d="M78 82 L88 72" />
-
-                    <path d="M50 91 L38 96" />
-                    <path d="M50 91 L62 96" />
-
-                </g>
-
-
-                <g fill="currentColor">
-
-                    <circle cx="22" cy="82" r="3" />
-                    <circle cx="78" cy="82" r="3" />
-                    <circle cx="50" cy="91" r="3" />
-
-                    <circle cx="12" cy="72" r="2.5" />
-                    <circle cx="88" cy="72" r="2.5" />
-
-                    <circle cx="38" cy="96" r="2.5" />
-                    <circle cx="62" cy="96" r="2.5" />
-
-                </g>
-
-
-                <text
-                    x="39"
-                    y="45"
-                    text-anchor="middle"
-                    font-family="Tajawal, Arial, sans-serif"
-                    font-size="34"
-                    font-weight="800"
-                    fill="currentColor"
-                >ع</text>
-
-
-                <text
-                    x="64"
-                    y="38"
-                    text-anchor="middle"
-                    font-family="Arial, sans-serif"
-                    font-size="22"
-                    font-weight="800"
-                    fill="currentColor"
-                >N</text>
-
-
-                <path
-                    d="M47 31 H57"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                />
-
-
-                <path
-                    d="M50 51 L53 58 L61 59 L55 64 L57 72 L50 68 L43 72 L45 64 L39 59 L47 58 Z"
-                    fill="currentColor"
-                    opacity="0.95"
-                />
-
-            </svg>
-
-        </div>
-
-
-        <div>
-
-            <div class="brand-name">
-                عرّاب الشبكات
-            </div>
-
-            <div class="brand-subtitle">
-                NETWORKS
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <p>
-        تعلم الشبكات بطريقة سهلة ومبسطة
-    </p>
-
-</footer>
+<script src="supabase.js"></script>
 
 
 <script>
 
-let currentFilter = "all";
-
-
-function searchLessons() {
-
-    const search =
-        document
-        .getElementById("lessonSearch")
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const cards =
-        document.querySelectorAll(".lesson-card");
-
-
-    cards.forEach(function(card) {
-
-        const text =
-            card.innerText
-            .toLowerCase();
-
-
-        const matchesSearch =
-            text.includes(search);
-
-
-        const level =
-            card.dataset.level;
-
-
-        const matchesFilter =
-            currentFilter === "all" ||
-            level === currentFilter;
-
-
-        if(matchesSearch && matchesFilter) {
-
-            card.classList.remove("hidden");
-
-        } else {
-
-            card.classList.add("hidden");
-
-        }
-
-    });
-
-}
-
-
-function filterLessons(type, button) {
-
-    currentFilter = type;
-
-
-    const buttons =
-        document.querySelectorAll(
-            ".lesson-filter"
-        );
-
-
-    buttons.forEach(function(btn) {
-
-        btn.classList.remove("active");
-
-    });
-
-
-    button.classList.add("active");
-
-
-    searchLessons();
-
-}
-
-
-function updateCourseProgress() {
+    const TOTAL_LESSONS = 12;
 
     let completedLessons = [];
 
-    try {
 
-        completedLessons =
-            JSON.parse(
-                localStorage.getItem("completedLessons") || "[]"
+    /* =====================================================
+       LOAD COMPLETED LESSONS
+    ===================================================== */
+
+    async function loadCompletedLessons() {
+
+        try {
+
+            if (
+                typeof supabaseClient === "undefined" ||
+                !supabaseClient
+            ) {
+
+                loadLocalProgress();
+
+                updateProgressUI();
+
+                return;
+            }
+
+
+            const {
+                data: {
+                    user
+                },
+                error: userError
+            } = await supabaseClient.auth.getUser();
+
+
+            if (
+                userError ||
+                !user
+            ) {
+
+                loadLocalProgress();
+
+                updateProgressUI();
+
+                return;
+            }
+
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("users")
+                .select("completed_lessons")
+                .eq("auth_id", user.id)
+                .maybeSingle();
+
+
+            if (error) {
+
+                console.error(
+                    "Progress error:",
+                    error
+                );
+
+                loadLocalProgress();
+
+            } else if (
+                data &&
+                Array.isArray(data.completed_lessons)
+            ) {
+
+                completedLessons =
+                    data.completed_lessons
+                        .map(Number)
+                        .filter(
+                            id =>
+                                Number.isInteger(id) &&
+                                id >= 1 &&
+                                id <= TOTAL_LESSONS
+                        );
+
+
+                completedLessons =
+                    [...new Set(completedLessons)];
+
+            } else {
+
+                completedLessons = [];
+
+            }
+
+
+            updateProgressUI();
+
+        } catch (error) {
+
+            console.error(
+                "Load progress error:",
+                error
             );
 
-        if(!Array.isArray(completedLessons)) {
+            loadLocalProgress();
+
+            updateProgressUI();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOCAL STORAGE FALLBACK
+    ===================================================== */
+
+    function loadLocalProgress() {
+
+        try {
+
+            const saved =
+                JSON.parse(
+                    localStorage.getItem(
+                        "completedLessons"
+                    ) || "[]"
+                );
+
+
+            if (Array.isArray(saved)) {
+
+                completedLessons =
+                    saved
+                        .map(Number)
+                        .filter(
+                            id =>
+                                Number.isInteger(id) &&
+                                id >= 1 &&
+                                id <= TOTAL_LESSONS
+                        );
+
+
+                completedLessons =
+                    [...new Set(completedLessons)];
+
+            } else {
+
+                completedLessons = [];
+
+            }
+
+        } catch (error) {
 
             completedLessons = [];
 
         }
 
-    } catch(error) {
+    }
 
-        completedLessons = [];
+
+    /* =====================================================
+       UPDATE PROGRESS
+    ===================================================== */
+
+    function updateProgressUI() {
+
+        const completedCount =
+            completedLessons.length;
+
+
+        const remainingCount =
+            TOTAL_LESSONS -
+            completedCount;
+
+
+        const percentage =
+            Math.round(
+                (
+                    completedCount /
+                    TOTAL_LESSONS
+                ) * 100
+            );
+
+
+        document
+            .getElementById("completedCount")
+            .textContent =
+            completedCount;
+
+
+        document
+            .getElementById("remainingCount")
+            .textContent =
+            remainingCount;
+
+
+        document
+            .getElementById("totalCount")
+            .textContent =
+            TOTAL_LESSONS;
+
+
+        document
+            .getElementById("progressPercent")
+            .textContent =
+            percentage + "%";
+
+
+        document
+            .getElementById("progressFill")
+            .style.width =
+            percentage + "%";
+
+
+        document
+            .querySelectorAll(".lessons-stage-lesson")
+            .forEach(
+                lesson => {
+
+                    const id =
+                        Number(
+                            lesson.dataset.lessonId
+                        );
+
+
+                    const status =
+                        lesson.querySelector(
+                            ".lessons-lesson-status"
+                        );
+
+
+                    if (
+                        completedLessons.includes(id)
+                    ) {
+
+                        lesson.classList.add(
+                            "completed"
+                        );
+
+
+                        if (status) {
+
+                            status.textContent =
+                                "✓ مكتمل";
+
+                        }
+
+                    } else {
+
+                        lesson.classList.remove(
+                            "completed"
+                        );
+
+
+                        if (status) {
+
+                            status.textContent =
+                                "ابدأ";
+
+                        }
+
+                    }
+
+                }
+            );
 
     }
 
 
-    const totalLessons = 12;
+    /* =====================================================
+       SEARCH
+    ===================================================== */
 
-    const completedCount =
-        Math.min(
-            completedLessons.length,
-            totalLessons
-        );
+    function searchLessons() {
 
-
-    const percentage =
-        Math.round(
-            (completedCount / totalLessons) * 100
-        );
+        const searchInput =
+            document.getElementById(
+                "lessonSearch"
+            );
 
 
-    document
-        .getElementById("completedCount")
-        .textContent =
-        completedCount + " / " + totalLessons;
+        const filter =
+            document.getElementById(
+                "levelFilter"
+            );
 
 
-    document
-        .getElementById("courseProgressFill")
-        .style.width =
-        percentage + "%";
+        const stages =
+            document.querySelectorAll(
+                ".lessons-stage"
+            );
 
 
-    document
-        .getElementById("progressPercent")
-        .textContent =
-        percentage + "%";
+        const searchText =
+            searchInput.value
+                .trim()
+                .toLowerCase();
 
 
-    if(completedCount === 0) {
+        const selectedLevel =
+            filter.value;
+
+
+        let totalVisible = 0;
+
+
+        stages.forEach(stage => {
+
+            const lessons =
+                stage.querySelectorAll(
+                    ".lessons-stage-lesson"
+                );
+
+
+            let stageVisible = 0;
+
+
+            lessons.forEach(lesson => {
+
+                const text =
+                    (
+                        lesson.dataset.search ||
+                        ""
+                    ).toLowerCase();
+
+
+                const level =
+                    lesson.dataset.level ||
+                    "";
+
+
+                const matchesSearch =
+                    text.includes(
+                        searchText
+                    );
+
+
+                const matchesLevel =
+                    selectedLevel === "all" ||
+                    level === selectedLevel;
+
+
+                if (
+                    matchesSearch &&
+                    matchesLevel
+                ) {
+
+                    lesson.style.display =
+                        "flex";
+
+                    stageVisible++;
+
+                    totalVisible++;
+
+                } else {
+
+                    lesson.style.display =
+                        "none";
+
+                }
+
+            });
+
+
+            if (stageVisible === 0) {
+
+                stage.style.display =
+                    "none";
+
+            } else {
+
+                stage.style.display =
+                    "block";
+
+            }
+
+        });
+
 
         document
-            .getElementById("progressText")
-            .textContent =
-            "لم تكمل أي درس بعد";
-
-    } else if(completedCount === totalLessons) {
-
-        document
-            .getElementById("progressText")
-            .textContent =
-            "🎉 أكملت جميع الدروس";
-
-    } else {
-
-        document
-            .getElementById("progressText")
-            .textContent =
-            "استمر! أنت تتقدم بشكل ممتاز";
+            .getElementById("noResults")
+            .style.display =
+            totalVisible === 0
+                ? "block"
+                : "none";
 
     }
 
-}
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    async function initializeLessons() {
+
+        await loadCompletedLessons();
+
+        searchLessons();
+
+    }
 
 
-updateCourseProgress();
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
+    document
+        .getElementById("lessonSearch")
+        .addEventListener(
+            "input",
+            searchLessons
+        );
+
+
+    document
+        .getElementById("levelFilter")
+        .addEventListener(
+            "change",
+            searchLessons
+        );
+
+
+    initializeLessons();
 
 </script>
 
+
+<!-- =====================================================
+     USER SYSTEM
+===================================================== -->
+
 <script src="user.js"></script>
-<script data-goatcounter="https://mish3l11.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
 
-<body class="lesson-dark-blue">
 
+</body>
 </html>
