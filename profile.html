@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -190,6 +196,11 @@
             cursor: pointer;
         }
 
+        .logout-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         #loading {
             text-align: center;
             padding: 60px 20px;
@@ -197,7 +208,6 @@
             font-weight: 700;
         }
 
-        /* صندوق الخطأ */
         #error {
             display: none;
             width: min(900px, 92%);
@@ -237,6 +247,7 @@
         }
 
         @media (max-width: 700px) {
+
             .grid {
                 grid-template-columns: 1fr;
             }
@@ -249,8 +260,11 @@
                 flex-direction: column;
                 gap: 5px;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -258,52 +272,89 @@
 <nav>
 
     <div class="brand">
+
         🌐 عرّاب الشبكات
+
         <span>NETWORKS</span>
+
     </div>
 
+
     <div class="nav-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="lessons.html">الدروس</a>
-        <a href="quiz.html">الاختبار</a>
-        <a href="config.html">الأوامر</a>
-        <a href="profile.html">حسابي</a>
+
+        <a href="index.html">
+            الرئيسية
+        </a>
+
+        <a href="lessons.html">
+            الدروس
+        </a>
+
+        <a href="quiz.html">
+            الاختبار
+        </a>
+
+        <a href="config.html">
+            الأوامر
+        </a>
+
+        <a href="profile.html">
+            حسابي
+        </a>
+
     </div>
 
 </nav>
 
 
-<!-- التحميل -->
+<!-- =========================
+     Loading
+========================= -->
 
 <div id="loading">
+
     جاري تحميل بيانات الحساب...
+
 </div>
 
 
-<!-- الخطأ -->
+<!-- =========================
+     Error
+========================= -->
 
 <div id="error">
 
-    <h2>⚠️ حدث خطأ أثناء تحميل الحساب</h2>
+    <h2>
+        ⚠️ حدث خطأ أثناء تحميل الحساب
+    </h2>
 
     <p>
         هذه المرة تم عرض تفاصيل الخطأ حتى نعرف المشكلة بالضبط:
     </p>
 
     <div id="errorDetails">
+
         جاري تحديد الخطأ...
+
     </div>
 
 </div>
 
 
-<!-- محتوى الحساب -->
+<!-- =========================
+     Profile
+========================= -->
 
-<main id="profileContent" class="container">
+<main
+    id="profileContent"
+    class="container"
+>
 
     <section class="hero">
 
-        <h1>👤 حسابي</h1>
+        <h1>
+            👤 حسابي
+        </h1>
 
         <p>
             بيانات حسابك وتقدمك في عرّاب الشبكات
@@ -314,48 +365,101 @@
 
     <section class="grid">
 
-        <!-- معلومات الحساب -->
+
+        <!-- =========================
+             Account Information
+        ========================= -->
 
         <div class="card">
 
-            <h2>📋 معلومات الحساب</h2>
+            <h2>
+                📋 معلومات الحساب
+            </h2>
+
 
             <div class="info-row">
-                <span class="label">اسم المستخدم</span>
-                <span class="value" id="username">—</span>
+
+                <span class="label">
+                    اسم المستخدم
+                </span>
+
+                <span
+                    class="value"
+                    id="username"
+                >
+                    —
+                </span>
+
             </div>
 
-            <div class="info-row">
-                <span class="label">البريد الإلكتروني</span>
-                <span class="value" id="email">—</span>
-            </div>
 
             <div class="info-row">
-                <span class="label">نوع الحساب</span>
-                <span class="value" id="accountType">مستخدم</span>
+
+                <span class="label">
+                    البريد الإلكتروني
+                </span>
+
+                <span
+                    class="value"
+                    id="email"
+                >
+                    —
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="label">
+                    نوع الحساب
+                </span>
+
+                <span
+                    class="value"
+                    id="accountType"
+                >
+                    مستخدم
+                </span>
+
             </div>
 
         </div>
 
 
-        <!-- الدروس -->
+        <!-- =========================
+             Lessons
+        ========================= -->
 
         <div class="card">
 
-            <h2>📚 تقدم الدروس</h2>
+            <h2>
+                📚 تقدم الدروس
+            </h2>
+
 
             <div class="progress-box">
 
                 <div class="progress-title">
-                    <span>الدروس المكتملة</span>
-                    <span id="lessonsCount">0</span>
+
+                    <span>
+                        الدروس المكتملة
+                    </span>
+
+                    <span id="lessonsCount">
+                        0
+                    </span>
+
                 </div>
 
+
                 <div class="progress">
+
                     <div
                         id="lessonsProgress"
-                        class="progress-bar">
-                    </div>
+                        class="progress-bar"
+                    ></div>
+
                 </div>
 
             </div>
@@ -364,15 +468,25 @@
             <div class="progress-box">
 
                 <div class="progress-title">
-                    <span>تقدم المختبر</span>
-                    <span id="labProgressText">0%</span>
+
+                    <span>
+                        تقدم المختبر
+                    </span>
+
+                    <span id="labProgressText">
+                        0%
+                    </span>
+
                 </div>
 
+
                 <div class="progress">
+
                     <div
                         id="labProgress"
-                        class="progress-bar">
-                    </div>
+                        class="progress-bar"
+                    ></div>
+
                 </div>
 
             </div>
@@ -380,11 +494,16 @@
         </div>
 
 
-        <!-- الاختبار -->
+        <!-- =========================
+             Quiz
+        ========================= -->
 
         <div class="card">
 
-            <h2>🏆 الاختبار</h2>
+            <h2>
+                🏆 الاختبار
+            </h2>
+
 
             <div class="info-row">
 
@@ -394,7 +513,8 @@
 
                 <span
                     class="value"
-                    id="quizScore">
+                    id="quizScore"
+                >
                     0
                 </span>
 
@@ -403,7 +523,9 @@
         </div>
 
 
-        <!-- لوحة المدير -->
+        <!-- =========================
+             Admin Panel
+        ========================= -->
 
         <div
             id="adminPanel"
@@ -411,12 +533,17 @@
             style="display:none;"
         >
 
-            <h2>🛠️ لوحة الإدارة</h2>
+            <h2>
+                🛠️ لوحة الإدارة
+            </h2>
 
             <p>
+
                 لديك صلاحيات مدير النظام ويمكنك إدارة
                 المستخدمين ومتابعة بيانات الموقع.
+
             </p>
+
 
             <a
                 href="admin.html"
@@ -430,11 +557,17 @@
     </section>
 
 
+    <!-- =========================
+         Logout
+    ========================= -->
+
     <button
         id="logoutBtn"
         class="logout-btn"
     >
+
         تسجيل الخروج
+
     </button>
 
 </main>
@@ -451,348 +584,502 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", async function () {
-
-    const loading =
-        document.getElementById("loading");
-
-    const errorBox =
-        document.getElementById("error");
-
-    const errorDetails =
-        document.getElementById("errorDetails");
-
-    const profileContent =
-        document.getElementById("profileContent");
-
-    const adminPanel =
-        document.getElementById("adminPanel");
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
 
 
-    /*
-    ==========================================
-    دالة عرض الخطأ بالتفصيل
-    ==========================================
-    */
-
-    function showError(title, details) {
-
-        loading.style.display = "none";
-
-        profileContent.style.display = "none";
-
-        errorBox.style.display = "block";
-
-        errorDetails.textContent =
-            title +
-            "\n\n" +
-            details;
-    }
+        const loading =
+            document.getElementById("loading");
 
 
-    try {
+        const errorBox =
+            document.getElementById("error");
+
+
+        const errorDetails =
+            document.getElementById("errorDetails");
+
+
+        const profileContent =
+            document.getElementById("profileContent");
+
+
+        const adminPanel =
+            document.getElementById("adminPanel");
+
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
 
         /*
         ==========================================
-        1 - التأكد من تحميل Supabase
+        عرض الخطأ
         ==========================================
         */
 
-        if (typeof supabaseClient === "undefined") {
+        function showError(title, details) {
 
-            showError(
-                "supabaseClient غير موجود",
-                "ملف supabase.js لم يتم تحميله بشكل صحيح."
-            );
+            loading.style.display = "none";
 
-            return;
+            profileContent.style.display = "none";
+
+            errorBox.style.display = "block";
+
+            errorDetails.textContent =
+                title +
+                "\n\n" +
+                details;
+
         }
 
 
-        /*
-        ==========================================
-        2 - الحصول على المستخدم الحالي
-        ==========================================
-        */
-
-        const {
-            data: authData,
-            error: authError
-        } =
-        await supabaseClient.auth.getUser();
-
-
-        if (authError) {
-
-            showError(
-                "خطأ أثناء قراءة تسجيل الدخول",
-                JSON.stringify(authError, null, 2)
-            );
-
-            return;
-        }
-
-
-        const user =
-            authData?.user;
-
-
-        if (!user) {
-
-            showError(
-                "لا يوجد مستخدم مسجل الدخول",
-                "Supabase لم يجد جلسة دخول حالية."
-            );
-
-            return;
-        }
-
-
-        /*
-        ==========================================
-        3 - جلب بيانات users
-        ==========================================
-        */
-
-        const {
-            data: profile,
-            error: profileError
-        } =
-        await supabaseClient
-            .from("users")
-            .select("*")
-            .eq("auth_id", user.id)
-            .single();
-
-
-        if (profileError) {
-
-            showError(
-                "خطأ أثناء قراءة جدول users",
-                JSON.stringify({
-                    message: profileError.message,
-                    details: profileError.details,
-                    hint: profileError.hint,
-                    code: profileError.code
-                }, null, 2)
-            );
-
-            return;
-        }
-
-
-        if (!profile) {
-
-            showError(
-                "لم يتم العثور على بيانات الحساب",
-                "تم العثور على مستخدم في Authentication ولكن لم يتم العثور على صف مطابق في جدول users."
-            );
-
-            return;
-        }
-
-
-        /*
-        ==========================================
-        4 - عرض معلومات الحساب
-        ==========================================
-        */
-
-        document.getElementById("username").textContent =
-            profile.username || "بدون اسم";
-
-
-        document.getElementById("email").textContent =
-            profile.email || user.email || "بدون بريد";
-
-
-        /*
-        ==========================================
-        5 - التحقق من المدير
-        ==========================================
-        */
-
-        console.log("User ID:", user.id);
-
-        console.log(
-            "is_admin:",
-            profile.is_admin
-        );
-
-        console.log(
-            "is_admin type:",
-            typeof profile.is_admin
-        );
-
-
-        if (profile.is_admin === true) {
-
-            document.getElementById("accountType").textContent =
-                "مدير النظام";
-
-            adminPanel.style.display =
-                "block";
-
-        } else {
-
-            document.getElementById("accountType").textContent =
-                "مستخدم";
-
-            adminPanel.style.display =
-                "none";
-        }
-
-
-        /*
-        ==========================================
-        6 - الدروس
-        ==========================================
-        */
-
-        const completedLessons =
-            Array.isArray(profile.completed_lessons)
-                ? profile.completed_lessons
-                : [];
-
-
-        const lessonsCount =
-            completedLessons.length;
-
-
-        document.getElementById("lessonsCount").textContent =
-            lessonsCount;
-
-
-        const totalLessons = 12;
-
-
-        let lessonsPercent =
-            (lessonsCount / totalLessons) * 100;
-
-
-        lessonsPercent =
-            Math.max(
-                0,
-                Math.min(100, lessonsPercent)
-            );
-
-
-        document.getElementById("lessonsProgress").style.width =
-            lessonsPercent + "%";
-
-
-        /*
-        ==========================================
-        7 - المختبر
-        ==========================================
-        */
-
-        let labProgress =
-            Number(profile.lab_progress) || 0;
-
-
-        labProgress =
-            Math.max(
-                0,
-                Math.min(100, labProgress)
-            );
-
-
-        document.getElementById("labProgress").style.width =
-            labProgress + "%";
-
-
-        document.getElementById("labProgressText").textContent =
-            labProgress + "%";
-
-
-        /*
-        ==========================================
-        8 - الاختبار
-        ==========================================
-        */
-
-        document.getElementById("quizScore").textContent =
-            Number(profile.quiz_best_score) || 0;
-
-
-        /*
-        ==========================================
-        9 - إظهار الحساب
-        ==========================================
-        */
-
-        loading.style.display =
-            "none";
-
-        profileContent.style.display =
-            "block";
-
-
-    } catch (error) {
-
-        showError(
-            "خطأ غير متوقع",
-            JSON.stringify({
-                message: error?.message,
-                name: error?.name,
-                stack: error?.stack
-            }, null, 2)
-        );
-
-    }
-
-
-    /*
-    ==========================================
-    تسجيل الخروج
-    ==========================================
-    */
-
-    logoutBtn.addEventListener(
-        "click",
-        async function () {
-
-            logoutBtn.disabled = true;
-
-            logoutBtn.textContent =
-                "جاري تسجيل الخروج...";
-
-
-            const {
-                error
-            } =
-            await supabaseClient.auth.signOut();
-
-
-            if (error) {
-
-                logoutBtn.disabled = false;
-
-                logoutBtn.textContent =
-                    "تسجيل الخروج";
-
+        try {
+
+
+            /*
+            ==========================================
+            1 - التأكد من Supabase
+            ==========================================
+            */
+
+            if (
+                typeof supabaseClient ===
+                "undefined"
+            ) {
 
                 showError(
-                    "خطأ أثناء تسجيل الخروج",
-                    JSON.stringify(error, null, 2)
+                    "supabaseClient غير موجود",
+                    "ملف supabase.js لم يتم تحميله بشكل صحيح."
                 );
 
                 return;
+
             }
 
 
-            window.location.href =
-                "login.html";
-        }
-    );
+            /*
+            ==========================================
+            2 - قراءة Session
+            ==========================================
+            */
 
-});
+            const {
+                data: sessionData,
+                error: sessionError
+            } =
+            await supabaseClient.auth.getSession();
+
+
+            if (sessionError) {
+
+                showError(
+                    "خطأ أثناء قراءة جلسة تسجيل الدخول",
+                    JSON.stringify(
+                        sessionError,
+                        null,
+                        2
+                    )
+                );
+
+                return;
+
+            }
+
+
+            const session =
+                sessionData?.session;
+
+
+            /*
+            ==========================================
+            لا توجد جلسة
+            ==========================================
+            */
+
+            if (
+                !session ||
+                !session.user
+            ) {
+
+                loading.style.display =
+                    "none";
+
+
+                /*
+                إعادة المستخدم إلى صفحة الدخول
+                */
+
+                window.location.replace(
+                    "login.html"
+                );
+
+                return;
+
+            }
+
+
+            const user =
+                session.user;
+
+
+            /*
+            ==========================================
+            3 - قراءة بيانات المستخدم
+            ==========================================
+            */
+
+            const {
+                data: profile,
+                error: profileError
+            } =
+            await supabaseClient
+                .from("users")
+                .select("*")
+                .eq("auth_id", user.id)
+                .maybeSingle();
+
+
+            if (profileError) {
+
+                showError(
+                    "خطأ أثناء قراءة جدول users",
+
+                    JSON.stringify(
+                        {
+                            message:
+                                profileError.message,
+
+                            details:
+                                profileError.details,
+
+                            hint:
+                                profileError.hint,
+
+                            code:
+                                profileError.code
+                        },
+                        null,
+                        2
+                    )
+                );
+
+                return;
+
+            }
+
+
+            /*
+            ==========================================
+            لا يوجد Profile
+            ==========================================
+            */
+
+            if (!profile) {
+
+                showError(
+                    "لم يتم العثور على بيانات الحساب",
+
+                    "تم العثور على جلسة تسجيل الدخول، ولكن لم يتم العثور على صف مطابق في جدول users."
+                );
+
+                return;
+
+            }
+
+
+            /*
+            ==========================================
+            4 - معلومات الحساب
+            ==========================================
+            */
+
+            document
+                .getElementById("username")
+                .textContent =
+                    profile.username ||
+                    "بدون اسم";
+
+
+            document
+                .getElementById("email")
+                .textContent =
+                    profile.email ||
+                    user.email ||
+                    "بدون بريد";
+
+
+            /*
+            ==========================================
+            5 - التحقق من المدير
+            ==========================================
+            */
+
+            console.log(
+                "User ID:",
+                user.id
+            );
+
+
+            console.log(
+                "is_admin:",
+                profile.is_admin
+            );
+
+
+            console.log(
+                "is_admin type:",
+                typeof profile.is_admin
+            );
+
+
+            if (
+                profile.is_admin === true
+            ) {
+
+                document
+                    .getElementById(
+                        "accountType"
+                    )
+                    .textContent =
+                        "مدير النظام";
+
+
+                adminPanel.style.display =
+                    "block";
+
+            } else {
+
+                document
+                    .getElementById(
+                        "accountType"
+                    )
+                    .textContent =
+                        "مستخدم";
+
+
+                adminPanel.style.display =
+                    "none";
+
+            }
+
+
+            /*
+            ==========================================
+            6 - الدروس
+            ==========================================
+            */
+
+            const completedLessons =
+                Array.isArray(
+                    profile.completed_lessons
+                )
+                    ? profile.completed_lessons
+                    : [];
+
+
+            const lessonsCount =
+                completedLessons.length;
+
+
+            document
+                .getElementById(
+                    "lessonsCount"
+                )
+                .textContent =
+                    lessonsCount;
+
+
+            const totalLessons =
+                12;
+
+
+            let lessonsPercent =
+                (
+                    lessonsCount /
+                    totalLessons
+                ) * 100;
+
+
+            lessonsPercent =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        lessonsPercent
+                    )
+                );
+
+
+            document
+                .getElementById(
+                    "lessonsProgress"
+                )
+                .style.width =
+                    lessonsPercent +
+                    "%";
+
+
+            /*
+            ==========================================
+            7 - المختبر
+            ==========================================
+            */
+
+            let labProgress =
+                Number(
+                    profile.lab_progress
+                ) || 0;
+
+
+            labProgress =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        labProgress
+                    )
+                );
+
+
+            document
+                .getElementById(
+                    "labProgress"
+                )
+                .style.width =
+                    labProgress +
+                    "%";
+
+
+            document
+                .getElementById(
+                    "labProgressText"
+                )
+                .textContent =
+                    labProgress +
+                    "%";
+
+
+            /*
+            ==========================================
+            8 - الاختبار
+            ==========================================
+            */
+
+            document
+                .getElementById(
+                    "quizScore"
+                )
+                .textContent =
+                    Number(
+                        profile.quiz_best_score
+                    ) || 0;
+
+
+            /*
+            ==========================================
+            9 - إظهار الحساب
+            ==========================================
+            */
+
+            loading.style.display =
+                "none";
+
+
+            profileContent.style.display =
+                "block";
+
+
+        } catch (error) {
+
+
+            showError(
+                "خطأ غير متوقع",
+
+                JSON.stringify(
+                    {
+                        message:
+                            error?.message,
+
+                        name:
+                            error?.name,
+
+                        stack:
+                            error?.stack
+                    },
+                    null,
+                    2
+                )
+            );
+
+        }
+
+
+        /*
+        ==========================================
+        تسجيل الخروج
+        ==========================================
+        */
+
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
+
+
+                logoutBtn.disabled =
+                    true;
+
+
+                logoutBtn.textContent =
+                    "جاري تسجيل الخروج...";
+
+
+                const {
+                    error
+                } =
+                await supabaseClient
+                    .auth
+                    .signOut();
+
+
+                if (error) {
+
+                    logoutBtn.disabled =
+                        false;
+
+
+                    logoutBtn.textContent =
+                        "تسجيل الخروج";
+
+
+                    showError(
+                        "خطأ أثناء تسجيل الخروج",
+
+                        JSON.stringify(
+                            error,
+                            null,
+                            2
+                        )
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.replace(
+                    "login.html"
+                );
+
+            }
+        );
+
+    }
+);
 
 </script>
 
 </body>
+
 </html>
