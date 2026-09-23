@@ -227,6 +227,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "وجود MAC وIP جديدين لا يكفي لإثبات وجود هجوم، لكنه يكفي لفتح تحقيق والتحقق من هوية الجهاز.",
+
         report: "تم تصنيف الحالة كجهاز غير معروف يحتاج إلى التحقق من المصدر والهوية."
     },
 
@@ -325,6 +326,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "الأدلة تظهر ارتفاعًا في حركة البيانات تزامن مع بداية البطء.",
+
         report: "تم تحديد Traffic Spike كعامل مرتبط بتدهور أداء الشبكة."
     },
 
@@ -423,6 +425,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "نجاح الوصول باستخدام IP مع فشل الاسم يشير إلى مشكلة مرتبطة بخدمة DNS.",
+
         report: "تم حصر المشكلة في عملية حل الاسم وليس في خدمة الويب نفسها."
     },
 
@@ -521,6 +524,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "الأجهزة التي لا تحصل على IP تشير إلى مشكلة في DHCP أو نطاق توزيع العناوين.",
+
         report: "تم تحديد المشكلة في عملية الحصول على عنوان IP وليس في الشبكة بالكامل."
     },
 
@@ -619,6 +623,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "تأثر قسم كامل مع استمرار الأقسام الأخرى يشير إلى VLAN أو Trunk أو المسار المرتبط بالقسم.",
+
         report: "تم حصر نطاق التحقيق في طبقة الوصول وVLAN والـTrunk."
     },
 
@@ -717,6 +722,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "الأدلة تشير إلى تغير في مسار التوجيه وليس إلى توقف الخدمة.",
+
         report: "تم تحديد تغير في Routing أو استخدام مسار احتياطي."
     },
 
@@ -815,6 +821,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "عمل الشبكة المحلية وفشل الوصول إلى الشبكة البعيدة يشير إلى Routing بين الفرع والمقر.",
+
         report: "تم تحديد نطاق التحقيق في المسار بين المواقع والـStatic Routes."
     },
 
@@ -913,6 +920,7 @@ var cases = [
         correctHypothesis: "h2",
 
         conclusion: "النمط غير المعتاد يستدعي مزيدًا من التحليل والتصعيد لفريق الأمن، دون افتراض سبب نهائي من هذه الأدلة وحدها.",
+
         report: "تم تصنيف الحالة كسلوك غير معتاد يحتاج إلى تحليل أمني إضافي."
     },
 
@@ -1030,6 +1038,7 @@ var cases = [
         correctHypothesis: "h3",
 
         conclusion: "ترابط توقيت تغييرات Layer 2 وLayer 3 مع تأثر الخدمة يشير إلى سلسلة تغييرات في الشبكة تحتاج إلى مراجعة كاملة.",
+
         report: "تم ربط الأدلة زمنيًا وتحديد سلسلة تغييرات في طبقات الشبكة أثرت على الخدمة."
     }
 
@@ -1056,19 +1065,28 @@ var state = {
 ========================================= */
 
 function getProgress() {
+
     try {
-        var saved = localStorage.getItem(STORAGE_KEY);
+
+        var saved =
+            localStorage.getItem(STORAGE_KEY);
 
         if (!saved) {
+
             return {
                 solved: [],
                 xp: 0
             };
         }
 
-        var parsed = JSON.parse(saved);
+        var parsed =
+            JSON.parse(saved);
 
-        if (!parsed || typeof parsed !== "object") {
+        if (
+            !parsed ||
+            typeof parsed !== "object"
+        ) {
+
             return {
                 solved: [],
                 xp: 0
@@ -1076,8 +1094,13 @@ function getProgress() {
         }
 
         return {
-            solved: Array.isArray(parsed.solved) ? parsed.solved : [],
-            xp: Number(parsed.xp) || 0
+            solved:
+                Array.isArray(parsed.solved)
+                    ? parsed.solved
+                    : [],
+
+            xp:
+                Number(parsed.xp) || 0
         };
 
     } catch (error) {
@@ -1090,31 +1113,239 @@ function getProgress() {
 }
 
 
-function saveProgress() {
+/* =========================================
+   SAVE PROGRESS
+========================================= */
+
+async function saveProgress() {
 
     var data = {
         solved: state.solved,
         xp: calculateXP()
     };
 
+    /* حفظ محلي احتياطي */
+
     try {
+
         localStorage.setItem(
             STORAGE_KEY,
             JSON.stringify(data)
         );
+
     } catch (error) {
-        console.log("Could not save progress.");
+
+        console.log(
+            "Could not save local progress."
+        );
+    }
+
+
+    /* حفظ في Supabase */
+
+    try {
+
+        if (
+            typeof supabaseClient ===
+            "undefined"
+        ) {
+
+            console.log(
+                "Supabase client is not available."
+            );
+
+            return;
+        }
+
+        var sessionResult =
+            await supabaseClient.auth.getSession();
+
+        var session =
+            sessionResult.data &&
+            sessionResult.data.session;
+
+        if (
+            !session ||
+            !session.user
+        ) {
+
+            return;
+        }
+
+        var xp =
+            calculateXP();
+
+        var level =
+            getLevel(xp);
+
+        var updateResult =
+            await supabaseClient
+                .from("users")
+                .update({
+                    detective_solved:
+                        state.solved,
+
+                    detective_xp:
+                        xp,
+
+                    detective_level:
+                        level
+                })
+                .eq(
+                    "auth_id",
+                    session.user.id
+                );
+
+        if (updateResult.error) {
+
+            console.error(
+                "Supabase save error:",
+                updateResult.error
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Could not save detective progress to Supabase:",
+            error
+        );
     }
 }
 
+
+/* =========================================
+   LOAD PROGRESS FROM SUPABASE
+========================================= */
+
+async function loadProgressFromSupabase() {
+
+    try {
+
+        if (
+            typeof supabaseClient ===
+            "undefined"
+        ) {
+
+            return false;
+        }
+
+        var sessionResult =
+            await supabaseClient.auth.getSession();
+
+        var session =
+            sessionResult.data &&
+            sessionResult.data.session;
+
+        if (
+            !session ||
+            !session.user
+        ) {
+
+            return false;
+        }
+
+        var result =
+            await supabaseClient
+                .from("users")
+                .select(
+                    "detective_solved, detective_xp, detective_level"
+                )
+                .eq(
+                    "auth_id",
+                    session.user.id
+                )
+                .maybeSingle();
+
+        if (result.error) {
+
+            console.error(
+                "Supabase load error:",
+                result.error
+            );
+
+            return false;
+        }
+
+        var profile =
+            result.data;
+
+        if (!profile) {
+
+            return false;
+        }
+
+        if (
+            Array.isArray(
+                profile.detective_solved
+            )
+        ) {
+
+            state.solved =
+                profile.detective_solved;
+        }
+
+        /* إذا كانت البيانات موجودة في Supabase
+           نستخدمها ونحدث localStorage */
+
+        var xp =
+            Number(profile.detective_xp) || 0;
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify({
+                    solved:
+                        state.solved,
+
+                    xp:
+                        xp
+                })
+            );
+
+        } catch (error) {
+
+            console.log(
+                "Could not update local progress."
+            );
+        }
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Could not load detective progress:",
+            error
+        );
+
+        return false;
+    }
+}
+
+
+/* =========================================
+   XP
+========================================= */
 
 function calculateXP() {
 
     var total = 0;
 
-    for (var i = 0; i < cases.length; i++) {
+    for (
+        var i = 0;
+        i < cases.length;
+        i++
+    ) {
 
-        if (state.solved.indexOf(cases[i].id) !== -1) {
+        if (
+            state.solved.indexOf(
+                cases[i].id
+            ) !== -1
+        ) {
+
             total += cases[i].xp;
         }
     }
@@ -1122,6 +1353,10 @@ function calculateXP() {
     return total;
 }
 
+
+/* =========================================
+   LEVEL
+========================================= */
 
 function getLevel(xp) {
 
@@ -1159,11 +1394,22 @@ function getLevelName(level) {
 }
 
 
+/* =========================================
+   GET CASE
+========================================= */
+
 function getCaseById(id) {
 
-    for (var i = 0; i < cases.length; i++) {
+    for (
+        var i = 0;
+        i < cases.length;
+        i++
+    ) {
 
-        if (cases[i].id === id) {
+        if (
+            cases[i].id === id
+        ) {
+
             return cases[i];
         }
     }
@@ -1172,18 +1418,41 @@ function getCaseById(id) {
 }
 
 
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
 function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
         return "";
     }
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
@@ -1191,46 +1460,145 @@ function escapeHTML(value) {
    UI REFERENCES
 ========================================= */
 
-var casesGrid = document.getElementById("casesGrid");
-var investigationSection = document.getElementById("investigationSection");
+var casesGrid =
+    document.getElementById(
+        "casesGrid"
+    );
 
-var currentCaseNumber = document.getElementById("currentCaseNumber");
-var currentCaseIcon = document.getElementById("currentCaseIcon");
-var currentCaseTitle = document.getElementById("currentCaseTitle");
-var currentCaseStory = document.getElementById("currentCaseStory");
+var investigationSection =
+    document.getElementById(
+        "investigationSection"
+    );
 
-var networkMap = document.getElementById("networkMap");
-var deviceDetails = document.getElementById("deviceDetails");
+var currentCaseNumber =
+    document.getElementById(
+        "currentCaseNumber"
+    );
 
-var evidenceGrid = document.getElementById("evidenceGrid");
-var evidenceCount = document.getElementById("evidenceCount");
+var currentCaseIcon =
+    document.getElementById(
+        "currentCaseIcon"
+    );
 
-var eventsTimeline = document.getElementById("eventsTimeline");
+var currentCaseTitle =
+    document.getElementById(
+        "currentCaseTitle"
+    );
 
-var hypotheses = document.getElementById("hypotheses");
-var selectedEvidence = document.getElementById("selectedEvidence");
+var currentCaseStory =
+    document.getElementById(
+        "currentCaseStory"
+    );
 
-var detectiveNotes = document.getElementById("detectiveNotes");
+var networkMap =
+    document.getElementById(
+        "networkMap"
+    );
 
-var submitConclusion = document.getElementById("submitConclusion");
+var deviceDetails =
+    document.getElementById(
+        "deviceDetails"
+    );
 
-var resultPanel = document.getElementById("resultPanel");
-var resultIcon = document.getElementById("resultIcon");
-var resultTitle = document.getElementById("resultTitle");
-var resultText = document.getElementById("resultText");
-var resultXP = document.getElementById("resultXP");
+var evidenceGrid =
+    document.getElementById(
+        "evidenceGrid"
+    );
 
-var retryCase = document.getElementById("retryCase");
-var nextCase = document.getElementById("nextCase");
+var evidenceCount =
+    document.getElementById(
+        "evidenceCount"
+    );
 
-var backToCases = document.getElementById("backToCases");
+var eventsTimeline =
+    document.getElementById(
+        "eventsTimeline"
+    );
 
-var detectiveLevel = document.getElementById("detectiveLevel");
-var detectiveXP = document.getElementById("detectiveXP");
-var solvedCases = document.getElementById("solvedCases");
+var hypotheses =
+    document.getElementById(
+        "hypotheses"
+    );
 
-var progressText = document.getElementById("progressText");
-var progressFill = document.getElementById("progressFill");
+var selectedEvidence =
+    document.getElementById(
+        "selectedEvidence"
+    );
+
+var detectiveNotes =
+    document.getElementById(
+        "detectiveNotes"
+    );
+
+var submitConclusion =
+    document.getElementById(
+        "submitConclusion"
+    );
+
+var resultPanel =
+    document.getElementById(
+        "resultPanel"
+    );
+
+var resultIcon =
+    document.getElementById(
+        "resultIcon"
+    );
+
+var resultTitle =
+    document.getElementById(
+        "resultTitle"
+    );
+
+var resultText =
+    document.getElementById(
+        "resultText"
+    );
+
+var resultXP =
+    document.getElementById(
+        "resultXP"
+    );
+
+var retryCase =
+    document.getElementById(
+        "retryCase"
+    );
+
+var nextCase =
+    document.getElementById(
+        "nextCase"
+    );
+
+var backToCases =
+    document.getElementById(
+        "backToCases"
+    );
+
+var detectiveLevel =
+    document.getElementById(
+        "detectiveLevel"
+    );
+
+var detectiveXP =
+    document.getElementById(
+        "detectiveXP"
+    );
+
+var solvedCases =
+    document.getElementById(
+        "solvedCases"
+    );
+
+var progressText =
+    document.getElementById(
+        "progressText"
+    );
+
+var progressFill =
+    document.getElementById(
+        "progressFill"
+    );
 
 
 /* =========================================
@@ -1239,30 +1607,45 @@ var progressFill = document.getElementById("progressFill");
 
 function updateDashboard() {
 
-    var xp = calculateXP();
-    var level = getLevel(xp);
+    var xp =
+        calculateXP();
+
+    var level =
+        getLevel(xp);
 
     if (detectiveLevel) {
-        detectiveLevel.textContent = level;
+
+        detectiveLevel.textContent =
+            level;
     }
 
     if (detectiveXP) {
-        detectiveXP.textContent = xp;
+
+        detectiveXP.textContent =
+            xp;
     }
 
     if (solvedCases) {
-        solvedCases.textContent = state.solved.length;
+
+        solvedCases.textContent =
+            state.solved.length;
     }
 
     if (progressText) {
+
         progressText.textContent =
-            state.solved.length + " / " + cases.length;
+            state.solved.length +
+            " / " +
+            cases.length;
     }
 
     if (progressFill) {
 
         var percentage =
-            (state.solved.length / cases.length) * 100;
+            (
+                state.solved.length /
+                cases.length
+            ) * 100;
 
         progressFill.style.width =
             percentage + "%";
@@ -1282,54 +1665,89 @@ function renderCases() {
 
     casesGrid.innerHTML = "";
 
-    for (var i = 0; i < cases.length; i++) {
+    for (
+        var i = 0;
+        i < cases.length;
+        i++
+    ) {
 
-        var caseItem = cases[i];
+        var caseItem =
+            cases[i];
 
         var solved =
-            state.solved.indexOf(caseItem.id) !== -1;
+            state.solved.indexOf(
+                caseItem.id
+            ) !== -1;
 
         var unlocked =
             caseItem.id === 1 ||
-            state.solved.indexOf(caseItem.id - 1) !== -1;
+            state.solved.indexOf(
+                caseItem.id - 1
+            ) !== -1;
 
-        var card = document.createElement("article");
+        var card =
+            document.createElement(
+                "article"
+            );
 
-        card.className = "case-card";
+        card.className =
+            "case-card";
 
         if (!unlocked) {
-            card.classList.add("locked");
+
+            card.classList.add(
+                "locked"
+            );
         }
 
         if (solved) {
-            card.classList.add("solved");
+
+            card.classList.add(
+                "solved"
+            );
         }
 
         var statusText = "";
 
         if (solved) {
-            statusText = "✓ تم التحقيق";
+
+            statusText =
+                "✓ تم التحقيق";
+
         } else if (unlocked) {
-            statusText = "متاح للتحقيق";
+
+            statusText =
+                "متاح للتحقيق";
+
         } else {
-            statusText = "🔒 مقفلة";
+
+            statusText =
+                "🔒 مقفلة";
         }
 
         card.innerHTML =
             '<div class="case-number">' +
-                String(caseItem.id).padStart(2, "0") +
+                String(
+                    caseItem.id
+                ).padStart(2, "0") +
             '</div>' +
 
             '<div class="case-icon">' +
-                escapeHTML(caseItem.icon) +
+                escapeHTML(
+                    caseItem.icon
+                ) +
             '</div>' +
 
             '<h3 class="case-title">' +
-                escapeHTML(caseItem.title) +
+                escapeHTML(
+                    caseItem.title
+                ) +
             '</h3>' +
 
             '<p class="case-description">' +
-                escapeHTML(caseItem.description) +
+                escapeHTML(
+                    caseItem.description
+                ) +
             '</p>' +
 
             '<div class="case-status">' +
@@ -1351,7 +1769,9 @@ function renderCases() {
             '</div>';
 
         var button =
-            card.querySelector(".case-button");
+            card.querySelector(
+                ".case-button"
+            );
 
         if (unlocked) {
 
@@ -1360,7 +1780,11 @@ function renderCases() {
                 function (selectedCase) {
 
                     return function () {
-                        openCase(selectedCase.id);
+
+                        openCase(
+                            selectedCase.id
+                        );
+
                     };
 
                 }(caseItem)
@@ -1368,10 +1792,13 @@ function renderCases() {
 
         } else {
 
-            button.disabled = true;
+            button.disabled =
+                true;
         }
 
-        casesGrid.appendChild(card);
+        casesGrid.appendChild(
+            card
+        );
     }
 }
 
@@ -1382,7 +1809,8 @@ function renderCases() {
 
 function openCase(caseId) {
 
-    var caseItem = getCaseById(caseId);
+    var caseItem =
+        getCaseById(caseId);
 
     if (!caseItem) {
         return;
@@ -1390,27 +1818,46 @@ function openCase(caseId) {
 
     var unlocked =
         caseItem.id === 1 ||
-        state.solved.indexOf(caseItem.id - 1) !== -1;
+        state.solved.indexOf(
+            caseItem.id - 1
+        ) !== -1;
 
     if (!unlocked) {
         return;
     }
 
-    state.currentCase = caseItem;
-    state.inspectedDevices = {};
-    state.collectedEvidence = {};
-    state.selectedHypothesis = null;
-    state.selectedEvidence = [];
+    state.currentCase =
+        caseItem;
 
-    loadNotes(caseItem.id);
+    state.inspectedDevices =
+        {};
 
-    investigationSection.classList.remove("hidden");
+    state.collectedEvidence =
+        {};
 
-    resultPanel.classList.add("hidden");
+    state.selectedHypothesis =
+        null;
+
+    state.selectedEvidence =
+        [];
+
+    loadNotes(
+        caseItem.id
+    );
+
+    investigationSection.classList.remove(
+        "hidden"
+    );
+
+    resultPanel.classList.add(
+        "hidden"
+    );
 
     currentCaseNumber.textContent =
         "القضية " +
-        String(caseItem.id).padStart(2, "0");
+        String(
+            caseItem.id
+        ).padStart(2, "0");
 
     currentCaseIcon.textContent =
         caseItem.icon;
@@ -1441,34 +1888,51 @@ function openCase(caseId) {
 
 function renderNetwork() {
 
-    if (!networkMap || !state.currentCase) {
+    if (
+        !networkMap ||
+        !state.currentCase
+    ) {
+
         return;
     }
 
-    networkMap.innerHTML = "";
+    networkMap.innerHTML =
+        "";
 
     var devices =
         state.currentCase.devices;
 
-    for (var i = 0; i < devices.length; i++) {
+    for (
+        var i = 0;
+        i < devices.length;
+        i++
+    ) {
 
-        var device = devices[i];
+        var device =
+            devices[i];
 
         var node =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
-        node.type = "button";
+        node.type =
+            "button";
 
         node.className =
             "network-node";
 
         node.innerHTML =
             '<span class="network-node-icon">' +
-                escapeHTML(device.icon) +
+                escapeHTML(
+                    device.icon
+                ) +
             '</span>' +
 
             '<span class="network-node-name">' +
-                escapeHTML(device.name) +
+                escapeHTML(
+                    device.name
+                ) +
             '</span>';
 
         node.addEventListener(
@@ -1476,23 +1940,36 @@ function renderNetwork() {
             function (selectedDevice) {
 
                 return function () {
-                    inspectDevice(selectedDevice.id);
+
+                    inspectDevice(
+                        selectedDevice.id
+                    );
+
                 };
 
             }(device)
         );
 
-        networkMap.appendChild(node);
+        networkMap.appendChild(
+            node
+        );
 
-        if (i < devices.length - 1) {
+        if (
+            i <
+            devices.length - 1
+        ) {
 
             var line =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
             line.className =
                 "network-line";
 
-            networkMap.appendChild(line);
+            networkMap.appendChild(
+                line
+            );
         }
     }
 }
@@ -1508,11 +1985,13 @@ function inspectDevice(deviceId) {
         return;
     }
 
-    var device = null;
+    var device =
+        null;
 
     for (
         var i = 0;
-        i < state.currentCase.devices.length;
+        i <
+        state.currentCase.devices.length;
         i++
     ) {
 
@@ -1532,34 +2011,52 @@ function inspectDevice(deviceId) {
         return;
     }
 
-    state.inspectedDevices[deviceId] = true;
+    state.inspectedDevices[
+        deviceId
+    ] = true;
 
-    deviceDetails.classList.remove("hidden");
+    deviceDetails.classList.remove(
+        "hidden"
+    );
 
     deviceDetails.innerHTML =
         '<h4>' +
-            escapeHTML(device.icon) +
+            escapeHTML(
+                device.icon
+            ) +
             " " +
-            escapeHTML(device.name) +
+            escapeHTML(
+                device.name
+            ) +
         '</h4>' +
 
         '<p><strong>النوع:</strong> ' +
-            escapeHTML(device.type) +
+            escapeHTML(
+                device.type
+            ) +
         '</p>' +
 
         '<p><strong>الحالة:</strong> ' +
-            escapeHTML(device.status) +
+            escapeHTML(
+                device.status
+            ) +
         '</p>' +
 
         '<p><strong>IP:</strong> ' +
-            escapeHTML(device.ip) +
+            escapeHTML(
+                device.ip
+            ) +
         '</p>' +
 
         '<p>' +
-            escapeHTML(device.info) +
+            escapeHTML(
+                device.info
+            ) +
         '</p>';
 
-    unlockEvidenceForDevice(deviceId);
+    unlockEvidenceForDevice(
+        deviceId
+    );
 
     renderEvidence();
 
@@ -1574,7 +2071,9 @@ function inspectDevice(deviceId) {
    EVIDENCE
 ========================================= */
 
-function unlockEvidenceForDevice(deviceId) {
+function unlockEvidenceForDevice(
+    deviceId
+) {
 
     if (!state.currentCase) {
         return;
@@ -1582,7 +2081,8 @@ function unlockEvidenceForDevice(deviceId) {
 
     for (
         var i = 0;
-        i < state.currentCase.evidence.length;
+        i <
+        state.currentCase.evidence.length;
         i++
     ) {
 
@@ -1594,8 +2094,9 @@ function unlockEvidenceForDevice(deviceId) {
             deviceId
         ) {
 
-            state.collectedEvidence[evidence.id] =
-                true;
+            state.collectedEvidence[
+                evidence.id
+            ] = true;
         }
     }
 }
@@ -1603,17 +2104,24 @@ function unlockEvidenceForDevice(deviceId) {
 
 function renderEvidence() {
 
-    if (!evidenceGrid || !state.currentCase) {
+    if (
+        !evidenceGrid ||
+        !state.currentCase
+    ) {
+
         return;
     }
 
-    evidenceGrid.innerHTML = "";
+    evidenceGrid.innerHTML =
+        "";
 
-    var collected = 0;
+    var collected =
+        0;
 
     for (
         var i = 0;
-        i < state.currentCase.evidence.length;
+        i <
+        state.currentCase.evidence.length;
         i++
     ) {
 
@@ -1621,29 +2129,44 @@ function renderEvidence() {
             state.currentCase.evidence[i];
 
         var isCollected =
-            state.collectedEvidence[evidence.id] === true;
+            state.collectedEvidence[
+                evidence.id
+            ] === true;
 
         if (isCollected) {
+
             collected++;
         }
 
         var card =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
 
         card.className =
             "evidence-card";
 
         if (!isCollected) {
-            card.classList.add("locked");
+
+            card.classList.add(
+                "locked"
+            );
+
         } else {
-            card.classList.add("collected");
+
+            card.classList.add(
+                "collected"
+            );
         }
 
         card.innerHTML =
             '<div class="evidence-title">' +
                 (
                     isCollected
-                    ? "🔎 " + escapeHTML(evidence.title)
+                    ? "🔎 " +
+                        escapeHTML(
+                            evidence.title
+                        )
                     : "🔒 دليل مخفي"
                 ) +
             '</div>' +
@@ -1651,7 +2174,9 @@ function renderEvidence() {
             '<p class="evidence-text">' +
                 (
                     isCollected
-                    ? escapeHTML(evidence.text)
+                    ? escapeHTML(
+                        evidence.text
+                    )
                     : "استكشف الجهاز المرتبط بهذا الدليل للكشف عنه."
                 ) +
             '</p>' +
@@ -1664,7 +2189,9 @@ function renderEvidence() {
                 ) +
             '</div>';
 
-        evidenceGrid.appendChild(card);
+        evidenceGrid.appendChild(
+            card
+        );
     }
 
     evidenceCount.textContent =
@@ -1682,15 +2209,21 @@ function renderEvidence() {
 
 function renderEvents() {
 
-    if (!eventsTimeline || !state.currentCase) {
+    if (
+        !eventsTimeline ||
+        !state.currentCase
+    ) {
+
         return;
     }
 
-    eventsTimeline.innerHTML = "";
+    eventsTimeline.innerHTML =
+        "";
 
     for (
         var i = 0;
-        i < state.currentCase.events.length;
+        i <
+        state.currentCase.events.length;
         i++
     ) {
 
@@ -1698,21 +2231,29 @@ function renderEvents() {
             state.currentCase.events[i];
 
         var item =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         item.className =
             "timeline-item";
 
         item.innerHTML =
             '<div class="timeline-time">' +
-                escapeHTML(eventItem.time) +
+                escapeHTML(
+                    eventItem.time
+                ) +
             '</div>' +
 
             '<div class="timeline-text">' +
-                escapeHTML(eventItem.text) +
+                escapeHTML(
+                    eventItem.text
+                ) +
             '</div>';
 
-        eventsTimeline.appendChild(item);
+        eventsTimeline.appendChild(
+            item
+        );
     }
 }
 
@@ -1723,15 +2264,21 @@ function renderEvents() {
 
 function renderHypotheses() {
 
-    if (!hypotheses || !state.currentCase) {
+    if (
+        !hypotheses ||
+        !state.currentCase
+    ) {
+
         return;
     }
 
-    hypotheses.innerHTML = "";
+    hypotheses.innerHTML =
+        "";
 
     for (
         var i = 0;
-        i < state.currentCase.hypotheses.length;
+        i <
+        state.currentCase.hypotheses.length;
         i++
     ) {
 
@@ -1739,34 +2286,47 @@ function renderHypotheses() {
             state.currentCase.hypotheses[i];
 
         var wrapper =
-            document.createElement("label");
+            document.createElement(
+                "label"
+            );
 
         wrapper.className =
             "hypothesis-option";
 
         wrapper.innerHTML =
             '<input type="radio" name="hypothesis" value="' +
-                escapeHTML(hypothesis.id) +
+                escapeHTML(
+                    hypothesis.id
+                ) +
             '">' +
 
             '<div>' +
 
                 '<div class="hypothesis-title">' +
-                    escapeHTML(hypothesis.title) +
+                    escapeHTML(
+                        hypothesis.title
+                    ) +
                 '</div>' +
 
                 '<div class="hypothesis-description">' +
-                    escapeHTML(hypothesis.description) +
+                    escapeHTML(
+                        hypothesis.description
+                    ) +
                 '</div>' +
 
             '</div>';
 
         var input =
-            wrapper.querySelector("input");
+            wrapper.querySelector(
+                "input"
+            );
 
         input.addEventListener(
             "change",
-            function (selectedHypothesis) {
+            function (
+                selectedHypothesis,
+                selectedWrapper
+            ) {
 
                 return function () {
 
@@ -1789,19 +2349,25 @@ function renderHypotheses() {
                         );
                     }
 
-                    wrapper.classList.add(
+                    selectedWrapper.classList.add(
                         "selected"
                     );
 
                     renderSelectedEvidence();
 
                     updateSubmitButton();
+
                 };
 
-            }(hypothesis)
+            }(
+                hypothesis,
+                wrapper
+            )
         );
 
-        hypotheses.appendChild(wrapper);
+        hypotheses.appendChild(
+            wrapper
+        );
     }
 }
 
@@ -1816,12 +2382,16 @@ function renderSelectedEvidence() {
         !selectedEvidence ||
         !state.currentCase
     ) {
+
         return;
     }
 
-    selectedEvidence.innerHTML = "";
+    selectedEvidence.innerHTML =
+        "";
 
-    if (!state.selectedHypothesis) {
+    if (
+        !state.selectedHypothesis
+    ) {
 
         selectedEvidence.innerHTML =
             '<div class="selected-evidence-title">' +
@@ -1831,11 +2401,13 @@ function renderSelectedEvidence() {
         return;
     }
 
-    var collectedIds = [];
+    var collectedIds =
+        [];
 
     for (
         var i = 0;
-        i < state.currentCase.evidence.length;
+        i <
+        state.currentCase.evidence.length;
         i++
     ) {
 
@@ -1843,14 +2415,20 @@ function renderSelectedEvidence() {
             state.currentCase.evidence[i];
 
         if (
-            state.collectedEvidence[evidence.id]
+            state.collectedEvidence[
+                evidence.id
+            ]
         ) {
 
-            collectedIds.push(evidence.id);
+            collectedIds.push(
+                evidence.id
+            );
         }
     }
 
-    if (collectedIds.length === 0) {
+    if (
+        collectedIds.length === 0
+    ) {
 
         selectedEvidence.innerHTML =
             '<div class="selected-evidence-title">' +
@@ -1881,11 +2459,13 @@ function renderSelectedEvidence() {
         var evidenceId =
             collectedIds[j];
 
-        var evidenceItem = null;
+        var evidenceItem =
+            null;
 
         for (
             var k = 0;
-            k < state.currentCase.evidence.length;
+            k <
+            state.currentCase.evidence.length;
             k++
         ) {
 
@@ -1906,9 +2486,12 @@ function renderSelectedEvidence() {
         }
 
         var button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
-        button.type = "button";
+        button.type =
+            "button";
 
         button.className =
             "evidence-select";
@@ -1919,7 +2502,9 @@ function renderSelectedEvidence() {
             ) !== -1
         ) {
 
-            button.classList.add("selected");
+            button.classList.add(
+                "selected"
+            );
         }
 
         button.textContent =
@@ -1928,7 +2513,10 @@ function renderSelectedEvidence() {
 
         button.addEventListener(
             "click",
-            function (id, btn) {
+            function (
+                id,
+                btn
+            ) {
 
                 return function () {
 
@@ -1960,12 +2548,18 @@ function renderSelectedEvidence() {
                     }
 
                     updateSubmitButton();
+
                 };
 
-            }(evidenceId, button)
+            }(
+                evidenceId,
+                button
+            )
         );
 
-        list.appendChild(button);
+        list.appendChild(
+            button
+        );
     }
 }
 
@@ -2010,12 +2604,15 @@ function loadNotes(caseId) {
 
         detectiveNotes.value =
             localStorage.getItem(
-                getNotesKey(caseId)
+                getNotesKey(
+                    caseId
+                )
             ) || "";
 
     } catch (error) {
 
-        detectiveNotes.value = "";
+        detectiveNotes.value =
+            "";
     }
 }
 
@@ -2040,6 +2637,7 @@ if (detectiveNotes) {
                 );
 
             } catch (error) {
+
                 console.log(
                     "Could not save notes."
                 );
@@ -2067,6 +2665,7 @@ if (submitConclusion) {
                 !state.selectedHypothesis ||
                 state.selectedEvidence.length < 2
             ) {
+
                 return;
             }
 
@@ -2086,7 +2685,9 @@ if (submitConclusion) {
 
 function showResult(correct) {
 
-    resultPanel.classList.remove("hidden");
+    resultPanel.classList.remove(
+        "hidden"
+    );
 
     resultPanel.classList.remove(
         "result-success",
@@ -2099,7 +2700,8 @@ function showResult(correct) {
             "result-success"
         );
 
-        resultIcon.textContent = "✅";
+        resultIcon.textContent =
+            "✅";
 
         resultTitle.textContent =
             "تم حل القضية";
@@ -2122,6 +2724,9 @@ function showResult(correct) {
                 state.currentCase.id
             );
 
+            /*
+             * الحفظ في Supabase
+             */
             saveProgress();
         }
 
@@ -2155,7 +2760,8 @@ function showResult(correct) {
             "result-failure"
         );
 
-        resultIcon.textContent = "🔍";
+        resultIcon.textContent =
+            "🔍";
 
         resultTitle.textContent =
             "الاستنتاج يحتاج مراجعة";
@@ -2223,7 +2829,9 @@ if (nextCase) {
                 return;
             }
 
-            openCase(next.id);
+            openCase(
+                next.id
+            );
         }
     );
 }
@@ -2260,8 +2868,11 @@ if (backToCases) {
    INITIALIZE
 ========================================= */
 
-function initializeDetective() {
+async function initializeDetective() {
 
+    /*
+     * نبدأ بالبيانات المحلية حتى لا تتعطل الصفحة
+     */
     var saved =
         getProgress();
 
@@ -2272,17 +2883,36 @@ function initializeDetective() {
     renderCases();
 
     if (investigationSection) {
+
         investigationSection.classList.add(
             "hidden"
         );
     }
 
     if (resultPanel) {
+
         resultPanel.classList.add(
             "hidden"
         );
     }
+
+
+    /*
+     * بعدها نحاول جلب البيانات من Supabase
+     */
+    var loaded =
+        await loadProgressFromSupabase();
+
+    if (loaded) {
+
+        updateDashboard();
+        renderCases();
+    }
 }
 
+
+/* =========================================
+   START
+========================================= */
 
 initializeDetective();
