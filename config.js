@@ -6,6 +6,7 @@
  * يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
  * أو أي جزء جوهري منه دون إذن صاحب الحقوق.
  */
+
 /* =====================================================
    عرّاب الشبكات - CONFIG.JS
    Filters + Copy Commands
@@ -16,7 +17,7 @@
 
 function filterCommands(type, button) {
 
-    const rows = document.querySelectorAll(".command-row");
+    const rows = document.querySelectorAll(".command-row-new");
     const buttons = document.querySelectorAll(".filter-button");
 
     // إزالة Active من جميع الأزرار
@@ -32,7 +33,7 @@ function filterCommands(type, button) {
     // إظهار Cisco / Huawei / الكل
     rows.forEach(function (row) {
 
-        const cells = row.querySelectorAll(".command-cell");
+        const cells = row.querySelectorAll(".command-cell-new");
 
         cells.forEach(function (cell, index) {
 
@@ -60,8 +61,8 @@ function filterCommands(type, button) {
 
 function copyCommand(button) {
 
-    // البحث عن الخلية التي تحتوي على الزر
-    const cell = button.closest(".command-cell");
+    // البحث عن الخلية الصحيحة
+    const cell = button.closest(".command-cell-new");
 
     if (!cell) {
         alert("تعذر العثور على الأمر");
@@ -76,7 +77,7 @@ function copyCommand(button) {
         return;
     }
 
-    // أخذ النص بدون المسافات الزائدة
+    // استخراج الأمر
     const command = code.textContent.trim();
 
     if (!command) {
@@ -86,7 +87,7 @@ function copyCommand(button) {
 
 
     /* ==========================================
-       الطريقة الأولى: Clipboard API
+       Clipboard API
        ========================================== */
 
     if (navigator.clipboard && window.isSecureContext) {
@@ -124,11 +125,13 @@ function fallbackCopy(command, button) {
     textarea.style.position = "fixed";
     textarea.style.top = "0";
     textarea.style.left = "-9999px";
+    textarea.style.opacity = "0";
 
     document.body.appendChild(textarea);
 
     textarea.focus();
     textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
 
     let copied = false;
 
@@ -185,19 +188,26 @@ if (searchInput) {
 
     searchInput.addEventListener("input", function () {
 
-        const searchText = this.value.trim().toLowerCase();
+        const searchText = this.value
+            .trim()
+            .toLowerCase();
 
-        const sections = document.querySelectorAll(".command-section");
+        const sections =
+            document.querySelectorAll(".command-section");
+
 
         sections.forEach(function (section) {
 
-            const rows = section.querySelectorAll(".command-row");
+            const rows =
+                section.querySelectorAll(".command-row-new");
 
             let sectionHasResult = false;
 
+
             rows.forEach(function (row) {
 
-                const text = row.textContent.toLowerCase();
+                const text =
+                    row.textContent.toLowerCase();
 
                 if (text.includes(searchText)) {
 
@@ -218,7 +228,9 @@ if (searchInput) {
             if (searchText === "") {
 
                 rows.forEach(function (row) {
+
                     row.style.display = "";
+
                 });
 
                 section.style.display = "";
