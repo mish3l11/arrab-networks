@@ -1,151 +1,192 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>حسابي | عرّاب الشبكات</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
 
+    <style>
         * {
             box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #cbb77a;
+            --gold-light: #e2d39a;
+            --bg: #0d0d0d;
+            --card: #171717;
+            --card-2: #1d1d1d;
+            --border: rgba(203, 183, 122, 0.25);
+            --text: #f5f5f5;
+            --muted: #a8a8a8;
+            --cyan: #075985;
+            --green: #22c55e;
+            --red: #ef4444;
         }
 
         body {
             margin: 0;
             font-family: "Tajawal", sans-serif;
-            background: #cbb77a;
-            color: #111;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(203, 183, 122, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(7, 89, 133, 0.10),
+                    transparent 30%
+                ),
+                var(--bg);
+            color: var(--text);
             min-height: 100vh;
         }
 
-
         /* =========================
-           NAV
+           NAVBAR
         ========================= */
 
-        nav {
-            background: #111;
-            color: white;
-            padding: 16px 30px;
+        header {
+            background: rgba(10, 10, 10, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar {
+            max-width: 1250px;
+            margin: auto;
+            padding: 15px 22px;
 
             display: flex;
-            justify-content: space-between;
             align-items: center;
-
+            justify-content: space-between;
             gap: 20px;
-            flex-wrap: wrap;
         }
-
 
         .brand {
-            font-size: 22px;
-            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
         }
 
+        .brand-icon {
+            font-size: 30px;
+        }
 
-        .brand span {
+        .brand-text strong {
             display: block;
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #cbb77a;
+            color: var(--gold);
+            font-size: 19px;
         }
 
+        .brand-text span {
+            display: block;
+            color: #888;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-
         .nav-links a {
-            color: white;
+            color: #ccc;
             text-decoration: none;
-
-            padding: 9px 13px;
-            border-radius: 8px;
-
+            padding: 9px 12px;
+            border-radius: 10px;
+            font-weight: 500;
             transition: 0.2s;
         }
 
-
-        .nav-links a:hover {
-            background: #cbb77a;
-            color: #111;
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(203, 183, 122, 0.12);
+            color: var(--gold-light);
         }
 
-
         /* =========================
-           CONTAINER
+           MAIN
         ========================= */
 
-        .container {
-            width: min(1100px, 92%);
-            margin: 40px auto;
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 45px 20px 70px;
         }
-
-
-        /* =========================
-           HERO
-        ========================= */
 
         .hero {
-            background: #111;
-            color: white;
-
-            border-radius: 22px;
-            padding: 35px;
-
-            margin-bottom: 25px;
-
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            margin-bottom: 35px;
         }
 
+        .hero-icon {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 15px;
 
-        .hero::after {
-            content: "🌐";
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(
+                145deg,
+                var(--gold),
+                #8f7c46
+            );
 
-            left: 30px;
-            top: 15px;
+            color: #111;
+            font-size: 38px;
 
-            font-size: 90px;
-
-            opacity: 0.07;
+            box-shadow:
+                0 12px 35px rgba(203, 183, 122, 0.18);
         }
-
 
         .hero h1 {
-            margin: 0 0 8px;
+            margin: 0;
             font-size: 34px;
+            color: var(--gold-light);
         }
-
 
         .hero p {
-            margin: 0;
-            color: #ddd;
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 16px;
         }
 
+        /* =========================
+           ERROR
+        ========================= */
 
-        .welcome-name {
-            color: #cbb77a;
-            font-weight: 800;
+        .error-box {
+            display: none;
+            background: rgba(239, 68, 68, 0.10);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            line-height: 1.8;
         }
-
 
         /* =========================
            STATS
@@ -153,1397 +194,949 @@
 
         .stats-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 15px;
-
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
             margin-bottom: 25px;
         }
 
-
         .stat-card {
-            background: rgba(255,255,255,0.9);
+            background: linear-gradient(
+                145deg,
+                #1b1b1b,
+                #111
+            );
 
+            border: 1px solid var(--border);
             border-radius: 18px;
             padding: 22px;
 
-            box-shadow:
-                0 8px 25px rgba(0,0,0,0.12);
-
             text-align: center;
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.25);
+
+            transition: 0.2s;
         }
 
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(203, 183, 122, 0.5);
+        }
 
         .stat-icon {
-            font-size: 30px;
+            font-size: 28px;
             margin-bottom: 8px;
         }
 
-
         .stat-value {
-            display: block;
-
+            color: var(--gold-light);
             font-size: 28px;
             font-weight: 800;
-
-            margin-bottom: 4px;
         }
-
 
         .stat-label {
-            color: #555;
+            color: var(--muted);
+            margin-top: 5px;
             font-size: 14px;
-            font-weight: 700;
         }
 
-
         /* =========================
-           MAIN GRID
+           CONTENT GRID
         ========================= */
 
-        .grid {
+        .content-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
 
-
         .card {
-            background: rgba(255,255,255,0.9);
+            background: linear-gradient(
+                145deg,
+                var(--card-2),
+                var(--card)
+            );
 
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 25px;
 
             box-shadow:
-                0 8px 25px rgba(0,0,0,0.12);
+                0 15px 35px rgba(0, 0, 0, 0.25);
         }
 
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 22px;
+        .card.full {
+            grid-column: 1 / -1;
         }
 
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            color: var(--gold-light);
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .card-title span {
+            font-size: 24px;
+        }
 
         /* =========================
-           INFO
+           ACCOUNT INFO
         ========================= */
 
         .info-row {
             display: flex;
-
             justify-content: space-between;
+            gap: 20px;
 
-            gap: 15px;
-
-            padding: 13px 0;
-
-            border-bottom:
-                1px solid rgba(0,0,0,0.12);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
-
 
         .info-row:last-child {
             border-bottom: none;
         }
 
+        .info-label {
+            color: var(--muted);
+        }
 
-        .label {
+        .info-value {
+            color: white;
             font-weight: 700;
-        }
-
-
-        .value {
-            word-break: break-word;
             text-align: left;
+            word-break: break-word;
         }
-
 
         /* =========================
            PROGRESS
         ========================= */
 
-        .progress-box {
-            margin-top: 18px;
+        .progress-item {
+            margin-bottom: 22px;
         }
 
-
-        .progress-title {
+        .progress-header {
             display: flex;
-
             justify-content: space-between;
+            margin-bottom: 9px;
+            gap: 10px;
+        }
 
-            margin-bottom: 8px;
-
+        .progress-name {
+            color: #ddd;
             font-weight: 700;
         }
 
-
-        .progress {
-            height: 12px;
-
-            background: #ddd;
-
-            border-radius: 20px;
-
-            overflow: hidden;
+        .progress-number {
+            color: var(--gold-light);
+            font-weight: 800;
         }
-
 
         .progress-bar {
-            height: 100%;
-
-            width: 0%;
-
-            background: #111;
-
+            height: 11px;
+            background: #0b0b0b;
             border-radius: 20px;
-
-            transition:
-                width 0.6s ease;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
 
-        .progress-bar.gold {
-            background: #cbb77a;
+            background: linear-gradient(
+                90deg,
+                #8f7c46,
+                var(--gold-light)
+            );
+
+            transition: width 0.8s ease;
         }
 
+        .progress-fill.cyan {
+            background: linear-gradient(
+                90deg,
+                #06476b,
+                #0ea5e9
+            );
+        }
+
+        .progress-fill.green {
+            background: linear-gradient(
+                90deg,
+                #15803d,
+                #22c55e
+            );
+        }
 
         /* =========================
-           OVERALL PROGRESS
+           OVERALL
         ========================= */
 
-        .overall-card {
-            grid-column: 1 / -1;
-
-            background: #111;
-            color: white;
+        .overall-box {
+            text-align: center;
+            padding: 10px 0 5px;
         }
-
-
-        .overall-card h2 {
-            color: #cbb77a;
-        }
-
 
         .overall-number {
-            font-size: 42px;
+            font-size: 55px;
             font-weight: 800;
-
-            margin: 5px 0 15px;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 10px;
         }
 
+        .overall-text {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
 
-        .overall-progress {
-            height: 16px;
-
-            background: #333;
-
+        .overall-bar {
+            max-width: 650px;
+            margin: auto;
+            height: 15px;
+            background: #0b0b0b;
             border-radius: 20px;
-
             overflow: hidden;
         }
-
 
         .overall-fill {
             height: 100%;
-
             width: 0%;
+            border-radius: inherit;
 
-            background: #cbb77a;
+            background: linear-gradient(
+                90deg,
+                var(--cyan),
+                var(--gold)
+            );
 
-            border-radius: 20px;
-
-            transition:
-                width 0.7s ease;
+            transition: width 1s ease;
         }
-
-
-        .overall-note {
-            color: #bbb;
-            margin-top: 12px;
-        }
-
 
         /* =========================
            ADMIN
         ========================= */
 
-        .admin-card {
-            grid-column: 1 / -1;
-
-            background: #111;
-            color: white;
+        .admin-box {
+            display: none;
+            background: rgba(203, 183, 122, 0.06);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 18px;
         }
 
-
-        .admin-card h2 {
-            color: #cbb77a;
+        .admin-box p {
+            color: #ccc;
+            margin-top: 0;
         }
-
-
-        .admin-card p {
-            color: #ddd;
-        }
-
 
         .admin-btn {
             display: inline-block;
+            padding: 12px 18px;
+            border-radius: 11px;
 
-            margin-top: 10px;
-
-            background: #cbb77a;
+            background: var(--gold);
             color: #111;
 
             text-decoration: none;
-
             font-weight: 800;
-
-            padding: 13px 22px;
-
-            border-radius: 10px;
 
             transition: 0.2s;
         }
 
-
         .admin-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
+            background: var(--gold-light);
         }
-
 
         /* =========================
            LOGOUT
         ========================= */
 
+        .logout-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
         .logout-btn {
-            width: 100%;
+            border: 1px solid rgba(239, 68, 68, 0.45);
+            background: rgba(239, 68, 68, 0.08);
+            color: #fca5a5;
 
-            margin-top: 20px;
-
-            padding: 14px;
-
-            border: none;
-
+            padding: 12px 28px;
             border-radius: 12px;
 
-            background: #111;
-            color: white;
-
             font-family: inherit;
-
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
 
             cursor: pointer;
-
             transition: 0.2s;
         }
 
-
         .logout-btn:hover {
-            background: #222;
+            background: rgba(239, 68, 68, 0.16);
         }
-
-
-        .logout-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
 
         /* =========================
            LOADING
         ========================= */
 
-        #loading {
+        .loading {
             text-align: center;
-
             padding: 60px 20px;
-
-            font-size: 20px;
-            font-weight: 700;
+            color: var(--muted);
+            font-size: 18px;
         }
 
+        .spinner {
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(203,183,122,0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         /* =========================
-           ERROR
+           FOOTER
         ========================= */
 
-        #error {
-            display: none;
-
-            width: min(900px, 92%);
-
-            margin: 40px auto;
-
-            background: #fff;
-
-            border: 3px solid #b00020;
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            color: #111;
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 20px;
+            text-align: center;
+            color: #777;
+            font-size: 13px;
         }
 
-
-        #error h2 {
-            color: #b00020;
-            margin-top: 0;
+        footer strong {
+            color: var(--gold);
         }
-
-
-        #error p {
-            margin: 10px 0;
-            line-height: 1.8;
-        }
-
-
-        #errorDetails {
-            background: #111;
-            color: #fff;
-
-            padding: 18px;
-
-            border-radius: 12px;
-
-            direction: ltr;
-            text-align: left;
-
-            white-space: pre-wrap;
-            word-break: break-word;
-
-            font-family: monospace;
-
-            line-height: 1.6;
-        }
-
-
-        #profileContent {
-            display: none;
-        }
-
 
         /* =========================
            MOBILE
         ========================= */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
 
             .stats-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
 
-        }
-
-
-        @media (max-width: 700px) {
-
-            .grid {
+            .content-grid {
                 grid-template-columns: 1fr;
             }
 
-
-            .overall-card,
-            .admin-card {
+            .card.full {
                 grid-column: auto;
             }
 
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            main {
+                padding: 30px 14px 50px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 16px 10px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 19px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                padding: 8px 9px;
+            }
 
             .info-row {
                 flex-direction: column;
                 gap: 5px;
             }
 
-
-            .value {
+            .info-value {
                 text-align: right;
             }
-
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
         }
-
-
-        @media (max-width: 450px) {
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
     </style>
-
 </head>
-
 
 <body>
 
+<header>
+    <div class="navbar">
 
-<!-- =========================
-     NAV
-========================= -->
+        <a href="index.html" class="brand">
+            <div class="brand-icon">🌐</div>
 
-<nav>
-
-    <div class="brand">
-
-        🌐 عرّاب الشبكات
-
-        <span>
-            NETWORKS
-        </span>
-
-    </div>
-
-    
-        <nav class="nav-links">
-
-            <a href="index.html" class="active">
-                 الرئيسية
-            </a>
-
-            <a href="lessons.html">
-                 الدروس
-            </a>
-
-            <a href="#network-lab">
-                 المختبر
-            </a>
-
-            <a href="quiz.html" class="nav-button">
-                 اختبر معلوماتك
-            </a>
-
-            <a href="dictionary.html" class="feature-card">
-                 القاموس
-            </a>
-
-            <a href="config.html" class="nav-button">
-                 مرجع الأوامر
-            </a>
-
-            <a href="command-practice.html">
-                 تحدي الميدان
-            </a>
-
-            <a href="terminal.html" class="feature-card">
-                CLI 
-            </a>
-
-        <a href="profile.html">
-            حسابي
+            <div class="brand-text">
+                <strong>عرّاب الشبكات</strong>
+                <span>NETWORKS</span>
+            </div>
         </a>
 
-    </div>
+        <div class="nav-links">
 
-</nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="lessons.html">الدروس</a>
+            <a href="quiz.html">الاختبار</a>
+            <a href="dictionary.html">القاموس</a>
+            <a href="config.html">مرجع الأوامر</a>
+            <a href="profile.html" class="active">حسابي</a>
 
-
-<!-- =========================
-     LOADING
-========================= -->
-
-<div id="loading">
-
-    جاري تحميل بيانات الحساب...
-
-</div>
-
-
-<!-- =========================
-     ERROR
-========================= -->
-
-<div id="error">
-
-    <h2>
-        ⚠️ حدث خطأ أثناء تحميل الحساب
-    </h2>
-
-    <p>
-        هذه المرة تم عرض تفاصيل الخطأ حتى نعرف المشكلة بالضبط:
-    </p>
-
-    <div id="errorDetails">
-
-        جاري تحديد الخطأ...
+        </div>
 
     </div>
-
-</div>
-
-
-<!-- =========================
-     PROFILE
-========================= -->
-
-<main
-    id="profileContent"
-    class="container"
->
+</header>
 
 
-    <!-- HERO -->
+<main>
 
-    <section class="hero">
-
-        <h1>
-
-            👋 أهلاً بك
-            <span
-                id="welcomeUsername"
-                class="welcome-name"
-            >
-                —
-            </span>
-
-        </h1>
-
-        <p>
-
-            هذه مساحتك الشخصية في
-            <strong>
-                عرّاب الشبكات
-            </strong>
-
-            — تابع تقدمك وطور مهاراتك.
-
-        </p>
-
-    </section>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        جاري تحميل حسابك...
+    </div>
 
 
-    <!-- =========================
-         QUICK STATS
-    ========================= -->
-
-    <section class="stats-grid">
+    <div id="errorBox" class="error-box"></div>
 
 
-        <div class="stat-card">
+    <div id="dashboard" style="display:none;">
 
-            <div class="stat-icon">
-                📚
+        <section class="hero">
+
+            <div class="hero-icon">
+                👤
             </div>
 
-            <span
-                id="statLessons"
-                class="stat-value"
-            >
-                0
-            </span>
-
-            <span class="stat-label">
-                درس مكتمل
-            </span>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                🧪
-            </div>
-
-            <span
-                id="statLab"
-                class="stat-value"
-            >
-                0%
-            </span>
-
-            <span class="stat-label">
-                تقدم المختبر
-            </span>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                🏆
-            </div>
-
-            <span
-                id="statQuiz"
-                class="stat-value"
-            >
-                0/20
-            </span>
-
-            <span class="stat-label">
-                أفضل نتيجة
-            </span>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-icon">
-                📊
-            </div>
-
-            <span
-                id="statOverall"
-                class="stat-value"
-            >
-                0%
-            </span>
-
-            <span class="stat-label">
-                الإنجاز العام
-            </span>
-
-        </div>
-
-
-    </section>
-
-
-    <!-- =========================
-         MAIN GRID
-    ========================= -->
-
-    <section class="grid">
-
-
-        <!-- ACCOUNT -->
-
-        <div class="card">
-
-            <h2>
-                📋 معلومات الحساب
-            </h2>
-
-
-            <div class="info-row">
-
-                <span class="label">
-                    اسم المستخدم
-                </span>
-
-                <span
-                    class="value"
-                    id="username"
-                >
-                    —
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="label">
-                    البريد الإلكتروني
-                </span>
-
-                <span
-                    class="value"
-                    id="email"
-                >
-                    —
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="label">
-                    نوع الحساب
-                </span>
-
-                <span
-                    class="value"
-                    id="accountType"
-                >
-                    مستخدم
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- LESSONS -->
-
-        <div class="card">
-
-            <h2>
-                📚 تقدم الدروس
-            </h2>
-
-
-            <div class="progress-box">
-
-                <div class="progress-title">
-
-                    <span>
-                        الدروس المكتملة
-                    </span>
-
-                    <span id="lessonsCount">
-                        0 / 12
-                    </span>
-
-                </div>
-
-
-                <div class="progress">
-
-                    <div
-                        id="lessonsProgress"
-                        class="progress-bar"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- LAB -->
-
-        <div class="card">
-
-            <h2>
-                🧪 المختبر
-            </h2>
-
-
-            <div class="progress-box">
-
-                <div class="progress-title">
-
-                    <span>
-                        تقدم المختبر
-                    </span>
-
-                    <span id="labProgressText">
-                        0%
-                    </span>
-
-                </div>
-
-
-                <div class="progress">
-
-                    <div
-                        id="labProgress"
-                        class="progress-bar gold"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- QUIZ -->
-
-        <div class="card">
-
-            <h2>
-                🏆 الاختبار
-            </h2>
-
-
-            <div class="info-row">
-
-                <span class="label">
-                    أفضل نتيجة
-                </span>
-
-                <span
-                    class="value"
-                    id="quizScore"
-                >
-                    0 / 20
-                </span>
-
-            </div>
-
-
-            <div class="progress-box">
-
-                <div class="progress-title">
-
-                    <span>
-                        نسبة الاختبار
-                    </span>
-
-                    <span id="quizPercent">
-                        0%
-                    </span>
-
-                </div>
-
-
-                <div class="progress">
-
-                    <div
-                        id="quizProgress"
-                        class="progress-bar"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- OVERALL -->
-
-        <div class="card overall-card">
-
-            <h2>
-                📊 مستوى الإنجاز
-            </h2>
-
-
-            <div
-                id="overallPercent"
-                class="overall-number"
-            >
-                0%
-            </div>
-
-
-            <div class="overall-progress">
-
-                <div
-                    id="overallProgress"
-                    class="overall-fill"
-                ></div>
-
-            </div>
-
-
-            <p class="overall-note">
-
-                يتم حساب الإنجاز من تقدم الدروس
-                والمختبر والاختبار.
-
-            </p>
-
-        </div>
-
-
-        <!-- ADMIN -->
-
-        <div
-            id="adminPanel"
-            class="card admin-card"
-            style="display:none;"
-        >
-
-            <h2>
-                🛠️ لوحة الإدارة
-            </h2>
-
+            <h1>
+                👋 أهلاً بك <span id="usernameTitle">مستخدم</span>
+            </h1>
 
             <p>
-
-                لديك صلاحيات مدير النظام ويمكنك إدارة
-                المستخدمين ومتابعة بيانات الموقع.
-
+                هذه مساحتك الشخصية في عرّاب الشبكات
             </p>
 
+        </section>
 
-            <a
-                href="admin.html"
-                class="admin-btn"
+
+        <!-- STATS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-value" id="statLessons">0</div>
+                <div class="stat-label">درس مكتمل</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🧪</div>
+                <div class="stat-value" id="statLab">0%</div>
+                <div class="stat-label">تقدم المختبر</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-value" id="statQuiz">0/20</div>
+                <div class="stat-label">أفضل نتيجة</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value" id="statOverall">0%</div>
+                <div class="stat-label">التقدم العام</div>
+            </div>
+
+        </section>
+
+
+        <section class="content-grid">
+
+            <!-- ACCOUNT -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    <span>👤</span>
+                    معلومات الحساب
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">اسم المستخدم</div>
+                    <div class="info-value" id="infoUsername">-</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">البريد الإلكتروني</div>
+                    <div class="info-value" id="infoEmail">-</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">رقم الحساب</div>
+                    <div class="info-value" id="infoId">-</div>
+                </div>
+
+            </div>
+
+
+            <!-- LESSONS -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    <span>📚</span>
+                    تقدم الدروس
+                </div>
+
+                <div class="progress-item">
+
+                    <div class="progress-header">
+
+                        <div class="progress-name">
+                            الدروس المكتملة
+                        </div>
+
+                        <div class="progress-number">
+                            <span id="lessonsCount">0</span> / 12
+                        </div>
+
+                    </div>
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            id="lessonsProgress"
+                        ></div>
+                    </div>
+
+                </div>
+
+                <div style="color:#888;font-size:14px;">
+                    أكمل الدروس لرفع مستوى تقدمك في المسار التعليمي.
+                </div>
+
+            </div>
+
+
+            <!-- LAB -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    <span>🧪</span>
+                    المختبر
+                </div>
+
+                <div class="progress-item">
+
+                    <div class="progress-header">
+
+                        <div class="progress-name">
+                            تقدم المختبر
+                        </div>
+
+                        <div class="progress-number">
+                            <span id="labPercent">0</span>%
+                        </div>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill cyan"
+                            id="labProgress"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div style="color:#888;font-size:14px;">
+                    جرّب سيناريوهات الشبكات العملية وارفع نسبة تقدمك.
+                </div>
+
+            </div>
+
+
+            <!-- QUIZ -->
+
+            <div class="card">
+
+                <div class="card-title">
+                    <span>🏆</span>
+                    الاختبار
+                </div>
+
+                <div class="progress-item">
+
+                    <div class="progress-header">
+
+                        <div class="progress-name">
+                            أفضل نتيجة
+                        </div>
+
+                        <div class="progress-number">
+                            <span id="quizScore">0</span> / 20
+                        </div>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill green"
+                            id="quizProgress"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div style="color:#888;font-size:14px;">
+                    اختبر معلوماتك وحاول تحسين أفضل نتيجة لك.
+                </div>
+
+            </div>
+
+
+            <!-- OVERALL -->
+
+            <div class="card full">
+
+                <div class="card-title">
+                    <span>📊</span>
+                    التقدم العام
+                </div>
+
+                <div class="overall-box">
+
+                    <div
+                        class="overall-number"
+                        id="overallNumber"
+                    >
+                        0%
+                    </div>
+
+                    <div class="overall-text">
+                        متوسط تقدمك في الدروس والمختبر والاختبار
+                    </div>
+
+                    <div class="overall-bar">
+
+                        <div
+                            class="overall-fill"
+                            id="overallProgress"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div
+                class="card full"
+                id="adminCard"
             >
-                دخول لوحة الإدارة
-            </a>
+
+                <div class="card-title">
+                    <span>⚙️</span>
+                    لوحة الإدارة
+                </div>
+
+                <div class="admin-box" id="adminBox">
+
+                    <p>
+                        لديك صلاحية مدير النظام ويمكنك إدارة المستخدمين
+                        ومتابعة تقدمهم.
+                    </p>
+
+                    <a
+                        href="admin-users.html"
+                        class="admin-btn"
+                    >
+                        إدارة المستخدمين
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="logout-section">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+                type="button"
+            >
+                تسجيل الخروج
+            </button>
 
         </div>
 
-    </section>
-
-
-    <!-- LOGOUT -->
-
-    <button
-        id="logoutBtn"
-        class="logout-btn"
-    >
-
-        تسجيل الخروج
-
-    </button>
-
+    </div>
 
 </main>
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase.js"></script>
+<footer>
+    <strong>عرّاب الشبكات</strong>
+    — تعلم الشبكات بطريقة عملية
+</footer>
 
 
 <script>
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
+    const loading = document.getElementById("loading");
+    const dashboard = document.getElementById("dashboard");
+    const errorBox = document.getElementById("errorBox");
 
-
-        const loading =
-            document.getElementById("loading");
-
-
-        const errorBox =
-            document.getElementById("error");
-
-
-        const errorDetails =
-            document.getElementById("errorDetails");
-
-
-        const profileContent =
-            document.getElementById("profileContent");
-
-
-        const adminPanel =
-            document.getElementById("adminPanel");
-
-
-        const logoutBtn =
-            document.getElementById("logoutBtn");
-
-
-        function showError(title, details) {
-
-            loading.style.display = "none";
-
-            profileContent.style.display = "none";
-
-            errorBox.style.display = "block";
-
-            errorDetails.textContent =
-                title +
-                "\n\n" +
-                details;
-
-        }
-
+    async function loadProfile() {
 
         try {
 
-
-            /*
-            ==========================================
-            1 - التأكد من Supabase
-            ==========================================
-            */
-
-            if (
-                typeof supabaseClient ===
-                "undefined"
-            ) {
-
-                showError(
-                    "supabaseClient غير موجود",
-                    "ملف supabase.js لم يتم تحميله بشكل صحيح."
-                );
-
-                return;
-
-            }
-
-
-            /*
-            ==========================================
-            2 - قراءة Session
-            ==========================================
-            */
-
             const {
-                data: sessionData,
+                data: {
+                    session
+                },
                 error: sessionError
-            } =
-            await supabaseClient.auth.getSession();
-
+            } = await supabaseClient.auth.getSession();
 
             if (sessionError) {
+                throw sessionError;
+            }
 
-                showError(
-                    "خطأ أثناء قراءة جلسة تسجيل الدخول",
-                    JSON.stringify(
-                        sessionError,
-                        null,
-                        2
-                    )
-                );
+            if (!session) {
 
+                window.location.href = "login.html";
                 return;
 
             }
 
-
-            const session =
-                sessionData?.session;
-
-
-            if (
-                !session ||
-                !session.user
-            ) {
-
-                loading.style.display =
-                    "none";
-
-                window.location.replace(
-                    "login.html"
-                );
-
-                return;
-
-            }
-
-
-            const user =
-                session.user;
-
-
-            /*
-            ==========================================
-            3 - قراءة بيانات المستخدم
-            ==========================================
-            */
+            const user = session.user;
 
             const {
                 data: profile,
                 error: profileError
-            } =
-            await supabaseClient
+            } = await supabaseClient
                 .from("users")
                 .select("*")
                 .eq("auth_id", user.id)
-                .maybeSingle();
-
+                .single();
 
             if (profileError) {
 
-                showError(
-                    "خطأ أثناء قراءة جدول users",
-
-                    JSON.stringify(
-                        {
-                            message:
-                                profileError.message,
-
-                            details:
-                                profileError.details,
-
-                            hint:
-                                profileError.hint,
-
-                            code:
-                                profileError.code
-                        },
-                        null,
-                        2
-                    )
+                console.error(
+                    "Profile error:",
+                    profileError
                 );
 
-                return;
-
+                throw new Error(
+                    "لم يتم العثور على بيانات الحساب."
+                );
             }
 
 
-            if (!profile) {
-
-                showError(
-                    "لم يتم العثور على بيانات الحساب",
-
-                    "تم العثور على جلسة تسجيل الدخول، ولكن لم يتم العثور على صف مطابق في جدول users."
-                );
-
-                return;
-
-            }
-
-
-            /*
-            ==========================================
-            4 - معلومات الحساب
-            ==========================================
-            */
+            /* =========================
+               BASIC INFO
+            ========================= */
 
             const username =
                 profile.username ||
+                user.user_metadata?.username ||
                 "مستخدم";
 
-
-            document
-                .getElementById("username")
-                .textContent =
-                    username;
-
-
-            document
-                .getElementById("welcomeUsername")
-                .textContent =
-                    username;
+            const email =
+                profile.email ||
+                user.email ||
+                "-";
 
 
-            document
-                .getElementById("email")
-                .textContent =
-                    profile.email ||
-                    user.email ||
-                    "بدون بريد";
+            document.getElementById(
+                "usernameTitle"
+            ).textContent = username;
+
+            document.getElementById(
+                "infoUsername"
+            ).textContent = username;
+
+            document.getElementById(
+                "infoEmail"
+            ).textContent = email;
+
+            document.getElementById(
+                "infoId"
+            ).textContent = profile.id || "-";
 
 
-            /*
-            ==========================================
-            5 - المدير
-            ==========================================
-            */
+            /* =========================
+               LESSONS
+            ========================= */
 
-            if (
-                profile.is_admin === true
-            ) {
+            let completedLessons = [];
 
-                document
-                    .getElementById(
-                        "accountType"
-                    )
-                    .textContent =
-                        "مدير النظام";
+            if (Array.isArray(profile.completed_lessons)) {
 
-
-                adminPanel.style.display =
-                    "block";
-
-            } else {
-
-                document
-                    .getElementById(
-                        "accountType"
-                    )
-                    .textContent =
-                        "مستخدم";
-
-
-                adminPanel.style.display =
-                    "none";
+                completedLessons =
+                    profile.completed_lessons;
 
             }
 
-
-            /*
-            ==========================================
-            6 - الدروس
-            ==========================================
-            */
-
-            const completedLessons =
-                Array.isArray(
-                    profile.completed_lessons
-                )
-                    ? profile.completed_lessons
-                    : [];
-
-
             const lessonsCount =
-                completedLessons.length;
+                Math.min(
+                    completedLessons.length,
+                    12
+                );
 
-
-            const totalLessons =
-                12;
-
-
-            let lessonsPercent =
-                (
-                    lessonsCount /
-                    totalLessons
-                ) * 100;
-
-
-            lessonsPercent =
-                Math.max(
-                    0,
-                    Math.min(
-                        100,
-                        lessonsPercent
-                    )
+            const lessonsPercent =
+                Math.round(
+                    (lessonsCount / 12) * 100
                 );
 
 
-            document
-                .getElementById(
-                    "lessonsCount"
-                )
-                .textContent =
-                    lessonsCount +
-                    " / " +
-                    totalLessons;
+            document.getElementById(
+                "statLessons"
+            ).textContent = lessonsCount;
+
+            document.getElementById(
+                "lessonsCount"
+            ).textContent = lessonsCount;
+
+            document.getElementById(
+                "lessonsProgress"
+            ).style.width =
+                lessonsPercent + "%";
 
 
-            document
-                .getElementById(
-                    "lessonsProgress"
-                )
-                .style.width =
-                    lessonsPercent +
-                    "%";
-
-
-            document
-                .getElementById(
-                    "statLessons"
-                )
-                .textContent =
-                    lessonsCount;
-
-
-            /*
-            ==========================================
-            7 - المختبر
-            ==========================================
-            */
+            /* =========================
+               LAB
+            ========================= */
 
             let labProgress =
-                Number(
-                    profile.lab_progress
-                ) || 0;
+                Number(profile.lab_progress);
 
+            if (!Number.isFinite(labProgress)) {
+                labProgress = 0;
+            }
 
             labProgress =
                 Math.max(
                     0,
                     Math.min(
                         100,
-                        labProgress
+                        Math.round(labProgress)
                     )
                 );
 
 
-            document
-                .getElementById(
-                    "labProgress"
-                )
-                .style.width =
-                    labProgress +
-                    "%";
+            document.getElementById(
+                "statLab"
+            ).textContent =
+                labProgress + "%";
+
+            document.getElementById(
+                "labPercent"
+            ).textContent =
+                labProgress;
+
+            document.getElementById(
+                "labProgress"
+            ).style.width =
+                labProgress + "%";
 
 
-            document
-                .getElementById(
-                    "labProgressText"
-                )
-                .textContent =
-                    labProgress +
-                    "%";
-
-
-            document
-                .getElementById(
-                    "statLab"
-                )
-                .textContent =
-                    labProgress +
-                    "%";
-
-
-            /*
-            ==========================================
-            8 - الاختبار
-            ==========================================
-            */
+            /* =========================
+               QUIZ
+            ========================= */
 
             let quizScore =
-                Number(
-                    profile.quiz_best_score
-                ) || 0;
+                Number(profile.quiz_best_score);
 
+            if (!Number.isFinite(quizScore)) {
+                quizScore = 0;
+            }
 
             quizScore =
                 Math.max(
                     0,
                     Math.min(
                         20,
-                        quizScore
+                        Math.round(quizScore)
                     )
                 );
 
 
             const quizPercent =
-                (
-                    quizScore /
-                    20
-                ) * 100;
+                Math.round(
+                    (quizScore / 20) * 100
+                );
 
 
-            document
-                .getElementById(
-                    "quizScore"
-                )
-                .textContent =
-                    quizScore +
-                    " / 20";
+            document.getElementById(
+                "statQuiz"
+            ).textContent =
+                quizScore + "/20";
+
+            document.getElementById(
+                "quizScore"
+            ).textContent =
+                quizScore;
+
+            document.getElementById(
+                "quizProgress"
+            ).style.width =
+                quizPercent + "%";
 
 
-            document
-                .getElementById(
-                    "quizPercent"
-                )
-                .textContent =
-                    quizPercent +
-                    "%";
-
-
-            document
-                .getElementById(
-                    "quizProgress"
-                )
-                .style.width =
-                    quizPercent +
-                    "%";
-
-
-            document
-                .getElementById(
-                    "statQuiz"
-                )
-                .textContent =
-                    quizScore +
-                    "/20";
-
-
-            /*
-            ==========================================
-            9 - الإنجاز العام
-            ==========================================
-            */
+            /* =========================
+               OVERALL
+            ========================= */
 
             const overall =
                 Math.round(
@@ -1555,135 +1148,104 @@ document.addEventListener(
                 );
 
 
-            document
-                .getElementById(
-                    "statOverall"
-                )
-                .textContent =
-                    overall +
-                    "%";
+            document.getElementById(
+                "statOverall"
+            ).textContent =
+                overall + "%";
+
+            document.getElementById(
+                "overallNumber"
+            ).textContent =
+                overall + "%";
+
+            document.getElementById(
+                "overallProgress"
+            ).style.width =
+                overall + "%";
 
 
-            document
-                .getElementById(
-                    "overallPercent"
-                )
-                .textContent =
-                    overall +
-                    "%";
+            /* =========================
+               ADMIN
+            ========================= */
+
+            if (profile.is_admin === true) {
+
+                document.getElementById(
+                    "adminBox"
+                ).style.display = "block";
+
+            } else {
+
+                document.getElementById(
+                    "adminCard"
+                ).style.display = "none";
+
+            }
 
 
-            document
-                .getElementById(
-                    "overallProgress"
-                )
-                .style.width =
-                    overall +
-                    "%";
+            /* =========================
+               SHOW
+            ========================= */
 
+            loading.style.display = "none";
 
-            /*
-            ==========================================
-            10 - إظهار الحساب
-            ==========================================
-            */
-
-            loading.style.display =
-                "none";
-
-
-            profileContent.style.display =
-                "block";
-
+            dashboard.style.display = "block";
 
         } catch (error) {
 
-            showError(
-                "خطأ غير متوقع",
-
-                JSON.stringify(
-                    {
-                        message:
-                            error?.message,
-
-                        name:
-                            error?.name,
-
-                        stack:
-                            error?.stack
-                    },
-                    null,
-                    2
-                )
+            console.error(
+                "Profile loading error:",
+                error
             );
 
+            loading.style.display = "none";
+
+            errorBox.style.display = "block";
+
+            errorBox.innerHTML = `
+                ⚠️ حدث خطأ أثناء تحميل الحساب
+                <br>
+                <small>
+                    ${error.message || "تعذر تحميل بيانات الحساب."}
+                </small>
+            `;
         }
+    }
 
 
-        /*
-        ==========================================
-        تسجيل الخروج
-        ==========================================
-        */
+    /* =========================
+       LOGOUT
+    ========================= */
 
-        logoutBtn.addEventListener(
+    document
+        .getElementById("logoutBtn")
+        .addEventListener(
             "click",
             async function () {
 
+                try {
 
-                logoutBtn.disabled =
-                    true;
+                    await supabaseClient.auth.signOut();
 
+                    window.location.href =
+                        "login.html";
 
-                logoutBtn.textContent =
-                    "جاري تسجيل الخروج...";
+                } catch (error) {
 
-
-                const {
-                    error
-                } =
-                await supabaseClient
-                    .auth
-                    .signOut();
-
-
-                if (error) {
-
-                    logoutBtn.disabled =
-                        false;
-
-
-                    logoutBtn.textContent =
-                        "تسجيل الخروج";
-
-
-                    showError(
-                        "خطأ أثناء تسجيل الخروج",
-
-                        JSON.stringify(
-                            error,
-                            null,
-                            2
-                        )
+                    console.error(
+                        "Logout error:",
+                        error
                     );
 
-                    return;
-
                 }
-
-
-                window.location.replace(
-                    "login.html"
-                );
 
             }
         );
 
-    }
-);
+
+    loadProfile();
 
 </script>
 
 </body>
-
 </html>
