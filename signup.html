@@ -87,10 +87,16 @@
             opacity: 0.9;
         }
 
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         #message {
             margin-top: 18px;
             text-align: center;
             font-weight: 700;
+            line-height: 1.8;
         }
 
         .login-link {
@@ -122,14 +128,17 @@
         <form id="signupForm">
 
             <label for="username">اسم المستخدم</label>
+
             <input
                 type="text"
                 id="username"
                 placeholder="اكتب اسم المستخدم"
+                maxlength="50"
                 required
             >
 
             <label for="email">البريد الإلكتروني</label>
+
             <input
                 type="email"
                 id="email"
@@ -138,14 +147,16 @@
             >
 
             <label for="password">كلمة المرور</label>
+
             <input
                 type="password"
                 id="password"
                 placeholder="كلمة المرور"
+                minlength="6"
                 required
             >
 
-            <button type="submit">
+            <button type="submit" id="signupButton">
                 إنشاء الحساب
             </button>
 
@@ -166,6 +177,7 @@
     <script>
         const form = document.getElementById("signupForm");
         const message = document.getElementById("message");
+        const signupButton = document.getElementById("signupButton");
 
         form.addEventListener("submit", async function(event) {
 
@@ -175,11 +187,23 @@
                 document.getElementById("username").value.trim();
 
             const email =
-                document.getElementById("email").value.trim();
+                document.getElementById("email").value.trim().toLowerCase();
 
             const password =
                 document.getElementById("password").value;
 
+            if (!username || !email || !password) {
+                message.textContent = "فضلاً أكمل جميع البيانات.";
+                return;
+            }
+
+            if (password.length < 6) {
+                message.textContent =
+                    "كلمة المرور يجب أن تكون 6 أحرف على الأقل.";
+                return;
+            }
+
+            signupButton.disabled = true;
             message.textContent = "جاري إنشاء الحساب...";
 
             try {
@@ -189,7 +213,12 @@
                     error
                 } = await supabaseClient.auth.signUp({
                     email: email,
-                    password: password
+                    password: password,
+                    options: {
+                        data: {
+                            username: username
+                        }
+                    }
                 });
 
                 if (error) {
@@ -200,30 +229,42 @@
                     throw new Error("تعذر إنشاء الحساب.");
                 }
 
-                const { error: profileError } =
-                    await supabaseClient
-                        .from("users")
-                        .insert({
-                            auth_id: data.user.id,
-                            username: username,
-                            email: email
-                        });
+                /*
+                 * لا نضيف users هنا.
+                 *
+                 * Supabase Trigger يقوم بإنشاء صف users
+                 * تلقائيًا عند إنشاء حساب Auth.
+                 */
 
-                if (profileError) {
-                    throw profileError;
+                if (data.session) {
+
+                    message.textContent =
+                        "تم إنشاء الحساب بنجاح. جاري تحويلك...";
+
+                    setTimeout(() => {
+                        window.location.href = "profile.html";
+                    }, 1000);
+
+                } else {
+
+                    message.textContent =
+                        "تم إنشاء الحساب بنجاح. تحقق من بريدك الإلكتروني لتفعيل الحساب.";
+
+                    form.reset();
                 }
-
-                message.textContent =
-                    "تم إنشاء الحساب بنجاح. يمكنك تسجيل الدخول الآن.";
-
-                form.reset();
 
             } catch (error) {
 
                 console.error("Signup error:", error);
 
                 message.textContent =
-                    error.message || "حدث خطأ أثناء إنشاء الحساب.";
+                    error.message ||
+                    "حدث خطأ أثناء إنشاء الحساب.";
+
+            } finally {
+
+                signupButton.disabled = false;
+
             }
 
         });
