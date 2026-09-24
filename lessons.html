@@ -2,21 +2,29 @@
   عرّاب الشبكات
   Copyright (c) 2026 Mishal AL-Mishal
   All Rights Reserved.
-  
-  يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
-  أو أي جزء جوهري منه دون إذن صاحب الحقوق.
 -->
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>الدروس | عرّاب الشبكات</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
@@ -24,6 +32,7 @@
     >
 
     <link rel="stylesheet" href="style.css">
+
 
     <style>
 
@@ -33,14 +42,21 @@
             color: #111111;
         }
 
+
+        /* =========================
+           HEADER
+        ========================= */
+
         .lessons-header {
             background: #111111;
             color: #ffffff;
+
             padding: 18px 5%;
 
             box-shadow:
                 0 4px 18px rgba(0, 0, 0, 0.22);
         }
+
 
         .lessons-navbar {
             max-width: 1200px;
@@ -53,9 +69,11 @@
             gap: 20px;
         }
 
+
         .lessons-brand {
             display: flex;
             align-items: center;
+
             gap: 10px;
 
             text-decoration: none;
@@ -63,6 +81,7 @@
 
             flex-shrink: 0;
         }
+
 
         .lessons-brand-icon {
             width: 42px;
@@ -83,23 +102,31 @@
                 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
+
         .lessons-brand-text {
             display: flex;
             flex-direction: column;
+
             line-height: 1.1;
         }
+
 
         .lessons-brand-name {
             font-size: 20px;
             font-weight: 800;
         }
 
+
         .lessons-brand-subtitle {
             font-size: 10px;
+
             letter-spacing: 2px;
+
             color: #cbb77a;
+
             margin-top: 4px;
         }
+
 
         .lessons-nav {
             display: flex;
@@ -107,11 +134,14 @@
             justify-content: flex-end;
 
             gap: 7px;
+
             flex-wrap: wrap;
         }
 
+
         .lessons-nav a {
             color: #eeeeee;
+
             text-decoration: none;
 
             padding: 9px 12px;
@@ -124,10 +154,12 @@
             transition: 0.25s;
         }
 
+
         .lessons-nav a:hover {
             background: rgba(203, 183, 122, 0.12);
             color: #ffffff;
         }
+
 
         .lessons-nav a.active {
             background: #cbb77a;
@@ -137,15 +169,24 @@
                 0 4px 12px rgba(203, 183, 122, 0.18);
         }
 
+
+        /* =========================
+           MAIN
+        ========================= */
+
         .lessons-main {
             width: min(1100px, 92%);
+
             margin: 45px auto 70px;
         }
 
+
         .lessons-welcome {
             text-align: center;
+
             margin-bottom: 30px;
         }
+
 
         .lessons-welcome h2 {
             font-size: 36px;
@@ -156,6 +197,7 @@
             margin-bottom: 8px;
         }
 
+
         .lessons-welcome p {
             font-size: 16px;
             font-weight: 500;
@@ -163,14 +205,22 @@
             color: #292929;
         }
 
+
+        /* =========================
+           STATS
+        ========================= */
+
         .lessons-stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 18px;
 
             margin-bottom: 25px;
         }
+
 
         .lessons-stat-card {
             background: #f4edda;
@@ -183,7 +233,8 @@
 
             text-align: center;
 
-            border: 1px solid rgba(17, 17, 17, 0.12);
+            border:
+                1px solid rgba(17, 17, 17, 0.12);
 
             box-shadow:
                 0 8px 22px rgba(17, 17, 17, 0.13);
@@ -191,12 +242,14 @@
             transition: 0.25s;
         }
 
+
         .lessons-stat-card:hover {
             transform: translateY(-3px);
 
             box-shadow:
                 0 12px 26px rgba(17, 17, 17, 0.17);
         }
+
 
         .lessons-stat-number {
             font-size: 30px;
@@ -207,12 +260,18 @@
             margin-bottom: 5px;
         }
 
+
         .lessons-stat-label {
             font-size: 14px;
             font-weight: 700;
 
             color: #222222;
         }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
 
         .lessons-tools {
             display: flex;
@@ -224,18 +283,24 @@
             flex-wrap: wrap;
         }
 
+
         .lessons-search-box {
             flex: 1;
+
             min-width: 230px;
         }
+
 
         .lessons-search-box input {
             width: 100%;
 
-            border: 1px solid rgba(17, 17, 17, 0.16);
+            border:
+                1px solid rgba(17, 17, 17, 0.16);
+
             outline: none;
 
             background: #f4edda;
+
             color: #111111;
 
             padding: 15px 18px;
@@ -243,6 +308,7 @@
             border-radius: 12px;
 
             font-family: inherit;
+
             font-size: 15px;
             font-weight: 500;
 
@@ -252,22 +318,29 @@
             transition: 0.25s;
         }
 
+
         .lessons-search-box input:focus {
             border-color: #075985;
 
             box-shadow:
-                0 0 0 3px rgba(7, 89, 133, 0.12);
+                0 0 0 3px
+                rgba(7, 89, 133, 0.12);
         }
+
 
         .lessons-search-box input::placeholder {
             color: #666666;
         }
 
+
         .lessons-filter {
-            border: 1px solid rgba(17, 17, 17, 0.16);
+            border:
+                1px solid rgba(17, 17, 17, 0.16);
+
             outline: none;
 
             background: #111111;
+
             color: #cbb77a;
 
             padding: 0 18px;
@@ -275,6 +348,7 @@
             border-radius: 12px;
 
             font-family: inherit;
+
             font-size: 14px;
             font-weight: 800;
 
@@ -286,8 +360,14 @@
                 0 5px 16px rgba(17, 17, 17, 0.12);
         }
 
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
         .lessons-course-progress {
             background: #111111;
+
             color: #ffffff;
 
             border-radius: 18px;
@@ -296,11 +376,13 @@
 
             margin-bottom: 30px;
 
-            border: 1px solid rgba(17, 17, 17, 0.12);
+            border:
+                1px solid rgba(17, 17, 17, 0.12);
 
             box-shadow:
                 0 8px 22px rgba(17, 17, 17, 0.18);
         }
+
 
         .lessons-progress-top {
             display: flex;
@@ -311,10 +393,12 @@
             margin-bottom: 12px;
         }
 
+
         .lessons-progress-title {
             font-size: 17px;
             font-weight: 800;
         }
+
 
         .lessons-progress-percent {
             font-size: 15px;
@@ -323,8 +407,10 @@
             color: #cbb77a;
         }
 
+
         .lessons-progress-track {
             width: 100%;
+
             height: 12px;
 
             background: #333333;
@@ -334,8 +420,10 @@
             overflow: hidden;
         }
 
+
         .lessons-progress-fill {
             width: 0%;
+
             height: 100%;
 
             background:
@@ -347,8 +435,14 @@
 
             border-radius: 20px;
 
-            transition: width 0.5s ease;
+            transition:
+                width 0.5s ease;
         }
+
+
+        /* =========================
+           STAGES
+        ========================= */
 
         .lessons-stage {
             background: #f4edda;
@@ -359,11 +453,13 @@
 
             margin-bottom: 25px;
 
-            border: 1px solid rgba(17, 17, 17, 0.12);
+            border:
+                1px solid rgba(17, 17, 17, 0.12);
 
             box-shadow:
                 0 8px 22px rgba(17, 17, 17, 0.12);
         }
+
 
         .lessons-stage-header {
             background:
@@ -388,16 +484,21 @@
 
             gap: 10px;
 
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.12);
 
             box-shadow:
-                0 5px 14px rgba(7, 89, 133, 0.18);
+                0 5px 14px
+                rgba(7, 89, 133, 0.18);
         }
+
 
         .lessons-stage-header h3 {
             font-size: 20px;
             font-weight: 800;
         }
+
 
         .lessons-stage-header span {
             font-size: 13px;
@@ -406,11 +507,17 @@
             color: #d8f3ff;
         }
 
+
         .lessons-stage-list {
             display: grid;
 
             gap: 10px;
         }
+
+
+        /* =========================
+           LESSON CARD
+        ========================= */
 
         .lessons-stage-lesson {
             display: flex;
@@ -430,22 +537,29 @@
 
             border-radius: 13px;
 
-            border: 1px solid rgba(17, 17, 17, 0.1);
+            border:
+                1px solid
+                rgba(17, 17, 17, 0.1);
 
             transition: 0.25s;
 
             box-shadow:
-                0 3px 10px rgba(17, 17, 17, 0.06);
+                0 3px 10px
+                rgba(17, 17, 17, 0.06);
         }
+
 
         .lessons-stage-lesson:hover {
             transform: translateY(-2px);
 
-            border-color: rgba(7, 89, 133, 0.35);
+            border-color:
+                rgba(7, 89, 133, 0.35);
 
             box-shadow:
-                0 7px 18px rgba(17, 17, 17, 0.12);
+                0 7px 18px
+                rgba(17, 17, 17, 0.12);
         }
+
 
         .lessons-lesson-info {
             display: flex;
@@ -454,6 +568,7 @@
 
             gap: 13px;
         }
+
 
         .lessons-lesson-number {
             width: 38px;
@@ -480,8 +595,10 @@
             flex-shrink: 0;
 
             box-shadow:
-                0 4px 10px rgba(3, 105, 161, 0.2);
+                0 4px 10px
+                rgba(3, 105, 161, 0.2);
         }
+
 
         .lessons-lesson-text {
             display: flex;
@@ -491,6 +608,7 @@
             gap: 4px;
         }
 
+
         .lessons-lesson-title {
             font-size: 16px;
             font-weight: 800;
@@ -498,12 +616,14 @@
             color: #111111;
         }
 
+
         .lessons-lesson-level {
             font-size: 12px;
             font-weight: 700;
 
             color: #555555;
         }
+
 
         .lessons-lesson-status {
             font-size: 12px;
@@ -518,8 +638,10 @@
             color: #222222;
         }
 
+
         .lessons-stage-lesson.completed {
-            border-color: rgba(22, 163, 74, 0.4);
+            border-color:
+                rgba(22, 163, 74, 0.4);
 
             background:
                 linear-gradient(
@@ -529,7 +651,9 @@
                 );
         }
 
-        .lessons-stage-lesson.completed .lessons-lesson-number {
+
+        .lessons-stage-lesson.completed
+        .lessons-lesson-number {
             background:
                 linear-gradient(
                     135deg,
@@ -538,10 +662,18 @@
                 );
         }
 
-        .lessons-stage-lesson.completed .lessons-lesson-status {
+
+        .lessons-stage-lesson.completed
+        .lessons-lesson-status {
             background: #dcfce7;
+
             color: #166534;
         }
+
+
+        /* =========================
+           NO RESULTS
+        ========================= */
 
         .lessons-no-results {
             display: none;
@@ -558,11 +690,19 @@
 
             font-weight: 700;
 
-            border: 1px solid rgba(17, 17, 17, 0.12);
+            border:
+                1px solid
+                rgba(17, 17, 17, 0.12);
 
             box-shadow:
-                0 7px 18px rgba(17, 17, 17, 0.1);
+                0 7px 18px
+                rgba(17, 17, 17, 0.1);
         }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 800px) {
 
@@ -570,24 +710,30 @@
                 flex-direction: column;
             }
 
+
             .lessons-nav {
                 justify-content: center;
             }
+
 
             .lessons-stats {
                 grid-template-columns: 1fr;
             }
 
+
             .lessons-welcome h2 {
                 font-size: 28px;
             }
 
+
             .lessons-stage-header {
                 flex-direction: column;
+
                 align-items: flex-start;
             }
 
         }
+
 
         @media (max-width: 550px) {
 
@@ -597,31 +743,38 @@
                 margin-top: 30px;
             }
 
+
             .lessons-nav a {
                 font-size: 12px;
 
                 padding: 8px 9px;
             }
 
+
             .lessons-stage {
                 padding: 12px;
             }
+
 
             .lessons-stage-lesson {
                 padding: 13px;
             }
 
+
             .lessons-lesson-status {
                 display: none;
             }
+
 
             .lessons-lesson-title {
                 font-size: 14px;
             }
 
+
             .lessons-filter {
                 width: 100%;
             }
+
 
             .lessons-brand-name {
                 font-size: 18px;
@@ -630,27 +783,38 @@
         }
 
     </style>
+
 </head>
 
 
 <body class="lessons-page">
 
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header class="lessons-header">
 
     <div class="lessons-navbar">
 
-        <a href="index.html" class="lessons-brand">
+
+        <a
+            href="index.html"
+            class="lessons-brand"
+        >
 
             <span class="lessons-brand-icon">
                 🌐
             </span>
+
 
             <span class="lessons-brand-text">
 
                 <span class="lessons-brand-name">
                     عرّاب الشبكات
                 </span>
+
 
                 <span class="lessons-brand-subtitle">
                     NETWORKS
@@ -667,6 +831,7 @@
                 🏠 الرئيسية
             </a>
 
+
             <a
                 href="lessons.html"
                 class="active"
@@ -674,31 +839,37 @@
                 📚 الدروس
             </a>
 
+
             <a href="index.html#network-lab">
                 🧪 المختبر
             </a>
+
 
             <a href="quiz.html">
                 🧠 الاختبارات
             </a>
 
+
             <a href="dictionary.html">
                 📖 القاموس
             </a>
+
 
             <a href="config.html">
                 💻 مرجع الأوامر
             </a>
 
+
             <a href="command-practice.html">
                 🎯 تحدي الميدان
             </a>
+
 
             <a href="terminal.html">
                 CLI ⌨️
             </a>
 
-            <!-- اسم المستخدم يتم تحديثه تلقائياً من user.js -->
+
             <a
                 href="profile.html"
                 class="user-name"
@@ -714,8 +885,16 @@
 </header>
 
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main class="lessons-main">
 
+
+    <!-- =========================
+         WELCOME
+    ========================== -->
 
     <section class="lessons-welcome">
 
@@ -726,6 +905,7 @@
             رحلتك التعليمية
         </h2>
 
+
         <p>
             تعلّم الشبكات خطوة بخطوة من الأساسيات إلى حل المشاكل
         </p>
@@ -733,7 +913,12 @@
     </section>
 
 
+    <!-- =========================
+         STATS
+    ========================== -->
+
     <section class="lessons-stats">
+
 
         <div class="lessons-stat-card">
 
@@ -785,7 +970,12 @@
     </section>
 
 
+    <!-- =========================
+         SEARCH / FILTER
+    ========================== -->
+
     <section class="lessons-tools">
+
 
         <div class="lessons-search-box">
 
@@ -807,13 +997,16 @@
                 جميع المستويات
             </option>
 
+
             <option value="مبتدئ">
                 مبتدئ
             </option>
 
+
             <option value="متوسط">
                 متوسط
             </option>
+
 
             <option value="متقدم">
                 متقدم
@@ -824,13 +1017,19 @@
     </section>
 
 
+    <!-- =========================
+         PROGRESS
+    ========================== -->
+
     <section class="lessons-course-progress">
+
 
         <div class="lessons-progress-top">
 
             <div class="lessons-progress-title">
                 تقدمك في مسار الشبكات
             </div>
+
 
             <div
                 class="lessons-progress-percent"
@@ -854,13 +1053,19 @@
     </section>
 
 
+    <!-- =====================================================
+         المرحلة الأولى
+    ====================================================== -->
+
     <section class="lessons-stage">
+
 
         <div class="lessons-stage-header">
 
             <h3>
                 المرحلة الأولى: الأساسيات
             </h3>
+
 
             <span>
                 3 دروس
@@ -870,6 +1075,7 @@
 
 
         <div class="lessons-stage-list">
+
 
             <a
                 href="lesson.html?id=1"
@@ -881,13 +1087,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">1</div>
+                    <div class="lessons-lesson-number">
+                        1
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             أساسيات الشبكات
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: مبتدئ
@@ -896,6 +1106,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -914,13 +1125,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">2</div>
+                    <div class="lessons-lesson-number">
+                        2
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             أجهزة الشبكة
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: مبتدئ
@@ -929,6 +1144,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -947,13 +1163,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">3</div>
+                    <div class="lessons-lesson-number">
+                        3
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             IPv4 وعناوين IP
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: مبتدئ
@@ -962,6 +1182,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -974,13 +1195,19 @@
     </section>
 
 
+    <!-- =====================================================
+         المرحلة الثانية
+    ====================================================== -->
+
     <section class="lessons-stage">
+
 
         <div class="lessons-stage-header">
 
             <h3>
                 المرحلة الثانية: فهم الشبكات
             </h3>
+
 
             <span>
                 3 دروس
@@ -990,6 +1217,7 @@
 
 
         <div class="lessons-stage-list">
+
 
             <a
                 href="lesson.html?id=4"
@@ -1001,13 +1229,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">4</div>
+                    <div class="lessons-lesson-number">
+                        4
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             Subnetting
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متوسط
@@ -1016,6 +1248,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1034,13 +1267,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">5</div>
+                    <div class="lessons-lesson-number">
+                        5
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             Switching
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متوسط
@@ -1049,6 +1286,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1067,13 +1305,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">6</div>
+                    <div class="lessons-lesson-number">
+                        6
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             VLAN
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متوسط
@@ -1082,6 +1324,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1094,13 +1337,19 @@
     </section>
 
 
+    <!-- =====================================================
+         المرحلة الثالثة
+    ====================================================== -->
+
     <section class="lessons-stage">
+
 
         <div class="lessons-stage-header">
 
             <h3>
                 المرحلة الثالثة: Routing
             </h3>
+
 
             <span>
                 3 دروس
@@ -1110,6 +1359,7 @@
 
 
         <div class="lessons-stage-list">
+
 
             <a
                 href="lesson.html?id=7"
@@ -1121,13 +1371,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">7</div>
+                    <div class="lessons-lesson-number">
+                        7
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             Routing
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متوسط
@@ -1136,6 +1390,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1154,13 +1409,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">8</div>
+                    <div class="lessons-lesson-number">
+                        8
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             Static Routing
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متوسط
@@ -1169,6 +1428,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1187,13 +1447,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">9</div>
+                    <div class="lessons-lesson-number">
+                        9
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             OSPF
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متقدم
@@ -1202,6 +1466,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1214,13 +1479,19 @@
     </section>
 
 
+    <!-- =====================================================
+         المرحلة الرابعة
+    ====================================================== -->
+
     <section class="lessons-stage">
+
 
         <div class="lessons-stage-header">
 
             <h3>
                 المرحلة الرابعة: الإدارة والحماية
             </h3>
+
 
             <span>
                 درسان
@@ -1230,6 +1501,7 @@
 
 
         <div class="lessons-stage-list">
+
 
             <a
                 href="lesson.html?id=10"
@@ -1241,13 +1513,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">10</div>
+                    <div class="lessons-lesson-number">
+                        10
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             SSH وإدارة الأجهزة
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متوسط
@@ -1256,6 +1532,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1274,13 +1551,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">11</div>
+                    <div class="lessons-lesson-number">
+                        11
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             Network Security
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متقدم
@@ -1289,6 +1570,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1301,13 +1583,19 @@
     </section>
 
 
+    <!-- =====================================================
+         المرحلة الخامسة
+    ====================================================== -->
+
     <section class="lessons-stage">
+
 
         <div class="lessons-stage-header">
 
             <h3>
                 المرحلة الخامسة: التطبيق وحل المشاكل
             </h3>
+
 
             <span>
                 درس واحد
@@ -1317,6 +1605,7 @@
 
 
         <div class="lessons-stage-list">
+
 
             <a
                 href="lesson.html?id=12"
@@ -1328,13 +1617,17 @@
 
                 <div class="lessons-lesson-info">
 
-                    <div class="lessons-lesson-number">12</div>
+                    <div class="lessons-lesson-number">
+                        12
+                    </div>
+
 
                     <div class="lessons-lesson-text">
 
                         <div class="lessons-lesson-title">
                             Troubleshooting
                         </div>
+
 
                         <div class="lessons-lesson-level">
                             المستوى: متقدم
@@ -1343,6 +1636,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="lessons-lesson-status">
                     ابدأ
@@ -1354,6 +1648,77 @@
 
     </section>
 
+
+    <!-- =====================================================
+         المرحلة السادسة
+         الأعطال التدريبية
+    ====================================================== -->
+
+    <section class="lessons-stage">
+
+
+        <div class="lessons-stage-header">
+
+            <h3>
+                المرحلة السادسة: التطبيق العملي
+            </h3>
+
+
+            <span>
+                تدريب عملي
+            </span>
+
+        </div>
+
+
+        <div class="lessons-stage-list">
+
+
+            <a
+                href="troubleshooting.html"
+                class="lessons-stage-lesson"
+                data-level="متقدم"
+                data-search="الأعطال التدريبية troubleshooting training faults حل المشاكل"
+            >
+
+                <div class="lessons-lesson-info">
+
+
+                    <div class="lessons-lesson-number">
+                        🛠️
+                    </div>
+
+
+                    <div class="lessons-lesson-text">
+
+                        <div class="lessons-lesson-title">
+                            الأعطال التدريبية
+                        </div>
+
+
+                        <div class="lessons-lesson-level">
+                            تدريب عملي على اكتشاف وحل مشاكل الشبكات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="lessons-lesson-status">
+                    ابدأ
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NO RESULTS
+    ========================== -->
 
     <div
         class="lessons-no-results"
@@ -1381,9 +1746,9 @@
     let completedLessons = [];
 
 
-    /* =====================================================
-       LOAD COMPLETED LESSONS
-    ===================================================== */
+    /* =========================
+       LOAD PROGRESS
+    ========================= */
 
     async function loadCompletedLessons() {
 
@@ -1407,7 +1772,8 @@
                     user
                 },
                 error: userError
-            } = await supabaseClient.auth.getUser();
+            } =
+                await supabaseClient.auth.getUser();
 
 
             if (
@@ -1426,11 +1792,12 @@
             const {
                 data,
                 error
-            } = await supabaseClient
-                .from("users")
-                .select("completed_lessons")
-                .eq("auth_id", user.id)
-                .maybeSingle();
+            } =
+                await supabaseClient
+                    .from("users")
+                    .select("completed_lessons")
+                    .eq("auth_id", user.id)
+                    .maybeSingle();
 
 
             if (error) {
@@ -1444,7 +1811,9 @@
 
             } else if (
                 data &&
-                Array.isArray(data.completed_lessons)
+                Array.isArray(
+                    data.completed_lessons
+                )
             ) {
 
                 completedLessons =
@@ -1459,7 +1828,11 @@
 
 
                 completedLessons =
-                    [...new Set(completedLessons)];
+                    [
+                        ...new Set(
+                            completedLessons
+                        )
+                    ];
 
             } else {
 
@@ -1486,9 +1859,9 @@
     }
 
 
-    /* =====================================================
-       LOCAL STORAGE FALLBACK
-    ===================================================== */
+    /* =========================
+       LOCAL STORAGE
+    ========================= */
 
     function loadLocalProgress() {
 
@@ -1516,7 +1889,11 @@
 
 
                 completedLessons =
-                    [...new Set(completedLessons)];
+                    [
+                        ...new Set(
+                            completedLessons
+                        )
+                    ];
 
             } else {
 
@@ -1533,9 +1910,9 @@
     }
 
 
-    /* =====================================================
-       UPDATE PROGRESS
-    ===================================================== */
+    /* =========================
+       UPDATE UI
+    ========================= */
 
     function updateProgressUI() {
 
@@ -1557,94 +1934,134 @@
             );
 
 
-        document
-            .getElementById("completedCount")
-            .textContent =
-            completedCount;
+        const completedElement =
+            document.getElementById(
+                "completedCount"
+            );
+
+
+        const totalElement =
+            document.getElementById(
+                "totalCount"
+            );
+
+
+        const remainingElement =
+            document.getElementById(
+                "remainingCount"
+            );
+
+
+        const percentageElement =
+            document.getElementById(
+                "progressPercent"
+            );
+
+
+        const fillElement =
+            document.getElementById(
+                "progressFill"
+            );
+
+
+        if (completedElement) {
+
+            completedElement.textContent =
+                completedCount;
+
+        }
+
+
+        if (totalElement) {
+
+            totalElement.textContent =
+                TOTAL_LESSONS;
+
+        }
+
+
+        if (remainingElement) {
+
+            remainingElement.textContent =
+                remainingCount;
+
+        }
+
+
+        if (percentageElement) {
+
+            percentageElement.textContent =
+                percentage + "%";
+
+        }
+
+
+        if (fillElement) {
+
+            fillElement.style.width =
+                percentage + "%";
+
+        }
 
 
         document
-            .getElementById("remainingCount")
-            .textContent =
-            remainingCount;
+            .querySelectorAll(
+                ".lessons-stage-lesson[data-lesson-id]"
+            )
+            .forEach(lesson => {
+
+                const id =
+                    Number(
+                        lesson.dataset.lessonId
+                    );
 
 
-        document
-            .getElementById("totalCount")
-            .textContent =
-            TOTAL_LESSONS;
+                const status =
+                    lesson.querySelector(
+                        ".lessons-lesson-status"
+                    );
 
 
-        document
-            .getElementById("progressPercent")
-            .textContent =
-            percentage + "%";
+                if (
+                    completedLessons.includes(id)
+                ) {
+
+                    lesson.classList.add(
+                        "completed"
+                    );
 
 
-        document
-            .getElementById("progressFill")
-            .style.width =
-            percentage + "%";
+                    if (status) {
+
+                        status.textContent =
+                            "✓ مكتمل";
+
+                    }
+
+                } else {
+
+                    lesson.classList.remove(
+                        "completed"
+                    );
 
 
-        document
-            .querySelectorAll(".lessons-stage-lesson")
-            .forEach(
-                lesson => {
+                    if (status) {
 
-                    const id =
-                        Number(
-                            lesson.dataset.lessonId
-                        );
-
-
-                    const status =
-                        lesson.querySelector(
-                            ".lessons-lesson-status"
-                        );
-
-
-                    if (
-                        completedLessons.includes(id)
-                    ) {
-
-                        lesson.classList.add(
-                            "completed"
-                        );
-
-
-                        if (status) {
-
-                            status.textContent =
-                                "✓ مكتمل";
-
-                        }
-
-                    } else {
-
-                        lesson.classList.remove(
-                            "completed"
-                        );
-
-
-                        if (status) {
-
-                            status.textContent =
-                                "ابدأ";
-
-                        }
+                        status.textContent =
+                            "ابدأ";
 
                     }
 
                 }
-            );
+
+            });
 
     }
 
 
-    /* =====================================================
+    /* =========================
        SEARCH
-    ===================================================== */
+    ========================= */
 
     function searchLessons() {
 
@@ -1737,6 +2154,27 @@
             });
 
 
+            /*
+             * المرحلة السادسة ليست درسًا
+             * لذلك تبقى ظاهرة دائمًا.
+             */
+
+            const isTrainingStage =
+                stage.querySelector(
+                    'a[href="troubleshooting.html"]'
+                );
+
+
+            if (isTrainingStage) {
+
+                stage.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
             if (stageVisible === 0) {
 
                 stage.style.display =
@@ -1752,19 +2190,27 @@
         });
 
 
-        document
-            .getElementById("noResults")
-            .style.display =
-            totalVisible === 0
-                ? "block"
-                : "none";
+        const noResults =
+            document.getElementById(
+                "noResults"
+            );
+
+
+        if (noResults) {
+
+            noResults.style.display =
+                totalVisible === 0
+                    ? "block"
+                    : "none";
+
+        }
 
     }
 
 
-    /* =====================================================
+    /* =========================
        INITIALIZE
-    ===================================================== */
+    ========================= */
 
     async function initializeLessons() {
 
@@ -1775,9 +2221,9 @@
     }
 
 
-    /* =====================================================
+    /* =========================
        EVENTS
-    ===================================================== */
+    ========================= */
 
     document
         .getElementById("lessonSearch")
@@ -1801,11 +2247,12 @@
 
 
 <!-- =====================================================
-     USER SYSTEM
+     USER
 ===================================================== -->
 
 <script src="user.js"></script>
 
 
 </body>
+
 </html>

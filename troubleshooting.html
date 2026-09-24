@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الأعطال التدريبية | عرّاب الشبكات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Tajawal", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(7, 89, 133, 0.22), transparent 35%),
+                linear-gradient(135deg, #080d12, #101820 55%, #0a1016);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .topbar {
+            width: 100%;
+            border-bottom: 1px solid rgba(203, 183, 122, 0.25);
+            background: rgba(5, 10, 15, 0.88);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .topbar-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: #cbb77a;
+            color: #111;
+            font-size: 23px;
+        }
+
+        .brand-name {
+            color: #cbb77a;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .brand-sub {
+            color: #87929d;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        .back-btn {
+            border: 1px solid rgba(203, 183, 122, 0.4);
+            background: rgba(203, 183, 122, 0.08);
+            color: #cbb77a;
+            padding: 10px 17px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #cbb77a;
+            color: #111;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 55px 20px 80px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-icon {
+            width: 78px;
+            height: 78px;
+            margin: auto auto 18px;
+            display: grid;
+            place-items: center;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #cbb77a, #9e8950);
+            color: #111;
+            font-size: 38px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 46px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #cbb77a;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #aeb8c1;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        /* =========================
+           INFO
+        ========================= */
+
+        .info-box {
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(203,183,122,0.2);
+            border-right: 4px solid #cbb77a;
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 35px;
+        }
+
+        .info-box strong {
+            color: #cbb77a;
+            display: block;
+            margin-bottom: 7px;
+            font-size: 17px;
+        }
+
+        .info-box p {
+            color: #aeb8c1;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           SCENARIOS
+        ========================= */
+
+        .section-title {
+            margin-bottom: 18px;
+        }
+
+        .section-title h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .section-title p {
+            color: #82909b;
+        }
+
+        .troubleshooting-scenarios {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .troubleshooting-scenario-button {
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.09);
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.07),
+                rgba(255,255,255,0.025)
+            );
+            color: #fff;
+            padding: 22px;
+            border-radius: 17px;
+            cursor: pointer;
+            transition: 0.25s;
+            min-height: 120px;
+        }
+
+        .troubleshooting-scenario-button:hover {
+            transform: translateY(-3px);
+            border-color: rgba(203,183,122,0.55);
+            background: rgba(203,183,122,0.08);
+        }
+
+        .scenario-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .scenario-title {
+            display: block;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .scenario-desc {
+            color: #8996a0;
+            font-size: 13px;
+        }
+
+        /* =========================
+           TRAINING
+        ========================= */
+
+        .troubleshooting-training {
+            margin-top: 30px;
+            background: rgba(7, 15, 22, 0.96);
+            border: 1px solid rgba(203,183,122,0.28);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+        }
+
+        .training-header {
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .training-label {
+            color: #cbb77a;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .training-header h2 {
+            margin-top: 6px;
+            font-size: 27px;
+        }
+
+        .training-header p {
+            color: #8e9ba5;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        .training-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            color: #aaa;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .training-close:hover {
+            color: #fff;
+            border-color: #cbb77a;
+        }
+
+        .device-selector {
+            display: flex;
+            gap: 10px;
+            padding: 20px 25px 0;
+        }
+
+        .device-btn {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            color: #aab4bc;
+            padding: 11px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .device-btn.active {
+            background: #cbb77a;
+            color: #111;
+            border-color: #cbb77a;
+        }
+
+        .training-progress {
+            padding: 22px 25px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            color: #8996a0;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #075985, #cbb77a);
+            border-radius: inherit;
+            transition: width 0.3s;
+        }
+
+        .training-question {
+            margin: 0 25px 20px;
+            padding: 22px;
+            background: rgba(7,89,133,0.12);
+            border: 1px solid rgba(7,89,133,0.35);
+            border-radius: 15px;
+        }
+
+        .question-label {
+            color: #53a7d5;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .training-question h3 {
+            margin-top: 8px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .command-box {
+            padding: 0 25px 20px;
+        }
+
+        .command-box label {
+            display: block;
+            margin-bottom: 9px;
+            color: #d6dce0;
+            font-weight: 700;
+        }
+
+        .command-input-row {
+            display: flex;
+            align-items: stretch;
+            background: #05090d;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 13px;
+            overflow: hidden;
+        }
+
+        .prompt {
+            display: grid;
+            place-items: center;
+            padding: 0 14px;
+            color: #cbb77a;
+            font-family: monospace;
+        }
+
+        #trainingCommand {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            color: #fff;
+            padding: 15px 5px;
+            font-size: 15px;
+            direction: ltr;
+            text-align: left;
+        }
+
+        #trainingCommand::placeholder {
+            color: #56616a;
+        }
+
+        #checkTrainingCommand {
+            border: 0;
+            background: #075985;
+            color: #fff;
+            padding: 0 24px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        #checkTrainingCommand:hover {
+            background: #0a6fa5;
+        }
+
+        .training-message {
+            min-height: 25px;
+            padding-top: 10px;
+            font-size: 14px;
+        }
+
+        .training-message.error {
+            color: #ff7373;
+        }
+
+        .training-message.success {
+            color: #63d68b;
+        }
+
+        .training-hint {
+            margin: 0 25px 20px;
+            padding: 15px 17px;
+            background: rgba(203,183,122,0.07);
+            border: 1px solid rgba(203,183,122,0.16);
+            border-radius: 13px;
+        }
+
+        .training-hint span {
+            color: #cbb77a;
+            font-weight: 800;
+        }
+
+        .training-hint p {
+            color: #8d99a2;
+            margin-top: 5px;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        .training-actions {
+            padding: 0 25px 25px;
+        }
+
+        .secondary-training-btn {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: #bbb;
+            padding: 11px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .secondary-training-btn:hover {
+            color: #fff;
+            border-color: #cbb77a;
+        }
+
+        /* =========================
+           SUCCESS
+        ========================= */
+
+        .training-success {
+            text-align: center;
+            padding: 50px 25px;
+        }
+
+        .success-icon {
+            width: 78px;
+            height: 78px;
+            margin: auto auto 18px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(52,211,113,0.13);
+            border: 2px solid #39c875;
+            color: #5be493;
+            font-size: 38px;
+        }
+
+        .training-success h2 {
+            font-size: 28px;
+            color: #69e69a;
+        }
+
+        .training-success p {
+            color: #96a1aa;
+            margin-top: 10px;
+        }
+
+        .success-details {
+            margin: 25px auto;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .success-details span {
+            padding: 9px 15px;
+            border-radius: 9px;
+            background: rgba(255,255,255,0.05);
+            color: #cbb77a;
+        }
+
+        .success-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .success-actions button {
+            border: 0;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        #retryScenario {
+            background: #cbb77a;
+            color: #111;
+        }
+
+        #chooseAnotherScenario {
+            background: #075985;
+            color: #fff;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px;
+            text-align: center;
+            color: #66727c;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .topbar-inner {
+                padding: 12px 15px;
+            }
+
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .back-btn {
+                padding: 9px 12px;
+                font-size: 13px;
+            }
+
+            .page {
+                padding: 38px 15px 60px;
+            }
+
+            .troubleshooting-scenarios {
+                grid-template-columns: 1fr;
+            }
+
+            .training-header {
+                padding: 20px;
+            }
+
+            .device-selector {
+                padding: 18px 20px 0;
+            }
+
+            .training-progress {
+                padding: 20px;
+            }
+
+            .training-question,
+            .training-hint {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .command-box {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .training-actions {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .command-input-row {
+                flex-wrap: wrap;
+            }
+
+            .prompt {
+                min-height: 48px;
+            }
+
+            #trainingCommand {
+                min-width: calc(100% - 70px);
+            }
+
+            #checkTrainingCommand {
+                width: 100%;
+                min-height: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <a href="index.html" class="brand">
+            <div class="brand-icon">🌐</div>
+
+            <div>
+                <div class="brand-name">
+                    عرّاب الشبكات
+                </div>
+
+                <div class="brand-sub">
+                    NETWORKS
+                </div>
+            </div>
+        </a>
+
+        <a href="lessons.html" class="back-btn">
+            ← العودة للدروس
+        </a>
+
+    </div>
+</header>
+
+
+<main class="page">
+
+    <section class="hero">
+
+        <div class="hero-icon">
+            🛠️
+        </div>
+
+        <h1>
+            الأعطال <span>التدريبية</span>
+        </h1>
+
+        <p>
+            اختبر مهارتك في اكتشاف مشاكل الشبكات وحلها
+            باستخدام أوامر Cisco وHuawei بطريقة عملية.
+        </p>
+
+    </section>
+
+
+    <section class="info-box">
+
+        <strong>
+            🎯 كيف يعمل التدريب؟
+        </strong>
+
+        <p>
+            اختر أحد الأعطال، ثم حدد نوع الجهاز واكتشف
+            المشكلة خطوة بخطوة. اكتب الأمر الصحيح واضغط
+            على تحقق حتى تصل إلى حل العطل بالكامل.
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <div class="section-title">
+            <h2>اختر العطل</h2>
+            <p>ابدأ بأي سيناريو يناسب مستوى تدريبك.</p>
+        </div>
+
+
+        <div class="troubleshooting-scenarios">
+
+            <button
+                type="button"
+                class="troubleshooting-scenario-button"
+                data-scenario="shutdown-port"
+            >
+                <div class="scenario-icon">🔴</div>
+
+                <span class="scenario-title">
+                    منفذ Shutdown
+                </span>
+
+                <span class="scenario-desc">
+                    اكتشف منفذًا متوقفًا وأعد تشغيله.
+                </span>
+            </button>
+
+
+            <button
+                type="button"
+                class="troubleshooting-scenario-button"
+                data-scenario="wrong-vlan"
+            >
+                <div class="scenario-icon">🟠</div>
+
+                <span class="scenario-title">
+                    VLAN خاطئة
+                </span>
+
+                <span class="scenario-desc">
+                    صحح VLAN الخاصة بمنفذ المستخدم.
+                </span>
+            </button>
+
+
+            <button
+                type="button"
+                class="troubleshooting-scenario-button"
+                data-scenario="missing-vlan"
+            >
+                <div class="scenario-icon">🟡</div>
+
+                <span class="scenario-title">
+                    VLAN غير موجودة
+                </span>
+
+                <span class="scenario-desc">
+                    اكتشف VLAN المفقودة وأنشئها.
+                </span>
+            </button>
+
+
+            <button
+                type="button"
+                class="troubleshooting-scenario-button"
+                data-scenario="interface-down"
+            >
+                <div class="scenario-icon">🔵</div>
+
+                <span class="scenario-title">
+                    Interface غير مفعّل
+                </span>
+
+                <span class="scenario-desc">
+                    افحص الواجهة وأعد تفعيلها.
+                </span>
+            </button>
+
+
+            <button
+                type="button"
+                class="troubleshooting-scenario-button"
+                data-scenario="svi-error"
+            >
+                <div class="scenario-icon">🟣</div>
+
+                <span class="scenario-title">
+                    VLAN Interface خاطئ
+                </span>
+
+                <span class="scenario-desc">
+                    أصلح إعدادات SVI وتحقق من حالتها.
+                </span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <div id="troubleshootingTraining"></div>
+
+</main>
+
+
+<footer>
+    © 2026 عرّاب الشبكات — تعلم الشبكات بطريقة عملية
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+    (async function () {
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } = await supabaseClient.auth.getSession();
+
+            if (!session) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const script = document.createElement("script");
+
+            script.src = "user.js";
+
+            document.body.appendChild(script);
+
+            const trainingScript =
+                document.createElement("script");
+
+            trainingScript.src = "troubleshooting.js";
+
+            document.body.appendChild(trainingScript);
+
+        } catch (error) {
+
+            console.error(error);
+
+            window.location.href = "login.html";
+        }
+
+    })();
+</script>
+
+</body>
+</html>

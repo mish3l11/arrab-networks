@@ -1,10 +1,9 @@
 <!--
-  عرّاب الشبكات
-  Copyright (c) 2026 Mishal AL-Mishal
-  All Rights Reserved.
-  
-  يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
-  أو أي جزء جوهري منه دون إذن صاحب الحقوق.
+عرّاب الشبكات
+Copyright (c) 2026 Mishal AL-Mishal
+All Rights Reserved.
+يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
+أو أي جزء جوهري منه دون إذن صاحب الحقوق.
 -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -13,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>أوامر الشبكات | عرّاب الشبكات</title>
+<title>💻 مرجع الأوامر | عرّاب الشبكات</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -48,13 +47,13 @@ font-weight: 700;
 margin: 0 0 12px;
 font-size: 42px;
 font-weight: 900;
-color: #111111;
+color: #ebca5f;
 }
 
 .config-hero p {
 margin: 0 auto;
 max-width: 720px;
-color: #333;
+color: #ebca5f;
 font-size: 17px;
 line-height: 1.8;
 }
@@ -515,7 +514,7 @@ NETWORK COMMAND CENTER
 </span>
 
 <h1>
-أوامر الشبكات
+ مرجع الأوامر
 </h1>
 
 <p>
@@ -919,6 +918,10 @@ type="button">
 
 <h3>وضع Access</h3>
 
+<p>
+تحويل المنفذ إلى Access لربطه عادةً بجهاز نهائي مثل كمبيوتر أو طابعة أو كاميرا.
+</p>
+
 <pre><code>switchport mode access</code></pre>
 
 <button class="copy-button-new"
@@ -935,6 +938,10 @@ type="button">
 <small>Huawei</small>
 
 <h3>وضع Access</h3>
+
+<p>
+تحويل المنفذ إلى Access لربطه عادةً بجهاز نهائي.
+</p>
 
 <pre><code>port link-type access</code></pre>
 
@@ -955,7 +962,7 @@ type="button">
 
 <small>Cisco</small>
 
-<h3>تحديد VLAN</h3>
+<h3>تحديد VLAN للمنفذ</h3>
 
 <pre><code>switchport access vlan 10</code></pre>
 
@@ -972,7 +979,7 @@ type="button">
 
 <small>Huawei</small>
 
-<h3>تحديد VLAN</h3>
+<h3>تحديد VLAN للمنفذ</h3>
 
 <pre><code>port default vlan 10</code></pre>
 
@@ -1024,6 +1031,163 @@ type="button">
 
 </div>
 
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>إيقاف المنفذ</h3>
+
+<pre><code>shutdown</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>إيقاف المنفذ</h3>
+
+<pre><code>shutdown</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>وصف المنفذ</h3>
+
+<pre><code>description Camera-01</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>وصف المنفذ</h3>
+
+<pre><code>description Camera-01</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>Voice VLAN</h3>
+
+<pre><code>switchport voice vlan 20</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>Voice VLAN</h3>
+
+<pre><code>voice-vlan 20 enable</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>عرض حالة Access</h3>
+
+<pre><code>show interfaces switchport</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>عرض VLAN والمنافذ</h3>
+
+<pre><code>display port vlan</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-note">
+Access Port يُستخدم عادةً للأجهزة النهائية. المنفذ يكون مرتبطًا عادةً بـ VLAN واحدة للبيانات، بينما يمكن استخدام Voice VLAN في بيئات الهواتف الشبكية.
+</div>
+
 </section>
 
 
@@ -1052,6 +1216,10 @@ type="button">
 
 <h3>وضع Trunk</h3>
 
+<p>
+تحويل المنفذ إلى Trunk لنقل أكثر من VLAN بين أجهزة الشبكة.
+</p>
+
 <pre><code>switchport mode trunk</code></pre>
 
 <button class="copy-button-new"
@@ -1068,6 +1236,10 @@ type="button">
 <small>Huawei</small>
 
 <h3>وضع Trunk</h3>
+
+<p>
+تحويل المنفذ إلى Trunk لنقل عدة VLANs.
+</p>
 
 <pre><code>port link-type trunk</code></pre>
 
@@ -1088,7 +1260,7 @@ type="button">
 
 <small>Cisco</small>
 
-<h3>السماح بـ VLAN</h3>
+<h3>السماح بـ VLANs</h3>
 
 <pre><code>switchport trunk allowed vlan 10,20,30</code></pre>
 
@@ -1105,7 +1277,7 @@ type="button">
 
 <small>Huawei</small>
 
-<h3>السماح بـ VLAN</h3>
+<h3>السماح بـ VLANs</h3>
 
 <pre><code>port trunk allow-pass vlan 10 20 30</code></pre>
 
@@ -1126,7 +1298,7 @@ type="button">
 
 <small>Cisco</small>
 
-<h3>إضافة VLAN للـ Trunk</h3>
+<h3>إضافة VLAN إلى Trunk</h3>
 
 <pre><code>switchport trunk allowed vlan add 40</code></pre>
 
@@ -1143,9 +1315,85 @@ type="button">
 
 <small>Huawei</small>
 
-<h3>إضافة VLAN للـ Trunk</h3>
+<h3>إضافة VLAN إلى Trunk</h3>
 
 <pre><code>port trunk allow-pass vlan 40</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>إزالة VLAN من Trunk</h3>
+
+<pre><code>switchport trunk allowed vlan remove 20</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>إزالة VLAN من Trunk</h3>
+
+<pre><code>undo port trunk allow-pass vlan 20</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>السماح بكل VLANs</h3>
+
+<pre><code>switchport trunk allowed vlan all</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>السماح بكل VLANs</h3>
+
+<pre><code>port trunk allow-pass vlan all</code></pre>
 
 <button class="copy-button-new"
 onclick="copyCommand(this)"
@@ -1195,6 +1443,49 @@ type="button">
 
 </div>
 
+
+<div class="command-row-new">
+
+<div class="command-cell-new">
+
+<small>Cisco</small>
+
+<h3>عرض Trunk</h3>
+
+<pre><code>show interfaces trunk</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+
+<div class="command-cell-new">
+
+<small>Huawei</small>
+
+<h3>عرض VLAN والمنافذ</h3>
+
+<pre><code>display port vlan</code></pre>
+
+<button class="copy-button-new"
+onclick="copyCommand(this)"
+type="button">
+📋 نسخ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="command-note">
+Trunk يُستخدم عادةً بين السويتشات أو بين السويتش وأجهزة الشبكة التي تحتاج إلى تمرير عدة VLANs. يجب التأكد من أن الـ VLANs المطلوبة مسموح بمرورها على الطرفين.
+</div>
+
 </section>
 
 
@@ -1218,36 +1509,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>حالة Interface</h3>
-
 <pre><code>show interfaces GigabitEthernet0/1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>حالة Interface</h3>
-
 <pre><code>display interface GigabitEthernet 0/0/1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1256,36 +1528,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>وصف المنافذ</h3>
-
 <pre><code>show interfaces description</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>وصف المنافذ</h3>
-
 <pre><code>display interface description</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1294,36 +1547,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>أخطاء المنافذ</h3>
-
 <pre><code>show interfaces counters errors</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>أخطاء المنافذ</h3>
-
 <pre><code>display interface counters errors</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1332,36 +1566,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Transceiver</h3>
-
 <pre><code>show interfaces transceiver</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Transceiver</h3>
-
 <pre><code>display transceiver</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1389,36 +1604,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Static Route</h3>
-
 <pre><code>ip route 192.168.20.0 255.255.255.0 10.0.0.2</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Static Route</h3>
-
 <pre><code>ip route-static 192.168.20.0 255.255.255.0 10.0.0.2</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1427,36 +1623,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض Static Routes</h3>
-
 <pre><code>show ip route static</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض Static Routes</h3>
-
 <pre><code>display ip routing-table protocol static</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1484,36 +1661,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>تشغيل OSPF</h3>
-
 <pre><code>router ospf 1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>تشغيل OSPF</h3>
-
 <pre><code>ospf 1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1522,36 +1680,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض الجيران</h3>
-
 <pre><code>show ip ospf neighbor</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض الجيران</h3>
-
 <pre><code>display ospf peer</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1560,36 +1699,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>OSPF Interface</h3>
-
 <pre><code>show ip ospf interface brief</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>OSPF Interface</h3>
-
 <pre><code>display ospf interface</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1598,36 +1718,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض OSPF Routes</h3>
-
 <pre><code>show ip route ospf</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض OSPF Routes</h3>
-
 <pre><code>display ip routing-table protocol ospf</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1655,36 +1756,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض STP</h3>
-
 <pre><code>show spanning-tree</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض STP</h3>
-
 <pre><code>display stp</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1693,36 +1775,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>PortFast</h3>
-
 <pre><code>spanning-tree portfast</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Edge Port</h3>
-
 <pre><code>stp edged-port enable</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1750,37 +1813,18 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>LACP</h3>
-
 <pre><code>channel-group 1 mode active</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>LACP</h3>
-
 <pre><code>interface Eth-Trunk 1
 mode lacp-static</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1808,36 +1852,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض DHCP Bindings</h3>
-
 <pre><code>show ip dhcp binding</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض معلومات DHCP</h3>
-
 <pre><code>display ip pool</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1846,36 +1871,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>DHCP Snooping</h3>
-
 <pre><code>ip dhcp snooping</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>DHCP Snooping</h3>
-
 <pre><code>dhcp snooping enable</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1903,36 +1909,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>حالة SSH</h3>
-
 <pre><code>show ssh</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>حالة SSH</h3>
-
 <pre><code>display ssh server status</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1941,36 +1928,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>المستخدمون المتصلون</h3>
-
 <pre><code>show users</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>المستخدمون المتصلون</h3>
-
 <pre><code>display users</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -1998,36 +1966,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض ACL</h3>
-
 <pre><code>show access-lists</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض ACL</h3>
-
 <pre><code>display acl 3000</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2060,36 +2009,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Ping</h3>
-
 <pre><code>ping 192.168.1.1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Ping</h3>
-
 <pre><code>ping 192.168.1.1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2098,36 +2028,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Traceroute</h3>
-
 <pre><code>traceroute 192.168.1.1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Tracert</h3>
-
 <pre><code>tracert 192.168.1.1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2136,36 +2047,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>CPU</h3>
-
 <pre><code>show processes cpu</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>CPU</h3>
-
 <pre><code>display cpu-usage</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2174,36 +2066,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Logs</h3>
-
 <pre><code>show logging</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Logs</h3>
-
 <pre><code>display logbuffer</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2231,36 +2104,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>حفظ الإعدادات</h3>
-
 <pre><code>copy running-config startup-config</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>حفظ الإعدادات</h3>
-
 <pre><code>save</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2269,36 +2123,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>إعادة التشغيل</h3>
-
 <pre><code>reload</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>إعادة التشغيل</h3>
-
 <pre><code>reboot</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2326,36 +2161,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>الوقت</h3>
-
 <pre><code>show clock</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>الوقت</h3>
-
 <pre><code>display clock</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2364,36 +2180,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>المستخدمون</h3>
-
 <pre><code>show users</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>المستخدمون</h3>
-
 <pre><code>display users</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2421,36 +2218,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Inventory</h3>
-
 <pre><code>show inventory</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Electronic Label</h3>
-
 <pre><code>display elabel</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2459,36 +2237,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Fan</h3>
-
 <pre><code>show environment fan</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Fan</h3>
-
 <pre><code>display fan</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2516,40 +2275,21 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>SVI</h3>
-
 <pre><code>interface Vlan 10
 ip address 192.168.10.1 255.255.255.0
 no shutdown</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Vlanif</h3>
-
 <pre><code>interface Vlanif 10
 ip address 192.168.10.1 255.255.255.0
 undo shutdown</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2558,36 +2298,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>تحويل Port إلى Layer 3</h3>
-
 <pre><code>no switchport</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>تحويل Port إلى Layer 3</h3>
-
 <pre><code>undo portswitch</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2615,36 +2336,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>تفعيل Port Security</h3>
-
 <pre><code>switchport port-security</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>تفعيل Port Security</h3>
-
 <pre><code>port-security enable</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2653,36 +2355,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>تحديد عدد MAC</h3>
-
 <pre><code>switchport port-security maximum 2</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>تحديد عدد MAC</h3>
-
 <pre><code>port-security max-mac-num 2</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2691,36 +2374,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض Port Security</h3>
-
 <pre><code>show port-security</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض Port Security</h3>
-
 <pre><code>display port-security</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2748,36 +2412,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>تحديد Root Priority</h3>
-
 <pre><code>spanning-tree vlan 10 priority 4096</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>تحديد Root Priority</h3>
-
 <pre><code>stp vlan 10 priority 4096</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2786,36 +2431,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>Root Primary</h3>
-
 <pre><code>spanning-tree vlan 10 root primary</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>Root Primary</h3>
-
 <pre><code>stp root primary</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2835,7 +2461,6 @@ type="button">
 <section class="command-section-new command-section" id="vlantshoot">
 
 <div class="command-section-header">
-
 <h2>VLAN Troubleshooting</h2>
 
 <span class="section-number">
@@ -2854,36 +2479,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>عرض Trunk</h3>
-
 <pre><code>show interfaces trunk</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>عرض VLAN على المنافذ</h3>
-
 <pre><code>display port vlan</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2892,36 +2498,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>MAC على منفذ</h3>
-
 <pre><code>show mac address-table interface GigabitEthernet0/1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>MAC على منفذ</h3>
-
 <pre><code>display mac-address interface GigabitEthernet 0/0/1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2930,36 +2517,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>MAC حسب VLAN</h3>
-
 <pre><code>show mac address-table vlan 10</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>MAC حسب VLAN</h3>
-
 <pre><code>display mac-address vlan 10</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -2968,36 +2536,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>البحث عن MAC</h3>
-
 <pre><code>show mac address-table address 0011.2233.4455</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>البحث عن MAC</h3>
-
 <pre><code>display mac-address 0011-2233-4455</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -3006,36 +2555,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>البحث عن IP في ARP</h3>
-
 <pre><code>show arp 192.168.1.10</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>البحث عن IP في ARP</h3>
-
 <pre><code>display arp | include 192.168.1.10</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -3044,36 +2574,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>الجيران</h3>
-
 <pre><code>show cdp neighbors detail</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>الجيران</h3>
-
 <pre><code>display lldp neighbor verbose</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -3082,36 +2593,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>البحث داخل الإعدادات</h3>
-
 <pre><code>show running-config | include vlan</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>البحث داخل الإعدادات</h3>
-
 <pre><code>display current-configuration | include vlan</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -3120,36 +2612,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>البحث عن Route</h3>
-
 <pre><code>show running-config | include ip route</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>البحث عن Route</h3>
-
 <pre><code>display current-configuration | include ip route-static</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -3158,36 +2631,17 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>إعدادات Interface</h3>
-
 <pre><code>show running-config interface GigabitEthernet0/1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>إعدادات Interface</h3>
-
 <pre><code>display current-configuration interface GigabitEthernet 0/0/1</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
@@ -3196,45 +2650,24 @@ type="button">
 <div class="command-row-new">
 
 <div class="command-cell-new">
-
 <small>Cisco</small>
-
 <h3>البحث عن SSH</h3>
-
 <pre><code>show running-config | include ssh</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
-
 <div class="command-cell-new">
-
 <small>Huawei</small>
-
 <h3>البحث عن SSH</h3>
-
 <pre><code>display current-configuration | include ssh</code></pre>
-
-<button class="copy-button-new"
-onclick="copyCommand(this)"
-type="button">
-📋 نسخ
-</button>
-
+<button class="copy-button-new" onclick="copyCommand(this)" type="button">📋 نسخ</button>
 </div>
 
 </div>
 
 
 <div class="command-note">
-
 ملاحظة: أوامر Huawei قد تختلف قليلًا حسب موديل الجهاز وإصدار VRP، خصوصًا في أوامر STP وPort Security وDHCP.
-
 </div>
 
 </section>
