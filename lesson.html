@@ -579,7 +579,6 @@ text-align: center;
 </nav>
 </header>
 
-
 <section class="hero">
 
 <div class="hero-inner">
@@ -604,7 +603,6 @@ text-align: center;
 
 </section>
 
-
 <div class="progress-wrapper">
 
 <div class="progress-card">
@@ -622,7 +620,6 @@ text-align: center;
 
 </div>
 
-
 <main class="page-layout">
 
 <aside class="sidebar">
@@ -634,7 +631,6 @@ text-align: center;
 <div id="sidebarLinks" class="sidebar-links"></div>
 
 </aside>
-
 
 <article class="content">
 
@@ -658,18 +654,15 @@ text-align: center;
 
 </div>
 
-
 <div id="lessonNavigation" class="lesson-navigation"></div>
 
 </article>
 
 </main>
 
-
 <footer>
 © 2026 عرّاب الشبكات — تعلم الشبكات بطريقة عملية
 </footer>
-
 
 <script src="supabase.js"></script>
 <script src="user.js"></script>
@@ -725,7 +718,6 @@ lessons: [17]
 ===================================================== */
 
 const lessons = [
-
 {
 id: 1,
 path: 1,
@@ -735,7 +727,6 @@ description: "تعرف على مفهوم الشبكات وأهم المصطلح�
 content: `
 
 <section class="section">
-
 <h2>ما هي الشبكة؟</h2>
 
 <p>
@@ -754,18 +745,13 @@ content: `
 إذا كانت الأجهزة متصلة بالشبكة، يستطيع المستخدمون الوصول
 إلى الطابعة ومشاركة الملفات والخدمات حسب الصلاحيات.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>أنواع الشبكات</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>المصطلح</th>
 <th>المعنى</th>
@@ -789,16 +775,11 @@ content: `
 <td>Wireless LAN</td>
 <td>شبكة Wi-Fi</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>مصطلحات مهمة</h2>
 
 <ul>
@@ -809,42 +790,31 @@ content: `
 <li><strong>Switch:</strong> يربط الأجهزة داخل الشبكة المحلية.</li>
 <li><strong>Router:</strong> يربط الشبكات المختلفة.</li>
 </ul>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
 هذه هي نقطة البداية. في الدروس القادمة سنبدأ بتفصيل الأجهزة
 والعناوين والـMAC والـPorts والـProtocols ثم ننتقل إلى Switching وRouting.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
-
 <ul>
 <li>الشبكة تسمح للأجهزة بالتواصل وتبادل البيانات.</li>
 <li>LAN غالبًا تستخدم داخل نطاق جغرافي صغير.</li>
 <li>WAN تربط شبكات أو مواقع متباعدة.</li>
 <li>Switch وRouter لهما وظائف مختلفة.</li>
 </ul>
-
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 2,
@@ -855,7 +825,6 @@ description: "تعرف على أهم أجهزة الشبكات ووظيفة كل
 content: `
 
 <section class="section">
-
 <h2>Switch</h2>
 
 <p>
@@ -868,12 +837,9 @@ content: `
 السويتش يتعلم MAC Address من الإطارات التي يستقبلها
 ويبني MAC Address Table.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Router</h2>
 
 <p>
@@ -888,30 +854,22 @@ content: `
 </p>
 
 <div class="code-box">display ip routing-table</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Firewall</h2>
 
 <p>
 الـ<strong>Firewall</strong> يستخدم للتحكم في حركة المرور
 بناءً على سياسات وقواعد أمنية.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>مقارنة سريعة</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>الجهاز</th>
 <th>وظيفته الأساسية</th>
@@ -935,16 +893,11 @@ content: `
 <td>حماية وتنظيم المرور</td>
 <td>Security Policies</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
@@ -952,12 +905,9 @@ Switch ليس Router،
 والـRouter ليس Firewall.
 كل جهاز له وظيفة مختلفة حتى لو كانت بعض الأجهزة الحديثة تجمع أكثر من وظيفة.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 3,
@@ -968,7 +918,6 @@ description: "افهم IPv4 وطريقة كتابة عنوان IP والفرق �
 content: `
 
 <section class="section">
-
 <h2>ما هو IPv4؟</h2>
 
 <p>
@@ -982,12 +931,9 @@ IPv4 هو نظام عنونة يستخدم 32-bit لتمثيل عناوين ال
 العنوان يتكون من أربعة أجزاء تسمى Octets،
 وكل جزء تتراوح قيمته من 0 إلى 255.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Network وHost</h2>
 
 <p>
@@ -999,18 +945,13 @@ IPv4 هو نظام عنونة يستخدم 32-bit لتمثيل عناوين ال
 الـSubnet Mask هو الذي يساعدنا على تحديد أي جزء من العنوان
 يمثل الشبكة وأي جزء يمثل الـHost.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Private IP Addresses</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>النطاق</th>
 <th>الاستخدام</th>
@@ -1030,16 +971,11 @@ IPv4 هو نظام عنونة يستخدم 32-bit لتمثيل عناوين ال
 <td>192.168.0.0/16</td>
 <td>Private Network</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال عملي</h2>
 
 <div class="code-box">PC1
@@ -1051,12 +987,9 @@ Gateway: 192.168.1.1</div>
 هنا الجهاز موجود داخل شبكة 192.168.1.0/24
 والـGateway غالبًا يمثل واجهة الراوتر داخل هذه الشبكة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
@@ -1068,12 +1001,9 @@ Gateway: 192.168.1.1</div>
 <li>Private IP يستخدم داخل الشبكات الخاصة.</li>
 </ul>
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 4,
@@ -1084,7 +1014,6 @@ description: "تعرف على MAC Address ودوره داخل الشبكات ا�
 content: `
 
 <section class="section">
-
 <h2>ما هو MAC Address؟</h2>
 
 <p>
@@ -1097,12 +1026,9 @@ MAC Address هو عنوان يستخدم لتعريف واجهة الشبكة
 <p>
 غالبًا يظهر بصيغة Hexadecimal ويتكون من 48-bit.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>MAC Address وSwitch</h2>
 
 <p>
@@ -1115,12 +1041,9 @@ show mac address-table
 
 Huawei:
 display mac-address</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال عملي</h2>
 
 <p>
@@ -1133,16 +1056,12 @@ display mac-address</div>
 <p>
 يستطيع السويتش تعلم أن هذا الـMAC موجود خلف ذلك المنفذ.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>الفرق بين IP وMAC</h2>
 
 <div class="table-wrapper">
-
 <table>
 <tr>
 <th>IP Address</th>
@@ -1164,14 +1083,10 @@ display mac-address</div>
 <td>مرتبط بواجهة الشبكة</td>
 </tr>
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
@@ -1179,12 +1094,9 @@ display mac-address</div>
 الآن أصبحنا نعرف كيف يستخدم السويتش MAC Address
 لمعرفة مكان الأجهزة داخل الشبكة.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 5,
@@ -1195,7 +1107,6 @@ description: "تعرف على المنافذ والبروتوكولات وأشه
 content: `
 
 <section class="section">
-
 <h2>ما هو Port؟</h2>
 
 <p>
@@ -1207,18 +1118,13 @@ content: `
 مثال: الجهاز الواحد قد يكون عليه Web Server وSSH Server
 في الوقت نفسه، ويتم التمييز بين الخدمات باستخدام أرقام المنافذ.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>أشهر Ports</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>Port</th>
 <th>Protocol / Service</th>
@@ -1258,16 +1164,11 @@ content: `
 <td>443</td>
 <td>HTTPS</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>TCP وUDP</h2>
 
 <p>
@@ -1278,23 +1179,17 @@ TCP يوفر اتصالًا يعتمد على إنشاء جلسة وآليات �
 UDP أبسط وأقل اعتمادًا على إنشاء اتصال، ويستخدم في تطبيقات
 تحتاج سرعة واستجابة منخفضة حسب طبيعة الخدمة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال عملي</h2>
 
 <div class="code-box">HTTPS → TCP/443
 SSH → TCP/22
 DNS → UDP/TCP/53</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ملاحظة مهمة</h2>
 
 <div class="warning-box">
@@ -1302,12 +1197,9 @@ DNS → UDP/TCP/53</div>
 يجب أن تكون الخدمة نفسها تعمل وأن تسمح بها سياسات
 Firewall وأن يكون الاتصال بالشبكة صحيحًا.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 6,
@@ -1318,25 +1210,19 @@ description: "تعرف على طبقات OSI السبع وكيف تساعدك ف
 content: `
 
 <section class="section">
-
 <h2>ما هو OSI Model؟</h2>
 
 <p>
 OSI Model هو نموذج مرجعي يقسم عملية الاتصال الشبكي
 إلى سبع طبقات.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>الطبقات السبع</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>Layer</th>
 <th>الاسم</th>
@@ -1384,16 +1270,11 @@ OSI Model هو نموذج مرجعي يقسم عملية الاتصال الشب
 <td>Physical</td>
 <td>Cable / Signal</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>لماذا نحتاج OSI؟</h2>
 
 <p>
@@ -1401,24 +1282,18 @@ OSI Model هو نموذج مرجعي يقسم عملية الاتصال الشب
 مثلًا إذا كان الكابل غير متصل فابدأ بالتفكير في Layer 1،
 وإذا كانت المشكلة مرتبطة بالـIP والRouting فغالبًا ستنظر إلى Layer 3.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
 تعلمنا MAC في Layer 2 وIP في Layer 3،
 والآن أصبح بإمكانك وضع هذه المفاهيم داخل نموذج OSI.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
@@ -1429,12 +1304,9 @@ OSI Model هو نموذج مرجعي يقسم عملية الاتصال الشب
 <li>الكابل والإشارة في Layer 1.</li>
 </ul>
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 7,
@@ -1445,25 +1317,19 @@ description: "تعرف على نموذج TCP/IP وعلاقته بنموذج OSI 
 content: `
 
 <section class="section">
-
 <h2>ما هو TCP/IP؟</h2>
 
 <p>
 TCP/IP هو مجموعة من البروتوكولات التي تعتمد عليها شبكات الإنترنت
 والشبكات الحديثة في عملية الاتصال.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>طبقات TCP/IP</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>TCP/IP</th>
 <th>أمثلة</th>
@@ -1488,22 +1354,15 @@ TCP/IP هو مجموعة من البروتوكولات التي تعتمد عل�
 <td>Network Access</td>
 <td>Ethernet</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>TCP مقابل UDP</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>TCP</th>
 <th>UDP</th>
@@ -1523,16 +1382,11 @@ TCP/IP هو مجموعة من البروتوكولات التي تعتمد عل�
 <td>مناسب لخدمات تحتاج موثوقية</td>
 <td>مناسب لتطبيقات متعددة حسب الحاجة</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
@@ -1540,12 +1394,9 @@ OSI يساعدك على فهم الوظائف والطبقات،
 بينما TCP/IP هو النموذج العملي المرتبط بمجموعة البروتوكولات
 التي تستخدمها الشبكات الحديثة.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 8,
@@ -1556,49 +1407,37 @@ description: "افهم الفرق بين Hub وSwitch وRouter ومتى يستخ
 content: `
 
 <section class="section">
-
 <h2>Hub</h2>
 
 <p>
 الـHub جهاز بسيط يعمل على المستوى الفيزيائي ويرسل الإشارة
 إلى المنافذ الأخرى بدلًا من اتخاذ قرار ذكي بناءً على MAC Address.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Switch</h2>
 
 <p>
 الـSwitch يستطيع تعلم MAC Address Table
 واتخاذ قرار بشأن المنفذ الذي يرسل إليه Frame داخل الشبكة المحلية.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Router</h2>
 
 <p>
 الـRouter يربط شبكات مختلفة ويستخدم IP Address وRouting Table
 لاختيار المسار.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>المقارنة</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>الجهاز</th>
 <th>الفكرة الأساسية</th>
@@ -1622,16 +1461,11 @@ content: `
 <td>Routing باستخدام IP</td>
 <td>Layer 3</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
@@ -1639,12 +1473,9 @@ Hub = يكرر الإشارة،
 Switch = يتعامل مع MAC داخل الشبكة المحلية،
 Router = يربط الشبكات باستخدام IP.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 9,
@@ -1655,19 +1486,15 @@ description: "تعلم تقسيم الشبكات إلى Subnets وفهم CIDR و
 content: `
 
 <section class="section">
-
 <h2>ما هو Subnetting؟</h2>
 
 <p>
 Subnetting هو تقسيم شبكة أكبر إلى شبكات أصغر
 بهدف تنظيم العناوين وتقليل نطاق Broadcast وتحسين إدارة الشبكة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>/24</h2>
 
 <p>
@@ -1679,12 +1506,9 @@ Subnetting هو تقسيم شبكة أكبر إلى شبكات أصغر
 First Host: 192.168.1.1
 Last Host: 192.168.1.254
 Broadcast: 192.168.1.255</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>/30</h2>
 
 <p>
@@ -1696,12 +1520,9 @@ Broadcast: 192.168.1.255</div>
 Host
 Host
 Broadcast</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>لماذا نستخدم Subnetting؟</h2>
 
 <ul>
@@ -1710,24 +1531,18 @@ Broadcast</div>
 <li>استغلال العناوين بشكل أفضل.</li>
 <li>فصل الأقسام والشبكات.</li>
 </ul>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
 تعلمنا IPv4 في المسار الأول.
 الآن نستخدم فهمنا للـIP والـSubnet Mask لتقسيم الشبكات.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 10,
@@ -1738,19 +1553,15 @@ description: "تعرف على طريقة عمل Switching وMAC Address Table و
 content: `
 
 <section class="section">
-
 <h2>ما هو Switching؟</h2>
 
 <p>
 Switching هو عملية تمرير Frames داخل الشبكة المحلية
 اعتمادًا على معلومات مثل MAC Address.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>MAC Address Table</h2>
 
 <p>
@@ -1763,36 +1574,27 @@ show mac address-table
 
 Huawei:
 display mac-address</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Unknown Unicast</h2>
 
 <p>
 إذا لم يعرف السويتش المنفذ الخاص بالـDestination MAC،
 فقد يقوم بعمل Flooding داخل الـVLAN حسب الحالة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Broadcast</h2>
 
 <p>
 Broadcast Frame يتم التعامل معه داخل نطاق الـBroadcast Domain،
 والـVLAN تساعد على فصل هذه النطاقات.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال عملي</h2>
 
 <div class="code-box">PC1 ----\
@@ -1803,12 +1605,9 @@ PC2 ----/</div>
 السويتش يتعلم MAC للأجهزة المتصلة به
 ثم يستخدم الجدول لاتخاذ قرار Forwarding.
 </p>
-
 </section>
-
 `
 },
-
 
 {
 id: 11,
@@ -1819,19 +1618,15 @@ description: "تعلم VLAN وAccess Port وTrunk وكيفية فصل الشبك
 content: `
 
 <section class="section">
-
 <h2>ما هي VLAN؟</h2>
 
 <p>
 VLAN هي Virtual Local Area Network،
 وتستخدم لتقسيم الشبكة منطقيًا إلى شبكات منفصلة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Access Port</h2>
 
 <p>
@@ -1844,12 +1639,9 @@ VLAN هي Virtual Local Area Network،
 interface GigabitEthernet0/1
 switchport mode access
 switchport access vlan 10</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Trunk</h2>
 
 <p>
@@ -1868,12 +1660,9 @@ switchport trunk allowed vlan 10,20</div>
 interface GigabitEthernet0/0/24
 port link-type trunk
 port trunk allow-pass vlan 10 20</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال</h2>
 
 <div class="code-box">VLAN 10 → Users
@@ -1884,24 +1673,18 @@ VLAN 30 → Servers</div>
 بهذه الطريقة يمكن فصل أنواع الأجهزة منطقيًا
 حتى لو كانت متصلة بالبنية التحتية نفسها.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقطة مهمة</h2>
 
 <div class="warning-box">
 وجود VLAN في سويتش واحد لا يعني تلقائيًا أن VLAN ستعمل بين سويتشين.
 يجب أن يكون الربط بين السويتشات معدًا بطريقة تسمح بمرور الـVLAN المطلوبة.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 12,
@@ -1912,19 +1695,15 @@ description: "تعرف على Routing وRouting Table وكيف يقرر الرا
 content: `
 
 <section class="section">
-
 <h2>ما هو Routing؟</h2>
 
 <p>
 Routing هو عملية اختيار المسار المناسب لإرسال Packet
 من شبكة إلى شبكة أخرى.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Routing Table</h2>
 
 <p>
@@ -1937,12 +1716,9 @@ show ip route
 
 Huawei:
 display ip routing-table</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>أنواع Routes</h2>
 
 <ul>
@@ -1950,12 +1726,9 @@ display ip routing-table</div>
 <li>Static Route</li>
 <li>Dynamic Route</li>
 </ul>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال</h2>
 
 <div class="code-box">PC Network
@@ -1968,24 +1741,18 @@ Remote Network</div>
 إذا أراد الجهاز الوصول إلى Remote Network،
 يجب أن يعرف الراوتر أين يرسل الـPacket.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
 في Switching تعاملنا مع MAC وLayer 2.
 الآن ننتقل إلى Layer 3 وIP وRouting بين الشبكات.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 13,
@@ -1996,18 +1763,14 @@ description: "تعلم إنشاء Static Route على Cisco وHuawei والتح�
 content: `
 
 <section class="section">
-
 <h2>ما هو Static Route؟</h2>
 
 <p>
 Static Route هو Route يتم إدخاله يدويًا بواسطة مسؤول الشبكة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Cisco</h2>
 
 <div class="code-box">ip route 192.168.2.0 255.255.255.0 10.0.0.2</div>
@@ -2016,21 +1779,15 @@ Static Route هو Route يتم إدخاله يدويًا بواسطة مسؤول
 المثال يعني أن الوصول إلى الشبكة 192.168.2.0/24
 يكون عبر Next Hop وهو 10.0.0.2.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Huawei</h2>
 
 <div class="code-box">ip route-static 192.168.2.0 255.255.255.0 10.0.0.2</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>التحقق</h2>
 
 <div class="code-box">Cisco:
@@ -2038,24 +1795,18 @@ show ip route
 
 Huawei:
 display ip routing-table</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ملاحظة مهمة</h2>
 
 <div class="warning-box">
 وجود Static Route على راوتر واحد لا يعني أن الاتصال سيعمل تلقائيًا.
 يجب أن تكون هناك مسارات مناسبة في الاتجاهين عند الحاجة.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 14,
@@ -2066,41 +1817,31 @@ description: "تعرف على OSPF وكيفية استخدام بروتوكول 
 content: `
 
 <section class="section">
-
 <h2>ما هو OSPF؟</h2>
 
 <p>
 OSPF هو بروتوكول Dynamic Routing يستخدم لتبادل معلومات الشبكات
 بين أجهزة الراوتر.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>OSPF Neighbor</h2>
 
 <p>
 أجهزة OSPF يمكن أن تنشئ علاقة Neighbor
 لتبادل معلومات الـRouting.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Cisco - مثال</h2>
 
 <div class="code-box">router ospf 1
 network 10.0.0.0 0.0.0.255 area 0</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Huawei - مثال</h2>
 
 <div class="code-box">ospf 1
@@ -2111,12 +1852,9 @@ network 10.0.0.0 0.0.0.255</div>
 صيغة الأوامر قد تختلف حسب إصدار VRP وطراز جهاز Huawei،
 لذلك استخدم الصيغة المناسبة لإصدار جهازك.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>التحقق</h2>
 
 <div class="code-box">Cisco:
@@ -2124,12 +1862,9 @@ show ip ospf neighbor
 
 Huawei:
 display ospf peer</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
@@ -2137,12 +1872,9 @@ OSPF Dynamic Routing Protocol،
 ويختلف عن Static Routing لأن المسارات يتم تبادلها
 وتعلمها بين أجهزة OSPF بدل إدخال كل Route يدويًا.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 15,
@@ -2153,31 +1885,24 @@ description: "تعرف على SSH وكيفية الإدارة الآمنة لأ�
 content: `
 
 <section class="section">
-
 <h2>ما هو SSH؟</h2>
 
 <p>
 SSH اختصار لـSecure Shell،
 ويستخدم للوصول إلى أجهزة الشبكة عن بُعد بطريقة مشفرة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>لماذا SSH؟</h2>
 
 <p>
 الإدارة عن بُعد مهمة جدًا في بيئات الشبكات.
 SSH يوفر قناة مشفرة بدل إرسال بيانات الإدارة بشكل مكشوف.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Cisco - مثال</h2>
 
 <div class="code-box">hostname SW1
@@ -2196,12 +1921,9 @@ transport input ssh</div>
 إعدادات SSH قد تختلف حسب إصدار IOS والجهاز.
 لا تستخدم كلمات مرور حقيقية داخل أمثلة تعليمية منشورة.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Huawei</h2>
 
 <div class="code-box">stelnet server enable
@@ -2218,12 +1940,9 @@ ssh user admin</div>
 أوامر Huawei تختلف حسب إصدار VRP وطراز الجهاز،
 لذلك راجع صيغة جهازك قبل تطبيقها في بيئة حقيقية.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>التحقق</h2>
 
 <div class="code-box">Cisco:
@@ -2231,24 +1950,18 @@ show ip ssh
 
 Huawei:
 display ssh server status</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
 SSH يستخدم للإدارة عن بُعد،
 ويجب تأمين حسابات الإدارة وعدم مشاركة كلمات المرور.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 16,
@@ -2259,7 +1972,6 @@ description: "تعرف على أساسيات حماية الشبكات والـF
 content: `
 
 <section class="section">
-
 <h2>ما هي Network Security؟</h2>
 
 <p>
@@ -2267,12 +1979,9 @@ Network Security هي مجموعة من الإجراءات والتقنيات
 التي تهدف إلى حماية الشبكة والأنظمة والبيانات من الوصول غير المصرح به
 والمخاطر المختلفة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Firewall</h2>
 
 <p>
@@ -2283,33 +1992,24 @@ Network Security هي مجموعة من الإجراءات والتقنيات
 يمكن أن تعتمد السياسة على عناصر مثل Source وDestination
 والـProtocol والـPort حسب نوع النظام.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ACL</h2>
 
 <p>
 Access Control List تستخدم لتحديد حركة المرور المسموح بها
 أو الممنوعة حسب قواعد معينة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>Cisco - مثال مبسط</h2>
 
 <div class="code-box">access-list 10 permit 192.168.1.0 0.0.0.255</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>Huawei - مثال</h2>
 
 <div class="code-box">acl number 2000
@@ -2319,12 +2019,9 @@ rule 5 permit source 192.168.1.0 0.0.0.255</div>
 ACLs قد تختلف حسب نوع ACL وموقع تطبيقها واتجاهها،
 لذلك يجب فهم تأثير القاعدة قبل تطبيقها.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ممارسات مهمة</h2>
 
 <ul>
@@ -2334,12 +2031,9 @@ ACLs قد تختلف حسب نوع ACL وموقع تطبيقها واتجاهه�
 <li>قلل صلاحيات المستخدمين إلى الحد المطلوب.</li>
 <li>راجع Logs وحركة الشبكة عند وجود مشكلة.</li>
 </ul>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط بالمفاهيم السابقة</h2>
 
 <div class="link-box">
@@ -2347,12 +2041,9 @@ ACLs قد تختلف حسب نوع ACL وموقع تطبيقها واتجاهه�
 والآن نضيف طبقة الحماية التي تتحكم في من يستطيع الوصول
 وما الذي يستطيع المرور داخل الشبكة.
 </div>
-
 </section>
-
 `
 },
-
 
 {
 id: 17,
@@ -2363,19 +2054,15 @@ description: "تعلم منهجية عملية لاستكشاف مشاكل ال�
 content: `
 
 <section class="section">
-
 <h2>ما هو Troubleshooting؟</h2>
 
 <p>
 Troubleshooting هو عملية منظمة لتحديد سبب المشكلة
 ثم اختبار الحل والتأكد من عودة الخدمة.
 </p>
-
 </section>
 
-
 <section class="section">
-
 <h2>ابدأ من الأساسيات</h2>
 
 <ol>
@@ -2388,12 +2075,9 @@ Troubleshooting هو عملية منظمة لتحديد سبب المشكلة
 <li>تحقق من Firewall وACL.</li>
 <li>اختبر الخدمة نفسها.</li>
 </ol>
-
 </section>
 
-
 <section class="section">
-
 <h2>أوامر مهمة</h2>
 
 <div class="code-box">Cisco:
@@ -2415,12 +2099,9 @@ display mac-address
 display ip routing-table
 ping
 tracert</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>مثال عملي</h2>
 
 <p>
@@ -2436,18 +2117,13 @@ tracert</div>
 6. هل يوجد Route؟
 7. هل Firewall يمنع الاتصال؟
 8. هل الخدمة على Server تعمل؟</div>
-
 </section>
 
-
 <section class="section">
-
 <h2>فكر بطريقة OSI</h2>
 
 <div class="table-wrapper">
-
 <table>
-
 <tr>
 <th>المشكلة</th>
 <th>ابدأ بالتفكير في</th>
@@ -2477,28 +2153,20 @@ tracert</div>
 <td>الخدمة أو التطبيق</td>
 <td>Layer 7</td>
 </tr>
-
 </table>
-
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>قاعدة ذهبية</h2>
 
 <div class="important-box">
 لا تغيّر عدة إعدادات في نفس الوقت.
 غيّر شيئًا واحدًا، اختبر النتيجة، ثم انتقل للخطوة التالية.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>ربط جميع المسارات</h2>
 
 <div class="link-box">
@@ -2506,16 +2174,12 @@ tracert</div>
 IP + MAC + VLAN + Switching + Routing + OSPF + SSH + Security
 للوصول إلى سبب المشكلة وحلها بطريقة منظمة.
 </div>
-
 </section>
 
-
 <section class="section">
-
 <h2>نقاط يجب أن تتذكرها</h2>
 
 <div class="remember-box">
-
 <ul>
 <li>ابدأ من Layer 1.</li>
 <li>لا تفترض أن المشكلة من الراوتر مباشرة.</li>
@@ -2523,14 +2187,10 @@ IP + MAC + VLAN + Switching + Routing + OSPF + SSH + Security
 <li>اختبر الاتصال خطوة بخطوة.</li>
 <li>وثّق ما غيرته.</li>
 </ul>
-
 </div>
-
 </section>
-
 `
 }
-
 ];
 
 
@@ -2546,11 +2206,9 @@ const currentLesson = lessons.find(
 lesson => lesson.id === lessonId
 );
 
-
 const path = currentLesson
 ? paths.find(p => p.id === currentLesson.path)
 : null;
-
 
 const pathLessons = path
 ? path.lessons
@@ -2644,40 +2302,31 @@ function renderLesson() {
 document.title =
 `${currentLesson.title} | عرّاب الشبكات`;
 
-
 pathLabel.textContent =
 `${path.icon} المسار ${path.id} — ${path.name}`;
-
 
 lessonTitle.textContent =
 currentLesson.title;
 
-
 lessonDescription.textContent =
 currentLesson.description;
-
 
 lessonNumber.textContent =
 `الدرس ${currentLesson.id}`;
 
-
 lessonLevel.textContent =
 `المستوى: ${currentLesson.level}`;
-
 
 const index =
 pathLessons.findIndex(
 lesson => lesson.id === currentLesson.id
 );
 
-
 lessonCount.textContent =
 `الدرس ${index + 1} من ${pathLessons.length}`;
 
-
 lessonContent.innerHTML =
 currentLesson.content;
-
 
 renderSidebar();
 
@@ -2707,13 +2356,11 @@ link.href =
 link.textContent =
 `${lesson.id}. ${lesson.title}`;
 
-
 if (lesson.id === currentLesson.id) {
 
 link.classList.add("active");
 
 }
-
 
 sidebarLinks.appendChild(link);
 
@@ -2733,21 +2380,17 @@ pathLessons.findIndex(
 lesson => lesson.id === currentLesson.id
 );
 
-
 const previous =
 index > 0
 ? pathLessons[index - 1]
 : null;
-
 
 const next =
 index < pathLessons.length - 1
 ? pathLessons[index + 1]
 : null;
 
-
 lessonNavigation.innerHTML = "";
-
 
 if (previous) {
 
@@ -2775,7 +2418,6 @@ document.createElement("div");
 lessonNavigation.appendChild(empty);
 
 }
-
 
 if (next) {
 
@@ -2807,6 +2449,17 @@ Supabase
 let completedLessons = [];
 
 
+/* =====================================================
+التحقق من المستخدم
+===================================================== */
+
+/*
+التعديل هنا:
+نستخدم getSession() بدل getUser()
+حتى نعتمد على جلسة تسجيل الدخول الموجودة
+في المتصفح.
+*/
+
 async function getCurrentUser() {
 
 try {
@@ -2815,31 +2468,52 @@ if (
 typeof supabaseClient === "undefined" ||
 !supabaseClient
 ) {
-return null;
-}
 
+console.error(
+"supabaseClient غير موجود"
+);
+
+return null;
+
+}
 
 const {
 data,
 error
 } =
-await supabaseClient.auth.getUser();
-
+await supabaseClient.auth.getSession();
 
 if (error) {
 
-console.error(error);
+console.error(
+"Session error:",
+error
+);
 
 return null;
 
 }
 
+const session =
+data?.session;
 
-return data?.user || null;
+if (
+!session ||
+!session.user
+) {
+
+return null;
+
+}
+
+return session.user;
 
 } catch (error) {
 
-console.error(error);
+console.error(
+"getCurrentUser error:",
+error
+);
 
 return null;
 
@@ -2857,7 +2531,6 @@ async function loadProgress() {
 const user =
 await getCurrentUser();
 
-
 if (!user) {
 
 updateProgress([]);
@@ -2869,9 +2542,7 @@ return;
 
 }
 
-
 loginNote.textContent = "";
-
 
 try {
 
@@ -2885,7 +2556,6 @@ await supabaseClient
 .eq("auth_id", user.id)
 .maybeSingle();
 
-
 if (error) {
 
 console.error(error);
@@ -2896,7 +2566,6 @@ return;
 
 }
 
-
 completedLessons =
 Array.isArray(data?.completed_lessons)
 ? data.completed_lessons
@@ -2904,16 +2573,17 @@ Array.isArray(data?.completed_lessons)
 .filter(Number.isFinite)
 : [];
 
-
 completedLessons =
 [...new Set(completedLessons)];
 
-
-updateProgress(completedLessons);
-
+updateProgress(
+completedLessons
+);
 
 if (
-completedLessons.includes(currentLesson.id)
+completedLessons.includes(
+currentLesson.id
+)
 ) {
 
 setCompletedButton();
@@ -2941,14 +2611,12 @@ lesson =>
 completed.includes(lesson.id)
 ).length;
 
-
 const pathPercent =
 pathLessons.length
 ? Math.round(
 (pathCompleted / pathLessons.length) * 100
 )
 : 0;
-
 
 const overallPercent =
 lessons.length
@@ -2963,14 +2631,11 @@ lesson.id === id
 )
 : 0;
 
-
 progressText.textContent =
 `تقدم المسار: ${pathPercent}%`;
 
-
 overallText.textContent =
 `التقدم العام: ${overallPercent}%`;
-
 
 progressBar.style.width =
 `${pathPercent}%`;
@@ -2989,7 +2654,6 @@ async () => {
 const user =
 await getCurrentUser();
 
-
 if (!user) {
 
 loginNote.textContent =
@@ -2998,7 +2662,6 @@ loginNote.textContent =
 return;
 
 }
-
 
 if (
 completedLessons.includes(
@@ -3010,12 +2673,10 @@ return;
 
 }
 
-
 completeBtn.disabled = true;
 
 completeBtn.textContent =
 "جاري الحفظ...";
-
 
 try {
 
@@ -3029,7 +2690,6 @@ currentLesson.id
 .filter(Number.isFinite)
 .sort((a, b) => a - b);
 
-
 const {
 error
 } =
@@ -3039,7 +2699,6 @@ await supabaseClient
 completed_lessons: updated
 })
 .eq("auth_id", user.id);
-
 
 if (error) {
 
@@ -3057,27 +2716,17 @@ return;
 
 }
 
-
 completedLessons =
 updated;
-
 
 updateProgress(
 completedLessons
 );
 
-
 setCompletedButton();
-
 
 completionText.textContent =
 "🎉 تم حفظ إنجاز الدرس وتحديث تقدم المسار.";
-
-
-/*
-الانتقال للدرس التالي لا يتم تلقائيًا،
-حتى يكون لدى الطالب وقت لقراءة رسالة الإنجاز.
-*/
 
 } catch (error) {
 
@@ -3127,7 +2776,6 @@ const active =
 document.querySelector(
 ".sidebar a.active"
 );
-
 
 if (active) {
 

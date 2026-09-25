@@ -2,21 +2,19 @@
  * عرّاب الشبكات
  * Copyright (c) 2026 Mishal AL-Mishal
  * All Rights Reserved.
- *
- * يمنع نسخ أو إعادة استخدام أو إعادة توزيع هذا الملف
- * أو أي جزء جوهري منه دون إذن صاحب الحقوق.
  */
 
-document.addEventListener("DOMContentLoaded", async function () {
+(async function () {
 
     // =====================================================
     // التأكد من Supabase
     // =====================================================
 
-    if (typeof supabaseClient === "undefined") {
-
+    if (
+        typeof supabaseClient === "undefined" ||
+        !supabaseClient
+    ) {
         console.error("Supabase غير متوفر.");
-
         return;
     }
 
@@ -27,24 +25,30 @@ document.addEventListener("DOMContentLoaded", async function () {
         // =====================================================
 
         const {
-            data: { session },
-            error: sessionError
+            data,
+            error
         } = await supabaseClient.auth.getSession();
 
-        if (sessionError) {
+        if (error) {
 
             console.error(
-                "خطأ أثناء قراءة تسجيل الدخول:",
-                sessionError
+                "خطأ أثناء قراءة جلسة الدخول:",
+                error
             );
 
             return;
         }
 
+        const session = data?.session;
+
+        // =====================================================
+        // لا يوجد تسجيل دخول
+        // =====================================================
+
         if (!session || !session.user) {
 
             console.log(
-                "لا توجد جلسة تسجيل دخول على هذا الموقع."
+                "لا توجد جلسة تسجيل دخول."
             );
 
             return;
@@ -58,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
 
         // =====================================================
-        // جلب بيانات المستخدم من جدول users
+        // جلب بيانات المستخدم
         // =====================================================
 
         const {
@@ -82,15 +86,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         if (!profile) {
 
-            console.log(
-                "لم يتم العثور على بيانات المستخدم في جدول users."
+            console.error(
+                "لم يتم العثور على المستخدم في جدول users."
             );
 
             return;
         }
 
         // =====================================================
-        // بيانات المستخدم
+        // بيانات الحساب
         // =====================================================
 
         const username =
@@ -99,23 +103,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         const isAdmin =
             profile.is_admin === true;
 
-        console.log(
-            "اسم المستخدم:",
-            username
-        );
-
-        console.log(
-            "قيمة is_admin:",
-            profile.is_admin
-        );
-
-        console.log(
-            "هل المستخدم Admin؟",
-            isAdmin
-        );
-
         // =====================================================
-        // حفظ اسم المستخدم
+        // حفظ الاسم
         // =====================================================
 
         localStorage.setItem(
@@ -124,61 +113,50 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
 
         // =====================================================
-        // تحديث رابط الحساب
+        // تحديث روابط الحساب
         // =====================================================
 
-        const profileLinks =
-            document.querySelectorAll(
-                ".profile-link"
-            );
+        document
+            .querySelectorAll(".profile-link")
+            .forEach(function (link) {
 
-        profileLinks.forEach(function (link) {
+                link.textContent =
+                    "👤 " + username;
 
-            link.textContent =
-                "👤 " + username;
-
-        });
+            });
 
         // =====================================================
-        // تحديث عناصر اسم المستخدم
+        // data-user-name
         // =====================================================
 
-        const userNameElements =
-            document.querySelectorAll(
-                "[data-user-name]"
-            );
+        document
+            .querySelectorAll("[data-user-name]")
+            .forEach(function (element) {
 
-        userNameElements.forEach(function (element) {
+                element.textContent =
+                    username;
 
-            element.textContent =
-                username;
-
-        });
+            });
 
         // =====================================================
-        // تحديث user-name
+        // user-name
         // =====================================================
 
-        const userNameClasses =
-            document.querySelectorAll(
-                ".user-name"
-            );
+        document
+            .querySelectorAll(".user-name")
+            .forEach(function (element) {
 
-        userNameClasses.forEach(function (element) {
+                element.textContent =
+                    username;
 
-            element.textContent =
-                username;
-
-        });
+            });
 
         // =====================================================
-        // تحديث الترحيب
+        // الترحيب
         // =====================================================
 
         const welcomeTitle =
-            document.getElementById(
-                "welcomeTitle"
-            );
+            document.getElementById("welcomeTitle");
 
         if (welcomeTitle) {
 
@@ -194,22 +172,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         // =====================================================
 
         const adminLink =
-            document.getElementById(
-                "adminNavLink"
-            );
+            document.getElementById("adminNavLink");
 
-        if (!adminLink) {
-
-            console.log(
-                "رابط لوحة الإدارة غير موجود في الصفحة."
-            );
-
-        } else {
+        if (adminLink) {
 
             if (isAdmin) {
 
-                // إظهار لوحة الإدارة للأدمن
-                adminLink.style.display = "inline-flex";
+                adminLink.style.display =
+                    "inline-flex";
 
                 adminLink.href =
                     "admin.html";
@@ -217,28 +187,27 @@ document.addEventListener("DOMContentLoaded", async function () {
                 adminLink.textContent =
                     "🛠️ لوحة الإدارة";
 
-                console.log(
-                    "تم إظهار لوحة الإدارة."
-                );
-
             } else {
 
-                // إخفاء لوحة الإدارة عن المستخدم العادي
-                adminLink.style.display = "none";
+                adminLink.style.display =
+                    "none";
 
-                console.log(
-                    "المستخدم ليس Admin."
-                );
             }
+
         }
+
+        console.log(
+            "تم تحميل حساب المستخدم:",
+            username
+        );
 
     } catch (error) {
 
         console.error(
-            "حدث خطأ أثناء تحميل بيانات المستخدم:",
+            "خطأ أثناء تحميل حساب المستخدم:",
             error
         );
 
     }
 
-});
+})();
