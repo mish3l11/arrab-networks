@@ -1,40 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>الدرس | عرّاب الشبكات</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin
->
-
-<link
-href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
-rel="stylesheet"
->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-RESET
-========================= */
-
 * {
 box-sizing: border-box;
-margin: 0;
-padding: 0;
 }
 
 html {
@@ -42,10 +20,10 @@ scroll-behavior: smooth;
 }
 
 body {
+margin: 0;
 font-family: "Tajawal", sans-serif;
 background: #cbb77a;
 color: #111;
-line-height: 1.8;
 }
 
 a {
@@ -57,692 +35,569 @@ button {
 font-family: inherit;
 }
 
-
-/* =========================
-HEADER
-========================= */
+/* ================= HEADER ================= */
 
 header {
-background: #111;
-color: #fff;
-padding: 18px 6%;
+background: #080808;
+color: white;
+border-bottom: 3px solid #075985;
+position: sticky;
+top: 0;
+z-index: 1000;
+}
+
+.nav {
+max-width: 1250px;
+margin: auto;
+padding: 14px 20px;
 display: flex;
 align-items: center;
 justify-content: space-between;
 gap: 20px;
-position: sticky;
-top: 0;
-z-index: 1000;
-box-shadow: 0 5px 20px rgba(0,0,0,.25);
 }
 
 .logo {
 display: flex;
 align-items: center;
-gap: 12px;
+gap: 10px;
+min-width: 190px;
 }
 
 .logo-icon {
-font-size: 32px;
+font-size: 30px;
 }
 
-.logo-text h1 {
-font-size: 23px;
+.logo-title {
+font-size: 21px;
 font-weight: 800;
-color: #cbb77a;
+color: #d6c58f;
 }
 
-.logo-text span {
-display: block;
-font-size: 11px;
+.logo-sub {
+font-size: 10px;
+color: #aaa;
 letter-spacing: 2px;
-color: #ddd;
 }
 
-nav {
+.nav-links {
 display: flex;
 align-items: center;
-gap: 10px;
+gap: 8px;
 flex-wrap: wrap;
+justify-content: flex-end;
 }
 
-nav a {
-padding: 8px 14px;
+.nav-links a {
+padding: 9px 12px;
 border-radius: 8px;
-font-size: 14px;
-font-weight: 700;
-transition: .25s;
-}
-
-nav a:hover {
-background: #cbb77a;
-color: #111;
-}
-
-
-/* =========================
-HERO
-========================= */
-
-.lesson-hero {
-background:
-linear-gradient(
-135deg,
-rgba(0,0,0,.95),
-rgba(20,20,20,.88)
-);
-
-color: #fff;
-padding: 60px 6%;
-border-bottom: 5px solid #075985;
-}
-
-.lesson-hero-content {
-max-width: 1200px;
-margin: auto;
-}
-
-.lesson-category {
-display: inline-block;
-background: #075985;
-padding: 6px 14px;
-border-radius: 20px;
-font-size: 13px;
-font-weight: 700;
-margin-bottom: 15px;
-}
-
-.lesson-hero h2 {
-font-size: 42px;
-font-weight: 800;
-margin-bottom: 10px;
-color: #cbb77a;
-}
-
-.lesson-hero p {
-max-width: 850px;
-font-size: 17px;
-color: #eee;
-}
-
-.lesson-level {
-margin-top: 15px;
-font-size: 14px;
 color: #ddd;
-}
-
-
-/* =========================
-MAIN
-========================= */
-
-.lesson-wrapper {
-max-width: 1250px;
-margin: 40px auto;
-padding: 0 20px;
-
-display: grid;
-grid-template-columns: 270px 1fr;
-
-gap: 30px;
-align-items: start;
-}
-
-
-/* =========================
-SIDEBAR
-========================= */
-
-.lesson-sidebar {
-background: #111;
-color: #fff;
-border-radius: 16px;
-padding: 20px;
-
-position: sticky;
-top: 100px;
-
-box-shadow: 0 10px 30px rgba(0,0,0,.2);
-}
-
-.lesson-sidebar h3 {
-color: #cbb77a;
-font-size: 19px;
-margin-bottom: 15px;
-}
-
-.lesson-sidebar ul {
-list-style: none;
-}
-
-.lesson-sidebar li {
-margin-bottom: 7px;
-}
-
-.lesson-sidebar a {
-display: block;
-
-padding: 9px 11px;
-
-border-radius: 8px;
-
-color: #eee;
-
 font-size: 14px;
-
 transition: .2s;
 }
 
-.lesson-sidebar a:hover {
+.nav-links a:hover {
 background: #075985;
-color: #fff;
-transform: translateX(-3px);
+color: white;
 }
 
+/* ================= HERO ================= */
 
-/* =========================
-ARTICLE
-========================= */
+.hero {
+background:
+linear-gradient(135deg, #050505, #151515 60%, #222);
+color: white;
+padding: 55px 20px;
+border-bottom: 4px solid #075985;
+}
 
-.lesson-content {
+.hero-inner {
+max-width: 1250px;
+margin: auto;
+}
+
+.path-label {
+display: inline-block;
+background: #075985;
+padding: 7px 13px;
+border-radius: 20px;
+font-size: 13px;
+margin-bottom: 15px;
+}
+
+.hero h1 {
+margin: 0 0 12px;
+font-size: clamp(28px, 5vw, 45px);
+font-weight: 800;
+}
+
+.hero-description {
+color: #ddd;
+max-width: 850px;
+line-height: 1.9;
+font-size: 17px;
+}
+
+.lesson-meta {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 20px;
+}
+
+.meta {
+padding: 7px 13px;
+border: 1px solid #444;
+border-radius: 20px;
+color: #ddd;
+font-size: 13px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-wrapper {
+max-width: 1250px;
+margin: 22px auto 0;
+padding: 0 20px;
+}
+
+.progress-card {
+background: #080808;
+color: white;
+border-radius: 15px;
+padding: 17px;
+border: 1px solid #333;
+}
+
+.progress-top {
+display: flex;
+justify-content: space-between;
+gap: 10px;
+margin-bottom: 9px;
+font-size: 14px;
+}
+
+.progress-track {
+height: 10px;
+background: #292929;
+border-radius: 20px;
+overflow: hidden;
+}
+
+.progress-bar {
+height: 100%;
+width: 0%;
+background: #075985;
+border-radius: inherit;
+transition: width .4s ease;
+}
+
+/* ================= LAYOUT ================= */
+
+.page-layout {
+max-width: 1250px;
+margin: 25px auto 50px;
+padding: 0 20px;
+display: grid;
+grid-template-columns: 280px 1fr;
+gap: 25px;
+direction: ltr;
+}
+
+.sidebar,
+.content {
+direction: rtl;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+background: #090909;
+color: white;
+border-radius: 15px;
+padding: 18px;
+height: fit-content;
+position: sticky;
+top: 95px;
+}
+
+.sidebar-title {
+font-size: 17px;
+font-weight: 800;
+color: #d6c58f;
+margin-bottom: 15px;
+}
+
+.sidebar-path {
+font-size: 12px;
+color: #aaa;
+margin: 18px 0 7px;
+}
+
+.sidebar a {
+display: block;
+padding: 9px 10px;
+border-radius: 7px;
+color: #ccc;
+font-size: 13px;
+margin-bottom: 3px;
+transition: .2s;
+}
+
+.sidebar a:hover {
+background: #075985;
+color: white;
+}
+
+.sidebar a.active {
+background: #075985;
+color: white;
+font-weight: 700;
+}
+
+.sidebar a.completed::before {
+content: "✓ ";
+color: #54d66a;
+font-weight: 800;
+}
+
+/* ================= CONTENT ================= */
+
+.content {
 background: #f7f7f7;
-border-radius: 18px;
-
-padding: 35px;
-
-box-shadow: 0 10px 30px rgba(0,0,0,.18);
+border-radius: 15px;
+padding: clamp(20px, 4vw, 40px);
+min-width: 0;
 }
 
-.lesson-section {
-margin-bottom: 40px;
-scroll-margin-top: 110px;
+.section {
+margin-bottom: 42px;
+scroll-margin-top: 100px;
 }
 
-.lesson-section h3 {
-font-size: 27px;
-margin-bottom: 15px;
-
+.section h2 {
+margin: 0 0 17px;
+padding-bottom: 10px;
+border-bottom: 2px solid #ddd;
+font-size: 26px;
 color: #111;
-
-border-right: 6px solid #075985;
-
-padding-right: 13px;
 }
 
-.lesson-section h4 {
-font-size: 21px;
-margin: 20px 0 10px;
-
-color: #075985;
+.section h3 {
+font-size: 20px;
+margin-top: 25px;
 }
 
-.lesson-section p {
+.section p {
+line-height: 2;
+color: #292929;
 font-size: 16px;
-margin-bottom: 13px;
 }
 
-.lesson-section ul,
-.lesson-section ol {
+.section ul,
+.section ol {
+line-height: 2;
 padding-right: 25px;
-margin-bottom: 15px;
 }
 
-.lesson-section li {
-margin-bottom: 7px;
+/* ================= BOXES ================= */
+
+.info-box,
+.important-box,
+.warning-box,
+.remember-box,
+.link-box {
+padding: 18px 20px;
+border-radius: 12px;
+margin: 20px 0;
+line-height: 1.9;
 }
-
-
-/* =========================
-BOXES
-========================= */
 
 .info-box {
-background: #e9f7ff;
-
+background: #e8f4fa;
 border-right: 5px solid #075985;
-
-padding: 18px;
-
-border-radius: 10px;
-
-margin: 20px 0;
 }
 
-.gold-box {
-background: #fff7d6;
-
-border-right: 5px solid #cbb77a;
-
-padding: 18px;
-
-border-radius: 10px;
-
-margin: 20px 0;
+.important-box {
+background: #f5edcf;
+border-right: 5px solid #c49b20;
 }
 
 .warning-box {
 background: #fff0f0;
-
-border-right: 5px solid #b91c1c;
-
-padding: 18px;
-
-border-radius: 10px;
-
-margin: 20px 0;
+border-right: 5px solid #c0392b;
 }
 
-.practice-box {
-background: #eefbea;
-
-border-right: 5px solid #15803d;
-
-padding: 18px;
-
-border-radius: 10px;
-
-margin: 20px 0;
+.remember-box {
+background: #eaf7ed;
+border-right: 5px solid #2e8b57;
 }
 
+.link-box {
+background: #eeeeee;
+border-right: 5px solid #555;
+}
 
-/* =========================
-CODE
-========================= */
+.box-title {
+font-weight: 800;
+margin-bottom: 6px;
+}
+
+/* ================= CODE ================= */
 
 .code-box {
-background: #111;
-
-color: #f8f8f8;
-
-padding: 18px;
-
-border-radius: 12px;
-
-margin: 18px 0;
-
-overflow-x: auto;
-
 direction: ltr;
-
 text-align: left;
-
-font-family: Consolas, monospace;
-
+background: #101010;
+color: #f4f4f4;
+padding: 18px;
+border-radius: 10px;
+overflow-x: auto;
+margin: 15px 0;
+font-family: Consolas, Monaco, monospace;
 font-size: 14px;
-
-line-height: 1.7;
+line-height: 1.8;
+white-space: pre;
 }
 
-code {
-font-family: Consolas, monospace;
+.code-title {
+font-weight: 800;
+margin-top: 20px;
 }
 
-
-/* =========================
-COMPARISON
-========================= */
-
-.comparison-grid {
-display: grid;
-
-grid-template-columns: 1fr 1fr;
-
-gap: 20px;
-
-margin: 20px 0;
-}
-
-.comparison-card {
-border-radius: 14px;
-
-padding: 20px;
-
-background: #fff;
-
-border: 2px solid #ddd;
-}
-
-.comparison-card h4 {
-margin-top: 0;
-color: #111;
-}
-
-.comparison-card.cisco {
-border-top: 5px solid #075985;
-}
-
-.comparison-card.huawei {
-border-top: 5px solid #cbb77a;
-}
-
-.comparison-card ul {
-padding-right: 20px;
-}
-
-
-/* =========================
-TABLE
-========================= */
+/* ================= TABLE ================= */
 
 .table-wrapper {
 overflow-x: auto;
 margin: 20px 0;
 }
 
-.lesson-table {
+table {
 width: 100%;
-
 border-collapse: collapse;
-
-background: #fff;
-
-border-radius: 12px;
-
-overflow: hidden;
+min-width: 550px;
+background: white;
 }
 
-.lesson-table th {
-background: #111;
-color: #cbb77a;
+th,
+td {
 padding: 13px;
-}
-
-.lesson-table td {
-padding: 12px;
-
 border: 1px solid #ddd;
-
-text-align: center;
+text-align: right;
+line-height: 1.7;
 }
 
-.lesson-table tr:nth-child(even) {
-background: #f5f5f5;
-}
-
-
-/* =========================
-COMPLETE
-========================= */
-
-.lesson-complete {
-margin-top: 40px;
-
-padding: 25px;
-
+th {
 background: #111;
+color: #fff;
+}
 
-border-radius: 16px;
+tr:nth-child(even) td {
+background: #f4f4f4;
+}
 
+/* ================= COMPLETION ================= */
+
+.completion {
+margin-top: 45px;
+padding: 25px;
+background: #111;
+color: white;
+border-radius: 15px;
 text-align: center;
-
-color: #fff;
 }
 
-#completeLessonButton {
-border: none;
-
-background: #cbb77a;
-
-color: #111;
-
-padding: 14px 28px;
-
-border-radius: 10px;
-
-font-size: 17px;
-
-font-weight: 800;
-
-cursor: pointer;
-
-transition: .25s;
+.completion h2 {
+border: 0;
+color: white;
+margin-bottom: 10px;
 }
 
-#completeLessonButton:hover {
-transform: translateY(-2px);
-
-box-shadow:
-0 7px 20px
-rgba(203,183,122,.3);
+.completion p {
+color: #ccc;
 }
 
-#completeLessonButton.completed {
-background: #15803d;
-color: #fff;
-}
-
-#completeLessonButton:disabled {
-opacity: .7;
-cursor: wait;
-}
-
-#completionMessage {
-margin-top: 12px;
-
-font-size: 14px;
-
-color: #ddd;
-}
-
-
-/* =========================
-NAVIGATION
-========================= */
-
-.lesson-navigation {
-display: flex;
-
-justify-content: space-between;
-
-gap: 15px;
-
-margin-top: 35px;
-}
-
-.lesson-navigation a {
+.complete-btn {
+border: 0;
 background: #075985;
-
-color: #fff;
-
-padding: 12px 20px;
-
-border-radius: 10px;
-
+color: white;
+padding: 13px 25px;
+border-radius: 9px;
+cursor: pointer;
+font-size: 16px;
 font-weight: 700;
-
 transition: .2s;
 }
 
-.lesson-navigation a:hover {
+.complete-btn:hover {
+transform: translateY(-2px);
+background: #0b6d9d;
+}
+
+.complete-btn.completed {
+background: #27834b;
+cursor: default;
+}
+
+.login-note {
+color: #ffcf70;
+font-size: 14px;
+margin-top: 10px;
+}
+
+/* ================= NEXT / PREVIOUS ================= */
+
+.lesson-navigation {
+margin-top: 25px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+}
+
+.nav-card {
 background: #111;
+color: white;
+border-radius: 12px;
+padding: 17px;
+transition: .2s;
 }
 
-.lesson-navigation a.disabled {
-opacity: .35;
-pointer-events: none;
+.nav-card:hover {
+background: #075985;
+transform: translateY(-2px);
 }
 
+.nav-card small {
+color: #aaa;
+display: block;
+margin-bottom: 5px;
+}
 
-/* =========================
-FOOTER
-========================= */
+.nav-card strong {
+font-size: 16px;
+}
+
+.nav-next {
+text-align: left;
+}
+
+.nav-prev {
+text-align: right;
+}
+
+/* ================= FOOTER ================= */
 
 footer {
-background: #111;
-
-color: #ddd;
-
+background: #080808;
+color: #aaa;
 text-align: center;
-
 padding: 25px;
-
-margin-top: 50px;
+margin-top: 40px;
 }
 
-footer strong {
-color: #cbb77a;
-}
+/* ================= MOBILE ================= */
 
+@media (max-width: 850px) {
 
-/* =========================
-MOBILE
-========================= */
-
-@media (max-width: 900px) {
-
-header {
+.nav {
 flex-direction: column;
-align-items: flex-start;
 }
 
-nav {
-width: 100%;
+.nav-links {
+justify-content: center;
 }
 
-.lesson-wrapper {
+.page-layout {
 grid-template-columns: 1fr;
 }
 
-.lesson-sidebar {
+.sidebar {
 position: static;
 }
 
-.lesson-hero h2 {
-font-size: 32px;
+.sidebar-links {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 4px;
+}
 }
 
-.comparison-grid {
+@media (max-width: 550px) {
+
+.hero {
+padding: 35px 16px;
+}
+
+.progress-wrapper,
+.page-layout {
+padding-left: 12px;
+padding-right: 12px;
+}
+
+.content {
+padding: 20px 15px;
+}
+
+.sidebar-links {
 grid-template-columns: 1fr;
 }
 
-}
-
-@media (max-width: 600px) {
-
-.lesson-content {
-padding: 20px;
-}
-
-.lesson-hero {
-padding: 40px 20px;
-}
-
-.lesson-hero h2 {
-font-size: 27px;
-}
-
-.lesson-section h3 {
-font-size: 23px;
-}
-
 .lesson-navigation {
-flex-direction: column;
+grid-template-columns: 1fr;
 }
 
-nav a {
-font-size: 12px;
-padding: 7px 9px;
+.nav-next,
+.nav-prev {
+text-align: center;
 }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-HEADER
-========================= -->
-
 <header>
+<nav class="nav">
 
-<div class="logo">
-
-<div class="logo-icon">
-🌐
-</div>
-
-<div class="logo-text">
-
-<h1>
-عرّاب الشبكات
-</h1>
+<a href="index.html" class="logo">
+<span class="logo-icon">🌐</span>
 
 <span>
-NETWORKS
+<span class="logo-title">عرّاب الشبكات</span>
+<span class="logo-sub">NETWORKS</span>
 </span>
+</a>
 
+<div class="nav-links">
+<a href="index.html">الرئيسية</a>
+<a href="lessons.html">الدروس</a>
+<a href="quiz.html">الاختبارات</a>
+<a href="config.html">مرجع الأوامر</a>
+<a href="terminal.html">CLI</a>
+<a href="profile.html">👤 حسابي</a>
 </div>
-
-</div>
-
-
-<nav>
-
-<a href="index.html">
-الرئيسية
-</a>
-
-<a href="lessons.html">
-الدروس
-</a>
-
-<a href="quiz.html">
-الاختبارات
-</a>
-
-<a href="config.html">
- مرجع الأوامر
-</a>
-
-<a href="terminal.html">
-CLI 
-</a>
-
-<a href="profile.html">
-👤 حسابي
-</a>
 
 </nav>
-
 </header>
 
 
-<!-- =========================
-HERO
-========================= -->
+<section class="hero">
 
-<section class="lesson-hero">
+<div class="hero-inner">
 
-<div class="lesson-hero-content">
-
-<div
-class="lesson-category"
-id="lessonCategory"
->
-الشبكات
+<div id="pathLabel" class="path-label">
+المسار
 </div>
 
-
-<h2 id="lessonTitle">
+<h1 id="lessonTitle">
 جاري تحميل الدرس...
-</h2>
+</h1>
 
+<div id="lessonDescription" class="hero-description"></div>
 
-<p id="lessonDescription">
-جاري تحميل محتوى الدرس...
-</p>
-
-
-<div
-class="lesson-level"
-id="lessonLevel"
->
-المستوى: -
+<div class="lesson-meta">
+<span id="lessonNumber" class="meta"></span>
+<span id="lessonLevel" class="meta"></span>
+<span id="lessonCount" class="meta"></span>
 </div>
 
 </div>
@@ -750,2337 +605,2542 @@ id="lessonLevel"
 </section>
 
 
-<!-- =========================
-MAIN
-========================= -->
+<div class="progress-wrapper">
 
-<main class="lesson-wrapper">
+<div class="progress-card">
+
+<div class="progress-top">
+<span id="progressText">تقدم المسار: 0%</span>
+<span id="overallText">التقدم العام: 0%</span>
+</div>
+
+<div class="progress-track">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+</div>
+
+</div>
 
 
-<aside class="lesson-sidebar">
+<main class="page-layout">
 
-<h3>
-📚 محتويات الدرس
-</h3>
+<aside class="sidebar">
 
-<ul id="lessonSidebar">
-</ul>
+<div class="sidebar-title">
+📚 دروس المسار
+</div>
+
+<div id="sidebarLinks" class="sidebar-links"></div>
 
 </aside>
 
 
-<article
-class="lesson-content"
-id="lessonContent"
->
+<article class="content">
 
-<div style="text-align:center;padding:50px;">
-جاري تحميل الدرس...
+<div id="lessonContent">
+جاري تحميل محتوى الدرس...
 </div>
 
-</article>
+<div class="completion">
 
+<h2>🎯 إنجاز الدرس</h2>
+
+<p id="completionText">
+أكمل الدرس ثم سجل إنجازك.
+</p>
+
+<button id="completeBtn" class="complete-btn">
+✓ إكمال الدرس
+</button>
+
+<div id="loginNote" class="login-note"></div>
+
+</div>
+
+
+<div id="lessonNavigation" class="lesson-navigation"></div>
+
+</article>
 
 </main>
 
 
-<!-- =========================
-FOOTER
-========================= -->
-
 <footer>
-
-<p>
-© 2026
-<strong>
-عرّاب الشبكات
-</strong>
-</p>
-
-<p>
-تعلم الشبكات بطريقة أبسط وأوضح
-</p>
-
+© 2026 عرّاب الشبكات — تعلم الشبكات بطريقة عملية
 </footer>
 
 
-<!-- =========================
-SUPABASE
-========================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase.js"></script>
-
-
-<!-- =========================
-LESSON SCRIPT
-========================= -->
+<script src="user.js"></script>
 
 <script>
 
-const lessons = [
+/* =====================================================
+المسارات
+===================================================== */
 
-/* =========================================
-LESSON 1
-========================================= */
+const paths = [
 
 {
 id: 1,
-
-title: "أساسيات الشبكات",
-
-category: "أساسيات",
-
-level: "مبتدئ",
-
-description:
-"تعرف على مفهوم الشبكات وأنواعها وأهم المصطلحات الأساسية.",
-
-sections: [
-
-{
-title: "ما هي الشبكة؟",
-
-content: `
-
-<p>
-الشبكة هي مجموعة من الأجهزة المتصلة مع بعضها البعض بهدف تبادل البيانات والموارد والمعلومات.
-</p>
-
-<div class="info-box">
-
-<strong>
-مثال بسيط:
-</strong>
-
-عندما يكون لديك جهاز كمبيوتر وطابعة متصلان بنفس الشبكة،
-يمكن للكمبيوتر إرسال المستندات إلى الطابعة.
-
-</div>
-
-<h4>
-أهم فوائد الشبكات
-</h4>
-
-<ul>
-
-<li>
-مشاركة الملفات.
-</li>
-
-<li>
-مشاركة الطابعات.
-</li>
-
-<li>
-الوصول إلى الإنترنت.
-</li>
-
-<li>
-التواصل بين الأجهزة.
-</li>
-
-<li>
-إدارة الأجهزة مركزيًا.
-</li>
-
-</ul>
-
-`
+icon: "🌐",
+name: "أساسيات الشبكات",
+lessons: [1,2,3,4,5,6,7,8]
 },
-
-
-{
-title: "أنواع الشبكات",
-
-content: `
-
-<h4>
-LAN
-</h4>
-
-<p>
-شبكة محلية تستخدم داخل مكان محدود مثل المنزل أو المكتب أو المدرسة.
-</p>
-
-<h4>
-WAN
-</h4>
-
-<p>
-شبكة واسعة تربط بين شبكات موجودة في مناطق جغرافية مختلفة.
-</p>
-
-<h4>
-WLAN
-</h4>
-
-<p>
-شبكة محلية لاسلكية تعتمد على Wi-Fi للاتصال بين الأجهزة.
-</p>
-
-<div class="gold-box">
-
-<strong>
-معلومة:
-</strong>
-
-الإنترنت يعتبر أكبر مثال على شبكة واسعة WAN.
-
-</div>
-
-`
-},
-
-
-{
-title: "مصطلحات مهمة",
-
-content: `
-
-<ul>
-
-<li>
-<strong>
-Client:
-</strong>
-جهاز يطلب خدمة.
-</li>
-
-<li>
-<strong>
-Server:
-</strong>
-جهاز يقدم خدمة.
-</li>
-
-<li>
-<strong>
-IP Address:
-</strong>
-عنوان منطقي للجهاز داخل الشبكة.
-</li>
-
-<li>
-<strong>
-MAC Address:
-</strong>
-عنوان فريد لواجهة الشبكة.
-</li>
-
-<li>
-<strong>
-Switch:
-</strong>
-جهاز يربط الأجهزة داخل الشبكة المحلية.
-</li>
-
-<li>
-<strong>
-Router:
-</strong>
-جهاز يربط الشبكات المختلفة.
-</li>
-
-</ul>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 2
-========================================= */
 
 {
 id: 2,
-
-title: "أجهزة الشبكة",
-
-category: "Network Devices",
-
-level: "مبتدئ",
-
-description:
-"تعرف على أهم أجهزة الشبكات ووظيفة كل جهاز.",
-
-sections: [
-
-{
-title: "Switch",
-
-content: `
-
-<p>
-السويتش يستخدم لربط الأجهزة الموجودة داخل نفس الشبكة المحلية.
-</p>
-
-<div class="info-box">
-
-السويتش يعتمد بشكل أساسي على
-<strong>
-MAC Address
-</strong>
-لتحديد الجهاز الذي سيتم إرسال البيانات إليه.
-
-</div>
-
-<h4>
-أمثلة على الأجهزة المتصلة بالسويتش
-</h4>
-
-<ul>
-
-<li>
-أجهزة الكمبيوتر.
-</li>
-
-<li>
-الطابعات.
-</li>
-
-<li>
-كاميرات المراقبة.
-</li>
-
-<li>
-Access Points.
-</li>
-
-<li>
-السيرفرات.
-</li>
-
-</ul>
-
-`
+icon: "🔵",
+name: "Switching",
+lessons: [9,10,11]
 },
-
-
-{
-title: "Router",
-
-content: `
-
-<p>
-الراوتر يستخدم لربط شبكات مختلفة مع بعضها البعض.
-</p>
-
-<div class="gold-box">
-
-<strong>
-مثال:
-</strong>
-
-الراوتر يمكن أن يربط شبكة الشركة بالإنترنت.
-
-</div>
-
-<p>
-الراوتر يعتمد على عناوين IP وRouting Table لاتخاذ قرار مسار البيانات.
-</p>
-
-`
-},
-
-
-{
-title: "Firewall",
-
-content: `
-
-<p>
-الجدار الناري Firewall يستخدم للتحكم في حركة المرور بين الشبكات
-والسماح أو المنع حسب قواعد أمنية محددة.
-</p>
-
-<div class="warning-box">
-
-لا يعني وجود Firewall أن الشبكة محمية بشكل كامل؛
-يجب إعداد القواعد الأمنية بشكل صحيح.
-
-</div>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 3
-========================================= */
 
 {
 id: 3,
-
-title: "IPv4",
-
-category: "IP Addressing",
-
-level: "مبتدئ",
-
-description:
-"افهم عنوان IPv4 وطريقة تقسيمه إلى شبكة وأجهزة.",
-
-sections: [
-
-{
-title: "ما هو IPv4؟",
-
-content: `
-
-<p>
-IPv4 هو نظام عنونة يستخدم لتحديد الأجهزة داخل الشبكات.
-</p>
-
-<div class="code-box">
-192.168.1.10
-</div>
-
-<p>
-عنوان IPv4 يتكون من 32 بت ويتم كتابته عادة على شكل أربع خانات،
-كل خانة من 0 إلى 255.
-</p>
-
-`
+icon: "🟠",
+name: "Routing",
+lessons: [12,13,14]
 },
-
-
-{
-title: "Network و Host",
-
-content: `
-
-<p>
-عنوان IP يمكن تقسيمه إلى جزأين رئيسيين:
-</p>
-
-<ul>
-
-<li>
-<strong>
-Network:
-</strong>
-يحدد الشبكة.
-</li>
-
-<li>
-<strong>
-Host:
-</strong>
-يحدد الجهاز داخل الشبكة.
-</li>
-
-</ul>
-
-<div class="gold-box">
-
-كلما تغيرت قيمة الـ Host مع بقاء Network نفسها،
-فهذا يعني غالبًا أنك تتعامل مع جهاز آخر داخل نفس الشبكة.
-
-</div>
-
-`
-},
-
-
-{
-title: "Private IP",
-
-content: `
-
-<p>
-هناك نطاقات خاصة تستخدم داخل الشبكات الداخلية.
-</p>
-
-<ul>
-
-<li>
-10.0.0.0 إلى 10.255.255.255
-</li>
-
-<li>
-172.16.0.0 إلى 172.31.255.255
-</li>
-
-<li>
-192.168.0.0 إلى 192.168.255.255
-</li>
-
-</ul>
-
-<p>
-هذه العناوين تستخدم عادة داخل الشبكات المحلية ولا يتم توجيهها مباشرة
-على الإنترنت العام.
-</p>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 4
-========================================= */
 
 {
 id: 4,
-
-title: "Subnetting",
-
-category: "IP Addressing",
-
-level: "متوسط",
-
-description:
-"تعلم فكرة تقسيم الشبكة إلى شبكات أصغر.",
-
-sections: [
-
-{
-title: "ما هو Subnetting؟",
-
-content: `
-
-<p>
-Subnetting هو تقسيم شبكة كبيرة إلى شبكات أصغر.
-</p>
-
-<div class="info-box">
-
-الهدف من Subnetting هو تنظيم الشبكة وتقليل نطاق Broadcast
-وتقسيم الأجهزة إلى مجموعات أكثر تنظيمًا.
-
-</div>
-
-<h4>
-مثال
-</h4>
-
-<div class="code-box">
-192.168.1.0/24
-</div>
-
-<p>
-الشبكة السابقة تحتوي على 256 عنوانًا إجماليًا،
-منها عادة 254 عنوانًا قابلًا للاستخدام للأجهزة في الشبكة التقليدية.
-</p>
-
-`
+icon: "🛡️",
+name: "إدارة وحماية الشبكات",
+lessons: [15,16]
 },
-
-
-{
-title: "ما معنى /24؟",
-
-content: `
-
-<p>
-الرقم بعد الشرطة المائلة يسمى Prefix Length.
-</p>
-
-<div class="code-box">
-192.168.1.0/24
-</div>
-
-<p>
-الرقم 24 يعني أن أول 24 بت مخصصة لجزء الشبكة،
-ويبقى 8 بت لجزء الأجهزة.
-</p>
-
-<div class="gold-box">
-
-عدد عناوين IPv4 في /24 هو:
-
-<strong>
-2⁸ = 256
-</strong>
-
-عنوانًا إجماليًا.
-
-</div>
-
-`
-},
-
-
-{
-title: "مثال /30",
-
-content: `
-
-<div class="code-box">
-192.168.1.0/30
-</div>
-
-<p>
-في /30 يوجد 4 عناوين إجمالًا،
-وعادة يكون هناك عنوان للشبكة وعنوان Broadcast
-وعنوانان قابلان للاستخدام.
-</p>
-
-<div class="practice-box">
-
-يستخدم /30 كثيرًا في بعض وصلات Point-to-Point.
-
-</div>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 5
-========================================= */
 
 {
 id: 5,
+icon: "🛠️",
+name: "Troubleshooting",
+lessons: [17]
+}
 
-title: "Switching",
+];
 
-category: "Switching",
 
-level: "متوسط",
+/* =====================================================
+الدروس
+===================================================== */
 
-description:
-"تعرف على طريقة عمل السويتش وMAC Address Table.",
-
-sections: [
+const lessons = [
 
 {
-title: "كيف يعمل السويتش؟",
-
+id: 1,
+path: 1,
+title: "أساسيات الشبكات",
+level: "مبتدئ",
+description: "تعرف على مفهوم الشبكات وأهم المصطلحات والأجهزة التي ستبني عليها فهمك للشبكات.",
 content: `
 
+<section class="section">
+
+<h2>ما هي الشبكة؟</h2>
+
 <p>
-عندما تصل Frame إلى السويتش،
-يقوم السويتش بقراءة MAC Address وتعلم موقع الجهاز.
+الشبكة <strong>Network</strong> هي مجموعة من الأجهزة المتصلة مع بعضها
+بهدف تبادل البيانات والموارد والخدمات.
 </p>
 
 <p>
-بعد ذلك يستطيع السويتش استخدام جدول MAC لتحديد المنفذ المناسب
-الذي سيتم إرسال البيانات إليه.
+الأجهزة قد تكون أجهزة كمبيوتر أو هواتف أو طابعات أو خوادم
+أو أجهزة شبكات مثل Switch وRouter وFirewall.
 </p>
 
 <div class="info-box">
+<div class="box-title">مثال بسيط</div>
+تخيل مكتبًا يحتوي على عدة أجهزة كمبيوتر وطابعة.
+إذا كانت الأجهزة متصلة بالشبكة، يستطيع المستخدمون الوصول
+إلى الطابعة ومشاركة الملفات والخدمات حسب الصلاحيات.
+</div>
 
-السويتش يتعلم MAC Address من مصدر الـ Frame التي تصل إليه.
+</section>
+
+
+<section class="section">
+
+<h2>أنواع الشبكات</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>المصطلح</th>
+<th>المعنى</th>
+<th>مثال</th>
+</tr>
+
+<tr>
+<td>LAN</td>
+<td>Local Area Network</td>
+<td>شبكة مكتب أو منزل</td>
+</tr>
+
+<tr>
+<td>WAN</td>
+<td>Wide Area Network</td>
+<td>ربط فروع شركات بعيدة</td>
+</tr>
+
+<tr>
+<td>WLAN</td>
+<td>Wireless LAN</td>
+<td>شبكة Wi-Fi</td>
+</tr>
+
+</table>
 
 </div>
+
+</section>
+
+
+<section class="section">
+
+<h2>مصطلحات مهمة</h2>
+
+<ul>
+<li><strong>Client:</strong> جهاز يطلب خدمة.</li>
+<li><strong>Server:</strong> جهاز يقدم خدمة.</li>
+<li><strong>IP Address:</strong> عنوان منطقي للجهاز.</li>
+<li><strong>MAC Address:</strong> عنوان مرتبط بواجهة الشبكة.</li>
+<li><strong>Switch:</strong> يربط الأجهزة داخل الشبكة المحلية.</li>
+<li><strong>Router:</strong> يربط الشبكات المختلفة.</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+
+<h2>ربط بالمفاهيم السابقة</h2>
+
+<div class="link-box">
+هذه هي نقطة البداية. في الدروس القادمة سنبدأ بتفصيل الأجهزة
+والعناوين والـMAC والـPorts والـProtocols ثم ننتقل إلى Switching وRouting.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+
+<ul>
+<li>الشبكة تسمح للأجهزة بالتواصل وتبادل البيانات.</li>
+<li>LAN غالبًا تستخدم داخل نطاق جغرافي صغير.</li>
+<li>WAN تربط شبكات أو مواقع متباعدة.</li>
+<li>Switch وRouter لهما وظائف مختلفة.</li>
+</ul>
+
+</div>
+
+</section>
 
 `
 },
 
 
 {
-title: "MAC Address Table",
-
+id: 2,
+path: 1,
+title: "أجهزة الشبكة",
+level: "مبتدئ",
+description: "تعرف على أهم أجهزة الشبكات ووظيفة كل جهاز ومكان استخدامه.",
 content: `
 
+<section class="section">
+
+<h2>Switch</h2>
+
 <p>
-السويتش يحتفظ بجدول يربط بين MAC Address والمنفذ الذي تعلم منه العنوان.
+الـ<strong>Switch</strong> يستخدم لربط الأجهزة داخل الشبكة المحلية
+ويعتمد بشكل أساسي على عناوين MAC في عملية التوجيه داخل الشبكة المحلية.
 </p>
 
-<div class="code-box">
+<div class="important-box">
+<strong>الفكرة الأساسية:</strong>
+السويتش يتعلم MAC Address من الإطارات التي يستقبلها
+ويبني MAC Address Table.
+</div>
 
-Cisco:
+</section>
+
+
+<section class="section">
+
+<h2>Router</h2>
+
+<p>
+الـ<strong>Router</strong> يستخدم لربط شبكات مختلفة،
+ويعتمد على IP Address وRouting Table لاتخاذ قرار المسار.
+</p>
+
+<div class="code-box">show ip route</div>
+
+<p>
+في أجهزة Huawei يمكن استخدام:
+</p>
+
+<div class="code-box">display ip routing-table</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>Firewall</h2>
+
+<p>
+الـ<strong>Firewall</strong> يستخدم للتحكم في حركة المرور
+بناءً على سياسات وقواعد أمنية.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>مقارنة سريعة</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>الجهاز</th>
+<th>وظيفته الأساسية</th>
+<th>يعتمد غالبًا على</th>
+</tr>
+
+<tr>
+<td>Switch</td>
+<td>ربط الأجهزة داخل LAN</td>
+<td>MAC Address</td>
+</tr>
+
+<tr>
+<td>Router</td>
+<td>ربط الشبكات</td>
+<td>IP / Routing Table</td>
+</tr>
+
+<tr>
+<td>Firewall</td>
+<td>حماية وتنظيم المرور</td>
+<td>Security Policies</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+Switch ليس Router،
+والـRouter ليس Firewall.
+كل جهاز له وظيفة مختلفة حتى لو كانت بعض الأجهزة الحديثة تجمع أكثر من وظيفة.
+</div>
+
+</section>
+
+`
+},
+
+
+{
+id: 3,
+path: 1,
+title: "IPv4 وعناوين IP",
+level: "مبتدئ",
+description: "افهم IPv4 وطريقة كتابة عنوان IP والفرق بين Network وHost.",
+content: `
+
+<section class="section">
+
+<h2>ما هو IPv4؟</h2>
+
+<p>
+IPv4 هو نظام عنونة يستخدم 32-bit لتمثيل عناوين الأجهزة
+على الشبكات.
+</p>
+
+<div class="code-box">192.168.1.10</div>
+
+<p>
+العنوان يتكون من أربعة أجزاء تسمى Octets،
+وكل جزء تتراوح قيمته من 0 إلى 255.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Network وHost</h2>
+
+<p>
+عنوان IP يتكون منطقيًا من جزء يمثل الشبكة
+وجزء يمثل الجهاز داخل الشبكة.
+</p>
+
+<div class="info-box">
+الـSubnet Mask هو الذي يساعدنا على تحديد أي جزء من العنوان
+يمثل الشبكة وأي جزء يمثل الـHost.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>Private IP Addresses</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>النطاق</th>
+<th>الاستخدام</th>
+</tr>
+
+<tr>
+<td>10.0.0.0/8</td>
+<td>Private Network</td>
+</tr>
+
+<tr>
+<td>172.16.0.0/12</td>
+<td>Private Network</td>
+</tr>
+
+<tr>
+<td>192.168.0.0/16</td>
+<td>Private Network</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>مثال عملي</h2>
+
+<div class="code-box">PC1
+IP: 192.168.1.10
+Mask: 255.255.255.0
+Gateway: 192.168.1.1</div>
+
+<p>
+هنا الجهاز موجود داخل شبكة 192.168.1.0/24
+والـGateway غالبًا يمثل واجهة الراوتر داخل هذه الشبكة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+<ul>
+<li>IPv4 = 32 bits.</li>
+<li>العنوان يحتوي على 4 Octets.</li>
+<li>كل Octet من 0 إلى 255.</li>
+<li>Subnet Mask يحدد حدود الشبكة.</li>
+<li>Private IP يستخدم داخل الشبكات الخاصة.</li>
+</ul>
+</div>
+
+</section>
+
+`
+},
+
+
+{
+id: 4,
+path: 1,
+title: "MAC Address",
+level: "مبتدئ",
+description: "تعرف على MAC Address ودوره داخل الشبكات المحلية وعلاقته بالسويتش.",
+content: `
+
+<section class="section">
+
+<h2>ما هو MAC Address؟</h2>
+
+<p>
+MAC Address هو عنوان يستخدم لتعريف واجهة الشبكة
+على مستوى طبقة ربط البيانات.
+</p>
+
+<div class="code-box">00:1A:2B:3C:4D:5E</div>
+
+<p>
+غالبًا يظهر بصيغة Hexadecimal ويتكون من 48-bit.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>MAC Address وSwitch</h2>
+
+<p>
+عندما يستقبل السويتش Frame فإنه يستطيع تعلم
+Source MAC Address وربطه بالمنفذ الذي وصل منه.
+</p>
+
+<div class="code-box">Cisco:
 show mac address-table
 
 Huawei:
-display mac-address
+display mac-address</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>مثال عملي</h2>
+
+<p>
+إذا كان جهاز PC متصلًا بالمنفذ GigabitEthernet0/0/1
+وكان MAC الخاص به:
+</p>
+
+<div class="code-box">AA:BB:CC:DD:EE:FF</div>
+
+<p>
+يستطيع السويتش تعلم أن هذا الـMAC موجود خلف ذلك المنفذ.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>الفرق بين IP وMAC</h2>
+
+<div class="table-wrapper">
+
+<table>
+<tr>
+<th>IP Address</th>
+<th>MAC Address</th>
+</tr>
+
+<tr>
+<td>عنوان منطقي</td>
+<td>عنوان لواجهة الشبكة</td>
+</tr>
+
+<tr>
+<td>يستخدم في Layer 3</td>
+<td>يستخدم في Layer 2</td>
+</tr>
+
+<tr>
+<td>يمكن تغييره منطقيًا</td>
+<td>مرتبط بواجهة الشبكة</td>
+</tr>
+</table>
 
 </div>
 
-<p>
-هذه الأوامر تساعدك في معرفة الأجهزة التي تعلمها السويتش والمنافذ المرتبطة بها.
-</p>
+</section>
+
+
+<section class="section">
+
+<h2>ربط بالمفاهيم السابقة</h2>
+
+<div class="link-box">
+في الدرس السابق تعلمنا أن الـSwitch يربط الأجهزة.
+الآن أصبحنا نعرف كيف يستخدم السويتش MAC Address
+لمعرفة مكان الأجهزة داخل الشبكة.
+</div>
+
+</section>
 
 `
 },
 
 
 {
-title: "Broadcast",
-
+id: 5,
+path: 1,
+title: "Ports & Protocols",
+level: "مبتدئ",
+description: "تعرف على المنافذ والبروتوكولات وأشهر أرقام Ports المستخدمة في الشبكات.",
 content: `
 
+<section class="section">
+
+<h2>ما هو Port؟</h2>
+
 <p>
-إذا لم يعرف السويتش منفذ MAC Address الخاص بالوجهة،
-فقد يقوم بعمل Flooding للـ Frame ضمن نطاق الـ VLAN.
+الـPort هو رقم منطقي يستخدم لتمييز الخدمات والتطبيقات
+داخل الجهاز.
 </p>
 
-<div class="warning-box">
+<p>
+مثال: الجهاز الواحد قد يكون عليه Web Server وSSH Server
+في الوقت نفسه، ويتم التمييز بين الخدمات باستخدام أرقام المنافذ.
+</p>
 
-Broadcast وUnknown Unicast Flooding يجب فهمهما جيدًا عند تحليل مشاكل الشبكة.
+</section>
+
+
+<section class="section">
+
+<h2>أشهر Ports</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>Port</th>
+<th>Protocol / Service</th>
+</tr>
+
+<tr>
+<td>20 / 21</td>
+<td>FTP</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>SSH</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>Telnet</td>
+</tr>
+
+<tr>
+<td>25</td>
+<td>SMTP</td>
+</tr>
+
+<tr>
+<td>53</td>
+<td>DNS</td>
+</tr>
+
+<tr>
+<td>80</td>
+<td>HTTP</td>
+</tr>
+
+<tr>
+<td>443</td>
+<td>HTTPS</td>
+</tr>
+
+</table>
 
 </div>
 
-`
-}
+</section>
 
-]
+
+<section class="section">
+
+<h2>TCP وUDP</h2>
+
+<p>
+TCP يوفر اتصالًا يعتمد على إنشاء جلسة وآليات للتحقق من وصول البيانات.
+</p>
+
+<p>
+UDP أبسط وأقل اعتمادًا على إنشاء اتصال، ويستخدم في تطبيقات
+تحتاج سرعة واستجابة منخفضة حسب طبيعة الخدمة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>مثال عملي</h2>
+
+<div class="code-box">HTTPS → TCP/443
+SSH → TCP/22
+DNS → UDP/TCP/53</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>ملاحظة مهمة</h2>
+
+<div class="warning-box">
+رقم الـPort وحده لا يعني أن الخدمة تعمل.
+يجب أن تكون الخدمة نفسها تعمل وأن تسمح بها سياسات
+Firewall وأن يكون الاتصال بالشبكة صحيحًا.
+</div>
+
+</section>
+
+`
 },
 
-
-/* =========================================
-LESSON 6
-========================================= */
 
 {
 id: 6,
-
-title: "VLAN",
-
-category: "Switching",
-
-level: "متوسط",
-
-description:
-"تعرف على VLAN وكيفية تقسيم الشبكة منطقيًا داخل السويتش.",
-
-sections: [
-
-{
-title: "ما هي VLAN؟",
-
+path: 1,
+title: "OSI Model",
+level: "مبتدئ",
+description: "تعرف على طبقات OSI السبع وكيف تساعدك في فهم الشبكات واستكشاف الأخطاء.",
 content: `
 
+<section class="section">
+
+<h2>ما هو OSI Model؟</h2>
+
 <p>
-VLAN هي طريقة لتقسيم الشبكة داخل السويتش إلى شبكات منطقية منفصلة،
-حتى لو كانت الأجهزة متصلة بنفس السويتش.
+OSI Model هو نموذج مرجعي يقسم عملية الاتصال الشبكي
+إلى سبع طبقات.
 </p>
 
-<div class="info-box">
+</section>
 
-<strong>
-مثال:
-</strong>
 
-يمكن أن تكون أجهزة الموظفين في VLAN 10،
-والكاميرات في VLAN 20،
-وأجهزة الضيوف في VLAN 30.
+<section class="section">
+
+<h2>الطبقات السبع</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>Layer</th>
+<th>الاسم</th>
+<th>مثال</th>
+</tr>
+
+<tr>
+<td>7</td>
+<td>Application</td>
+<td>HTTP / DNS / SSH</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Presentation</td>
+<td>Data Formatting</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Session</td>
+<td>Sessions</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Transport</td>
+<td>TCP / UDP</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Network</td>
+<td>IP / Routing</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Data Link</td>
+<td>MAC / Ethernet</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Physical</td>
+<td>Cable / Signal</td>
+</tr>
+
+</table>
 
 </div>
+
+</section>
+
+
+<section class="section">
+
+<h2>لماذا نحتاج OSI؟</h2>
+
+<p>
+يساعدك النموذج في تقسيم المشكلة إلى أجزاء.
+مثلًا إذا كان الكابل غير متصل فابدأ بالتفكير في Layer 1،
+وإذا كانت المشكلة مرتبطة بالـIP والRouting فغالبًا ستنظر إلى Layer 3.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>ربط بالمفاهيم السابقة</h2>
+
+<div class="link-box">
+تعلمنا MAC في Layer 2 وIP في Layer 3،
+والآن أصبح بإمكانك وضع هذه المفاهيم داخل نموذج OSI.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+<ul>
+<li>MAC يرتبط غالبًا بـLayer 2.</li>
+<li>IP يرتبط بـLayer 3.</li>
+<li>TCP وUDP في Layer 4.</li>
+<li>الكابل والإشارة في Layer 1.</li>
+</ul>
+</div>
+
+</section>
 
 `
 },
 
-
-{
-title: "Access Port",
-
-content: `
-
-<p>
-منفذ Access يستخدم عادة لتوصيل جهاز نهائي مثل الكمبيوتر أو الطابعة
-أو الكاميرا إلى VLAN محددة.
-</p>
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-
-interface GigabitEthernet0/1
-<br>
-switchport mode access
-<br>
-switchport access vlan 10
-
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-
-interface GigabitEthernet0/0/1
-<br>
-port link-type access
-<br>
-port default vlan 10
-
-</div>
-
-</div>
-
-</div>
-
-`
-},
-
-
-{
-title: "Trunk Port",
-
-content: `
-
-<p>
-منفذ Trunk يسمح بمرور أكثر من VLAN عبر نفس الرابط،
-ويستخدم غالبًا بين السويتشات أو بين السويتش والراوتر أو Firewall
-بحسب تصميم الشبكة.
-</p>
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-
-interface GigabitEthernet0/1
-<br>
-switchport mode trunk
-
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-
-interface GigabitEthernet0/0/1
-<br>
-port link-type trunk
-
-</div>
-
-</div>
-
-</div>
-
-<div class="warning-box">
-
-تفعيل Trunk وحده لا يعني أن جميع الـ VLANs ستعمل تلقائيًا؛
-يجب التأكد من السماح بالـ VLANs المطلوبة على الرابط.
-
-</div>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 7
-========================================= */
 
 {
 id: 7,
-
-title: "Routing",
-
-category: "Routing",
-
-level: "متوسط",
-
-description:
-"افهم كيف تنتقل البيانات بين الشبكات المختلفة.",
-
-sections: [
-
-{
-title: "ما هو Routing؟",
-
+path: 1,
+title: "TCP/IP",
+level: "مبتدئ",
+description: "تعرف على نموذج TCP/IP وعلاقته بنموذج OSI والبروتوكولات المستخدمة فعليًا.",
 content: `
 
+<section class="section">
+
+<h2>ما هو TCP/IP؟</h2>
+
 <p>
-Routing هو عملية اختيار المسار المناسب لنقل البيانات
-من شبكة إلى شبكة أخرى.
+TCP/IP هو مجموعة من البروتوكولات التي تعتمد عليها شبكات الإنترنت
+والشبكات الحديثة في عملية الاتصال.
 </p>
 
-<div class="info-box">
+</section>
 
-السويتش يعمل بشكل أساسي داخل الشبكة المحلية،
-بينما الراوتر يستخدم Routing لربط الشبكات المختلفة.
+
+<section class="section">
+
+<h2>طبقات TCP/IP</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>TCP/IP</th>
+<th>أمثلة</th>
+</tr>
+
+<tr>
+<td>Application</td>
+<td>HTTP, DNS, SSH</td>
+</tr>
+
+<tr>
+<td>Transport</td>
+<td>TCP, UDP</td>
+</tr>
+
+<tr>
+<td>Internet</td>
+<td>IP, ICMP</td>
+</tr>
+
+<tr>
+<td>Network Access</td>
+<td>Ethernet</td>
+</tr>
+
+</table>
 
 </div>
 
-<h4>
-مثال
-</h4>
+</section>
 
-<div class="code-box">
 
-Network A
-192.168.1.0/24
+<section class="section">
 
-↓
+<h2>TCP مقابل UDP</h2>
 
-Router
+<div class="table-wrapper">
 
-↓
+<table>
 
-Network B
-192.168.2.0/24
+<tr>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+
+<tr>
+<td>Connection-oriented</td>
+<td>Connectionless</td>
+</tr>
+
+<tr>
+<td>يعتمد على آليات موثوقية</td>
+<td>أخف وأبسط</td>
+</tr>
+
+<tr>
+<td>مناسب لخدمات تحتاج موثوقية</td>
+<td>مناسب لتطبيقات متعددة حسب الحاجة</td>
+</tr>
+
+</table>
 
 </div>
+
+</section>
+
+
+<section class="section">
+
+<h2>ربط بالمفاهيم السابقة</h2>
+
+<div class="link-box">
+OSI يساعدك على فهم الوظائف والطبقات،
+بينما TCP/IP هو النموذج العملي المرتبط بمجموعة البروتوكولات
+التي تستخدمها الشبكات الحديثة.
+</div>
+
+</section>
 
 `
 },
 
-
-{
-title: "Routing Table",
-
-content: `
-
-<p>
-الراوتر يحتفظ بجدول يسمى Routing Table،
-ويستخدمه لمعرفة المسار المناسب للوصول إلى الشبكات المختلفة.
-</p>
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-show ip route
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-display ip routing-table
-</div>
-
-</div>
-
-</div>
-
-`
-},
-
-
-{
-title: "أنواع Routing",
-
-content: `
-
-<ul>
-
-<li>
-Connected Route
-</li>
-
-<li>
-Static Route
-</li>
-
-<li>
-Dynamic Routing
-</li>
-
-</ul>
-
-<p>
-من أمثلة بروتوكولات Dynamic Routing:
-OSPF وBGP وRIP.
-</p>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 8
-========================================= */
 
 {
 id: 8,
-
-title: "Static Routing",
-
-category: "Routing",
-
-level: "متوسط",
-
-description:
-"تعلم كيفية إضافة مسار ثابت بين الشبكات.",
-
-sections: [
-
-{
-title: "ما هو Static Route؟",
-
+path: 1,
+title: "Hub vs Switch vs Router",
+level: "مبتدئ",
+description: "افهم الفرق بين Hub وSwitch وRouter ومتى يستخدم كل جهاز.",
 content: `
+
+<section class="section">
+
+<h2>Hub</h2>
 
 <p>
-Static Route هو مسار يتم إدخاله يدويًا في جهاز الشبكة
-لتحديد الطريق إلى شبكة معينة.
+الـHub جهاز بسيط يعمل على المستوى الفيزيائي ويرسل الإشارة
+إلى المنافذ الأخرى بدلًا من اتخاذ قرار ذكي بناءً على MAC Address.
 </p>
 
-<div class="gold-box">
-
-يكون مفيدًا في الشبكات الصغيرة أو عند الحاجة إلى مسار محدد وثابت.
-
-</div>
-
-`
-},
+</section>
 
 
-{
-title: "Cisco",
+<section class="section">
 
-content: `
-
-<div class="code-box">
-
-ip route 192.168.2.0 255.255.255.0 10.0.0.2
-
-</div>
+<h2>Switch</h2>
 
 <p>
-الأمر السابق يعني أن الوصول إلى الشبكة
-192.168.2.0/24 سيكون عن طريق Next-Hop
-وهو 10.0.0.2.
+الـSwitch يستطيع تعلم MAC Address Table
+واتخاذ قرار بشأن المنفذ الذي يرسل إليه Frame داخل الشبكة المحلية.
 </p>
 
-`
-},
+</section>
 
 
-{
-title: "Huawei",
+<section class="section">
 
-content: `
-
-<div class="code-box">
-
-ip route-static 192.168.2.0 255.255.255.0 10.0.0.2
-
-</div>
+<h2>Router</h2>
 
 <p>
-في Huawei يستخدم الأمر
-<strong>
-ip route-static
-</strong>
-لإضافة Static Route.
+الـRouter يربط شبكات مختلفة ويستخدم IP Address وRouting Table
+لاختيار المسار.
 </p>
 
+</section>
+
+
+<section class="section">
+
+<h2>المقارنة</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>الجهاز</th>
+<th>الفكرة الأساسية</th>
+<th>المستوى التقريبي</th>
+</tr>
+
+<tr>
+<td>Hub</td>
+<td>إرسال الإشارة للمنافذ</td>
+<td>Layer 1</td>
+</tr>
+
+<tr>
+<td>Switch</td>
+<td>Forwarding باستخدام MAC</td>
+<td>Layer 2</td>
+</tr>
+
+<tr>
+<td>Router</td>
+<td>Routing باستخدام IP</td>
+<td>Layer 3</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+Hub = يكرر الإشارة،
+Switch = يتعامل مع MAC داخل الشبكة المحلية،
+Router = يربط الشبكات باستخدام IP.
+</div>
+
+</section>
+
 `
 },
 
-
-{
-title: "التحقق من المسار",
-
-content: `
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-show ip route
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-display ip routing-table
-</div>
-
-</div>
-
-</div>
-
-<div class="practice-box">
-
-بعد إضافة Static Route، استخدم ping وtracert أو traceroute
-للتأكد من أن الاتصال يعمل عبر المسار المتوقع.
-
-</div>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 9
-========================================= */
 
 {
 id: 9,
+path: 2,
+title: "Subnetting",
+level: "متوسط",
+description: "تعلم تقسيم الشبكات إلى Subnets وفهم CIDR وعدد العناوين والأجهزة.",
+content: `
 
-title: "OSPF",
+<section class="section">
 
-category: "Routing",
+<h2>ما هو Subnetting؟</h2>
 
-level: "متقدم",
+<p>
+Subnetting هو تقسيم شبكة أكبر إلى شبكات أصغر
+بهدف تنظيم العناوين وتقليل نطاق Broadcast وتحسين إدارة الشبكة.
+</p>
 
-description:
-"تعرف على أساسيات بروتوكول OSPF واستخدامه في الشبكات.",
+</section>
 
-sections: [
+
+<section class="section">
+
+<h2>/24</h2>
+
+<p>
+الشبكة 192.168.1.0/24 تحتوي على 256 عنوانًا إجمالًا.
+في الاستخدام التقليدي للشبكات، يوجد عادةً 254 عنوانًا قابلًا للاستخدام للأجهزة.
+</p>
+
+<div class="code-box">Network: 192.168.1.0
+First Host: 192.168.1.1
+Last Host: 192.168.1.254
+Broadcast: 192.168.1.255</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>/30</h2>
+
+<p>
+/30 يحتوي على 4 عناوين إجمالًا،
+ويُستخدم تقليديًا في بعض وصلات Point-to-Point.
+</p>
+
+<div class="code-box">Network
+Host
+Host
+Broadcast</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>لماذا نستخدم Subnetting؟</h2>
+
+<ul>
+<li>تنظيم الشبكة.</li>
+<li>تقليل Broadcast Domain.</li>
+<li>استغلال العناوين بشكل أفضل.</li>
+<li>فصل الأقسام والشبكات.</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+
+<h2>ربط بالمفاهيم السابقة</h2>
+
+<div class="link-box">
+تعلمنا IPv4 في المسار الأول.
+الآن نستخدم فهمنا للـIP والـSubnet Mask لتقسيم الشبكات.
+</div>
+
+</section>
+
+`
+},
+
 
 {
-title: "ما هو OSPF؟",
-
+id: 10,
+path: 2,
+title: "Switching",
+level: "متوسط",
+description: "تعرف على طريقة عمل Switching وMAC Address Table وBroadcast داخل الشبكة.",
 content: `
+
+<section class="section">
+
+<h2>ما هو Switching؟</h2>
+
+<p>
+Switching هو عملية تمرير Frames داخل الشبكة المحلية
+اعتمادًا على معلومات مثل MAC Address.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>MAC Address Table</h2>
+
+<p>
+السويتش يتعلم Source MAC من الإطارات التي يستقبلها
+ويربط العنوان بالمنفذ الذي جاء منه.
+</p>
+
+<div class="code-box">Cisco:
+show mac address-table
+
+Huawei:
+display mac-address</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>Unknown Unicast</h2>
+
+<p>
+إذا لم يعرف السويتش المنفذ الخاص بالـDestination MAC،
+فقد يقوم بعمل Flooding داخل الـVLAN حسب الحالة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Broadcast</h2>
+
+<p>
+Broadcast Frame يتم التعامل معه داخل نطاق الـBroadcast Domain،
+والـVLAN تساعد على فصل هذه النطاقات.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>مثال عملي</h2>
+
+<div class="code-box">PC1 ----\
+Switch ---- PC3
+PC2 ----/</div>
+
+<p>
+السويتش يتعلم MAC للأجهزة المتصلة به
+ثم يستخدم الجدول لاتخاذ قرار Forwarding.
+</p>
+
+</section>
+
+`
+},
+
+
+{
+id: 11,
+path: 2,
+title: "VLAN",
+level: "متوسط",
+description: "تعلم VLAN وAccess Port وTrunk وكيفية فصل الشبكات منطقيًا.",
+content: `
+
+<section class="section">
+
+<h2>ما هي VLAN؟</h2>
+
+<p>
+VLAN هي Virtual Local Area Network،
+وتستخدم لتقسيم الشبكة منطقيًا إلى شبكات منفصلة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Access Port</h2>
+
+<p>
+الـAccess Port يستخدم عادةً لتوصيل جهاز نهائي
+داخل VLAN محددة.
+</p>
+
+<div class="code-box">Cisco:
+
+interface GigabitEthernet0/1
+switchport mode access
+switchport access vlan 10</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>Trunk</h2>
+
+<p>
+الـTrunk يسمح بمرور أكثر من VLAN بين الأجهزة التي تدعم هذا النوع
+من الربط، مثل Switch إلى Switch.
+</p>
+
+<div class="code-box">Cisco:
+
+interface GigabitEthernet0/24
+switchport mode trunk
+switchport trunk allowed vlan 10,20</div>
+
+<div class="code-box">Huawei:
+
+interface GigabitEthernet0/0/24
+port link-type trunk
+port trunk allow-pass vlan 10 20</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>مثال</h2>
+
+<div class="code-box">VLAN 10 → Users
+VLAN 20 → Cameras
+VLAN 30 → Servers</div>
+
+<p>
+بهذه الطريقة يمكن فصل أنواع الأجهزة منطقيًا
+حتى لو كانت متصلة بالبنية التحتية نفسها.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقطة مهمة</h2>
+
+<div class="warning-box">
+وجود VLAN في سويتش واحد لا يعني تلقائيًا أن VLAN ستعمل بين سويتشين.
+يجب أن يكون الربط بين السويتشات معدًا بطريقة تسمح بمرور الـVLAN المطلوبة.
+</div>
+
+</section>
+
+`
+},
+
+
+{
+id: 12,
+path: 3,
+title: "Routing",
+level: "متوسط",
+description: "تعرف على Routing وRouting Table وكيف يقرر الراوتر مسار الحزم.",
+content: `
+
+<section class="section">
+
+<h2>ما هو Routing؟</h2>
+
+<p>
+Routing هو عملية اختيار المسار المناسب لإرسال Packet
+من شبكة إلى شبكة أخرى.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Routing Table</h2>
+
+<p>
+الراوتر يعتمد على Routing Table لمعرفة الشبكات التي يستطيع الوصول إليها
+والـNext Hop أو الواجهة المناسبة.
+</p>
+
+<div class="code-box">Cisco:
+show ip route
+
+Huawei:
+display ip routing-table</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>أنواع Routes</h2>
+
+<ul>
+<li>Connected Route</li>
+<li>Static Route</li>
+<li>Dynamic Route</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+
+<h2>مثال</h2>
+
+<div class="code-box">PC Network
+|
+Router
+|
+Remote Network</div>
+
+<p>
+إذا أراد الجهاز الوصول إلى Remote Network،
+يجب أن يعرف الراوتر أين يرسل الـPacket.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>ربط بالمفاهيم السابقة</h2>
+
+<div class="link-box">
+في Switching تعاملنا مع MAC وLayer 2.
+الآن ننتقل إلى Layer 3 وIP وRouting بين الشبكات.
+</div>
+
+</section>
+
+`
+},
+
+
+{
+id: 13,
+path: 3,
+title: "Static Routing",
+level: "متوسط",
+description: "تعلم إنشاء Static Route على Cisco وHuawei والتحقق من Routing Table.",
+content: `
+
+<section class="section">
+
+<h2>ما هو Static Route؟</h2>
+
+<p>
+Static Route هو Route يتم إدخاله يدويًا بواسطة مسؤول الشبكة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Cisco</h2>
+
+<div class="code-box">ip route 192.168.2.0 255.255.255.0 10.0.0.2</div>
+
+<p>
+المثال يعني أن الوصول إلى الشبكة 192.168.2.0/24
+يكون عبر Next Hop وهو 10.0.0.2.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Huawei</h2>
+
+<div class="code-box">ip route-static 192.168.2.0 255.255.255.0 10.0.0.2</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>التحقق</h2>
+
+<div class="code-box">Cisco:
+show ip route
+
+Huawei:
+display ip routing-table</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>ملاحظة مهمة</h2>
+
+<div class="warning-box">
+وجود Static Route على راوتر واحد لا يعني أن الاتصال سيعمل تلقائيًا.
+يجب أن تكون هناك مسارات مناسبة في الاتجاهين عند الحاجة.
+</div>
+
+</section>
+
+`
+},
+
+
+{
+id: 14,
+path: 3,
+title: "OSPF",
+level: "متقدم",
+description: "تعرف على OSPF وكيفية استخدام بروتوكول Dynamic Routing لتبادل معلومات الشبكات.",
+content: `
+
+<section class="section">
+
+<h2>ما هو OSPF؟</h2>
 
 <p>
 OSPF هو بروتوكول Dynamic Routing يستخدم لتبادل معلومات الشبكات
 بين أجهزة الراوتر.
 </p>
 
-<div class="info-box">
+</section>
 
-OSPF ينتمي إلى بروتوكولات Link-State Routing.
 
-</div>
+<section class="section">
 
-<h4>
-متى نستخدم OSPF؟
-</h4>
+<h2>OSPF Neighbor</h2>
 
 <p>
-يستخدم غالبًا في الشبكات التي تحتوي على عدة راوترات وشبكات،
-بدلًا من إدخال جميع المسارات يدويًا.
+أجهزة OSPF يمكن أن تنشئ علاقة Neighbor
+لتبادل معلومات الـRouting.
 </p>
 
-`
-},
+</section>
 
 
-{
-title: "Cisco OSPF",
+<section class="section">
 
-content: `
+<h2>Cisco - مثال</h2>
 
-<div class="code-box">
+<div class="code-box">router ospf 1
+network 10.0.0.0 0.0.0.255 area 0</div>
 
-router ospf 1
-<br>
-network 10.0.0.0 0.0.0.255 area 0
-
-</div>
-
-<p>
-يتم إنشاء عملية OSPF ثم تحديد الشبكات التي سيتم الإعلان عنها
-ووضعها داخل Area معينة.
-</p>
-
-`
-},
+</section>
 
 
-{
-title: "Huawei OSPF",
+<section class="section">
 
-content: `
+<h2>Huawei - مثال</h2>
 
-<div class="code-box">
-
-ospf 1
-<br>
+<div class="code-box">ospf 1
 area 0
-<br>
-network 10.0.0.0 0.0.0.255
-
-</div>
-
-<p>
-في Huawei يتم الدخول إلى عملية OSPF ثم تحديد الـ Area
-والشبكات المراد الإعلان عنها.
-</p>
-
-`
-},
-
-
-{
-title: "التحقق من OSPF",
-
-content: `
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-show ip ospf neighbor
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-display ospf peer
-</div>
-
-</div>
-
-</div>
+network 10.0.0.0 0.0.0.255</div>
 
 <div class="warning-box">
-
-إذا لم تظهر الجيرة OSPF، تحقق من IP والـ Area والـ Network Type
-وحالة الواجهة واتصال Layer 2.
-
+صيغة الأوامر قد تختلف حسب إصدار VRP وطراز جهاز Huawei،
+لذلك استخدم الصيغة المناسبة لإصدار جهازك.
 </div>
 
-`
-}
+</section>
 
-]
+
+<section class="section">
+
+<h2>التحقق</h2>
+
+<div class="code-box">Cisco:
+show ip ospf neighbor
+
+Huawei:
+display ospf peer</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+OSPF Dynamic Routing Protocol،
+ويختلف عن Static Routing لأن المسارات يتم تبادلها
+وتعلمها بين أجهزة OSPF بدل إدخال كل Route يدويًا.
+</div>
+
+</section>
+
+`
 },
 
 
-/* =========================================
-LESSON 10
-========================================= */
-
 {
-id: 10,
-
-title: "SSH",
-
-category: "Security",
-
+id: 15,
+path: 4,
+title: "SSH وإدارة الأجهزة",
 level: "متوسط",
-
-description:
-"تعرف على SSH واستخدامه للدخول الآمن إلى أجهزة الشبكة.",
-
-sections: [
-
-{
-title: "ما هو SSH؟",
-
+description: "تعرف على SSH وكيفية الإدارة الآمنة لأجهزة الشبكات عن بُعد.",
 content: `
 
+<section class="section">
+
+<h2>ما هو SSH؟</h2>
+
 <p>
-SSH هو بروتوكول يستخدم للوصول عن بعد إلى أجهزة الشبكة
-بطريقة مشفرة وآمنة.
+SSH اختصار لـSecure Shell،
+ويستخدم للوصول إلى أجهزة الشبكة عن بُعد بطريقة مشفرة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>لماذا SSH؟</h2>
+
+<p>
+الإدارة عن بُعد مهمة جدًا في بيئات الشبكات.
+SSH يوفر قناة مشفرة بدل إرسال بيانات الإدارة بشكل مكشوف.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Cisco - مثال</h2>
+
+<div class="code-box">hostname SW1
+
+ip domain-name example.local
+
+crypto key generate rsa
+
+username admin privilege 15 secret PASSWORD
+
+line vty 0 4
+login local
+transport input ssh</div>
+
+<div class="warning-box">
+إعدادات SSH قد تختلف حسب إصدار IOS والجهاز.
+لا تستخدم كلمات مرور حقيقية داخل أمثلة تعليمية منشورة.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>Huawei</h2>
+
+<div class="code-box">stelnet server enable
+
+aaa
+
+local-user admin password irreversible-cipher PASSWORD
+
+local-user admin service-type ssh
+
+ssh user admin</div>
+
+<div class="warning-box">
+أوامر Huawei تختلف حسب إصدار VRP وطراز الجهاز،
+لذلك راجع صيغة جهازك قبل تطبيقها في بيئة حقيقية.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>التحقق</h2>
+
+<div class="code-box">Cisco:
+show ip ssh
+
+Huawei:
+display ssh server status</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+SSH يستخدم للإدارة عن بُعد،
+ويجب تأمين حسابات الإدارة وعدم مشاركة كلمات المرور.
+</div>
+
+</section>
+
+`
+},
+
+
+{
+id: 16,
+path: 4,
+title: "Network Security",
+level: "متوسط",
+description: "تعرف على أساسيات حماية الشبكات والـFirewall والـACL وأهم ممارسات الأمان.",
+content: `
+
+<section class="section">
+
+<h2>ما هي Network Security؟</h2>
+
+<p>
+Network Security هي مجموعة من الإجراءات والتقنيات
+التي تهدف إلى حماية الشبكة والأنظمة والبيانات من الوصول غير المصرح به
+والمخاطر المختلفة.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<h2>Firewall</h2>
+
+<p>
+الـFirewall يطبق Security Policies للتحكم في حركة المرور.
 </p>
 
 <div class="info-box">
-
-SSH أكثر أمانًا من Telnet لأن بيانات الاتصال يتم تشفيرها.
-
+يمكن أن تعتمد السياسة على عناصر مثل Source وDestination
+والـProtocol والـPort حسب نوع النظام.
 </div>
 
-`
-},
+</section>
 
 
-{
-title: "Cisco SSH",
+<section class="section">
 
-content: `
-
-<div class="code-box">
-
-hostname SW1
-<br>
-ip domain-name example.local
-<br>
-crypto key generate rsa
-<br>
-username admin privilege 15 secret Password123
-
-</div>
+<h2>ACL</h2>
 
 <p>
-بعد تجهيز الجهاز، يتم إعداد خطوط VTY للسماح باتصالات SSH
-حسب إعدادات الجهاز وسياسة الأمان.
+Access Control List تستخدم لتحديد حركة المرور المسموح بها
+أو الممنوعة حسب قواعد معينة.
 </p>
 
-`
-},
+</section>
 
 
-{
-title: "Huawei SSH",
+<section class="section">
 
-content: `
+<h2>Cisco - مثال مبسط</h2>
 
-<div class="code-box">
+<div class="code-box">access-list 10 permit 192.168.1.0 0.0.0.255</div>
 
-stelnet server enable
-<br>
-aaa
-<br>
-local-user admin password irreversible-cipher Password123
-<br>
-local-user admin service-type ssh
+</section>
 
+
+<section class="section">
+
+<h2>Huawei - مثال</h2>
+
+<div class="code-box">acl number 2000
+rule 5 permit source 192.168.1.0 0.0.0.255</div>
+
+<div class="warning-box">
+ACLs قد تختلف حسب نوع ACL وموقع تطبيقها واتجاهها،
+لذلك يجب فهم تأثير القاعدة قبل تطبيقها.
 </div>
 
-<p>
-في أجهزة Huawei يسمى SSH غالبًا
-<strong>
-STelnet
-</strong>.
-</p>
-
-`
-},
+</section>
 
 
-{
-title: "التحقق",
+<section class="section">
 
-content: `
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-show ip ssh
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-display ssh server status
-</div>
-
-</div>
-
-</div>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 11
-========================================= */
-
-{
-id: 11,
-
-title: "Network Security",
-
-category: "Security",
-
-level: "متوسط",
-
-description:
-"تعرف على أساسيات حماية الشبكات والتحكم في الوصول.",
-
-sections: [
-
-{
-title: "أهمية أمن الشبكة",
-
-content: `
-
-<p>
-أمن الشبكات يهدف إلى حماية الأجهزة والبيانات والخدمات
-من الوصول غير المصرح به أو الاستخدام غير المناسب.
-</p>
+<h2>ممارسات مهمة</h2>
 
 <ul>
-
-<li>
-حماية حسابات المستخدمين.
-</li>
-
-<li>
-تقييد الوصول إلى الأجهزة.
-</li>
-
-<li>
-استخدام التشفير عند الحاجة.
-</li>
-
-<li>
-تحديث الأجهزة والأنظمة.
-</li>
-
-<li>
-مراقبة الشبكة.
-</li>
-
+<li>استخدم كلمات مرور قوية.</li>
+<li>استخدم SSH بدل البروتوكولات غير المشفرة عند توفره.</li>
+<li>حدّث الأجهزة والأنظمة حسب سياسة المؤسسة.</li>
+<li>قلل صلاحيات المستخدمين إلى الحد المطلوب.</li>
+<li>راجع Logs وحركة الشبكة عند وجود مشكلة.</li>
 </ul>
 
-`
-},
+</section>
 
 
-{
-title: "Firewall",
+<section class="section">
 
-content: `
+<h2>ربط بالمفاهيم السابقة</h2>
 
-<p>
-يمكن استخدام Firewall لتطبيق سياسات تسمح أو تمنع أنواعًا معينة
-من حركة البيانات.
-</p>
-
-<div class="gold-box">
-
-مثال:
-السماح لحركة HTTPS ومنع خدمات غير مطلوبة حسب سياسة الشبكة.
-
+<div class="link-box">
+تعلمنا SSH لإدارة الأجهزة،
+والآن نضيف طبقة الحماية التي تتحكم في من يستطيع الوصول
+وما الذي يستطيع المرور داخل الشبكة.
 </div>
+
+</section>
 
 `
 },
 
 
 {
-title: "ACL",
-
-content: `
-
-<p>
-Access Control List تستخدم للتحكم في حركة المرور
-وفق شروط مثل عنوان المصدر والوجهة والبروتوكول والمنفذ.
-</p>
-
-<div class="comparison-grid">
-
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-
-access-list 10 permit 192.168.1.0 0.0.0.255
-
-</div>
-
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-
-acl number 2000
-<br>
-rule 5 permit source 192.168.1.0 0.0.0.255
-
-</div>
-
-</div>
-
-</div>
-
-`
-}
-
-]
-},
-
-
-/* =========================================
-LESSON 12
-========================================= */
-
-{
-id: 12,
-
+id: 17,
+path: 5,
 title: "Troubleshooting",
-
-category: "Troubleshooting",
-
 level: "متوسط",
-
-description:
-"تعلم طريقة منظمة لاكتشاف وحل مشاكل الشبكات.",
-
-sections: [
-
-{
-title: "من أين تبدأ؟",
-
+description: "تعلم منهجية عملية لاستكشاف مشاكل الشبكات من Layer 1 حتى Layer 7.",
 content: `
 
+<section class="section">
+
+<h2>ما هو Troubleshooting؟</h2>
+
 <p>
-عند حدوث مشكلة في الشبكة، لا تبدأ بتغيير الإعدادات بشكل عشوائي.
-ابدأ بتحديد مكان المشكلة.
+Troubleshooting هو عملية منظمة لتحديد سبب المشكلة
+ثم اختبار الحل والتأكد من عودة الخدمة.
 </p>
+
+</section>
+
+
+<section class="section">
+
+<h2>ابدأ من الأساسيات</h2>
 
 <ol>
-
-<li>
-تأكد من التوصيلات.
-</li>
-
-<li>
-تحقق من حالة المنافذ.
-</li>
-
-<li>
-تحقق من VLAN.
-</li>
-
-<li>
-تحقق من IP Address.
-</li>
-
-<li>
-اختبر الاتصال باستخدام Ping.
-</li>
-
-<li>
-راجع Routing Table.
-</li>
-
-<li>
-راجع ACL وFirewall عند الحاجة.
-</li>
-
+<li>تأكد من الطاقة والتوصيلات.</li>
+<li>تحقق من حالة المنفذ.</li>
+<li>تحقق من VLAN.</li>
+<li>تحقق من IP Address وSubnet Mask.</li>
+<li>تحقق من Gateway.</li>
+<li>تحقق من Routing.</li>
+<li>تحقق من Firewall وACL.</li>
+<li>اختبر الخدمة نفسها.</li>
 </ol>
 
-`
-},
+</section>
 
 
-{
-title: "فحص المنافذ",
+<section class="section">
 
-content: `
+<h2>أوامر مهمة</h2>
 
-<div class="comparison-grid">
+<div class="code-box">Cisco:
 
-<div class="comparison-card cisco">
-
-<h4>
-Cisco
-</h4>
-
-<div class="code-box">
-
-show interfaces status
-<br>
 show ip interface brief
+show interfaces
+show vlan brief
+show mac address-table
+show ip route
+ping
+traceroute</div>
 
-</div>
+<div class="code-box">Huawei:
 
-</div>
-
-
-<div class="comparison-card huawei">
-
-<h4>
-Huawei
-</h4>
-
-<div class="code-box">
-
-display interface brief
-<br>
 display ip interface brief
+display interface
+display vlan
+display mac-address
+display ip routing-table
+ping
+tracert</div>
 
-</div>
-
-</div>
-
-</div>
-
-`
-},
+</section>
 
 
-{
-title: "اختبار الاتصال",
+<section class="section">
 
-content: `
-
-<div class="code-box">
-ping 192.168.1.1
-</div>
+<h2>مثال عملي</h2>
 
 <p>
-إذا نجح Ping إلى Gateway ولم ينجح الوصول إلى شبكة أخرى،
-فقد تكون المشكلة في Routing أو ACL أو Firewall أو المسار بين الشبكات.
+جهاز لا يستطيع الوصول إلى Server.
+بدل تغيير الإعدادات عشوائيًا، نبدأ من الجهاز نفسه:
 </p>
 
-<div class="practice-box">
+<div class="code-box">1. هل الكابل متصل؟
+2. هل Port Up؟
+3. هل الجهاز لديه IP؟
+4. هل الـGateway صحيح؟
+5. هل يستطيع Ping للـGateway؟
+6. هل يوجد Route؟
+7. هل Firewall يمنع الاتصال؟
+8. هل الخدمة على Server تعمل؟</div>
 
-<strong>
-قاعدة مهمة:
-</strong>
+</section>
 
-حل مشاكل الشبكة يكون خطوة بخطوة:
 
-Physical → VLAN → IP → Routing → Security.
+<section class="section">
+
+<h2>فكر بطريقة OSI</h2>
+
+<div class="table-wrapper">
+
+<table>
+
+<tr>
+<th>المشكلة</th>
+<th>ابدأ بالتفكير في</th>
+</tr>
+
+<tr>
+<td>الكابل مفصول</td>
+<td>Layer 1</td>
+</tr>
+
+<tr>
+<td>VLAN أو MAC</td>
+<td>Layer 2</td>
+</tr>
+
+<tr>
+<td>IP أو Routing</td>
+<td>Layer 3</td>
+</tr>
+
+<tr>
+<td>TCP / UDP / Port</td>
+<td>Layer 4</td>
+</tr>
+
+<tr>
+<td>الخدمة أو التطبيق</td>
+<td>Layer 7</td>
+</tr>
+
+</table>
 
 </div>
 
-`
-}
+</section>
 
-]
+
+<section class="section">
+
+<h2>قاعدة ذهبية</h2>
+
+<div class="important-box">
+لا تغيّر عدة إعدادات في نفس الوقت.
+غيّر شيئًا واحدًا، اختبر النتيجة، ثم انتقل للخطوة التالية.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>ربط جميع المسارات</h2>
+
+<div class="link-box">
+هنا نستخدم كل ما تعلمته:
+IP + MAC + VLAN + Switching + Routing + OSPF + SSH + Security
+للوصول إلى سبب المشكلة وحلها بطريقة منظمة.
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>نقاط يجب أن تتذكرها</h2>
+
+<div class="remember-box">
+
+<ul>
+<li>ابدأ من Layer 1.</li>
+<li>لا تفترض أن المشكلة من الراوتر مباشرة.</li>
+<li>استخدم أوامر التحقق قبل تغيير الإعدادات.</li>
+<li>اختبر الاتصال خطوة بخطوة.</li>
+<li>وثّق ما غيرته.</li>
+</ul>
+
+</div>
+
+</section>
+
+`
 }
 
 ];
 
 
-/* =========================
-GET LESSON ID
-========================= */
+/* =====================================================
+المتغيرات
+===================================================== */
 
-const params =
-new URLSearchParams(
-window.location.search
+const params = new URLSearchParams(window.location.search);
+
+const lessonId = Number(params.get("id")) || 1;
+
+const currentLesson = lessons.find(
+lesson => lesson.id === lessonId
 );
 
-const lessonId =
-Number(params.get("id")) || 1;
+
+const path = currentLesson
+? paths.find(p => p.id === currentLesson.path)
+: null;
 
 
-/* =========================
-FIND LESSON
-========================= */
+const pathLessons = path
+? path.lessons
+.map(id => lessons.find(lesson => lesson.id === id))
+.filter(Boolean)
+: [];
 
-const lesson =
-lessons.find(function(item) {
 
-return item.id === lessonId;
+/* =====================================================
+عناصر الصفحة
+===================================================== */
+
+const lessonTitle =
+document.getElementById("lessonTitle");
+
+const lessonDescription =
+document.getElementById("lessonDescription");
+
+const lessonNumber =
+document.getElementById("lessonNumber");
+
+const lessonLevel =
+document.getElementById("lessonLevel");
+
+const lessonCount =
+document.getElementById("lessonCount");
+
+const pathLabel =
+document.getElementById("pathLabel");
+
+const lessonContent =
+document.getElementById("lessonContent");
+
+const sidebarLinks =
+document.getElementById("sidebarLinks");
+
+const lessonNavigation =
+document.getElementById("lessonNavigation");
+
+const completeBtn =
+document.getElementById("completeBtn");
+
+const completionText =
+document.getElementById("completionText");
+
+const loginNote =
+document.getElementById("loginNote");
+
+const progressText =
+document.getElementById("progressText");
+
+const overallText =
+document.getElementById("overallText");
+
+const progressBar =
+document.getElementById("progressBar");
+
+
+/* =====================================================
+التحقق من وجود الدرس
+===================================================== */
+
+if (!currentLesson || !path) {
+
+lessonTitle.textContent = "الدرس غير موجود";
+
+lessonDescription.textContent =
+"تعذر العثور على الدرس المطلوب.";
+
+lessonContent.innerHTML = `
+<div class="warning-box">
+رقم الدرس غير صحيح.
+</div>
+`;
+
+completeBtn.style.display = "none";
+
+} else {
+
+renderLesson();
+
+}
+
+
+/* =====================================================
+عرض الدرس
+===================================================== */
+
+function renderLesson() {
+
+document.title =
+`${currentLesson.title} | عرّاب الشبكات`;
+
+
+pathLabel.textContent =
+`${path.icon} المسار ${path.id} — ${path.name}`;
+
+
+lessonTitle.textContent =
+currentLesson.title;
+
+
+lessonDescription.textContent =
+currentLesson.description;
+
+
+lessonNumber.textContent =
+`الدرس ${currentLesson.id}`;
+
+
+lessonLevel.textContent =
+`المستوى: ${currentLesson.level}`;
+
+
+const index =
+pathLessons.findIndex(
+lesson => lesson.id === currentLesson.id
+);
+
+
+lessonCount.textContent =
+`الدرس ${index + 1} من ${pathLessons.length}`;
+
+
+lessonContent.innerHTML =
+currentLesson.content;
+
+
+renderSidebar();
+
+renderNavigation();
+
+loadProgress();
+
+}
+
+
+/* =====================================================
+Sidebar
+===================================================== */
+
+function renderSidebar() {
+
+sidebarLinks.innerHTML = "";
+
+pathLessons.forEach(lesson => {
+
+const link =
+document.createElement("a");
+
+link.href =
+`lesson.html?id=${lesson.id}`;
+
+link.textContent =
+`${lesson.id}. ${lesson.title}`;
+
+
+if (lesson.id === currentLesson.id) {
+
+link.classList.add("active");
+
+}
+
+
+sidebarLinks.appendChild(link);
 
 });
 
+}
 
-/* =========================
-ELEMENTS
-========================= */
 
-const lessonTitle =
-document.getElementById(
-"lessonTitle"
-);
+/* =====================================================
+Navigation
+===================================================== */
 
-const lessonCategory =
-document.getElementById(
-"lessonCategory"
-);
+function renderNavigation() {
 
-const lessonDescription =
-document.getElementById(
-"lessonDescription"
-);
-
-const lessonLevel =
-document.getElementById(
-"lessonLevel"
-);
-
-const lessonSidebar =
-document.getElementById(
-"lessonSidebar"
-);
-
-const lessonContent =
-document.getElementById(
-"lessonContent"
+const index =
+pathLessons.findIndex(
+lesson => lesson.id === currentLesson.id
 );
 
 
-/* =========================
-LESSON NOT FOUND
-========================= */
+const previous =
+index > 0
+? pathLessons[index - 1]
+: null;
 
-if (!lesson) {
 
-lessonTitle.textContent =
-"الدرس غير موجود";
+const next =
+index < pathLessons.length - 1
+? pathLessons[index + 1]
+: null;
 
-lessonDescription.textContent =
-"لم يتم العثور على الدرس المطلوب.";
 
-lessonLevel.textContent =
-"";
+lessonNavigation.innerHTML = "";
 
-lessonSidebar.innerHTML =
-"";
 
-lessonContent.innerHTML = `
+if (previous) {
 
-<div class="warning-box">
+const previousLink =
+document.createElement("a");
 
-<strong>
-خطأ:
-</strong>
+previousLink.className =
+"nav-card nav-prev";
 
-الدرس المطلوب غير موجود.
+previousLink.href =
+`lesson.html?id=${previous.id}`;
 
-</div>
-
+previousLink.innerHTML = `
+<small>← الدرس السابق</small>
+<strong>${previous.title}</strong>
 `;
+
+lessonNavigation.appendChild(previousLink);
+
+} else {
+
+const empty =
+document.createElement("div");
+
+lessonNavigation.appendChild(empty);
 
 }
 
 
-/* =========================
-RENDER LESSON
-========================= */
+if (next) {
 
-else {
+const nextLink =
+document.createElement("a");
 
-lessonTitle.textContent =
-lesson.title;
+nextLink.className =
+"nav-card nav-next";
 
-lessonCategory.textContent =
-lesson.category;
+nextLink.href =
+`lesson.html?id=${next.id}`;
 
-lessonDescription.textContent =
-lesson.description;
-
-lessonLevel.textContent =
-"المستوى: " +
-lesson.level;
-
-
-/* =========================
-SIDEBAR
-========================= */
-
-lessonSidebar.innerHTML =
-lesson.sections
-.map(function(section, index) {
-
-return `
-
-<li>
-
-<a
-href="#section-${index}"
->
-
-${index + 1}.
-${section.title}
-
-</a>
-
-</li>
-
+nextLink.innerHTML = `
+<small>الدرس التالي →</small>
+<strong>${next.title}</strong>
 `;
 
-})
-.join("");
+lessonNavigation.appendChild(nextLink);
 
-
-/* =========================
-CONTENT
-========================= */
-
-lessonContent.innerHTML =
-lesson.sections
-.map(function(section, index) {
-
-return `
-
-<section
-class="lesson-section"
-id="section-${index}"
->
-
-<h3>
-
-${index + 1}.
-${section.title}
-
-</h3>
-
-${section.content}
-
-</section>
-
-`;
-
-})
-.join("");
-
-
-/* =========================
-COMPLETE AREA
-========================= */
-
-lessonContent.innerHTML += `
-
-<div class="lesson-complete">
-
-<button
-id="completeLessonButton"
-type="button"
->
-
-✓ تم إكمال الدرس
-
-</button>
-
-<div id="completionMessage">
-
-جاري التحقق من تقدمك...
-
-</div>
-
-</div>
-
-
-<div class="lesson-navigation">
-
-<a
-href="${
-lesson.id > 1
-? "lesson.html?id=" +
-(lesson.id - 1)
-: "#"
-}"
-
-class="${
-lesson.id <= 1
-? "disabled"
-: ""
-}"
->
-
-→ الدرس السابق
-
-</a>
-
-
-<a
-href="${
-lesson.id < lessons.length
-? "lesson.html?id=" +
-(lesson.id + 1)
-: "#"
-}"
-
-class="${
-lesson.id >= lessons.length
-? "disabled"
-: ""
-}"
->
-
-الدرس التالي ←
-
-</a>
-
-</div>
-
-`;
+}
 
 }
 
 
-/* =========================
-COMPLETION SYSTEM
-========================= */
-
-if (lesson) {
-
-
-const completeLessonButton =
-document.getElementById(
-"completeLessonButton"
-);
-
-
-const completionMessage =
-document.getElementById(
-"completionMessage"
-);
-
+/* =====================================================
+Supabase
+===================================================== */
 
 let completedLessons = [];
 
 
-/* =========================
-UPDATE BUTTON
-========================= */
-
-function updateCompletionButton() {
-
-if (
-completedLessons.includes(
-Number(lessonId)
-)
-) {
-
-completeLessonButton.textContent =
-"✓ تم إكمال الدرس";
-
-completeLessonButton.classList.add(
-"completed"
-);
-
-completionMessage.textContent =
-"تم حفظ تقدمك في هذا الدرس ✓";
-
-}
-
-else {
-
-completeLessonButton.textContent =
-"✓ تم إكمال الدرس";
-
-completeLessonButton.classList.remove(
-"completed"
-);
-
-completionMessage.textContent =
-"لم يتم إكمال هذا الدرس بعد";
-
-}
-
-}
-
-
-/* =========================
-LOAD PROGRESS
-========================= */
-
-async function loadCompletedLessons() {
+async function getCurrentUser() {
 
 try {
 
+if (
+typeof supabaseClient === "undefined" ||
+!supabaseClient
+) {
+return null;
+}
+
+
 const {
-data: {
-user
-},
-error: userError
+data,
+error
 } =
 await supabaseClient.auth.getUser();
 
 
-if (userError) {
+if (error) {
 
-throw userError;
+console.error(error);
+
+return null;
 
 }
 
 
-/* =========================
-NOT LOGGED IN
-========================= */
+return data?.user || null;
+
+} catch (error) {
+
+console.error(error);
+
+return null;
+
+}
+
+}
+
+
+/* =====================================================
+تحميل التقدم
+===================================================== */
+
+async function loadProgress() {
+
+const user =
+await getCurrentUser();
+
 
 if (!user) {
 
-completionMessage.textContent =
-"سجّل الدخول أولًا لحفظ تقدمك";
+updateProgress([]);
+
+loginNote.textContent =
+"سجل الدخول حتى يتم حفظ إنجاز الدرس.";
 
 return;
 
 }
 
 
-/* =========================
-GET USER PROFILE
-========================= */
+loginNote.textContent = "";
+
+
+try {
 
 const {
 data,
 error
 } =
 await supabaseClient
-
 .from("users")
-
-.select(
-"completed_lessons"
-)
-
-.eq(
-"auth_id",
-user.id
-)
-
+.select("completed_lessons")
+.eq("auth_id", user.id)
 .maybeSingle();
 
 
 if (error) {
 
-throw error;
+console.error(error);
 
-}
-
-
-if (!data) {
-
-completionMessage.textContent =
-"لم يتم العثور على ملف المستخدم";
+updateProgress([]);
 
 return;
 
 }
 
 
-/* =========================
-READ COMPLETED LESSONS
-========================= */
+completedLessons =
+Array.isArray(data?.completed_lessons)
+? data.completed_lessons
+.map(Number)
+.filter(Number.isFinite)
+: [];
 
-if (
-Array.isArray(
-data.completed_lessons
-)
-) {
 
 completedLessons =
-data.completed_lessons.map(
-function(id) {
+[...new Set(completedLessons)];
 
-return Number(id);
 
-}
-);
+updateProgress(completedLessons);
 
-}
 
-else {
+if (
+completedLessons.includes(currentLesson.id)
+) {
 
-completedLessons = [];
+setCompletedButton();
 
 }
 
+} catch (error) {
 
-updateCompletionButton();
-
-}
-
-catch (error) {
-
-console.error(
-"خطأ في تحميل تقدم الدرس:",
-error
-);
-
-completionMessage.textContent =
-"تعذر تحميل تقدمك حاليًا";
+console.error(error);
 
 }
 
 }
 
 
-/* =========================
-SAVE COMPLETION
-========================= */
+/* =====================================================
+تحديث التقدم
+===================================================== */
 
-completeLessonButton.addEventListener(
+function updateProgress(completed) {
+
+const pathCompleted =
+pathLessons.filter(
+lesson =>
+completed.includes(lesson.id)
+).length;
+
+
+const pathPercent =
+pathLessons.length
+? Math.round(
+(pathCompleted / pathLessons.length) * 100
+)
+: 0;
+
+
+const overallPercent =
+lessons.length
+? Math.round(
+(completed.filter(
+id =>
+lessons.some(
+lesson =>
+lesson.id === id
+)
+).length / lessons.length) * 100
+)
+: 0;
+
+
+progressText.textContent =
+`تقدم المسار: ${pathPercent}%`;
+
+
+overallText.textContent =
+`التقدم العام: ${overallPercent}%`;
+
+
+progressBar.style.width =
+`${pathPercent}%`;
+
+}
+
+
+/* =====================================================
+إكمال الدرس
+===================================================== */
+
+completeBtn.addEventListener(
 "click",
-async function() {
+async () => {
 
-try {
-
-completeLessonButton.disabled =
-true;
-
-
-completionMessage.textContent =
-"جاري حفظ تقدمك...";
-
-
-/* =========================
-CHECK LOGIN
-========================= */
-
-const {
-data: {
-user
-},
-error: userError
-} =
-await supabaseClient.auth.getUser();
-
-
-if (userError) {
-
-throw userError;
-
-}
+const user =
+await getCurrentUser();
 
 
 if (!user) {
 
-completionMessage.textContent =
-"سجّل الدخول أولًا لحفظ تقدمك";
+loginNote.textContent =
+"يجب تسجيل الدخول لحفظ إنجاز الدرس.";
 
 return;
 
 }
 
 
-const currentLessonId =
-Number(lessonId);
-
-
-/* =========================
-ADD LESSON
-========================= */
-
 if (
-!completedLessons.includes(
-currentLessonId
+completedLessons.includes(
+currentLesson.id
 )
 ) {
 
-completedLessons.push(
-currentLessonId
-);
+return;
 
 }
 
 
-/* =========================
-SORT
-========================= */
+completeBtn.disabled = true;
 
-completedLessons.sort(
-function(a, b) {
-
-return a - b;
-
-}
-);
+completeBtn.textContent =
+"جاري الحفظ...";
 
 
-/* =========================
-REMOVE DUPLICATES
-========================= */
+try {
 
-completedLessons =
+const updated =
 [
-...new Set(
-completedLessons
-)
-];
+...new Set([
+...completedLessons,
+currentLesson.id
+])
+]
+.filter(Number.isFinite)
+.sort((a, b) => a - b);
 
-
-/* =========================
-UPDATE SUPABASE
-========================= */
 
 const {
 error
 } =
 await supabaseClient
-
 .from("users")
-
 .update({
-
-completed_lessons:
-completedLessons
-
+completed_lessons: updated
 })
-
-.eq(
-"auth_id",
-user.id
-);
+.eq("auth_id", user.id);
 
 
 if (error) {
 
-throw error;
+console.error(error);
+
+completeBtn.disabled = false;
+
+completeBtn.textContent =
+"✓ إكمال الدرس";
+
+completionText.textContent =
+"حدث خطأ أثناء حفظ الإنجاز.";
+
+return;
 
 }
 
 
-/* =========================
-UPDATE UI
-========================= */
+completedLessons =
+updated;
 
-updateCompletionButton();
 
-completionMessage.textContent =
-"تم حفظ تقدمك في هذا الدرس ✓";
-
-}
-
-catch (error) {
-
-console.error(
-"خطأ في حفظ تقدم الدرس:",
-error
-);
-
-completionMessage.textContent =
-"حدث خطأ أثناء حفظ التقدم";
-
-}
-
-finally {
-
-completeLessonButton.disabled =
-false;
-
-}
-
-}
+updateProgress(
+completedLessons
 );
 
 
-/* =========================
-SIDEBAR SMOOTH SCROLL
-========================= */
+setCompletedButton();
 
-document
-.querySelectorAll(
-".lesson-sidebar a"
-)
-.forEach(function(link) {
 
-link.addEventListener(
-"click",
-function(event) {
+completionText.textContent =
+"🎉 تم حفظ إنجاز الدرس وتحديث تقدم المسار.";
 
-const targetId =
-link.getAttribute(
-"href"
+
+/*
+الانتقال للدرس التالي لا يتم تلقائيًا،
+حتى يكون لدى الطالب وقت لقراءة رسالة الإنجاز.
+*/
+
+} catch (error) {
+
+console.error(error);
+
+completeBtn.disabled = false;
+
+completeBtn.textContent =
+"✓ إكمال الدرس";
+
+}
+
+}
 );
 
 
-const target =
+/* =====================================================
+زر مكتمل
+===================================================== */
+
+function setCompletedButton() {
+
+completeBtn.classList.add(
+"completed"
+);
+
+completeBtn.textContent =
+"✓ تم إكمال الدرس";
+
+completeBtn.disabled = true;
+
+completionText.textContent =
+"تم تسجيل إنجازك في هذا الدرس.";
+
+}
+
+
+/* =====================================================
+Scroll Sidebar
+===================================================== */
+
+window.addEventListener(
+"load",
+() => {
+
+const active =
 document.querySelector(
-targetId
+".sidebar a.active"
 );
 
 
-if (target) {
+if (active) {
 
-event.preventDefault();
-
-
-target.scrollIntoView({
-
-behavior: "smooth",
-
-block: "start"
-
+active.scrollIntoView({
+block: "nearest"
 });
 
 }
 
 }
 );
-
-});
-
-
-/* =========================
-LOAD PROGRESS
-========================= */
-
-loadCompletedLessons();
-
-}
 
 </script>
 
-
-<!-- =========================
-USER JS
-========================= -->
-
-<script src="user.js"></script>
-
-
-<!-- =========================
-GOATCOUNTER
-========================= -->
-
-<script
-data-goatcounter="https://mish3l11.goatcounter.com/count"
-async
-src="//gc.zgo.at/count.js"
-></script>
-
-
 </body>
-
 </html>

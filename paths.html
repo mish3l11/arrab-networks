@@ -1,0 +1,2540 @@
+<!--
+  عرّاب الشبكات
+  Copyright (c) 2026 Mishal AL-Mishal
+  All Rights Reserved.
+-->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>مسارات التعلم | عرّاب الشبكات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: "Tajawal", sans-serif;
+        }
+
+
+        .paths-page {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(7, 89, 133, 0.18),
+                    transparent 35%
+                ),
+                #cbb77a;
+
+            color: #111111;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .paths-header {
+            background: #111111;
+            color: #ffffff;
+
+            padding: 18px 5%;
+
+            box-shadow:
+                0 4px 18px rgba(0, 0, 0, 0.22);
+        }
+
+
+        .paths-navbar {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .paths-brand {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+            color: #ffffff;
+
+            flex-shrink: 0;
+        }
+
+
+        .paths-brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+
+            border-radius: 12px;
+
+            background: #cbb77a;
+            color: #111111;
+        }
+
+
+        .paths-brand-text {
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1.1;
+        }
+
+
+        .paths-brand-name {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+
+        .paths-brand-subtitle {
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            color: #cbb77a;
+
+            margin-top: 4px;
+        }
+
+
+        .paths-nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .paths-nav a {
+            color: #eeeeee;
+
+            text-decoration: none;
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+
+        .paths-nav a:hover {
+            background:
+                rgba(203, 183, 122, 0.12);
+
+            color: #ffffff;
+        }
+
+
+        .paths-nav a.active {
+            background: #cbb77a;
+            color: #111111;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .paths-main {
+            width: min(1100px, 92%);
+
+            margin: 45px auto 70px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .paths-hero {
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .paths-hero-badge {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            background: #111111;
+
+            color: #cbb77a;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            margin-bottom: 15px;
+        }
+
+
+        .paths-hero h1 {
+            margin: 0 0 10px;
+
+            font-size: 38px;
+            font-weight: 800;
+
+            color: #111111;
+        }
+
+
+        .paths-hero p {
+            margin: 0;
+
+            color: #292929;
+
+            font-size: 16px;
+            font-weight: 500;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           OVERALL PROGRESS
+        ========================= */
+
+        .paths-overall {
+            background: #111111;
+
+            color: #ffffff;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 10px 28px
+                rgba(17, 17, 17, 0.2);
+        }
+
+
+        .paths-overall-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .paths-overall-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+
+        .paths-overall-percent {
+            color: #cbb77a;
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+
+        .paths-progress-track {
+            height: 13px;
+
+            width: 100%;
+
+            background: #333333;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .paths-progress-fill {
+            width: 0%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #cbb77a,
+                    #e5d39a
+                );
+
+            border-radius: 20px;
+
+            transition: width 0.6s ease;
+        }
+
+
+        /* =========================
+           PATH GRID
+        ========================= */
+
+        .paths-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================
+           PATH CARD
+        ========================= */
+
+        .path-card {
+            position: relative;
+
+            background: #f4edda;
+
+            border-radius: 22px;
+
+            padding: 23px;
+
+            border:
+                1px solid
+                rgba(17, 17, 17, 0.12);
+
+            box-shadow:
+                0 9px 25px
+                rgba(17, 17, 17, 0.13);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
+
+
+        .path-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 32px
+                rgba(17, 17, 17, 0.18);
+        }
+
+
+        .path-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            right: 0;
+            left: 0;
+
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #075985,
+                    #cbb77a
+                );
+        }
+
+
+        .path-card.locked {
+            opacity: 0.78;
+        }
+
+
+        .path-top {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .path-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 29px;
+
+            border-radius: 16px;
+
+            background: #111111;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 7px 16px
+                rgba(17, 17, 17, 0.18);
+        }
+
+
+        .path-status {
+            padding: 7px 10px;
+
+            border-radius: 9px;
+
+            background: #e5e5e5;
+
+            color: #333333;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .path-status.current {
+            background: #dbeafe;
+            color: #075985;
+        }
+
+
+        .path-status.completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+
+        .path-status.locked {
+            background: #e5e5e5;
+            color: #555555;
+        }
+
+
+        .path-card h2 {
+            margin: 0 0 7px;
+
+            font-size: 21px;
+            font-weight: 800;
+
+            color: #111111;
+        }
+
+
+        .path-description {
+            margin: 0;
+
+            min-height: 48px;
+
+            color: #555555;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           LESSON LIST
+        ========================= */
+
+        .path-lessons {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin: 18px 0;
+        }
+
+
+        .path-lesson {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 9px 11px;
+
+            background: #ffffff;
+
+            border:
+                1px solid
+                rgba(17, 17, 17, 0.09);
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .path-lesson-name {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            min-width: 0;
+        }
+
+
+        .path-lesson-number {
+            width: 25px;
+            height: 25px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 7px;
+
+            background: #075985;
+
+            color: #ffffff;
+
+            font-size: 10px;
+
+            flex-shrink: 0;
+        }
+
+
+        .path-lesson-status {
+            color: #777777;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+        }
+
+
+        .path-lesson-status.available {
+            color: #075985;
+        }
+
+
+        .path-lesson-status.coming {
+            color: #777777;
+        }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .path-progress-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .path-progress-info span:last-child {
+            color: #075985;
+        }
+
+
+        .path-progress-track {
+            height: 9px;
+
+            width: 100%;
+
+            background: #dddddd;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin-bottom: 18px;
+        }
+
+
+        .path-progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #075985,
+                    #0369a1
+                );
+
+            border-radius: 20px;
+
+            transition: width 0.5s ease;
+        }
+
+
+        .path-progress-fill.complete {
+            background:
+                linear-gradient(
+                    90deg,
+                    #16a34a,
+                    #15803d
+                );
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .path-button {
+            width: 100%;
+
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            padding: 13px;
+
+            border-radius: 11px;
+
+            background: #075985;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .path-button:hover {
+            background: #064b70;
+
+            transform: translateY(-1px);
+        }
+
+
+        .path-button.complete {
+            background: #15803d;
+        }
+
+
+        .path-button.locked {
+            background: #777777;
+
+            cursor: not-allowed;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           FUTURE LESSONS
+        ========================= */
+
+        .future-section {
+            margin-top: 12px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px dashed
+                rgba(17, 17, 17, 0.18);
+        }
+
+
+        .future-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 10px;
+
+            color: #555555;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .future-lessons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+
+        .future-tag {
+            padding: 6px 9px;
+
+            background: #e8dfc7;
+
+            border:
+                1px solid
+                rgba(17, 17, 17, 0.08);
+
+            border-radius: 8px;
+
+            color: #666666;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           NOTE
+        ========================= */
+
+        .paths-note {
+            margin-top: 25px;
+
+            background:
+                rgba(17, 17, 17, 0.92);
+
+            color: #ffffff;
+
+            padding: 18px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            line-height: 1.8;
+        }
+
+
+        .paths-note strong {
+            color: #cbb77a;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .paths-navbar {
+                flex-direction: column;
+            }
+
+
+            .paths-nav {
+                justify-content: center;
+            }
+
+
+            .paths-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .paths-main {
+                width: 94%;
+
+                margin-top: 30px;
+            }
+
+
+            .paths-hero h1 {
+                font-size: 29px;
+            }
+
+
+            .paths-hero p {
+                font-size: 14px;
+            }
+
+
+            .paths-nav a {
+                font-size: 12px;
+
+                padding: 8px 9px;
+            }
+
+
+            .path-card {
+                padding: 19px;
+            }
+
+
+            .paths-overall {
+                padding: 20px;
+            }
+
+
+            .path-card h2 {
+                font-size: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="paths-page">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="paths-header">
+
+    <div class="paths-navbar">
+
+
+        <a
+            href="index.html"
+            class="paths-brand"
+        >
+
+            <span class="paths-brand-icon">
+                🌐
+            </span>
+
+
+            <span class="paths-brand-text">
+
+                <span class="paths-brand-name">
+                    عرّاب الشبكات
+                </span>
+
+
+                <span class="paths-brand-subtitle">
+                    NETWORKS
+                </span>
+
+            </span>
+
+        </a>
+
+
+        <nav class="paths-nav">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+
+            <a
+                href="paths.html"
+                class="active"
+            >
+                المسارات
+            </a>
+
+
+            <a href="lessons.html">
+                الدروس
+            </a>
+
+
+            <a href="dictionary.html">
+                القاموس
+            </a>
+
+
+            <a href="config.html">
+                مرجع الأوامر
+            </a>
+
+
+            <a
+                href="profile.html"
+                data-user-name
+            >
+                👤 حسابي
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="paths-main">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="paths-hero">
+
+        <div class="paths-hero-badge">
+            🎓 نظام التعلم
+        </div>
+
+
+        <h1>
+            مسارات التعلم
+        </h1>
+
+
+        <p>
+            تعلّم الشبكات بطريقة منظمة،
+            من الأساسيات إلى التطبيق وحل المشاكل.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         OVERALL
+    ========================== -->
+
+    <section class="paths-overall">
+
+        <div class="paths-overall-top">
+
+            <div class="paths-overall-title">
+                تقدمك في رحلة الشبكات
+            </div>
+
+
+            <div
+                class="paths-overall-percent"
+                id="overallPercent"
+            >
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="paths-progress-track">
+
+            <div
+                class="paths-progress-fill"
+                id="overallFill"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PATHS
+    ====================================================== -->
+
+    <section class="paths-grid">
+
+
+        <!-- =================================================
+             PATH 1
+        ================================================== -->
+
+        <article
+            class="path-card"
+            data-path="1"
+        >
+
+            <div class="path-top">
+
+                <div class="path-icon">
+                    🌐
+                </div>
+
+
+                <div
+                    class="path-status current"
+                    id="status-1"
+                >
+                    ▶ ابدأ هنا
+                </div>
+
+            </div>
+
+
+            <h2>
+                أساسيات الشبكات
+            </h2>
+
+
+            <p class="path-description">
+                ابنِ قاعدة قوية في الشبكات قبل الانتقال
+                إلى Switching و Routing والأمن.
+            </p>
+
+
+            <div class="path-lessons">
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            1
+                        </span>
+
+                        <span>
+                            أساسيات الشبكات
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-1"
+                    >
+                        ابدأ
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            2
+                        </span>
+
+                        <span>
+                            أجهزة الشبكة
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-2"
+                    >
+                        ابدأ
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            3
+                        </span>
+
+                        <span>
+                            IPv4 وعناوين IP
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-3"
+                    >
+                        ابدأ
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="future-section">
+
+                <div class="future-title">
+                    🚀 دروس قادمة في هذا المسار
+                </div>
+
+
+                <div class="future-lessons">
+
+                    <span class="future-tag">
+                        MAC Address
+                    </span>
+
+                    <span class="future-tag">
+                        Ports & Protocols
+                    </span>
+
+                    <span class="future-tag">
+                        OSI Model
+                    </span>
+
+                    <span class="future-tag">
+                        TCP/IP
+                    </span>
+
+                    <span class="future-tag">
+                        Hub vs Switch vs Router
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="path-progress-info">
+
+                <span id="count-1">
+                    0 / 3 دروس
+                </span>
+
+
+                <span id="percent-1">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="path-progress-track">
+
+                <div
+                    class="path-progress-fill"
+                    id="fill-1"
+                ></div>
+
+            </div>
+
+
+            <a
+                href="lesson.html?id=1"
+                class="path-button"
+                id="button-1"
+            >
+                ابدأ المسار
+            </a>
+
+        </article>
+
+
+        <!-- =================================================
+             PATH 2
+        ================================================== -->
+
+        <article
+            class="path-card"
+            data-path="2"
+        >
+
+            <div class="path-top">
+
+                <div class="path-icon">
+                    🔵
+                </div>
+
+
+                <div
+                    class="path-status locked"
+                    id="status-2"
+                >
+                    🔒 مغلق
+                </div>
+
+            </div>
+
+
+            <h2>
+                Switching
+            </h2>
+
+
+            <p class="path-description">
+                افهم السويتشات والـ VLAN والـ Trunk
+                وكيفية بناء شبكة محلية منظمة.
+            </p>
+
+
+            <div class="path-lessons">
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            4
+                        </span>
+
+                        <span>
+                            Subnetting
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-4"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            5
+                        </span>
+
+                        <span>
+                            Switching
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-5"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            6
+                        </span>
+
+                        <span>
+                            VLAN
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-6"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="future-section">
+
+                <div class="future-title">
+                    🚀 دروس قادمة في هذا المسار
+                </div>
+
+
+                <div class="future-lessons">
+
+                    <span class="future-tag">
+                        Access Port
+                    </span>
+
+                    <span class="future-tag">
+                        Trunk
+                    </span>
+
+                    <span class="future-tag">
+                        Native VLAN
+                    </span>
+
+                    <span class="future-tag">
+                        Inter-VLAN Routing
+                    </span>
+
+                    <span class="future-tag">
+                        STP
+                    </span>
+
+                    <span class="future-tag">
+                        EtherChannel
+                    </span>
+
+                    <span class="future-tag">
+                        Port Security
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="path-progress-info">
+
+                <span id="count-2">
+                    0 / 3 دروس
+                </span>
+
+
+                <span id="percent-2">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="path-progress-track">
+
+                <div
+                    class="path-progress-fill"
+                    id="fill-2"
+                ></div>
+
+            </div>
+
+
+            <a
+                href="lesson.html?id=4"
+                class="path-button locked"
+                id="button-2"
+            >
+                🔒 أكمل المسار السابق
+            </a>
+
+        </article>
+
+
+        <!-- =================================================
+             PATH 3
+        ================================================== -->
+
+        <article
+            class="path-card"
+            data-path="3"
+        >
+
+            <div class="path-top">
+
+                <div class="path-icon">
+                    🟠
+                </div>
+
+
+                <div
+                    class="path-status locked"
+                    id="status-3"
+                >
+                    🔒 مغلق
+                </div>
+
+            </div>
+
+
+            <h2>
+                Routing
+            </h2>
+
+
+            <p class="path-description">
+                تعلّم التوجيه بين الشبكات و Static Routing
+                و OSPF وبناء جداول التوجيه.
+            </p>
+
+
+            <div class="path-lessons">
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            7
+                        </span>
+
+                        <span>
+                            Routing
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-7"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            8
+                        </span>
+
+                        <span>
+                            Static Routing
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-8"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            9
+                        </span>
+
+                        <span>
+                            OSPF
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-9"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="future-section">
+
+                <div class="future-title">
+                    🚀 دروس قادمة في هذا المسار
+                </div>
+
+
+                <div class="future-lessons">
+
+                    <span class="future-tag">
+                        Routing Table
+                    </span>
+
+                    <span class="future-tag">
+                        Default Route
+                    </span>
+
+                    <span class="future-tag">
+                        DHCP
+                    </span>
+
+                    <span class="future-tag">
+                        NAT
+                    </span>
+
+                    <span class="future-tag">
+                        ACL
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="path-progress-info">
+
+                <span id="count-3">
+                    0 / 3 دروس
+                </span>
+
+
+                <span id="percent-3">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="path-progress-track">
+
+                <div
+                    class="path-progress-fill"
+                    id="fill-3"
+                ></div>
+
+            </div>
+
+
+            <a
+                href="lesson.html?id=7"
+                class="path-button locked"
+                id="button-3"
+            >
+                🔒 أكمل المسار السابق
+            </a>
+
+        </article>
+
+
+        <!-- =================================================
+             PATH 4
+        ================================================== -->
+
+        <article
+            class="path-card"
+            data-path="4"
+        >
+
+            <div class="path-top">
+
+                <div class="path-icon">
+                    🛡️
+                </div>
+
+
+                <div
+                    class="path-status locked"
+                    id="status-4"
+                >
+                    🔒 مغلق
+                </div>
+
+            </div>
+
+
+            <h2>
+                إدارة وحماية الشبكات
+            </h2>
+
+
+            <p class="path-description">
+                تعلّم إدارة الأجهزة عن بعد ومفاهيم الحماية
+                والوصول الآمن إلى أجهزة الشبكة.
+            </p>
+
+
+            <div class="path-lessons">
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            10
+                        </span>
+
+                        <span>
+                            SSH وإدارة الأجهزة
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-10"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            11
+                        </span>
+
+                        <span>
+                            Network Security
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-11"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="future-section">
+
+                <div class="future-title">
+                    🚀 دروس قادمة في هذا المسار
+                </div>
+
+
+                <div class="future-lessons">
+
+                    <span class="future-tag">
+                        AAA
+                    </span>
+
+                    <span class="future-tag">
+                        Firewall
+                    </span>
+
+                    <span class="future-tag">
+                        Access Control
+                    </span>
+
+                    <span class="future-tag">
+                        Security Best Practices
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="path-progress-info">
+
+                <span id="count-4">
+                    0 / 2 دروس
+                </span>
+
+
+                <span id="percent-4">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="path-progress-track">
+
+                <div
+                    class="path-progress-fill"
+                    id="fill-4"
+                ></div>
+
+            </div>
+
+
+            <a
+                href="lesson.html?id=10"
+                class="path-button locked"
+                id="button-4"
+            >
+                🔒 أكمل المسار السابق
+            </a>
+
+        </article>
+
+
+        <!-- =================================================
+             PATH 5
+        ================================================== -->
+
+        <article
+            class="path-card"
+            data-path="5"
+        >
+
+            <div class="path-top">
+
+                <div class="path-icon">
+                    🛠️
+                </div>
+
+
+                <div
+                    class="path-status locked"
+                    id="status-5"
+                >
+                    🔒 مغلق
+                </div>
+
+            </div>
+
+
+            <h2>
+                Troubleshooting
+            </h2>
+
+
+            <p class="path-description">
+                انتقل إلى المستوى العملي وتعلّم كيف تشخّص
+                مشاكل الشبكات وتحل الأعطال خطوة بخطوة.
+            </p>
+
+
+            <div class="path-lessons">
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            12
+                        </span>
+
+                        <span>
+                            Troubleshooting
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="path-lesson-status"
+                        id="lesson-status-12"
+                    >
+                        مغلق
+                    </span>
+
+                </div>
+
+
+                <div class="path-lesson">
+
+                    <div class="path-lesson-name">
+
+                        <span class="path-lesson-number">
+                            🛠️
+                        </span>
+
+                        <span>
+                            الأعطال التدريبية
+                        </span>
+
+                    </div>
+
+                    <span class="path-lesson-status available">
+                        تدريب عملي
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="future-section">
+
+                <div class="future-title">
+                    🚀 تدريبات قادمة
+                </div>
+
+
+                <div class="future-lessons">
+
+                    <span class="future-tag">
+                        مشاكل VLAN
+                    </span>
+
+                    <span class="future-tag">
+                        مشاكل Trunk
+                    </span>
+
+                    <span class="future-tag">
+                        مشاكل IP
+                    </span>
+
+                    <span class="future-tag">
+                        مشاكل Gateway
+                    </span>
+
+                    <span class="future-tag">
+                        مشاكل DHCP
+                    </span>
+
+                    <span class="future-tag">
+                        سيناريوهات ميدانية
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="path-progress-info">
+
+                <span id="count-5">
+                    0 / 1 درس
+                </span>
+
+
+                <span id="percent-5">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="path-progress-track">
+
+                <div
+                    class="path-progress-fill"
+                    id="fill-5"
+                ></div>
+
+            </div>
+
+
+            <a
+                href="lesson.html?id=12"
+                class="path-button locked"
+                id="button-5"
+            >
+                🔒 أكمل المسار السابق
+            </a>
+
+        </article>
+
+    </section>
+
+
+    <!-- =========================
+         NOTE
+    ========================== -->
+
+    <div class="paths-note">
+
+        💡
+
+        <strong>
+            خطتك التعليمية:
+        </strong>
+
+        ابدأ بالأساسيات، ثم انتقل إلى Switching،
+        وبعدها Routing، ثم الحماية، وأخيرًا حل المشاكل
+        والتطبيق العملي.
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+
+<script>
+
+    /* =====================================================
+       PATH DEFINITIONS
+    ===================================================== */
+
+    const pathDefinitions = [
+
+        {
+            id: 1,
+            name: "أساسيات الشبكات",
+            lessons: [1, 2, 3]
+        },
+
+        {
+            id: 2,
+            name: "Switching",
+            lessons: [4, 5, 6]
+        },
+
+        {
+            id: 3,
+            name: "Routing",
+            lessons: [7, 8, 9]
+        },
+
+        {
+            id: 4,
+            name: "إدارة وحماية الشبكات",
+            lessons: [10, 11]
+        },
+
+        {
+            id: 5,
+            name: "Troubleshooting",
+            lessons: [12]
+        }
+
+    ];
+
+
+    let completedLessons = [];
+
+
+    /* =====================================================
+       LOAD PROGRESS
+    ===================================================== */
+
+    async function loadProgress() {
+
+        try {
+
+            if (
+                typeof supabaseClient === "undefined" ||
+                !supabaseClient
+            ) {
+
+                loadLocalProgress();
+
+                updatePaths();
+
+                return;
+
+            }
+
+
+            const {
+                data: {
+                    user
+                },
+                error: userError
+            } =
+                await supabaseClient.auth.getUser();
+
+
+            if (
+                userError ||
+                !user
+            ) {
+
+                loadLocalProgress();
+
+                updatePaths();
+
+                return;
+
+            }
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from("users")
+                    .select("completed_lessons")
+                    .eq("auth_id", user.id)
+                    .maybeSingle();
+
+
+            if (error) {
+
+                console.error(
+                    "Progress error:",
+                    error
+                );
+
+                loadLocalProgress();
+
+            } else if (
+                data &&
+                Array.isArray(
+                    data.completed_lessons
+                )
+            ) {
+
+                completedLessons =
+                    data.completed_lessons
+                        .map(Number)
+                        .filter(
+                            id =>
+                                Number.isInteger(id) &&
+                                id >= 1 &&
+                                id <= 12
+                        );
+
+
+                completedLessons =
+                    [
+                        ...new Set(
+                            completedLessons
+                        )
+                    ];
+
+            } else {
+
+                completedLessons = [];
+
+            }
+
+
+            updatePaths();
+
+        } catch (error) {
+
+            console.error(
+                "Load progress error:",
+                error
+            );
+
+            loadLocalProgress();
+
+            updatePaths();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOCAL STORAGE
+    ===================================================== */
+
+    function loadLocalProgress() {
+
+        try {
+
+            const saved =
+                JSON.parse(
+                    localStorage.getItem(
+                        "completedLessons"
+                    ) || "[]"
+                );
+
+
+            if (Array.isArray(saved)) {
+
+                completedLessons =
+                    saved
+                        .map(Number)
+                        .filter(
+                            id =>
+                                Number.isInteger(id) &&
+                                id >= 1 &&
+                                id <= 12
+                        );
+
+
+                completedLessons =
+                    [
+                        ...new Set(
+                            completedLessons
+                        )
+                    ];
+
+            } else {
+
+                completedLessons = [];
+
+            }
+
+        } catch (error) {
+
+            completedLessons = [];
+
+        }
+
+    }
+
+
+    /* =====================================================
+       CHECK LESSON STATUS
+    ===================================================== */
+
+    function updateLessonStatuses() {
+
+        for (let id = 1; id <= 12; id++) {
+
+            const element =
+                document.getElementById(
+                    `lesson-status-${id}`
+                );
+
+
+            if (!element) {
+                continue;
+            }
+
+
+            if (
+                completedLessons.includes(id)
+            ) {
+
+                element.textContent =
+                    "✓ مكتمل";
+
+                element.className =
+                    "path-lesson-status available";
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       UPDATE PATHS
+    ===================================================== */
+
+    function updatePaths() {
+
+        let totalCompleted = 0;
+
+        let totalLessons = 0;
+
+
+        pathDefinitions.forEach(path => {
+
+            const pathTotal =
+                path.lessons.length;
+
+
+            const pathCompleted =
+                path.lessons.filter(
+                    lessonId =>
+                        completedLessons.includes(
+                            lessonId
+                        )
+                ).length;
+
+
+            const percentage =
+                Math.round(
+                    (
+                        pathCompleted /
+                        pathTotal
+                    ) * 100
+                );
+
+
+            totalCompleted +=
+                pathCompleted;
+
+
+            totalLessons +=
+                pathTotal;
+
+
+            const count =
+                document.getElementById(
+                    `count-${path.id}`
+                );
+
+
+            const percent =
+                document.getElementById(
+                    `percent-${path.id}`
+                );
+
+
+            const fill =
+                document.getElementById(
+                    `fill-${path.id}`
+                );
+
+
+            const status =
+                document.getElementById(
+                    `status-${path.id}`
+                );
+
+
+            const button =
+                document.getElementById(
+                    `button-${path.id}`
+                );
+
+
+            if (count) {
+
+                count.textContent =
+                    `${pathCompleted} / ${pathTotal} دروس`;
+
+            }
+
+
+            if (percent) {
+
+                percent.textContent =
+                    `${percentage}%`;
+
+            }
+
+
+            if (fill) {
+
+                fill.style.width =
+                    `${percentage}%`;
+
+            }
+
+
+            if (
+                percentage === 100 &&
+                fill
+            ) {
+
+                fill.classList.add(
+                    "complete"
+                );
+
+            }
+
+        });
+
+
+        updateLessonStatuses();
+
+
+        /* =================================================
+           OVERALL PROGRESS
+        ================================================== */
+
+        const overallPercentage =
+            totalLessons === 0
+                ? 0
+                : Math.round(
+                    (
+                        totalCompleted /
+                        totalLessons
+                    ) * 100
+                );
+
+
+        const overallPercent =
+            document.getElementById(
+                "overallPercent"
+            );
+
+
+        const overallFill =
+            document.getElementById(
+                "overallFill"
+            );
+
+
+        if (overallPercent) {
+
+            overallPercent.textContent =
+                `${overallPercentage}%`;
+
+        }
+
+
+        if (overallFill) {
+
+            overallFill.style.width =
+                `${overallPercentage}%`;
+
+        }
+
+
+        unlockPaths();
+
+    }
+
+
+    /* =====================================================
+       UNLOCK PATHS
+    ===================================================== */
+
+    function unlockPaths() {
+
+        pathDefinitions.forEach(
+            (path, index) => {
+
+                const card =
+                    document.querySelector(
+                        `[data-path="${path.id}"]`
+                    );
+
+
+                const status =
+                    document.getElementById(
+                        `status-${path.id}`
+                    );
+
+
+                const button =
+                    document.getElementById(
+                        `button-${path.id}`
+                    );
+
+
+                if (
+                    !card ||
+                    !status ||
+                    !button
+                ) {
+
+                    return;
+
+                }
+
+
+                const pathCompleted =
+                    path.lessons.every(
+                        lessonId =>
+                            completedLessons.includes(
+                                lessonId
+                            )
+                    );
+
+
+                /* =========================
+                   COMPLETED
+                ========================== */
+
+                if (pathCompleted) {
+
+                    card.classList.remove(
+                        "locked"
+                    );
+
+
+                    status.className =
+                        "path-status completed";
+
+
+                    status.textContent =
+                        "✓ مكتمل";
+
+
+                    button.className =
+                        "path-button complete";
+
+
+                    button.textContent =
+                        "✓ المسار مكتمل";
+
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   FIRST PATH
+                ========================== */
+
+                if (index === 0) {
+
+                    card.classList.remove(
+                        "locked"
+                    );
+
+
+                    status.className =
+                        "path-status current";
+
+
+                    status.textContent =
+                        "▶ المسار الحالي";
+
+
+                    button.className =
+                        "path-button";
+
+
+                    button.textContent =
+                        "متابعة المسار";
+
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   PREVIOUS PATH
+                ========================== */
+
+                const previousPath =
+                    pathDefinitions[index - 1];
+
+
+                const previousCompleted =
+                    previousPath.lessons.every(
+                        lessonId =>
+                            completedLessons.includes(
+                                lessonId
+                            )
+                    );
+
+
+                /* =========================
+                   UNLOCK
+                ========================== */
+
+                if (previousCompleted) {
+
+                    card.classList.remove(
+                        "locked"
+                    );
+
+
+                    status.className =
+                        "path-status current";
+
+
+                    status.textContent =
+                        "▶ متاح الآن";
+
+
+                    button.className =
+                        "path-button";
+
+
+                    button.textContent =
+                        "متابعة المسار";
+
+                }
+
+
+                /* =========================
+                   LOCK
+                ========================== */
+
+                else {
+
+                    card.classList.add(
+                        "locked"
+                    );
+
+
+                    status.className =
+                        "path-status locked";
+
+
+                    status.textContent =
+                        "🔒 مغلق";
+
+
+                    button.className =
+                        "path-button locked";
+
+
+                    button.textContent =
+                        "🔒 أكمل المسار السابق";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    loadProgress();
+
+</script>
+
+
+<script src="user.js"></script>
+
+
+</body>
+
+</html>
