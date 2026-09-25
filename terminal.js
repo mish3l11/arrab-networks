@@ -37,47 +37,7 @@ let historyIndex = -1;
 
 let terminalMonitor = false;
 let terminalLength = 24;
-{
 
-if (!commandChips) return;
-
-const commands = availableCommands[currentDevice] || [];
-
-commandChips.innerHTML = "";
-
-commandChips.style.display = "grid";
-
-commands.forEach(([full, short]) => {
-
-const button = document.createElement("button");
-
-button.type = "button";
-button.className = "command-chip";
-
-button.innerHTML = `
-<span>${full}</span>
-<small>${short}</small>
-`;
-
-button.title = `استخدام: ${short}`;
-
-button.addEventListener("click", () => {
-
-if (!terminalInput) return;
-
-terminalInput.value = short;
-
-terminalInput.focus();
-
-terminalInput.setSelectionRange(
-terminalInput.value.length,
-terminalInput.value.length
-);
-});
-
-commandChips.appendChild(button);
-});
-}
 
 /* =========================================================
 إعدادات الأجهزة
