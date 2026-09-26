@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تحدي اليوم | عرّاب الشبكات</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Tajawal", sans-serif;
+        }
+
+        .daily-page {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .daily-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .daily-header .icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .daily-header h1 {
+            margin: 0;
+            font-size: 38px;
+            font-weight: 800;
+        }
+
+        .daily-header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .daily-card {
+            background: #d6c58f;
+            border-radius: 22px;
+            padding: 30px;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .daily-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .daily-question {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .daily-question h2 {
+            font-size: 25px;
+            line-height: 1.7;
+        }
+
+        .daily-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .daily-option {
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            padding: 18px;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .daily-option:hover {
+            transform: translateY(-2px);
+        }
+
+        .daily-option.selected {
+            border-color: #075985;
+            background: rgba(7, 89, 133, 0.15);
+        }
+
+        .daily-option.correct {
+            background: rgba(34, 197, 94, 0.25);
+            border-color: #16a34a;
+        }
+
+        .daily-option.wrong {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #dc2626;
+        }
+
+        .daily-check {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 17px;
+            border: none;
+            border-radius: 15px;
+            background: #111;
+            color: white;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .daily-check:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .daily-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.7;
+        }
+
+        .daily-back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .daily-page {
+                margin: 25px auto;
+                padding: 15px;
+            }
+
+            .daily-header h1 {
+                font-size: 30px;
+            }
+
+            .daily-options {
+                grid-template-columns: 1fr;
+            }
+
+            .daily-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="daily-page">
+
+        <a href="index.html" class="daily-back">
+            → العودة إلى الرئيسية
+        </a>
+
+        <div class="daily-header">
+            <div class="icon">🏆</div>
+
+            <h1>تحدي اليوم</h1>
+
+            <p>
+                سؤال جديد كل يوم — عندك محاولة واحدة فقط!
+            </p>
+        </div>
+
+        <section class="daily-card">
+
+            <div class="daily-top">
+                <span id="dailyLevel">المستوى</span>
+                <span>⭐ +50 XP</span>
+            </div>
+
+            <div class="daily-question">
+                <h2 id="dailyQuestion">
+                    جاري تحميل التحدي...
+                </h2>
+            </div>
+
+            <div id="dailyOptions" class="daily-options"></div>
+
+            <button id="dailyCheck" class="daily-check">
+                ⚡ تحقق من الإجابة
+            </button>
+
+            <div id="dailyResult" class="daily-result" aria-live="polite"></div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const questions = [
+            {
+                level: "🟢 المستوى الأول • مبتدئ",
+                question: "ما الجهاز الذي يُستخدم غالبًا لربط عدة أجهزة داخل نفس الشبكة المحلية؟",
+                options: [
+                    { text: "🖥️ Server", value: "server" },
+                    { text: "🔵 Switch", value: "switch" },
+                    { text: "🟠 Router", value: "router" },
+                    { text: "🛡️ Firewall", value: "firewall" }
+                ],
+                answer: "switch"
+            },
+
+            {
+                level: "🟢 المستوى الأول • مبتدئ",
+                question: "ما البروتوكول المستخدم للحصول على عنوان IP تلقائيًا؟",
+                options: [
+                    { text: "DNS", value: "dns" },
+                    { text: "DHCP", value: "dhcp" },
+                    { text: "FTP", value: "ftp" },
+                    { text: "SSH", value: "ssh" }
+                ],
+                answer: "dhcp"
+            },
+
+            {
+                level: "🟢 المستوى الأول • مبتدئ",
+                question: "أي عنوان من التالي هو عنوان IPv4 صحيح؟",
+                options: [
+                    { text: "192.168.1.10", value: "a" },
+                    { text: "300.168.1.10", value: "b" },
+                    { text: "192.168.1.999", value: "c" },
+                    { text: "192.168.1", value: "d" }
+                ],
+                answer: "a"
+            },
+
+            {
+                level: "🟡 المستوى الثاني • متوسط",
+                question: "ما الأمر المستخدم في Cisco لعرض إعدادات الجهاز الحالية؟",
+                options: [
+                    { text: "show running-config", value: "a" },
+                    { text: "show vlan", value: "b" },
+                    { text: "show ip route", value: "c" },
+                    { text: "show interfaces", value: "d" }
+                ],
+                answer: "a"
+            },
+
+            {
+                level: "🟡 المستوى الثاني • متوسط",
+                question: "ما وظيفة الـ VLAN؟",
+                options: [
+                    { text: "زيادة سرعة الإنترنت", value: "a" },
+                    { text: "تقسيم الشبكة منطقيًا", value: "b" },
+                    { text: "استبدال الراوتر", value: "c" },
+                    { text: "تشفير كلمات المرور", value: "d" }
+                ],
+                answer: "b"
+            },
+
+            {
+                level: "🟠 المستوى الثالث • متقدم",
+                question: "ما البروتوكول الذي يستخدم لاكتشاف أفضل مسار داخل شبكة OSPF؟",
+                options: [
+                    { text: "STP", value: "a" },
+                    { text: "OSPF", value: "b" },
+                    { text: "DHCP", value: "c" },
+                    { text: "ARP", value: "d" }
+                ],
+                answer: "b"
+            },
+
+            {
+                level: "🟠 المستوى الثالث • متقدم",
+                question: "ما وظيفة الـ Trunk Port في السويتش؟",
+                options: [
+                    { text: "حمل أكثر من VLAN", value: "a" },
+                    { text: "منع جميع الأجهزة", value: "b" },
+                    { text: "إعطاء IP للأجهزة", value: "c" },
+                    { text: "استبدال DHCP", value: "d" }
+                ],
+                answer: "a"
+            }
+        ];
+
+        const today = new Date();
+
+        const dateKey =
+            today.getFullYear() +
+            "-" +
+            String(today.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(today.getDate()).padStart(2, "0");
+
+        const attemptKey = "arrab_daily_attempt_" + dateKey;
+
+        const dayNumber = Math.floor(
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate()
+            ).getTime() / 86400000
+        );
+
+        const questionIndex =
+            ((dayNumber % questions.length) + questions.length) %
+            questions.length;
+
+        const question = questions[questionIndex];
+
+        const questionElement =
+            document.getElementById("dailyQuestion");
+
+        const levelElement =
+            document.getElementById("dailyLevel");
+
+        const optionsElement =
+            document.getElementById("dailyOptions");
+
+        const checkButton =
+            document.getElementById("dailyCheck");
+
+        const resultElement =
+            document.getElementById("dailyResult");
+
+        let selectedAnswer = null;
+
+        levelElement.textContent = question.level;
+        questionElement.textContent = question.question;
+
+        question.options.forEach(option => {
+
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.className = "daily-option";
+            button.textContent = option.text;
+
+            button.dataset.answer = option.value;
+
+            button.addEventListener("click", () => {
+
+                if (localStorage.getItem(attemptKey)) {
+                    return;
+                }
+
+                document
+                    .querySelectorAll(".daily-option")
+                    .forEach(item => {
+                        item.classList.remove("selected");
+                    });
+
+                button.classList.add("selected");
+
+                selectedAnswer = option.value;
+            });
+
+            optionsElement.appendChild(button);
+        });
+
+        function showResult(savedAttempt) {
+
+            const buttons =
+                document.querySelectorAll(".daily-option");
+
+            buttons.forEach(button => {
+
+                button.disabled = true;
+
+                if (button.dataset.answer === question.answer) {
+                    button.classList.add("correct");
+                }
+
+                if (
+                    button.dataset.answer === savedAttempt.answer &&
+                    savedAttempt.answer !== question.answer
+                ) {
+                    button.classList.add("wrong");
+                }
+            });
+
+            checkButton.disabled = true;
+
+            if (savedAttempt.correct) {
+
+                resultElement.textContent =
+                    "🎉 إجابة صحيحة! حصلت على +50 XP";
+
+            } else {
+
+                resultElement.textContent =
+                    "❌ إجابة غير صحيحة. حاول مرة أخرى غدًا.";
+            }
+        }
+
+        checkButton.addEventListener("click", () => {
+
+            if (!selectedAnswer) {
+                resultElement.textContent =
+                    "⚠️ اختر إجابة أولًا.";
+                return;
+            }
+
+            if (localStorage.getItem(attemptKey)) {
+                return;
+            }
+
+            const correct =
+                selectedAnswer === question.answer;
+
+            const attempt = {
+                answer: selectedAnswer,
+                correct: correct
+            };
+
+            localStorage.setItem(
+                attemptKey,
+                JSON.stringify(attempt)
+            );
+
+            showResult(attempt);
+        });
+
+        const savedAttempt =
+            localStorage.getItem(attemptKey);
+
+        if (savedAttempt) {
+
+            try {
+
+                const parsedAttempt =
+                    JSON.parse(savedAttempt);
+
+                showResult(parsedAttempt);
+
+            } catch (error) {
+
+                localStorage.removeItem(attemptKey);
+            }
+        }
+    </script>
+
+</body>
+</html>

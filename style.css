@@ -4725,3 +4725,113 @@ transition-duration: 0.01ms !important;
         font-size: 19px;
     }
 }
+
+/* ================= DAILY CHALLENGE - PREMIUM ================= */
+.daily-challenge-section {
+    width: 100%;
+    margin: 55px 0;
+}
+.daily-challenge-container {
+    width: 100%;
+}
+.daily-challenge-link {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 135px;
+    background:
+        linear-gradient(
+            135deg,
+            #eee0b3 0%,
+            #d6c58f 35%,
+            #bda766 70%,
+            #a99152 100%
+        );
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 26px;
+    color: #111;
+    text-decoration: none;
+    font-family: "Tajawal", sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.20),
+        inset 0 2px 0 rgba(255, 255, 255, 0.65),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+/* الإطار الداخلي */
+.daily-challenge-link::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(17, 17, 17, 0.16);
+    border-radius: 19px;
+    pointer-events: none;
+}
+/* زخرفة جانبية */
+.daily-challenge-link::before {
+    content: "✦";
+    position: absolute;
+    right: 32px;
+    font-size: 25px;
+    opacity: 0.55;
+    transition: 0.3s ease;
+}
+/* زخرفة الجهة الثانية */
+.daily-challenge-link {
+    text-align: center;
+}
+.daily-challenge-link > span,
+.daily-challenge-link > strong {
+    position: relative;
+    z-index: 2;
+}
+/* إضافة نجمة يسار بدون تغيير النص */
+.daily-challenge-link {
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.daily-challenge-link:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.26),
+        inset 0 2px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+}
+.daily-challenge-link:hover::before {
+    transform: rotate(180deg) scale(1.2);
+    opacity: 0.9;
+}
+.daily-challenge-link:active {
+    transform: translateY(-2px);
+}
+.daily-challenge-link:focus-visible {
+    outline: 3px solid #075985;
+    outline-offset: 5px;
+}
+/* الجوال */
+@media (max-width: 600px) {
+    .daily-challenge-section {
+        margin: 40px 0;
+    }
+    .daily-challenge-link {
+        min-height: 105px;
+        border-radius: 21px;
+        font-size: 27px;
+    }
+    .daily-challenge-link::before {
+        right: 20px;
+        font-size: 20px;
+    }
+    .daily-challenge-link::after {
+        inset: 7px;
+        border-radius: 15px;
+    }
+}
