@@ -958,18 +958,33 @@
                                     <p>
                                         ${lesson.description}
                                     </p>
+<div class="lesson-actions">
 
+    <a
+        href="lesson.html?id=${lesson.id}"
+        class="lesson-btn"
+    >
+        ${
+            completed
+                ? "📖 مراجعة النظري"
+                : "📖 ابدأ النظري"
+        }
+    </a>
 
-                                    <a
-                                        href="lesson.html?id=${lesson.id}"
-                                        class="lesson-btn"
-                                    >
-                                        ${
-                                            completed
-                                                ? "مراجعة الدرس"
-                                                : "ابدأ الدرس"
-                                        }
-                                    </a>
+    ${
+        lesson.id === 9
+            ? `
+                <a
+                    href="subnetting.html"
+                    class="lesson-btn practical-btn"
+                >
+                    🧪 العملي
+                </a>
+            `
+            : ""
+    }
+
+</div>
 
                                 </article>
 

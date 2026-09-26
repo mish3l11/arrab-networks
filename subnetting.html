@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Subnetting | عرّاب الشبكات</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .subnet-page {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .subnet-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .subnet-header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subnet-header p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .subnet-section {
+            background: #d6c58f;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 22px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .subnet-section h2 {
+            font-size: 25px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .subnet-section p {
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        .subnet-highlight {
+            background: rgba(255, 255, 255, 0.3);
+            border-right: 5px solid #075985;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 20px 0;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .subnet-example {
+            background: #111;
+            color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            font-size: 18px;
+            line-height: 2;
+            overflow-x: auto;
+        }
+
+        .subnet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .subnet-box {
+            background: rgba(255, 255, 255, 0.28);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 15px;
+            padding: 18px;
+        }
+
+        .subnet-box strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .subnet-calculator {
+            text-align: center;
+        }
+
+        .subnet-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.5);
+            font-family: monospace;
+            font-size: 18px;
+            direction: ltr;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .subnet-button {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 15px auto 0;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #111;
+            color: #fff;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .subnet-button:hover {
+            opacity: 0.88;
+        }
+
+        .subnet-result {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .subnet-result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            text-align: right;
+        }
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .result-item span {
+            display: block;
+            font-size: 14px;
+            opacity: 0.75;
+            margin-bottom: 5px;
+        }
+
+        .result-item strong {
+            font-family: monospace;
+            font-size: 17px;
+            direction: ltr;
+            display: block;
+        }
+
+        .subnet-error {
+            margin-top: 20px;
+            color: #991b1b;
+            font-weight: 700;
+        }
+
+        .subnet-back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+
+            .subnet-page {
+                padding: 15px;
+                margin: 25px auto;
+            }
+
+            .subnet-header h1 {
+                font-size: 30px;
+            }
+
+            .subnet-section {
+                padding: 20px;
+            }
+
+            .subnet-grid,
+            .subnet-result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="subnet-page">
+
+        <a href="index.html" class="subnet-back">
+            ← العودة إلى الرئيسية
+        </a>
+
+        <header class="subnet-header">
+            <h1>Subnetting</h1>
+            <p>
+                فهم تقسيم الشبكات بطريقة بسيطة وعملية
+            </p>
+        </header>
+
+        <!-- ما هو Subnetting -->
+
+        <section class="subnet-section">
+
+            <h2>ما هو Subnetting؟</h2>
+
+            <p>
+                الـ Subnetting هو عملية تقسيم شبكة IP كبيرة إلى شبكات أصغر.
+                الهدف منه تنظيم الشبكة والاستفادة من عناوين IP بشكل أفضل.
+            </p>
+
+            <div class="subnet-highlight">
+                ببساطة: بدل ما تكون عندك شبكة واحدة كبيرة،
+                تقدر تقسّمها إلى عدة شبكات أصغر، وكل شبكة لها مجموعة من الأجهزة.
+            </div>
+
+        </section>
+
+        <!-- 32 بت -->
+
+        <section class="subnet-section">
+
+            <h2>وش معنى 32 بت؟</h2>
+
+            <p>
+                عنوان IPv4 يتكون من 32 Bit، مقسمة إلى 4 أجزاء.
+                كل جزء يسمى Octet ويتكون من 8 Bits.
+            </p>
+
+            <div class="subnet-example">
+                192 . 168 . 1 . 10
+                <br>
+                8 bits . 8 bits . 8 bits . 8 bits
+                <br>
+                = 32 bits
+            </div>
+
+        </section>
+
+        <!-- Network و Host -->
+
+        <section class="subnet-section">
+
+            <h2>Network و Host</h2>
+
+            <p>
+                عنوان IP ينقسم بشكل أساسي إلى جزأين:
+            </p>
+
+            <div class="subnet-grid">
+
+                <div class="subnet-box">
+                    <strong>Network</strong>
+                    يحدد الشبكة التي ينتمي إليها الجهاز.
+                </div>
+
+                <div class="subnet-box">
+                    <strong>Host</strong>
+                    يحدد الجهاز داخل الشبكة.
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CIDR -->
+
+        <section class="subnet-section">
+
+            <h2>وش معنى /24 ؟</h2>
+
+            <p>
+                الرقم بعد علامة / يسمى Prefix Length.
+                وهو يحدد عدد الـ Bits المستخدمة للشبكة.
+            </p>
+
+            <div class="subnet-example">
+                192.168.1.0/24
+
+                <br><br>
+
+                Network Bits = 24
+                <br>
+                Host Bits = 8
+            </div>
+
+            <div class="subnet-highlight">
+                كلما زاد الرقم بعد /، قل عدد الـ Host Bits،
+                وبالتالي يقل عدد الأجهزة التي يمكن وضعها داخل الشبكة.
+            </div>
+
+        </section>
+
+        <!-- مثال -->
+
+        <section class="subnet-section">
+
+            <h2>مثال عملي: 192.168.1.0/26</h2>
+
+            <p>
+                عندنا شبكة:
+            </p>
+
+            <div class="subnet-example">
+                192.168.1.0/26
+            </div>
+
+            <p>
+                الـ /26 يعني أن لدينا 26 Bit للشبكة،
+                ويتبقى 6 Bits للأجهزة.
+            </p>
+
+            <div class="subnet-grid">
+
+                <div class="subnet-box">
+                    <strong>Network Address</strong>
+                    192.168.1.0
+                </div>
+
+                <div class="subnet-box">
+                    <strong>Broadcast</strong>
+                    192.168.1.63
+                </div>
+
+                <div class="subnet-box">
+                    <strong>أول Host</strong>
+                    192.168.1.1
+                </div>
+
+                <div class="subnet-box">
+                    <strong>آخر Host</strong>
+                    192.168.1.62
+                </div>
+
+            </div>
+
+            <div class="subnet-highlight">
+                عدد العناوين الكلي = 64 عنوان.
+                <br>
+                العناوين القابلة للاستخدام للأجهزة = 62 عنوان.
+            </div>
+
+        </section>
+
+        <!-- الحاسبة -->
+
+        <section class="subnet-section subnet-calculator">
+
+            <h2>حاسبة Subnetting</h2>
+
+            <p>
+                اكتب عنوان IPv4 مع الـ Prefix لمعرفة تفاصيل الشبكة.
+            </p>
+
+            <input
+                id="subnetInput"
+                class="subnet-input"
+                type="text"
+                placeholder="192.168.1.0/26"
+                value="192.168.1.0/26"
+            >
+
+            <button
+                id="subnetCalculate"
+                class="subnet-button"
+                type="button"
+            >
+                احسب الشبكة
+            </button>
+
+            <div id="subnetError" class="subnet-error"></div>
+
+            <div id="subnetResult" class="subnet-result">
+
+                <div class="subnet-result-grid">
+
+                    <div class="result-item">
+                        <span>Network Address</span>
+                        <strong id="resultNetwork"></strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Broadcast Address</span>
+                        <strong id="resultBroadcast"></strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>First Host</span>
+                        <strong id="resultFirst"></strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Last Host</span>
+                        <strong id="resultLast"></strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Subnet Mask</span>
+                        <strong id="resultMask"></strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Total Addresses</span>
+                        <strong id="resultTotal"></strong>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Usable Hosts</span>
+                        <strong id="resultUsable"></strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const input = document.getElementById("subnetInput");
+        const calculateButton = document.getElementById("subnetCalculate");
+
+        const errorElement = document.getElementById("subnetError");
+        const resultElement = document.getElementById("subnetResult");
+
+        const resultNetwork = document.getElementById("resultNetwork");
+        const resultBroadcast = document.getElementById("resultBroadcast");
+        const resultFirst = document.getElementById("resultFirst");
+        const resultLast = document.getElementById("resultLast");
+        const resultMask = document.getElementById("resultMask");
+        const resultTotal = document.getElementById("resultTotal");
+        const resultUsable = document.getElementById("resultUsable");
+
+
+        function ipToNumber(ip) {
+
+            const parts = ip.split(".").map(Number);
+
+            return (
+                parts[0] * 256 ** 3 +
+                parts[1] * 256 ** 2 +
+                parts[2] * 256 +
+                parts[3]
+            );
+        }
+
+
+        function numberToIp(number) {
+
+            return [
+                Math.floor(number / 256 ** 3) % 256,
+                Math.floor(number / 256 ** 2) % 256,
+                Math.floor(number / 256) % 256,
+                number % 256
+            ].join(".");
+        }
+
+
+        function prefixToMask(prefix) {
+
+            const mask = prefix === 0
+                ? 0
+                : (0xffffffff << (32 - prefix)) >>> 0;
+
+            return numberToIp(mask);
+        }
+
+
+        function calculateSubnet() {
+
+            errorElement.textContent = "";
+            resultElement.style.display = "none";
+
+            const value = input.value.trim();
+
+            const parts = value.split("/");
+
+            if (parts.length !== 2) {
+
+                errorElement.textContent =
+                    "اكتب العنوان بهذا الشكل: 192.168.1.0/26";
+
+                return;
+            }
+
+            const ip = parts[0];
+            const prefix = Number(parts[1]);
+
+            const ipParts = ip.split(".").map(Number);
+
+            if (
+                ipParts.length !== 4 ||
+                ipParts.some(part => !Number.isInteger(part) || part < 0 || part > 255)
+            ) {
+
+                errorElement.textContent =
+                    "عنوان IPv4 غير صحيح.";
+
+                return;
+            }
+
+            if (
+                !Number.isInteger(prefix) ||
+                prefix < 0 ||
+                prefix > 32
+            ) {
+
+                errorElement.textContent =
+                    "الـ Prefix يجب أن يكون بين /0 و /32.";
+
+                return;
+            }
+
+            const ipNumber = ipToNumber(ip);
+
+            const mask =
+                prefix === 0
+                    ? 0
+                    : (0xffffffff << (32 - prefix)) >>> 0;
+
+            const networkNumber =
+                (ipNumber & mask) >>> 0;
+
+            const totalAddresses =
+                2 ** (32 - prefix);
+
+            const broadcastNumber =
+                networkNumber + totalAddresses - 1;
+
+            const firstHost =
+                prefix >= 31
+                    ? networkNumber
+                    : networkNumber + 1;
+
+            const lastHost =
+                prefix >= 31
+                    ? broadcastNumber
+                    : broadcastNumber - 1;
+
+            const usableHosts =
+                prefix >= 31
+                    ? 0
+                    : totalAddresses - 2;
+
+
+            resultNetwork.textContent =
+                numberToIp(networkNumber);
+
+            resultBroadcast.textContent =
+                numberToIp(broadcastNumber);
+
+            resultFirst.textContent =
+                numberToIp(firstHost);
+
+            resultLast.textContent =
+                numberToIp(lastHost);
+
+            resultMask.textContent =
+                prefixToMask(prefix);
+
+            resultTotal.textContent =
+                totalAddresses.toLocaleString();
+
+            resultUsable.textContent =
+                usableHosts.toLocaleString();
+
+            resultElement.style.display = "block";
+        }
+
+
+        calculateButton.addEventListener(
+            "click",
+            calculateSubnet
+        );
+
+
+        calculateSubnet();
+    </script>
+
+</body>
+
+</html>
