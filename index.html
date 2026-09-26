@@ -34,6 +34,7 @@
                     role="img"
                     aria-label="شعار عرّاب الشبكات"
                 >
+
                     <g
                         fill="none"
                         stroke="currentColor"
@@ -103,55 +104,74 @@
                         fill="currentColor"
                         opacity="0.95"
                     />
+
                 </svg>
 
             </span>
 
             <span class="brand-text">
-                <span class="brand-name">عرّاب الشبكات</span>
-                <span class="brand-subtitle">NETWORKS</span>
+
+                <span class="brand-name">
+                    عرّاب الشبكات
+                </span>
+
+                <span class="brand-subtitle">
+                    NETWORKS
+                </span>
+
             </span>
 
         </a>
 
 
+        <!-- ================= NAVIGATION ================= -->
+
         <nav class="nav-links">
 
             <a href="index.html" class="active">
-                 الرئيسية
+                الرئيسية
             </a>
 
             <a href="lessons.html">
-                 الدروس
+                الدروس
             </a>
 
             <a href="#network-lab">
-                 المختبر
+                المختبر
             </a>
 
             <a href="quiz.html" class="nav-button">
-                 اختبر معلوماتك
+                اختبر معلوماتك
             </a>
 
             <a href="dictionary.html" class="feature-card">
-                 القاموس
+                القاموس
             </a>
 
             <a href="config.html" class="nav-button">
-                 مرجع الأوامر
+                مرجع الأوامر
             </a>
 
-            <a href="command-practice.html">
-                 تحدي الميدان
+            <a href="network-tools.html">
+                أدوات العرّاب 
             </a>
+
+            <!-- تحدي الميدان غير موجود في القائمة العلوية -->
 
             <a href="terminal.html" class="feature-card">
-                CLI 
+                CLI
             </a>
 
-            <a href="profile.html" class="nav-button profile-link">
+            <!-- حسابي -->
+
+            <a
+                href="profile.html"
+                class="nav-button profile-link"
+            >
                 👤 حسابي
             </a>
+
+            <!-- لوحة الإدارة -->
 
             <a
                 href="admin.html"
@@ -415,6 +435,7 @@
 
         <div class="paths-grid">
 
+
             <div class="path-card">
 
                 <div class="path-icon">
@@ -587,20 +608,46 @@
 
     </section>
 
-<!-- ================= DAILY CHALLENGE ================= -->
-<section id="daily-challenge" class="daily-challenge-section">
-    <div class="daily-challenge-container">
 
-        <a href="daily-challenge.html" class="daily-challenge-link">
-            تحدي اليوم ⚡
+    <!-- ================= CHALLENGES ARENA ================= -->
+
+    <section
+        id="challenges"
+        class="challenges-arena"
+    >
+
+        <a
+            href="challenges.html"
+            class="challenges-main-card"
+        >
+
+            <div class="challenges-main-icon">
+                ⚔️
+            </div>
+
+            <div class="challenges-main-content">
+
+                <span class="challenges-kicker">
+                    NETWORK CHALLENGES
+                </span>
+
+                <h2>
+                    ساحة التحديات
+                </h2>
+
+                <p>
+                    اختبر معرفتك ومهاراتك في الشبكات من خلال تحديات متنوعة.
+                </p>
+
+                <span class="challenges-open-text">
+                    دخول ساحة التحديات ←
+                </span>
+
+            </div>
+
         </a>
 
-         
-
-    </div>
-</section>
-
-
+    </section>
 
 </main>
 
@@ -807,6 +854,7 @@
 
     <div class="footer-container">
 
+
         <div class="footer-brand">
 
             <span class="brand-icon">
@@ -935,267 +983,256 @@
 </div>
 
 
-<!-- ================= DAILY CHALLENGE STYLE ================= -->
+<!-- ================= CHALLENGES ARENA STYLE ================= -->
 
 <style>
 
-.daily-challenge-section {
-    padding: 20px 20px 65px;
+/* =========================
+   CHALLENGES ARENA
+========================= */
+
+.challenges-arena {
+
+    width: min(1100px, 92%);
+
+    margin: 10px auto 70px;
+
+    padding: 55px 0 20px;
 }
 
-.daily-challenge-container {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-}
 
-.daily-challenge-icon {
-    font-size: 30px;
-    line-height: 1;
-    margin-bottom: 10px;
-}
+/* =========================
+   MAIN CHALLENGES CARD
+========================= */
 
-.daily-challenge-label {
-    display: block;
-    color: #075985;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    margin-bottom: 5px;
-}
+.challenges-main-card {
 
-.daily-challenge-container h2 {
-    margin: 0 0 8px;
-    font-size: 30px;
-    font-weight: 800;
-}
-
-.daily-challenge-container > p {
-    margin: 0 0 24px;
-    font-size: 15px;
-    opacity: 0.75;
-}
-
-.daily-challenge-card {
     position: relative;
-    padding: 26px;
-    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    width: 100%;
+
+    padding: 32px;
+
+    border-radius: 28px;
+
+    border:
+        1px solid rgba(17,17,17,0.12);
 
     background:
         linear-gradient(
-            145deg,
-            rgba(203, 183, 122, 0.97),
-            rgba(214, 197, 143, 0.94)
+            135deg,
+            #d6c58f,
+            #bda766
         );
-
-    border: 1px solid rgba(17, 17, 17, 0.12);
 
     color: #111;
 
+    text-decoration: none;
+
+    text-align: right;
+
+    overflow: hidden;
+
     box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.12);
+        0 18px 45px rgba(0,0,0,0.13);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.daily-challenge-top {
+.challenges-main-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.13);
+
+    left: -90px;
+    bottom: -120px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.challenges-main-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,0.18);
+}
+
+.challenges-main-card:hover::before {
+
+    transform:
+        scale(1.25);
+}
+
+
+/* =========================
+   MAIN ICON
+========================= */
+
+.challenges-main-icon {
+
+    position: relative;
+
+    z-index: 1;
+
+    flex-shrink: 0;
+
+    width: 95px;
+    height: 95px;
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 22px;
+    justify-content: center;
+
+    border-radius: 26px;
+
+    font-size: 48px;
+
+    background:
+        rgba(255,255,255,0.45);
+
+    border:
+        1px solid rgba(17,17,17,0.1);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,0.5);
 }
 
-.daily-question-number {
-    font-size: 13px;
-    font-weight: 800;
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.challenges-main-content {
+
+    position: relative;
+
+    z-index: 1;
+
+    flex: 1;
 }
 
-.daily-xp {
-    padding: 7px 12px;
-    border-radius: 10px;
+.challenges-kicker {
 
-    background: rgba(255, 255, 255, 0.5);
-
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.daily-question {
-    padding: 20px;
-
-    background: rgba(255, 255, 255, 0.45);
-
-    border-radius: 17px;
-
-    margin-bottom: 20px;
-}
-
-.daily-question > span {
     display: block;
-    font-size: 28px;
-    margin-bottom: 8px;
-}
 
-.daily-question h3 {
-    margin: 0 0 8px;
-    font-size: 20px;
+    margin-bottom: 7px;
+
+    color: #075985;
+
+    font-size: 11px;
+
     font-weight: 800;
-    line-height: 1.8;
+
+    letter-spacing: 2px;
 }
 
-.daily-question p {
-    margin: 0;
+.challenges-main-content h2 {
+
+    margin: 0 0 8px;
+
+    font-size:
+        clamp(27px, 5vw, 38px);
+
+    font-weight: 800;
+}
+
+.challenges-main-content p {
+
+    margin: 0 0 16px;
+
     font-size: 14px;
+
+    line-height: 1.8;
+
     opacity: 0.7;
 }
 
+.challenges-open-text {
 
-/* OPTIONS */
+    display: inline-flex;
 
-.daily-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 18px;
-}
+    align-items: center;
 
-.daily-option {
-    min-height: 55px;
+    padding: 9px 15px;
 
-    border: 2px solid transparent;
-    border-radius: 13px;
+    border-radius: 10px;
 
-    background: rgba(255, 255, 255, 0.72);
-    color: #111;
+    background: #111;
 
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 800;
+    color: #cbb77a;
 
-    cursor: pointer;
+    font-size: 13px;
 
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.daily-option:hover {
-    transform: translateY(-2px);
-    background: #fff;
-}
-
-.daily-option.selected {
-    border-color: #075985;
-    background: #e9f5fb;
-}
-
-.daily-option.correct {
-    border-color: #278a43;
-    background: #e8f7ed;
-    color: #17652d;
-}
-
-.daily-option.wrong {
-    border-color: #c93636;
-    background: #fdeaea;
-    color: #a42121;
-}
-
-
-/* CHECK BUTTON */
-
-.daily-check-button {
-    width: 100%;
-
-    min-height: 50px;
-
-    border: none;
-    border-radius: 13px;
-
-    background: #075985;
-    color: #fff;
-
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-}
-
-.daily-check-button:hover {
-    transform: translateY(-2px);
-    opacity: 0.92;
-}
-
-.daily-check-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-    transform: none;
-}
-
-
-/* RESULT */
-
-.daily-result {
-    display: none;
-
-    margin-top: 16px;
-
-    padding: 14px;
-
-    border-radius: 13px;
-
-    font-size: 15px;
     font-weight: 800;
 }
 
-.daily-result.success {
-    display: block;
 
-    background: #e8f7ed;
-    color: #17652d;
-
-    border: 1px solid #8ac89b;
-}
-
-.daily-result.error {
-    display: block;
-
-    background: #fdeaea;
-    color: #a42121;
-
-    border: 1px solid #e5a0a0;
-}
-
-
-.small-cta-icon {
-    font-size: 30px !important;
-    line-height: 1;
-    margin-bottom: 12px;
-}
-
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
 
-    .daily-challenge-card {
-        padding: 20px 16px;
+    .challenges-arena {
+
+        width: 92%;
+
+        padding-top: 35px;
     }
 
-    .daily-challenge-top {
-        align-items: flex-start;
-        flex-direction: column;
+    .challenges-main-card {
+
+        gap: 17px;
+
+        padding: 22px;
+
+        border-radius: 23px;
     }
 
-    .daily-challenge-container h2 {
+    .challenges-main-icon {
+
+        width: 70px;
+        height: 70px;
+
+        border-radius: 19px;
+
+        font-size: 35px;
+    }
+
+    .challenges-main-content h2 {
+
         font-size: 25px;
     }
 
-    .daily-options {
-        grid-template-columns: 1fr;
+    .challenges-main-content p {
+
+        font-size: 12px;
+    }
+
+    .challenges-open-text {
+
+        font-size: 11px;
+
+        padding: 8px 12px;
     }
 
 }
@@ -1295,333 +1332,6 @@ document.addEventListener(
 </script>
 
 
-<!-- ================= DAILY CHALLENGE ================= -->
-
-<script>
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const options =
-            document.querySelectorAll(".daily-option");
-
-        const checkButton =
-            document.getElementById("checkDailyAnswer");
-
-        const result =
-            document.getElementById("dailyResult");
-
-        const levelElement =
-            document.getElementById("dailyLevel");
-
-
-        /*
-         * =========================
-         * DAILY LEVEL SYSTEM
-         * =========================
-         *
-         * كل مستخدم يبدأ من اليوم الأول
-         * ثم يرتفع المستوى كل يوم.
-         *
-         * يتم حفظ تاريخ البداية في المتصفح
-         * باستخدام localStorage.
-         */
-
-        const startDateKey =
-            "arrab_daily_challenge_start";
-
-
-        let startDate =
-            localStorage.getItem(startDateKey);
-
-
-        if (!startDate) {
-
-            const today =
-                new Date();
-
-            startDate =
-                today.getFullYear() +
-                "-" +
-                String(
-                    today.getMonth() + 1
-                ).padStart(2, "0") +
-                "-" +
-                String(
-                    today.getDate()
-                ).padStart(2, "0");
-
-
-            localStorage.setItem(
-                startDateKey,
-                startDate
-            );
-
-        }
-
-
-        function getDayNumber() {
-
-            const parts =
-                startDate.split("-");
-
-
-            const start =
-                new Date(
-                    Number(parts[0]),
-                    Number(parts[1]) - 1,
-                    Number(parts[2])
-                );
-
-
-            const today =
-                new Date();
-
-
-            const current =
-                new Date(
-                    today.getFullYear(),
-                    today.getMonth(),
-                    today.getDate()
-                );
-
-
-            const difference =
-                current.getTime() -
-                start.getTime();
-
-
-            const days =
-                Math.floor(
-                    difference /
-                    (
-                        1000 *
-                        60 *
-                        60 *
-                        24
-                    )
-                );
-
-
-            /*
-             * الدورة 7 أيام
-             */
-
-            return (
-                (days % 7) + 1
-            );
-
-        }
-
-
-        const dayNumber =
-            getDayNumber();
-
-
-        const levels = {
-
-            1:
-                "🟢 المستوى الأول • مبتدئ",
-
-            2:
-                "🟢 المستوى الثاني • مبتدئ+",
-
-            3:
-                "🟡 المستوى الثالث • متوسط",
-
-            4:
-                "🟡 المستوى الرابع • متوسط+",
-
-            5:
-                "🟠 المستوى الخامس • متقدم",
-
-            6:
-                "🟠 المستوى السادس • متقدم+",
-
-            7:
-                "🔴 المستوى السابع • تحدي قوي"
-
-        };
-
-
-        if (levelElement) {
-
-            levelElement.textContent =
-                levels[dayNumber];
-
-        }
-
-
-        let selectedOption =
-            null;
-
-
-        /* =========================
-           اختيار الإجابة
-        ========================= */
-
-        options.forEach(
-            function (option) {
-
-                option.addEventListener(
-                    "click",
-                    function () {
-
-                        if (
-                            checkButton.disabled
-                        ) {
-                            return;
-                        }
-
-
-                        options.forEach(
-                            function (item) {
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                        option.classList.add(
-                            "selected"
-                        );
-
-
-                        selectedOption =
-                            option;
-
-
-                        result.className =
-                            "daily-result";
-
-                        result.textContent =
-                            "";
-
-                    }
-                );
-
-            }
-        );
-
-
-        /* =========================
-           التحقق من الإجابة
-        ========================= */
-
-        checkButton.addEventListener(
-            "click",
-            function () {
-
-                if (!selectedOption) {
-
-                    result.className =
-                        "daily-result error";
-
-                    result.textContent =
-                        "⚠️ اختر إجابة أولاً.";
-
-                    return;
-
-                }
-
-
-                const correctAnswer =
-                    "switch";
-
-
-                const selectedAnswer =
-                    selectedOption.dataset.answer;
-
-
-                options.forEach(
-                    function (option) {
-
-                        option.disabled =
-                            true;
-
-                    }
-                );
-
-
-                checkButton.disabled =
-                    true;
-
-
-                if (
-                    selectedAnswer ===
-                    correctAnswer
-                ) {
-
-                    selectedOption.classList.remove(
-                        "selected"
-                    );
-
-
-                    selectedOption.classList.add(
-                        "correct"
-                    );
-
-
-                    result.className =
-                        "daily-result success";
-
-
-                    result.textContent =
-                        "🎉 إجابة صحيحة! حصلت على +50 XP";
-
-
-                } else {
-
-                    selectedOption.classList.remove(
-                        "selected"
-                    );
-
-
-                    selectedOption.classList.add(
-                        "wrong"
-                    );
-
-
-                    options.forEach(
-                        function (option) {
-
-                            if (
-                                option.dataset.answer ===
-                                correctAnswer
-                            ) {
-
-                                option.classList.add(
-                                    "correct"
-                                );
-
-                            }
-
-                        }
-                    );
-
-
-                    result.className =
-                        "daily-result error";
-
-
-                    result.textContent =
-                        "❌ إجابة غير صحيحة. الإجابة الصحيحة هي Switch.";
-
-                }
-
-            }
-        );
-
-    }
-);
-
-</script>
-
-
 <!-- ================= GOATCOUNTER ================= -->
 
 <script
@@ -1651,9 +1361,11 @@ document.addEventListener(
     .then(function (response) {
 
         if (!response.ok) {
+
             throw new Error(
                 "Visitor counter request failed"
             );
+
         }
 
         return response.json();

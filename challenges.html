@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ساحة التحديات | عرّاب الشبكات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: "Tajawal", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(255,255,255,0.22),
+                    transparent 35%
+                ),
+                #cbb77a;
+
+            color: #111;
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            width: 100%;
+
+            background: #bda766;
+
+            border-bottom:
+                1px solid rgba(17,17,17,0.12);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+
+        }
+
+
+        .navbar-container {
+
+            width: min(1180px, 92%);
+
+            margin: auto;
+
+            min-height: 82px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #111;
+
+            text-decoration: none;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .brand-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,0.25);
+
+            border:
+                1px solid rgba(17,17,17,0.1);
+
+        }
+
+
+        .network-logo-svg {
+
+            width: 40px;
+
+            height: 40px;
+
+            color: #111;
+
+        }
+
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            line-height: 1.1;
+
+        }
+
+
+        .brand-name {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+        }
+
+
+        .brand-subtitle {
+
+            margin-top: 4px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            opacity: 0.55;
+
+        }
+
+
+        .back-home {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 10px 16px;
+
+            border-radius: 12px;
+
+            background: #111;
+
+            color: #cbb77a;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+
+        }
+
+
+        .back-home:hover {
+
+            transform:
+                translateY(-2px);
+
+            opacity: 0.9;
+
+        }
+
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page {
+
+            width: min(1100px, 92%);
+
+            margin: auto;
+
+            padding:
+                70px 0 90px;
+
+        }
+
+
+        .page-header {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+        }
+
+
+        .page-icon {
+
+            width: 105px;
+
+            height: 105px;
+
+            margin:
+                0 auto 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 30px;
+
+            font-size: 52px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #e2d39f,
+                    #bda766
+                );
+
+            border:
+                1px solid rgba(17,17,17,0.12);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.12);
+
+        }
+
+
+        .page-kicker {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #075985;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        .page-header h1 {
+
+            margin: 0 0 12px;
+
+            font-size:
+                clamp(32px, 6vw, 50px);
+
+            font-weight: 800;
+
+        }
+
+
+        .page-header p {
+
+            max-width: 600px;
+
+            margin: auto;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            opacity: 0.7;
+
+        }
+
+
+        /* =========================
+           CHALLENGES GRID
+        ========================= */
+
+        .challenges-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 25px;
+
+        }
+
+
+        .challenge-card {
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 360px;
+
+            padding: 32px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d6c58f,
+                    #bda766
+                );
+
+            border:
+                1px solid rgba(17,17,17,0.12);
+
+            text-decoration: none;
+
+            color: #111;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 18px 45px rgba(0,0,0,0.12);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        .challenge-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.14);
+
+            left: -80px;
+
+            bottom: -95px;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .challenge-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            box-shadow:
+                0 25px 55px rgba(0,0,0,0.18);
+
+        }
+
+
+        .challenge-card:hover::before {
+
+            transform:
+                scale(1.3);
+
+        }
+
+
+        .challenge-card-top {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .challenge-icon {
+
+            width: 78px;
+
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,0.45);
+
+            border:
+                1px solid rgba(17,17,17,0.1);
+
+            font-size: 39px;
+
+        }
+
+
+        .challenge-number {
+
+            padding: 7px 11px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(17,17,17,0.08);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .challenge-content {
+
+            position: relative;
+
+            z-index: 1;
+
+            flex: 1;
+
+        }
+
+
+        .challenge-content h2 {
+
+            margin: 0 0 12px;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+        }
+
+
+        .challenge-content p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            opacity: 0.7;
+
+        }
+
+
+        .challenge-footer {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .challenge-tag {
+
+            color: #075985;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .challenge-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 11px 17px;
+
+            border-radius: 11px;
+
+            background: #111;
+
+            color: #cbb77a;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================
+           BOTTOM NOTE
+        ========================= */
+
+        .bottom-note {
+
+            margin-top: 35px;
+
+            padding: 20px 25px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.17);
+
+            border:
+                1px solid rgba(17,17,17,0.08);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            opacity: 0.75;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            padding: 28px 0;
+
+            background: #111;
+
+            color: #cbb77a;
+
+        }
+
+
+        .footer-container {
+
+            width: min(1100px, 92%);
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        .footer-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .footer .brand-icon {
+
+            background:
+                rgba(203,183,122,0.08);
+
+            border-color:
+                rgba(203,183,122,0.15);
+
+        }
+
+
+        .footer .network-logo-svg {
+
+            color: #cbb77a;
+
+        }
+
+
+        .footer .brand-name {
+
+            font-size: 15px;
+
+        }
+
+
+        .footer .brand-subtitle {
+
+            opacity: 0.45;
+
+        }
+
+
+        .footer-text {
+
+            font-size: 11px;
+
+            opacity: 0.55;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .navbar-container {
+
+                min-height: 72px;
+
+            }
+
+
+            .brand-name {
+
+                font-size: 15px;
+
+            }
+
+
+            .brand-icon {
+
+                width: 43px;
+
+                height: 43px;
+
+            }
+
+
+            .network-logo-svg {
+
+                width: 35px;
+
+                height: 35px;
+
+            }
+
+
+            .back-home {
+
+                padding:
+                    9px 12px;
+
+                font-size: 11px;
+
+            }
+
+
+            .page {
+
+                padding:
+                    50px 0 65px;
+
+            }
+
+
+            .page-header {
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .page-icon {
+
+                width: 85px;
+
+                height: 85px;
+
+                border-radius: 24px;
+
+                font-size: 42px;
+
+            }
+
+
+            .page-header p {
+
+                font-size: 13px;
+
+            }
+
+
+            .challenges-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .challenge-card {
+
+                min-height: 330px;
+
+                padding: 25px;
+
+                border-radius: 23px;
+
+            }
+
+
+            .challenge-content h2 {
+
+                font-size: 24px;
+
+            }
+
+
+            .challenge-content p {
+
+                font-size: 13px;
+
+            }
+
+
+            .footer-container {
+
+                flex-direction: column;
+
+                text-align: center;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="navbar-container">
+
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <span class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    aria-hidden="true"
+                >
+
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                    >
+
+                        <path d="M50 64 L22 82" />
+
+                        <path d="M50 64 L78 82" />
+
+                        <path d="M50 64 L50 91" />
+
+                        <path d="M22 82 L12 72" />
+
+                        <path d="M78 82 L88 72" />
+
+                        <path d="M50 91 L38 96" />
+
+                        <path d="M50 91 L62 96" />
+
+                    </g>
+
+
+                    <g fill="currentColor">
+
+                        <circle
+                            cx="22"
+                            cy="82"
+                            r="3"
+                        />
+
+                        <circle
+                            cx="78"
+                            cy="82"
+                            r="3"
+                        />
+
+                        <circle
+                            cx="50"
+                            cy="91"
+                            r="3"
+                        />
+
+                        <circle
+                            cx="12"
+                            cy="72"
+                            r="2.5"
+                        />
+
+                        <circle
+                            cx="88"
+                            cy="72"
+                            r="2.5"
+                        />
+
+                    </g>
+
+
+                    <text
+                        x="39"
+                        y="45"
+                        text-anchor="middle"
+                        font-family="Tajawal, Arial, sans-serif"
+                        font-size="34"
+                        font-weight="800"
+                        fill="currentColor"
+                    >ع</text>
+
+
+                    <text
+                        x="64"
+                        y="38"
+                        text-anchor="middle"
+                        font-family="Arial, sans-serif"
+                        font-size="22"
+                        font-weight="800"
+                        fill="currentColor"
+                    >N</text>
+
+
+                    <path
+                        d="M47 31 H57"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+            </span>
+
+
+            <span class="brand-text">
+
+                <span class="brand-name">
+                    عرّاب الشبكات
+                </span>
+
+                <span class="brand-subtitle">
+                    NETWORKS
+                </span>
+
+            </span>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="back-home"
+        >
+            ← الرئيسية
+        </a>
+
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     PAGE
+========================= -->
+
+<main class="page">
+
+
+    <!-- HEADER -->
+
+    <section class="page-header">
+
+
+        <div class="page-icon">
+            ⚔️
+        </div>
+
+
+        <span class="page-kicker">
+            NETWORK CHALLENGES
+        </span>
+
+
+        <h1>
+            ساحة التحديات
+        </h1>
+
+
+        <p>
+            اختر التحدي الذي تريد خوضه واختبر معرفتك ومهاراتك في الشبكات.
+            كل تحدي له أسلوب مختلف، فهل أنت مستعد؟
+        </p>
+
+
+    </section>
+
+
+    <!-- CHALLENGES -->
+
+    <section class="challenges-grid">
+
+
+        <!-- =========================
+             DAILY CHALLENGE
+        ========================= -->
+
+        <a
+            href="daily-challenge.html"
+            class="challenge-card"
+        >
+
+
+            <div class="challenge-card-top">
+
+
+                <div class="challenge-icon">
+                    ⚡
+                </div>
+
+
+                <span class="challenge-number">
+                    CHALLENGE 01
+                </span>
+
+
+            </div>
+
+
+            <div class="challenge-content">
+
+
+                <h2>
+                    تحدي اليوم
+                </h2>
+
+
+                <p>
+                    سؤال جديد كل يوم في عالم الشبكات.
+                    اختبر معلوماتك وحاول تحقيق أعلى نتيجة.
+                </p>
+
+
+            </div>
+
+
+            <div class="challenge-footer">
+
+
+                <span class="challenge-tag">
+                    DAILY NETWORK CHALLENGE
+                </span>
+
+
+                <span class="challenge-button">
+                    ابدأ التحدي ←
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+        <!-- =========================
+             FIELD CHALLENGE
+        ========================= -->
+
+        <a
+            href="command-practice.html"
+            class="challenge-card"
+        >
+
+
+            <div class="challenge-card-top">
+
+
+                <div class="challenge-icon">
+                    🧭
+                </div>
+
+
+                <span class="challenge-number">
+                    CHALLENGE 02
+                </span>
+
+
+            </div>
+
+
+            <div class="challenge-content">
+
+
+                <h2>
+                    تحدي الميدان
+                </h2>
+
+
+                <p>
+                    ادخل الميدان واختبر قدرتك على كتابة أوامر الشبكات
+                    والتعامل مع المواقف العملية.
+                </p>
+
+
+            </div>
+
+
+            <div class="challenge-footer">
+
+
+                <span class="challenge-tag">
+                    NETWORK FIELD
+                </span>
+
+
+                <span class="challenge-button">
+                    ادخل الميدان ←
+                </span>
+
+
+            </div>
+
+
+        </a>
+
+
+    </section>
+
+
+    <!-- NOTE -->
+
+    <div class="bottom-note">
+
+        💡 اختر أحد التحديات وابدأ التدريب.
+        يمكنك العودة إلى الصفحة الرئيسية في أي وقت.
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+
+            <span class="brand-icon">
+
+                <svg
+                    class="network-logo-svg"
+                    viewBox="0 0 100 100"
+                    aria-hidden="true"
+                >
+
+                    <g
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                    >
+
+                        <path d="M50 64 L22 82" />
+
+                        <path d="M50 64 L78 82" />
+
+                        <path d="M50 64 L50 91" />
+
+                        <path d="M22 82 L12 72" />
+
+                        <path d="M78 82 L88 72" />
+
+                        <path d="M50 91 L38 96" />
+
+                        <path d="M50 91 L62 96" />
+
+                    </g>
+
+
+                    <g fill="currentColor">
+
+                        <circle
+                            cx="22"
+                            cy="82"
+                            r="3"
+                        />
+
+                        <circle
+                            cx="78"
+                            cy="82"
+                            r="3"
+                        />
+
+                        <circle
+                            cx="50"
+                            cy="91"
+                            r="3"
+                        />
+
+                    </g>
+
+
+                    <text
+                        x="39"
+                        y="45"
+                        text-anchor="middle"
+                        font-family="Tajawal, Arial, sans-serif"
+                        font-size="34"
+                        font-weight="800"
+                        fill="currentColor"
+                    >ع</text>
+
+
+                    <text
+                        x="64"
+                        y="38"
+                        text-anchor="middle"
+                        font-family="Arial, sans-serif"
+                        font-size="22"
+                        font-weight="800"
+                        fill="currentColor"
+                    >N</text>
+
+                </svg>
+
+            </span>
+
+
+            <div>
+
+                <div class="brand-name">
+                    عرّاب الشبكات
+                </div>
+
+                <div class="brand-subtitle">
+                    NETWORKS
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-text">
+            تعلّم • طبّق • اختبر
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
