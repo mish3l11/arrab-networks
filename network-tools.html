@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>أدوات الشبكات | عرّاب الشبكات</title>
+  <title> أدوات العرّاب  | عرّاب الشبكات</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +17,21 @@
       padding: 0;
     }
 
+    html {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
       font-family: "Tajawal", sans-serif;
       background:
         radial-gradient(circle at top right, rgba(189,167,102,0.15), transparent 30%),
         radial-gradient(circle at bottom left, rgba(7,89,133,0.12), transparent 30%),
         #111;
       color: #f5f1df;
-      min-height: 100vh;
     }
 
     /* =========================
@@ -53,11 +60,13 @@
       text-decoration: none;
       font-weight: 800;
       font-size: 22px;
+      min-width: 0;
     }
 
     .brand-icon {
       width: 45px;
       height: 45px;
+      min-width: 45px;
       border-radius: 14px;
       background: linear-gradient(135deg, #cbb77a, #8e783d);
       color: #111;
@@ -75,6 +84,8 @@
       padding: 10px 18px;
       border-radius: 12px;
       transition: 0.25s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .back-btn:hover {
@@ -87,6 +98,7 @@
     ========================= */
 
     .hero {
+      width: 100%;
       max-width: 1200px;
       margin: auto;
       padding: 65px 20px 35px;
@@ -113,6 +125,7 @@
       font-size: clamp(32px, 5vw, 50px);
       margin-bottom: 12px;
       font-weight: 800;
+      line-height: 1.3;
     }
 
     .hero p {
@@ -124,7 +137,7 @@
     }
 
     /* =========================
-       TOOLS GRID
+       TOOLS CONTAINER
     ========================= */
 
     .tools-container {
@@ -140,12 +153,14 @@
       color: #cbb77a;
       font-size: 24px;
       font-weight: 800;
+      min-width: 0;
     }
 
     .section-title::after {
       content: "";
       height: 1px;
       flex: 1;
+      min-width: 20px;
       background: linear-gradient(
         to left,
         transparent,
@@ -153,9 +168,13 @@
       );
     }
 
+    /* =========================
+       TOOLS GRID
+    ========================= */
+
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
     }
 
@@ -173,6 +192,7 @@
       overflow: hidden;
       transition: 0.3s ease;
       box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+      min-width: 0;
     }
 
     .tool-card::before {
@@ -184,6 +204,7 @@
       border-radius: 50%;
       top: -60px;
       left: -60px;
+      pointer-events: none;
     }
 
     .tool-card:hover {
@@ -209,6 +230,7 @@
       color: #eee;
       font-size: 21px;
       margin-bottom: 8px;
+      line-height: 1.4;
     }
 
     .tool-card p {
@@ -221,6 +243,8 @@
     .tool-card input,
     .tool-card select {
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
       padding: 13px 14px;
       border: 1px solid rgba(203,183,122,0.2);
       border-radius: 12px;
@@ -229,6 +253,7 @@
       font-family: inherit;
       outline: none;
       margin-bottom: 10px;
+      font-size: 14px;
     }
 
     .tool-card input:focus,
@@ -243,6 +268,7 @@
 
     .tool-btn {
       width: 100%;
+      min-height: 46px;
       border: 0;
       border-radius: 12px;
       padding: 13px;
@@ -260,6 +286,8 @@
     }
 
     .result {
+      width: 100%;
+      max-width: 100%;
       margin-top: 15px;
       background: rgba(0,0,0,0.35);
       border: 1px solid rgba(203,183,122,0.15);
@@ -269,6 +297,7 @@
       line-height: 2;
       font-size: 14px;
       color: #ddd;
+      overflow-wrap: anywhere;
       word-break: break-word;
     }
 
@@ -285,6 +314,7 @@
     ========================= */
 
     .command-builder {
+      width: 100%;
       margin-top: 30px;
       background:
         linear-gradient(
@@ -296,6 +326,7 @@
       border-radius: 25px;
       padding: 30px;
       box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+      min-width: 0;
     }
 
     .builder-header {
@@ -303,11 +334,13 @@
       align-items: center;
       gap: 15px;
       margin-bottom: 25px;
+      min-width: 0;
     }
 
     .builder-header-icon {
       width: 58px;
       height: 58px;
+      min-width: 58px;
       border-radius: 17px;
       background: #075985;
       display: flex;
@@ -319,26 +352,32 @@
     .builder-header h3 {
       color: #cbb77a;
       font-size: 25px;
+      line-height: 1.4;
     }
 
     .builder-header p {
       color: #999;
       margin-top: 4px;
+      line-height: 1.7;
+      font-size: 14px;
     }
 
     .builder-grid {
       display: grid;
-      grid-template-columns: 230px 1fr;
+      grid-template-columns: 230px minmax(0, 1fr);
       gap: 20px;
+      min-width: 0;
     }
 
     .categories {
       display: flex;
       flex-direction: column;
       gap: 9px;
+      min-width: 0;
     }
 
     .category-btn {
+      width: 100%;
       border: 1px solid rgba(203,183,122,0.18);
       background: rgba(0,0,0,0.2);
       color: #bbb;
@@ -348,6 +387,7 @@
       text-align: right;
       font-family: inherit;
       transition: 0.2s;
+      min-width: 0;
     }
 
     .category-btn:hover,
@@ -359,13 +399,18 @@
 
     .builder-main {
       min-width: 0;
+      width: 100%;
     }
 
     .command-controls {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 12px;
       margin-bottom: 18px;
+    }
+
+    .command-controls > div {
+      min-width: 0;
     }
 
     .command-controls label {
@@ -377,6 +422,7 @@
 
     .command-controls select {
       width: 100%;
+      min-width: 0;
       padding: 13px;
       border-radius: 12px;
       border: 1px solid rgba(203,183,122,0.2);
@@ -384,11 +430,12 @@
       color: #eee;
       font-family: inherit;
       outline: none;
+      font-size: 14px;
     }
 
     .command-info {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       margin-bottom: 18px;
     }
@@ -398,6 +445,7 @@
       border: 1px solid rgba(203,183,122,0.12);
       border-radius: 12px;
       padding: 14px;
+      min-width: 0;
     }
 
     .info-box strong {
@@ -411,9 +459,16 @@
       color: #ccc;
       font-size: 13px;
       line-height: 1.7;
+      overflow-wrap: anywhere;
     }
 
+    /* =========================
+       TERMINAL
+    ========================= */
+
     .terminal {
+      width: 100%;
+      max-width: 100%;
       background: #090909;
       border: 1px solid #292929;
       border-radius: 16px;
@@ -433,6 +488,7 @@
     .terminal-dot {
       width: 10px;
       height: 10px;
+      min-width: 10px;
       border-radius: 50%;
       background: #555;
     }
@@ -444,6 +500,7 @@
     }
 
     .terminal pre {
+      width: 100%;
       padding: 22px;
       color: #d8d8d8;
       min-height: 180px;
@@ -456,6 +513,10 @@
       font-size: 14px;
     }
 
+    /* =========================
+       BUILDER ACTIONS
+    ========================= */
+
     .builder-actions {
       display: flex;
       gap: 10px;
@@ -464,6 +525,7 @@
 
     .secondary-btn {
       flex: 1;
+      min-height: 45px;
       border: 1px solid rgba(203,183,122,0.3);
       background: rgba(203,183,122,0.08);
       color: #cbb77a;
@@ -472,6 +534,7 @@
       font-family: inherit;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .secondary-btn:hover {
@@ -487,9 +550,12 @@
     }
 
     .port-table-wrapper {
+      width: 100%;
+      max-width: 100%;
       overflow-x: auto;
       margin-top: 15px;
       border-radius: 13px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .port-table {
@@ -534,12 +600,21 @@
     }
 
     /* =========================
-       RESPONSIVE
+       TABLET
     ========================= */
 
     @media (max-width: 950px) {
+
       .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tool-card {
+        min-width: 0;
+      }
+
+      .tool-card[style*="grid-column"] {
+        grid-column: 1 / -1 !important;
       }
 
       .builder-grid {
@@ -548,53 +623,337 @@
 
       .categories {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .builder-main {
+        min-width: 0;
       }
     }
 
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 650px) {
+
       nav {
-        padding: 14px 4%;
+        padding: 12px 15px;
+        gap: 10px;
       }
 
       .brand {
-        font-size: 17px;
+        min-width: 0;
+        gap: 8px;
+        font-size: 16px;
+        white-space: nowrap;
       }
 
       .brand-icon {
-        width: 39px;
-        height: 39px;
-        font-size: 19px;
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 12px;
+        font-size: 18px;
       }
 
       .back-btn {
-        padding: 8px 12px;
-        font-size: 13px;
+        flex-shrink: 0;
+        padding: 8px 11px;
+        font-size: 12px;
+        white-space: nowrap;
       }
 
+      /* HERO */
+
       .hero {
-        padding-top: 40px;
+        width: 100%;
+        padding: 38px 18px 25px;
       }
+
+      .hero-icon {
+        width: 68px;
+        height: 68px;
+        border-radius: 20px;
+        font-size: 32px;
+        margin-bottom: 15px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+        line-height: 1.3;
+      }
+
+      .hero p {
+        font-size: 13px;
+        line-height: 1.9;
+      }
+
+      /* MAIN */
+
+      .tools-container {
+        width: calc(100% - 28px);
+        margin: 20px auto 50px;
+      }
+
+      .section-title {
+        margin: 35px 0 16px;
+        font-size: 20px;
+        gap: 9px;
+      }
+
+      /* TOOL CARDS */
 
       .tools-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
       }
+
+      .tool-card,
+      .tool-card[style*="grid-column"] {
+        grid-column: auto !important;
+        width: 100%;
+        min-width: 0;
+        padding: 20px;
+        border-radius: 19px;
+      }
+
+      .tool-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        font-size: 23px;
+        margin-bottom: 14px;
+      }
+
+      .tool-card h3 {
+        font-size: 19px;
+        line-height: 1.4;
+      }
+
+      .tool-card p {
+        font-size: 13px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+
+      .tool-card input,
+      .tool-card select {
+        width: 100%;
+        min-width: 0;
+        font-size: 14px;
+        padding: 12px;
+      }
+
+      .tool-btn {
+        min-height: 46px;
+        font-size: 14px;
+      }
+
+      /* RESULTS */
+
+      .result {
+        width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        font-size: 13px;
+        padding: 13px;
+        line-height: 1.9;
+      }
+
+      /* PORT TABLE */
+
+      .port-search {
+        width: 100%;
+      }
+
+      .port-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .port-table {
+        min-width: 500px;
+      }
+
+      .port-table th,
+      .port-table td {
+        padding: 11px 10px;
+        font-size: 13px;
+      }
+
+      /* COMMAND BUILDER */
 
       .command-builder {
-        padding: 18px;
+        width: 100%;
+        padding: 17px;
+        margin-top: 20px;
+        border-radius: 20px;
       }
 
-      .command-controls,
+      .builder-header {
+        align-items: flex-start;
+        gap: 11px;
+        margin-bottom: 20px;
+      }
+
+      .builder-header-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 14px;
+        font-size: 22px;
+      }
+
+      .builder-header h3 {
+        font-size: 19px;
+        line-height: 1.4;
+      }
+
+      .builder-header p {
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      /* CATEGORIES */
+
+      .categories {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .category-btn {
+        min-width: 0;
+        min-height: 45px;
+        padding: 10px 8px;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      /* COMMAND CONTROLS */
+
+      .command-controls {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .command-controls select {
+        min-height: 45px;
+        font-size: 14px;
+      }
+
+      /* INFO BOXES */
+
       .command-info {
         grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .info-box {
+        padding: 12px;
+      }
+
+      .info-box strong {
+        font-size: 12px;
+      }
+
+      .info-box span {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      /* TERMINAL */
+
+      .terminal {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 13px;
+      }
+
+      .terminal-top {
+        padding: 9px 12px;
+      }
+
+      .terminal-title {
+        font-size: 11px;
+      }
+
+      .terminal pre {
+        width: 100%;
+        min-height: 150px;
+        padding: 16px;
+        font-size: 12px;
+        line-height: 1.7;
+        overflow-x: auto;
+        white-space: pre;
+      }
+
+      /* BUTTONS */
+
+      .builder-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .secondary-btn {
+        width: 100%;
+        min-height: 45px;
+        font-size: 13px;
+      }
+
+      /* FOOTER */
+
+      footer {
+        padding: 20px 15px;
+        font-size: 12px;
+      }
+    }
+
+    /* =========================
+       VERY SMALL PHONES
+    ========================= */
+
+    @media (max-width: 380px) {
+
+      nav {
+        padding: 10px 11px;
+      }
+
+      .brand {
+        font-size: 14px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        font-size: 16px;
+      }
+
+      .back-btn {
+        padding: 7px 9px;
+        font-size: 11px;
+      }
+
+      .tools-container {
+        width: calc(100% - 20px);
+      }
+
+      .tool-card {
+        padding: 17px;
       }
 
       .categories {
         grid-template-columns: 1fr;
       }
 
-      .builder-actions {
-        flex-direction: column;
+      .hero h1 {
+        font-size: 27px;
       }
     }
   </style>
@@ -607,12 +966,16 @@
   ========================= -->
 
   <nav>
+
     <a href="index.html" class="brand">
       <span class="brand-icon">🌐</span>
       <span>عرّاب الشبكات</span>
     </a>
 
-    <a href="index.html" class="back-btn">← الرئيسية</a>
+    <a href="index.html" class="back-btn">
+      ← الرئيسية
+    </a>
+
   </nav>
 
 
@@ -771,7 +1134,6 @@
         </p>
 
         <select id="cidrPrefix">
-
           <option value="24">/24</option>
           <option value="25">/25</option>
           <option value="26">/26</option>
@@ -779,7 +1141,6 @@
           <option value="28">/28</option>
           <option value="29">/29</option>
           <option value="30">/30</option>
-
         </select>
 
         <button class="tool-btn" onclick="calculateCIDR()">
@@ -795,7 +1156,7 @@
 
       <!-- PORT REFERENCE -->
 
-      <div class="tool-card" style="grid-column: span 2;">
+      <div class="tool-card port-card">
 
         <div class="tool-icon">🔌</div>
 
@@ -855,6 +1216,7 @@
 
         <div>
           <h3>Network Command Builder</h3>
+
           <p>
             اختر الجهاز ونوع الأمر وسيتم تجهيز الأمر لك.
           </p>
@@ -905,7 +1267,6 @@
 
         <div class="builder-main">
 
-
           <div class="command-controls">
 
             <div>
@@ -935,7 +1296,10 @@
                 الأمر
               </label>
 
-              <select id="commandType" onchange="buildCommand()">
+              <select
+                id="commandType"
+                onchange="buildCommand()"
+              >
               </select>
 
             </div>
@@ -1019,19 +1383,17 @@
 
           </div>
 
-
         </div>
 
       </div>
 
     </section>
 
-
   </main>
 
 
   <footer>
-    عرّاب الشبكات © 2026
+    عرّاب الشبكات ©️ 2026
   </footer>
 
 
@@ -1093,12 +1455,16 @@
 
     function calculateSubnet() {
 
-      const ip = document.getElementById("subnetIP").value.trim();
-      const prefix = Number(
-        document.getElementById("subnetPrefix").value
-      );
+      const ip =
+        document.getElementById("subnetIP").value.trim();
 
-      const ipNum = ipToNumber(ip);
+      const prefix =
+        Number(
+          document.getElementById("subnetPrefix").value
+        );
+
+      const ipNum =
+        ipToNumber(ip);
 
       if (ipNum === null) {
 
@@ -1255,7 +1621,6 @@
         return;
       }
 
-
       const network =
         (ipNum & maskNum) >>> 0;
 
@@ -1279,7 +1644,6 @@
         total > 2
           ? broadcast - 1
           : broadcast;
-
 
       result.innerHTML = `
         <div><strong>Network:</strong> ${numberToIp(network)}</div>
@@ -1541,7 +1905,6 @@
 
       ],
 
-
       routing: [
 
         {
@@ -1586,7 +1949,6 @@
 
       ],
 
-
       security: [
 
         {
@@ -1630,7 +1992,6 @@
         }
 
       ],
-
 
       show: [
 
@@ -1769,6 +2130,7 @@
         document.getElementById("vendor").value;
 
       let output = "";
+
 
       /* =========================
          HUAWEI
@@ -2140,7 +2502,9 @@ exit`,
         })
         .catch(() => {
 
-          alert("تعذر النسخ تلقائياً، انسخ الأمر يدوياً.");
+          alert(
+            "تعذر النسخ تلقائياً، انسخ الأمر يدوياً."
+          );
 
         });
 
