@@ -24,6 +24,7 @@ margin: 0;
 font-family: "Tajawal", sans-serif;
 background: #cbb77a;
 color: #111;
+overflow-x: hidden;
 }
 
 a {
@@ -74,6 +75,7 @@ color: #d6c58f;
 }
 
 .logo-sub {
+display: block;
 font-size: 10px;
 color: #aaa;
 letter-spacing: 2px;
@@ -198,7 +200,7 @@ max-width: 1250px;
 margin: 25px auto 50px;
 padding: 0 20px;
 display: grid;
-grid-template-columns: 280px 1fr;
+grid-template-columns: 280px minmax(0, 1fr);
 gap: 25px;
 direction: ltr;
 }
@@ -297,6 +299,452 @@ font-size: 16px;
 .section ol {
 line-height: 2;
 padding-right: 25px;
+}
+
+/* ================= VISUAL LESSON ================= */
+
+.lesson-visual {
+margin: 0 0 38px;
+background:
+linear-gradient(145deg, #0b0b0b, #161616);
+border: 1px solid #333;
+border-radius: 18px;
+overflow: hidden;
+color: white;
+box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+
+.visual-header {
+padding: 18px 22px;
+border-bottom: 1px solid #333;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.visual-title {
+font-size: 20px;
+font-weight: 800;
+color: #d6c58f;
+}
+
+.visual-subtitle {
+color: #aaa;
+font-size: 13px;
+}
+
+.visual-stage {
+padding: 25px;
+min-height: 270px;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+
+.network-diagram {
+width: 100%;
+max-width: 850px;
+min-height: 210px;
+position: relative;
+}
+
+.device-row {
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 18px;
+flex-wrap: wrap;
+}
+
+.device {
+width: 125px;
+min-height: 95px;
+background: #202020;
+border: 1px solid #444;
+border-radius: 14px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 7px;
+position: relative;
+z-index: 2;
+}
+
+.device-icon {
+font-size: 38px;
+}
+
+.device-name {
+font-size: 13px;
+font-weight: 700;
+}
+
+.device-label {
+font-size: 11px;
+color: #999;
+}
+
+.connection {
+height: 5px;
+width: 65px;
+background: #555;
+border-radius: 20px;
+position: relative;
+}
+
+.connection::after {
+content: "";
+position: absolute;
+top: 50%;
+right: -5px;
+width: 10px;
+height: 10px;
+transform: translateY(-50%);
+border-radius: 50%;
+background: #075985;
+box-shadow: 0 0 12px rgba(7,89,133,.8);
+}
+
+.packet {
+position: absolute;
+width: 17px;
+height: 17px;
+border-radius: 5px;
+background: #d6c58f;
+box-shadow: 0 0 15px rgba(214,197,143,.8);
+z-index: 5;
+}
+
+.packet-run {
+animation: packetMove 3.5s ease-in-out infinite;
+}
+
+@keyframes packetMove {
+0% {
+left: 12%;
+opacity: 0;
+}
+
+10% {
+opacity: 1;
+}
+
+45% {
+left: 48%;
+opacity: 1;
+}
+
+90% {
+left: 85%;
+opacity: 1;
+}
+
+100% {
+left: 90%;
+opacity: 0;
+}
+}
+
+.visual-caption {
+text-align: center;
+color: #bbb;
+font-size: 13px;
+margin-top: 18px;
+}
+
+.visual-action {
+display: flex;
+justify-content: center;
+padding: 0 20px 22px;
+}
+
+.visual-btn {
+border: 1px solid #075985;
+background: #075985;
+color: white;
+padding: 10px 18px;
+border-radius: 9px;
+cursor: pointer;
+font-weight: 700;
+transition: .2s;
+}
+
+.visual-btn:hover {
+background: #0b6d9d;
+transform: translateY(-2px);
+}
+
+/* ================= OSI VISUAL ================= */
+
+.osi-visual {
+width: min(100%, 650px);
+margin: auto;
+display: grid;
+gap: 5px;
+}
+
+.osi-layer {
+min-height: 38px;
+border-radius: 7px;
+background: #252525;
+border: 1px solid #444;
+display: grid;
+grid-template-columns: 70px 1fr;
+align-items: center;
+overflow: hidden;
+}
+
+.osi-number {
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #075985;
+font-weight: 800;
+}
+
+.osi-name {
+padding: 7px 12px;
+font-size: 13px;
+}
+
+.osi-name span {
+color: #999;
+margin-right: 8px;
+}
+
+/* ================= IP VISUAL ================= */
+
+.ip-visual {
+width: min(100%, 760px);
+margin: auto;
+}
+
+.ip-address {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+direction: ltr;
+gap: 7px;
+}
+
+.ip-octet {
+min-width: 85px;
+padding: 18px 12px;
+background: #202020;
+border: 1px solid #444;
+border-radius: 10px;
+text-align: center;
+}
+
+.ip-octet strong {
+display: block;
+font-size: 23px;
+color: #d6c58f;
+}
+
+.ip-octet small {
+color: #999;
+}
+
+.ip-arrow {
+text-align: center;
+margin: 20px 0;
+color: #aaa;
+}
+
+.network-host {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+}
+
+.nh-box {
+padding: 15px;
+border-radius: 10px;
+background: #202020;
+border: 1px solid #444;
+text-align: center;
+}
+
+.nh-box strong {
+display: block;
+color: #d6c58f;
+margin-bottom: 5px;
+}
+
+/* ================= VLAN VISUAL ================= */
+
+.vlan-visual {
+width: min(100%, 800px);
+margin: auto;
+}
+
+.vlan-switch {
+width: 180px;
+margin: 0 auto 20px;
+padding: 20px;
+border-radius: 14px;
+background: #202020;
+border: 1px solid #444;
+text-align: center;
+}
+
+.vlan-switch .device-icon {
+display: block;
+}
+
+.vlan-lines {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
+}
+
+.vlan-box {
+padding: 18px 10px;
+border-radius: 10px;
+background: #202020;
+border: 1px solid #444;
+text-align: center;
+}
+
+.vlan-box strong {
+display: block;
+color: #d6c58f;
+margin-bottom: 5px;
+}
+
+.vlan-box span {
+color: #aaa;
+font-size: 12px;
+}
+
+/* ================= ROUTING VISUAL ================= */
+
+.routing-visual {
+width: min(100%, 850px);
+margin: auto;
+}
+
+.route-network {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+direction: ltr;
+}
+
+.route-node {
+min-width: 110px;
+padding: 20px 12px;
+border-radius: 13px;
+background: #202020;
+border: 1px solid #444;
+text-align: center;
+}
+
+.route-node strong {
+display: block;
+color: #d6c58f;
+margin-top: 7px;
+}
+
+.route-line {
+flex: 1;
+min-width: 50px;
+height: 5px;
+background: #555;
+border-radius: 10px;
+position: relative;
+}
+
+.route-line::after {
+content: "➜";
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -55%);
+color: #d6c58f;
+background: #111;
+padding: 0 5px;
+}
+
+/* ================= TROUBLESHOOTING VISUAL ================= */
+
+.troubleshoot-visual {
+width: min(100%, 750px);
+margin: auto;
+}
+
+.troubleshoot-flow {
+display: flex;
+flex-direction: column;
+gap: 7px;
+}
+
+.ts-step {
+display: grid;
+grid-template-columns: 45px 1fr;
+align-items: center;
+background: #202020;
+border: 1px solid #444;
+border-radius: 9px;
+overflow: hidden;
+}
+
+.ts-number {
+height: 100%;
+min-height: 43px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #075985;
+font-weight: 800;
+}
+
+.ts-text {
+padding: 10px 13px;
+}
+
+/* ================= SECURITY VISUAL ================= */
+
+.security-visual {
+width: min(100%, 800px);
+margin: auto;
+}
+
+.security-flow {
+display: grid;
+grid-template-columns: 1fr 160px 1fr;
+align-items: center;
+gap: 15px;
+}
+
+.security-side {
+background: #202020;
+border: 1px solid #444;
+border-radius: 13px;
+padding: 20px;
+text-align: center;
+}
+
+.security-wall {
+background: #075985;
+border-radius: 14px;
+padding: 30px 15px;
+text-align: center;
+font-size: 35px;
+}
+
+.security-side strong {
+display: block;
+color: #d6c58f;
+margin-top: 8px;
 }
 
 /* ================= BOXES ================= */
@@ -516,8 +964,31 @@ position: static;
 
 .sidebar-links {
 display: grid;
-grid-template-columns: repeat(2, 1fr);
+grid-template-columns: repeat(2, minmax(0, 1fr));
 gap: 4px;
+}
+
+.route-network {
+flex-direction: column;
+}
+
+.route-line {
+width: 5px;
+height: 45px;
+flex: none;
+}
+
+.route-line::after {
+content: "↓";
+}
+
+.security-flow {
+grid-template-columns: 1fr;
+}
+
+.security-wall {
+width: 150px;
+margin: auto;
 }
 }
 
@@ -549,6 +1020,77 @@ grid-template-columns: 1fr;
 .nav-prev {
 text-align: center;
 }
+
+.visual-stage {
+padding: 18px 10px;
+min-height: 230px;
+}
+
+.device {
+width: 105px;
+min-height: 85px;
+}
+
+.device-icon {
+font-size: 30px;
+}
+
+.connection {
+width: 35px;
+}
+
+.network-diagram {
+transform: scale(.95);
+}
+
+.network-host {
+grid-template-columns: 1fr;
+}
+
+.vlan-lines {
+grid-template-columns: 1fr;
+}
+
+.ip-octet {
+min-width: 65px;
+padding: 13px 8px;
+}
+
+.ip-octet strong {
+font-size: 19px;
+}
+
+.osi-layer {
+grid-template-columns: 55px 1fr;
+}
+
+.section h2 {
+font-size: 22px;
+}
+
+.section p {
+font-size: 15px;
+}
+
+.code-box {
+font-size: 12px;
+padding: 14px;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+html {
+scroll-behavior: auto;
+}
+
+*,
+*::before,
+*::after {
+animation-duration: .01ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: .01ms !important;
+}
 }
 </style>
 </head>
@@ -572,9 +1114,7 @@ text-align: center;
 <a href="lessons.html">الدروس</a>
 <a href="quiz.html">الاختبارات</a>
 <a href="config.html">مرجع الأوامر</a>
-<a href="network-tools.html">
-                أدوات العرّاب 
-            </a>
+<a href="network-tools.html">أدوات العرّاب</a>
 <a href="terminal.html">CLI</a>
 <a href="profile.html">👤 حسابي</a>
 </div>
@@ -636,6 +1176,8 @@ text-align: center;
 </aside>
 
 <article class="content">
+
+<div id="lessonVisual"></div>
 
 <div id="lessonContent">
 جاري تحميل محتوى الدرس...
@@ -722,6 +1264,7 @@ lessons: [17]
 ===================================================== */
 
 const lessons = [
+
 {
 id: 1,
 path: 1,
@@ -2195,35 +2738,37 @@ IP + MAC + VLAN + Switching + Routing + OSPF + SSH + Security
 </section>
 `
 }
+
 ];
 
 
 /* =====================================================
-المتغيرات
+العناصر
 ===================================================== */
 
 const params = new URLSearchParams(window.location.search);
 
-const lessonId = Number(params.get("id")) || 1;
+const lessonId =
+Number(params.get("id")) || 1;
 
-const currentLesson = lessons.find(
+const currentLesson =
+lessons.find(
 lesson => lesson.id === lessonId
 );
 
-const path = currentLesson
-? paths.find(p => p.id === currentLesson.path)
+const path =
+currentLesson
+? paths.find(
+p => p.id === currentLesson.path
+)
 : null;
 
-const pathLessons = path
+const pathLessons =
+path
 ? path.lessons
 .map(id => lessons.find(lesson => lesson.id === id))
 .filter(Boolean)
 : [];
-
-
-/* =====================================================
-عناصر الصفحة
-===================================================== */
 
 const lessonTitle =
 document.getElementById("lessonTitle");
@@ -2245,6 +2790,9 @@ document.getElementById("pathLabel");
 
 const lessonContent =
 document.getElementById("lessonContent");
+
+const lessonVisual =
+document.getElementById("lessonVisual");
 
 const sidebarLinks =
 document.getElementById("sidebarLinks");
@@ -2269,6 +2817,803 @@ document.getElementById("overallText");
 
 const progressBar =
 document.getElementById("progressBar");
+
+
+/* =====================================================
+الرسومات التوضيحية
+===================================================== */
+
+function getLessonVisual(id) {
+
+const visuals = {
+
+1: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🌐 كيف تتكوّن الشبكة؟</div>
+<div class="visual-subtitle">الأجهزة تتصل ببعضها لتبادل البيانات والخدمات</div>
+</div>
+</div>
+
+<div class="visual-stage">
+<div class="network-diagram">
+
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">PC</div>
+<div class="device-label">Client</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🔵</div>
+<div class="device-name">Switch</div>
+<div class="device-label">LAN</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🖥️</div>
+<div class="device-name">Server</div>
+<div class="device-label">Service</div>
+</div>
+
+</div>
+
+<div class="packet packet-run"></div>
+
+<div class="visual-caption">
+📦 البيانات تنتقل من جهاز إلى جهاز عبر الشبكة
+</div>
+
+</div>
+</div>
+</div>
+`,
+
+2: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔧 أجهزة الشبكة</div>
+<div class="visual-subtitle">لكل جهاز وظيفة مختلفة داخل البنية الشبكية</div>
+</div>
+</div>
+
+<div class="visual-stage">
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">أجهزة المستخدمين</div>
+<div class="device-label">Clients</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🔵</div>
+<div class="device-name">Switch</div>
+<div class="device-label">Layer 2</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🟠</div>
+<div class="device-name">Router</div>
+<div class="device-label">Layer 3</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🛡️</div>
+<div class="device-name">Firewall</div>
+<div class="device-label">Security</div>
+</div>
+
+</div>
+</div>
+</div>
+`,
+
+3: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔢 كيف نفهم عنوان IP؟</div>
+<div class="visual-subtitle">IPv4 يتكوّن من أربعة Octets</div>
+</div>
+</div>
+
+<div class="visual-stage">
+<div class="ip-visual">
+
+<div class="ip-address">
+
+<div class="ip-octet">
+<strong>192</strong>
+<small>Octet 1</small>
+</div>
+
+<div class="ip-octet">
+<strong>168</strong>
+<small>Octet 2</small>
+</div>
+
+<div class="ip-octet">
+<strong>1</strong>
+<small>Octet 3</small>
+</div>
+
+<div class="ip-octet">
+<strong>10</strong>
+<small>Octet 4</small>
+</div>
+
+</div>
+
+<div class="ip-arrow">⬇ Subnet Mask تحدد حدود الشبكة</div>
+
+<div class="network-host">
+
+<div class="nh-box">
+<strong>Network</strong>
+192.168.1.0/24
+</div>
+
+<div class="nh-box">
+<strong>Host</strong>
+192.168.1.10
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+`,
+
+4: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🏷️ MAC Address مع Switch</div>
+<div class="visual-subtitle">السويتش يتعلم MAC ويربطه بالمنفذ</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="network-diagram">
+
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">PC1</div>
+<div class="device-label">AA:BB:CC</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🔵</div>
+<div class="device-name">Switch</div>
+<div class="device-label">MAC Table</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">PC2</div>
+<div class="device-label">11:22:33</div>
+</div>
+
+</div>
+
+<div class="visual-caption">
+السويتش يتعلم Source MAC ويعرف المنفذ المرتبط به.
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+5: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔌 Port & Service</div>
+<div class="visual-subtitle">المنفذ يحدد الخدمة التي نتصل بها</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">Client</div>
+<div class="device-label">Request</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🖥️</div>
+<div class="device-name">Server</div>
+<div class="device-label">Services</div>
+</div>
+
+</div>
+
+<div class="visual-caption">
+HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
+</div>
+
+</div>
+</div>
+`,
+
+6: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🧱 OSI Model</div>
+<div class="visual-subtitle">سبع طبقات تساعدك على فهم الاتصال واستكشاف الأعطال</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="osi-visual">
+
+<div class="osi-layer">
+<div class="osi-number">7</div>
+<div class="osi-name">Application <span>HTTP / DNS / SSH</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">6</div>
+<div class="osi-name">Presentation <span>Data</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">5</div>
+<div class="osi-name">Session <span>Sessions</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">4</div>
+<div class="osi-name">Transport <span>TCP / UDP</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">3</div>
+<div class="osi-name">Network <span>IP / Routing</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">2</div>
+<div class="osi-name">Data Link <span>MAC</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">1</div>
+<div class="osi-name">Physical <span>Cable / Signal</span></div>
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+7: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🌐 TCP/IP</div>
+<div class="visual-subtitle">النموذج العملي الذي تعتمد عليه الشبكات الحديثة</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="osi-visual">
+
+<div class="osi-layer">
+<div class="osi-number">1</div>
+<div class="osi-name">Application <span>HTTP / DNS / SSH</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">2</div>
+<div class="osi-name">Transport <span>TCP / UDP</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">3</div>
+<div class="osi-name">Internet <span>IP / ICMP</span></div>
+</div>
+
+<div class="osi-layer">
+<div class="osi-number">4</div>
+<div class="osi-name">Network Access <span>Ethernet</span></div>
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+8: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔄 Hub vs Switch vs Router</div>
+<div class="visual-subtitle">كيف يختلف أسلوب التعامل مع البيانات؟</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">📡</div>
+<div class="device-name">Hub</div>
+<div class="device-label">Layer 1</div>
+</div>
+
+<div class="device">
+<div class="device-icon">🔵</div>
+<div class="device-name">Switch</div>
+<div class="device-label">MAC / Layer 2</div>
+</div>
+
+<div class="device">
+<div class="device-icon">🟠</div>
+<div class="device-name">Router</div>
+<div class="device-label">IP / Layer 3</div>
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+9: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🧮 Subnetting</div>
+<div class="visual-subtitle">تقسيم شبكة كبيرة إلى شبكات أصغر</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="network-diagram">
+
+<div class="device">
+<div class="device-icon">🌐</div>
+<div class="device-name">192.168.1.0/24</div>
+<div class="device-label">Network</div>
+</div>
+
+<div style="text-align:center;color:#d6c58f;font-size:30px;margin:12px">
+↓ تقسيم ↓
+</div>
+
+<div class="vlan-lines">
+
+<div class="vlan-box">
+<strong>Subnet 1</strong>
+<span>/26</span>
+</div>
+
+<div class="vlan-box">
+<strong>Subnet 2</strong>
+<span>/26</span>
+</div>
+
+<div class="vlan-box">
+<strong>Subnet 3</strong>
+<span>/26</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+10: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔵 Switching</div>
+<div class="visual-subtitle">السويتش يتعلم MAC ثم يقرر أين يرسل Frame</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="network-diagram">
+
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">PC1</div>
+<div class="device-label">MAC A</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🔵</div>
+<div class="device-name">Switch</div>
+<div class="device-label">MAC Table</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">PC2</div>
+<div class="device-label">MAC B</div>
+</div>
+
+</div>
+
+<div class="packet packet-run"></div>
+
+</div>
+
+</div>
+</div>
+`,
+
+11: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🏷️ VLAN & Trunk</div>
+<div class="visual-subtitle">فصل الشبكة منطقيًا وتمرير أكثر من VLAN</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="vlan-visual">
+
+<div class="vlan-switch">
+<div class="device-icon">🔵</div>
+<strong>Switch</strong>
+</div>
+
+<div class="vlan-lines">
+
+<div class="vlan-box">
+<strong>VLAN 10</strong>
+<span>Users 👥</span>
+</div>
+
+<div class="vlan-box">
+<strong>VLAN 20</strong>
+<span>Cameras 📷</span>
+</div>
+
+<div class="vlan-box">
+<strong>VLAN 30</strong>
+<span>Servers 🖥️</span>
+</div>
+
+</div>
+
+<div class="visual-caption">
+Trunk يمكنه حمل أكثر من VLAN بين الأجهزة الداعمة له.
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+12: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🛣️ Routing</div>
+<div class="visual-subtitle">الراوتر يختار المسار المناسب للوصول إلى الشبكة المطلوبة</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="routing-visual">
+
+<div class="route-network">
+
+<div class="route-node">
+<div>💻</div>
+<strong>Network A</strong>
+</div>
+
+<div class="route-line"></div>
+
+<div class="route-node">
+<div>🟠</div>
+<strong>Router</strong>
+</div>
+
+<div class="route-line"></div>
+
+<div class="route-node">
+<div>🖥️</div>
+<strong>Network B</strong>
+</div>
+
+</div>
+
+<div class="visual-caption">
+Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+13: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">📍 Static Route</div>
+<div class="visual-subtitle">مسار يحدده مسؤول الشبكة يدويًا</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="routing-visual">
+
+<div class="route-network">
+
+<div class="route-node">
+<div>🌐</div>
+<strong>192.168.1.0</strong>
+</div>
+
+<div class="route-line"></div>
+
+<div class="route-node">
+<div>🟠</div>
+<strong>10.0.0.1</strong>
+</div>
+
+<div class="route-line"></div>
+
+<div class="route-node">
+<div>🌐</div>
+<strong>192.168.2.0</strong>
+</div>
+
+</div>
+
+<div class="visual-caption">
+المسار يتم تحديده يدويًا باستخدام Destination + Next Hop.
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+14: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔄 OSPF Neighbors</div>
+<div class="visual-subtitle">الراوترات تتبادل معلومات Routing عبر OSPF</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="route-network">
+
+<div class="route-node">
+<div>🟠</div>
+<strong>R1</strong>
+<span style="color:#54d66a">Neighbor</span>
+</div>
+
+<div class="route-line"></div>
+
+<div class="route-node">
+<div>🟠</div>
+<strong>R2</strong>
+<span style="color:#54d66a">Neighbor</span>
+</div>
+
+<div class="route-line"></div>
+
+<div class="route-node">
+<div>🟠</div>
+<strong>R3</strong>
+<span style="color:#54d66a">Neighbor</span>
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+15: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🔐 SSH</div>
+<div class="visual-subtitle">إدارة جهاز الشبكة عن بُعد عبر قناة مشفرة</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="device-row">
+
+<div class="device">
+<div class="device-icon">💻</div>
+<div class="device-name">Admin PC</div>
+<div class="device-label">SSH Client</div>
+</div>
+
+<div class="connection"></div>
+
+<div class="device">
+<div class="device-icon">🔵</div>
+<div class="device-name">Switch</div>
+<div class="device-label">SSH Server</div>
+</div>
+
+</div>
+
+<div class="visual-caption">
+Admin → SSH → Network Device
+</div>
+
+</div>
+</div>
+`,
+
+16: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🛡️ Network Security</div>
+<div class="visual-subtitle">السياسات الأمنية تحدد ما يسمح له بالمرور وما يتم منعه</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="security-flow">
+
+<div class="security-side">
+<div style="font-size:35px">🌐</div>
+<strong>Traffic</strong>
+<span style="color:#999">Incoming</span>
+</div>
+
+<div class="security-wall">
+🛡️
+<div style="font-size:12px;margin-top:8px">Firewall / ACL</div>
+</div>
+
+<div class="security-side">
+<div style="font-size:35px">🖥️</div>
+<strong>Protected Network</strong>
+<span style="color:#999">Allowed Traffic</span>
+</div>
+
+</div>
+
+</div>
+</div>
+`,
+
+17: `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🛠️ Troubleshooting</div>
+<div class="visual-subtitle">ابدأ من Layer 1 ثم اصعد تدريجيًا</div>
+</div>
+</div>
+
+<div class="visual-stage">
+
+<div class="troubleshoot-visual">
+
+<div class="troubleshoot-flow">
+
+<div class="ts-step">
+<div class="ts-number">1</div>
+<div class="ts-text">🔌 Physical — الكابل والطاقة والمنفذ</div>
+</div>
+
+<div class="ts-step">
+<div class="ts-number">2</div>
+<div class="ts-text">🔵 Layer 2 — VLAN وMAC</div>
+</div>
+
+<div class="ts-step">
+<div class="ts-number">3</div>
+<div class="ts-text">🌐 Layer 3 — IP وRouting</div>
+</div>
+
+<div class="ts-step">
+<div class="ts-number">4</div>
+<div class="ts-text">🔌 Layer 4 — TCP / UDP / Ports</div>
+</div>
+
+<div class="ts-step">
+<div class="ts-number">5</div>
+<div class="ts-text">🖥️ Application — الخدمة والتطبيق</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+`
+
+};
+
+return visuals[id] || `
+<div class="lesson-visual">
+<div class="visual-header">
+<div>
+<div class="visual-title">🌐 عرّاب الشبكات</div>
+<div class="visual-subtitle">رسم توضيحي للدرس</div>
+</div>
+</div>
+
+<div class="visual-stage">
+<div class="device">
+<div class="device-icon">🌐</div>
+<div class="device-name">Network</div>
+<div class="device-label">Learning</div>
+</div>
+</div>
+</div>
+`;
+
+}
 
 
 /* =====================================================
@@ -2329,6 +3674,9 @@ lesson => lesson.id === currentLesson.id
 lessonCount.textContent =
 `الدرس ${index + 1} من ${pathLessons.length}`;
 
+lessonVisual.innerHTML =
+getLessonVisual(currentLesson.id);
+
 lessonContent.innerHTML =
 currentLesson.content;
 
@@ -2337,6 +3685,34 @@ renderSidebar();
 renderNavigation();
 
 loadProgress();
+
+}
+
+
+/* =====================================================
+زر الحركة
+===================================================== */
+
+function restartVisualAnimation() {
+
+const packets =
+document.querySelectorAll(
+".packet"
+);
+
+packets.forEach(packet => {
+
+packet.classList.remove(
+"packet-run"
+);
+
+void packet.offsetWidth;
+
+packet.classList.add(
+"packet-run"
+);
+
+});
 
 }
 
@@ -2412,14 +3788,18 @@ previousLink.innerHTML = `
 <strong>${previous.title}</strong>
 `;
 
-lessonNavigation.appendChild(previousLink);
+lessonNavigation.appendChild(
+previousLink
+);
 
 } else {
 
 const empty =
 document.createElement("div");
 
-lessonNavigation.appendChild(empty);
+lessonNavigation.appendChild(
+empty
+);
 
 }
 
@@ -2439,7 +3819,9 @@ nextLink.innerHTML = `
 <strong>${next.title}</strong>
 `;
 
-lessonNavigation.appendChild(nextLink);
+lessonNavigation.appendChild(
+nextLink
+);
 
 }
 
@@ -2456,13 +3838,6 @@ let completedLessons = [];
 /* =====================================================
 التحقق من المستخدم
 ===================================================== */
-
-/*
-التعديل هنا:
-نستخدم getSession() بدل getUser()
-حتى نعتمد على جلسة تسجيل الدخول الموجودة
-في المتصفح.
-*/
 
 async function getCurrentUser() {
 
@@ -2612,7 +3987,9 @@ function updateProgress(completed) {
 const pathCompleted =
 pathLessons.filter(
 lesson =>
-completed.includes(lesson.id)
+completed.includes(
+lesson.id
+)
 ).length;
 
 const pathPercent =
@@ -2625,13 +4002,16 @@ pathLessons.length
 const overallPercent =
 lessons.length
 ? Math.round(
-(completed.filter(
+(
+completed.filter(
 id =>
 lessons.some(
 lesson =>
 lesson.id === id
 )
-).length / lessons.length) * 100
+).length /
+lessons.length
+) * 100
 )
 : 0;
 
@@ -2692,7 +4072,9 @@ currentLesson.id
 ])
 ]
 .filter(Number.isFinite)
-.sort((a, b) => a - b);
+.sort(
+(a, b) => a - b
+);
 
 const {
 error
