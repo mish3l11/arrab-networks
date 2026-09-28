@@ -2,6 +2,13 @@
 عرّاب الشبكات - CLI Terminal
 Cisco IOS + Huawei VRP
 Full / Abbreviated Commands
+
+ملاحظات:
+- الأجهزة تبدأ بإعدادات نظيفة.
+- show running-config يعرض الإعدادات التي أدخلها المستخدم فقط.
+- save يحفظ Running Config كـ Startup Config.
+- reload يعيد آخر Startup Config محفوظ.
+- Reset يعيد الجهاز بالكامل إلى Factory Default.
 ========================================================= */
 
 const terminalOutput = document.getElementById("terminalOutput");
@@ -38,38 +45,34 @@ let historyIndex = -1;
 let terminalMonitor = false;
 let terminalLength = 24;
 
-
 /* =========================================================
-إعدادات الأجهزة
+إنشاء إعدادات الأجهزة
 ========================================================= */
 
-const devices = {
+function createInitialDevices() {
+
+return {
+
+/* =====================================================
+CISCO
+===================================================== */
 
 cisco: {
+
 model: "Cisco IOS",
 hostname: "Switch",
 version: "15.2(7)E",
 prompt: "Switch",
 
+/* يبدأ فقط بـ VLAN 1 */
 vlans: {
 1: {
 name: "default",
 status: "active"
-},
-10: {
-name: "USERS",
-status: "active"
-},
-20: {
-name: "SERVERS",
-status: "active"
-},
-30: {
-name: "CAMERAS",
-status: "active"
 }
 },
 
+/* المنافذ موجودة فعلياً لكن بدون إعدادات مسبقة */
 interfaces: {
 
 "GigabitEthernet0/1": {
@@ -78,8 +81,8 @@ mask: "",
 status: "up",
 protocol: "up",
 mode: "access",
-vlan: 10,
-description: "User Port",
+vlan: 1,
+description: "",
 shutdown: false
 },
 
@@ -89,8 +92,8 @@ mask: "",
 status: "up",
 protocol: "up",
 mode: "access",
-vlan: 20,
-description: "Server Port",
+vlan: 1,
+description: "",
 shutdown: false
 },
 
@@ -99,10 +102,9 @@ ip: "",
 mask: "",
 status: "up",
 protocol: "up",
-mode: "trunk",
+mode: "access",
 vlan: 1,
-allowedVlans: "10,20,30",
-description: "Uplink",
+description: "",
 shutdown: false
 },
 
@@ -112,28 +114,14 @@ mask: "",
 status: "up",
 protocol: "up",
 mode: "access",
-vlan: 30,
-description: "Camera Port",
+vlan: 1,
+description: "",
 shutdown: false
 }
 },
 
-svi: {
-
-Vlan10: {
-ip: "192.168.10.1",
-mask: "255.255.255.0",
-status: "up",
-protocol: "up"
-},
-
-Vlan20: {
-ip: "192.168.20.1",
-mask: "255.255.255.0",
-status: "up",
-protocol: "up"
-}
-},
+/* SVI تبدأ فارغة */
+svi: {},
 
 users: {},
 
@@ -156,7 +144,9 @@ execTimeout: "10 0"
 },
 
 passwordEncryption: false,
+
 defaultGateway: "",
+
 staticRoutes: [],
 
 ospf: {
@@ -166,8 +156,11 @@ networks: []
 },
 
 dhcpPools: {},
+
 acls: {},
+
 etherChannels: {},
+
 portSecurity: {},
 
 stp: {
@@ -177,6 +170,10 @@ bpduguard: []
 }
 },
 
+/* =====================================================
+HUAWEI
+===================================================== */
+
 huawei: {
 
 model: "Huawei VRP",
@@ -184,25 +181,10 @@ hostname: "Huawei",
 version: "V200R021C00",
 prompt: "Huawei",
 
+/* يبدأ فقط بـ VLAN 1 */
 vlans: {
-
 1: {
 name: "default",
-status: "active"
-},
-
-10: {
-name: "USERS",
-status: "active"
-},
-
-20: {
-name: "SERVERS",
-status: "active"
-},
-
-30: {
-name: "CAMERAS",
 status: "active"
 }
 },
@@ -215,8 +197,8 @@ mask: "",
 status: "up",
 protocol: "up",
 mode: "access",
-vlan: 10,
-description: "User Port",
+vlan: 1,
+description: "",
 shutdown: false
 },
 
@@ -226,8 +208,8 @@ mask: "",
 status: "up",
 protocol: "up",
 mode: "access",
-vlan: 20,
-description: "Server Port",
+vlan: 1,
+description: "",
 shutdown: false
 },
 
@@ -236,10 +218,9 @@ ip: "",
 mask: "",
 status: "up",
 protocol: "up",
-mode: "trunk",
+mode: "access",
 vlan: 1,
-allowedVlans: "10 20 30",
-description: "Uplink",
+description: "",
 shutdown: false
 },
 
@@ -249,28 +230,14 @@ mask: "",
 status: "up",
 protocol: "up",
 mode: "access",
-vlan: 30,
-description: "Camera Port",
+vlan: 1,
+description: "",
 shutdown: false
 }
 },
 
-svi: {
-
-Vlanif10: {
-ip: "192.168.10.1",
-mask: "255.255.255.0",
-status: "up",
-protocol: "up"
-},
-
-Vlanif20: {
-ip: "192.168.20.1",
-mask: "255.255.255.0",
-status: "up",
-protocol: "up"
-}
-},
+/* Vlanif تبدأ فارغة */
+svi: {},
 
 users: {},
 
@@ -300,8 +267,11 @@ networks: []
 },
 
 dhcpPools: {},
+
 acls: {},
+
 etherChannels: {},
+
 portSecurity: {},
 
 stp: {
@@ -311,6 +281,30 @@ bpduProtection: false
 }
 }
 };
+}
+
+/* =========================================================
+إعدادات الأجهزة الحالية
+========================================================= */
+
+const devices = createInitialDevices();
+
+/* =========================================================
+Startup Config
+========================================================= */
+
+const startupConfigs = {
+cisco: null,
+huawei: null
+};
+
+function deepClone(object) {
+return JSON.parse(JSON.stringify(object));
+}
+
+/* =========================================================
+الجهاز الحالي
+========================================================= */
 
 const device = () => devices[currentDevice];
 
@@ -357,6 +351,7 @@ return normalize(value).toLowerCase();
 }
 
 function tokens(command) {
+
 return lower(command)
 .split(" ")
 .filter(Boolean);
@@ -394,69 +389,70 @@ const d = device();
 if (currentDevice === "cisco") {
 
 if (currentMode === "user") {
+
 terminalPrompt.textContent =
 `${d.hostname}>`;
-}
 
-else if (currentMode === "privileged") {
+} else if (currentMode === "privileged") {
+
 terminalPrompt.textContent =
 `${d.hostname}#`;
-}
 
-else if (currentMode === "config") {
+} else if (currentMode === "config") {
+
 terminalPrompt.textContent =
 `${d.hostname}(config)#`;
-}
 
-else if (currentMode === "interface") {
+} else if (currentMode === "interface") {
+
 terminalPrompt.textContent =
 `${d.hostname}(config-if)#`;
-}
 
-else if (currentMode === "vlan") {
+} else if (currentMode === "vlan") {
+
 terminalPrompt.textContent =
 `${d.hostname}(config-vlan)#`;
-}
 
-else if (currentMode === "line") {
+} else if (currentMode === "line") {
+
 terminalPrompt.textContent =
 `${d.hostname}(config-line)#`;
-}
 
-else {
+} else {
+
 terminalPrompt.textContent =
 `${d.hostname}>`;
 }
-}
 
-else {
+} else {
 
 if (currentMode === "user") {
+
 terminalPrompt.textContent =
 `<${d.hostname}>`;
-}
 
-else if (currentMode === "config") {
+} else if (currentMode === "config") {
+
 terminalPrompt.textContent =
 `[${d.hostname}]`;
-}
 
-else if (currentMode === "interface") {
+} else if (currentMode === "interface") {
+
 terminalPrompt.textContent =
 `[${d.hostname}-GigabitEthernet]`;
-}
 
-else if (currentMode === "vlan") {
+} else if (currentMode === "vlan") {
+
 terminalPrompt.textContent =
 `[${d.hostname}-vlan]`;
-}
 
-else if (currentMode === "line") {
+} else if (currentMode === "line") {
+
 terminalPrompt.textContent =
 `[${d.hostname}-line]`;
-}
 
-else {
+} else {
+
 terminalPrompt.textContent =
 `<${d.hostname}>`;
 }
@@ -495,7 +491,6 @@ clearTerminal();
 
 updatePrompt();
 
-
 print(`Welcome to ${devices[type].model}`);
 print("");
 print(`Device: ${devices[type].hostname}`);
@@ -503,10 +498,11 @@ print(`Version: ${devices[type].version}`);
 print("");
 
 if (type === "cisco") {
-print("Press ENTER to get started.");
-}
 
-else {
+print("Press ENTER to get started.");
+
+} else {
+
 print("Info: The current terminal is ready.");
 }
 
@@ -514,10 +510,114 @@ print("");
 }
 
 /* =========================================================
-Reset
+Reset - Factory Default
 ========================================================= */
 
 function resetDevice() {
+
+const type = currentDevice;
+
+const freshDevices =
+createInitialDevices();
+
+devices[type] =
+deepClone(freshDevices[type]);
+
+startupConfigs[type] = null;
+
+currentMode = "user";
+currentInterface = null;
+currentLine = null;
+currentVlan = null;
+
+commandHistory = [];
+historyIndex = -1;
+
+terminalMonitor = false;
+terminalLength = 24;
+
+clearTerminal();
+
+updatePrompt();
+
+if (terminalModel) {
+terminalModel.textContent =
+devices[type].model;
+}
+
+if (deviceName) {
+deviceName.textContent =
+devices[type].hostname;
+}
+
+print(`Resetting ${devices[type].model}...`);
+print("");
+print("Erasing configuration...");
+print("Restoring factory defaults...");
+print("");
+print("Terminal reset successfully.");
+print("");
+}
+
+/* =========================================================
+Save / Reload
+========================================================= */
+
+function saveConfiguration() {
+
+startupConfigs[currentDevice] =
+deepClone(device());
+
+print("");
+
+if (currentDevice === "cisco") {
+
+print("Destination filename [startup-config]?");
+print("Building configuration...");
+print("[OK]");
+
+} else {
+
+print("Save the configuration to the next startup configuration file.");
+print("Are you sure to continue? [Y/N]: Y");
+print("Info: Save the configuration successfully.");
+}
+
+print("");
+}
+
+function reloadConfiguration() {
+
+print("");
+print("Reload command accepted.");
+
+if (!startupConfigs[currentDevice]) {
+
+print(
+"No startup configuration found."
+);
+
+print(
+"Device will boot with factory defaults."
+);
+
+const fresh =
+createInitialDevices();
+
+devices[currentDevice] =
+deepClone(fresh[currentDevice]);
+
+} else {
+
+print(
+"Loading startup configuration..."
+);
+
+devices[currentDevice] =
+deepClone(
+startupConfigs[currentDevice]
+);
+}
 
 currentMode = "user";
 currentInterface = null;
@@ -531,9 +631,20 @@ clearTerminal();
 
 updatePrompt();
 
-print(`Resetting ${device().model}...`);
+if (deviceName) {
+deviceName.textContent =
+device().hostname;
+}
+
+if (terminalModel) {
+terminalModel.textContent =
+device().model;
+}
+
+print(`Welcome to ${device().model}`);
 print("");
-print("Terminal reset successfully.");
+print(`Device: ${device().hostname}`);
+print(`Version: ${device().version}`);
 print("");
 }
 
@@ -543,7 +654,8 @@ IPv4
 
 function isValidIPv4(ip) {
 
-const parts = String(ip).split(".");
+const parts =
+String(ip).split(".");
 
 if (parts.length !== 4) return false;
 
@@ -573,20 +685,25 @@ const mask = [];
 
 for (let i = 0; i < 4; i++) {
 
-const remaining = p - i * 8;
+const remaining =
+p - i * 8;
 
 if (remaining >= 8) {
+
 mask.push(255);
-}
 
-else if (remaining <= 0) {
+} else if (remaining <= 0) {
+
 mask.push(0);
-}
 
-else {
+} else {
+
 mask.push(
 256 -
-Math.pow(2, 8 - remaining)
+Math.pow(
+2,
+8 - remaining
+)
 );
 }
 }
@@ -602,7 +719,8 @@ function normalizeInterfaceName(name) {
 
 if (!name) return null;
 
-let value = name.toLowerCase();
+let value =
+name.toLowerCase();
 
 value = value
 .replace(/^gi/, "gigabitethernet")
@@ -617,12 +735,26 @@ if (
 ) {
 return capitalizeInterface(value);
 }
+
+/* Cisco SVI */
+if (
+/^vlan\d+$/.test(value)
+) {
+return capitalizeInterface(value);
+}
 }
 
 if (currentDevice === "huawei") {
 
 if (
 /^gigabitethernet\d+\/\d+\/\d+$/.test(value)
+) {
+return capitalizeInterface(value);
+}
+
+/* Huawei Vlanif */
+if (
+/^vlanif\d+$/.test(value)
 ) {
 return capitalizeInterface(value);
 }
@@ -657,14 +789,16 @@ const wanted =
 normalized.toLowerCase();
 
 const match =
-Object.keys(interfaces).find(key =>
+Object.keys(interfaces).find(
+key =>
 key.toLowerCase() === wanted
 );
 
 if (match) return match;
 
 const partial =
-Object.keys(interfaces).find(key =>
+Object.keys(interfaces).find(
+key =>
 key.toLowerCase().startsWith(wanted)
 );
 
@@ -675,7 +809,27 @@ function getCurrentInterface() {
 
 if (!currentInterface) return null;
 
-return device().interfaces[currentInterface] || null;
+const d = device();
+
+if (d.interfaces[currentInterface]) {
+return d.interfaces[currentInterface];
+}
+
+if (d.svi[currentInterface]) {
+return d.svi[currentInterface];
+}
+
+return null;
+}
+
+function isSviInterface(name) {
+
+if (!name) return false;
+
+return (
+/^Vlan\d+$/i.test(name) ||
+/^Vlanif\d+$/i.test(name)
+);
 }
 
 /* =========================================================
@@ -689,6 +843,8 @@ let cmd = normalize(command);
 if (!cmd) return "";
 
 let p = tokens(cmd);
+
+/* ENABLE */
 
 if (
 p.length === 1 &&
@@ -704,6 +860,8 @@ p.length === 1 &&
 return "enable";
 }
 
+/* DISABLE */
+
 if (
 p.length === 1 &&
 [
@@ -715,6 +873,8 @@ p.length === 1 &&
 ) {
 return "disable";
 }
+
+/* CONFIGURE */
 
 if (
 p[0] === "conf" ||
@@ -731,7 +891,8 @@ p[1] &&
 "term",
 "termin",
 "terminal"
-].some(x =>
+].some(
+x =>
 p[1] === x ||
 p[1].startsWith(x)
 )
@@ -743,7 +904,8 @@ return "configure terminal";
 /* SHOW */
 
 if (
-["s", "sh", "sho", "show"].includes(p[0])
+["s", "sh", "sho", "show"]
+.includes(p[0])
 ) {
 
 if (!p[1]) return "show";
@@ -870,8 +1032,13 @@ return "show port-security";
 /* TERMINAL */
 
 if (
-["t", "te", "ter", "term", "terminal"]
-.includes(p[0])
+[
+"t",
+"te",
+"ter",
+"term",
+"terminal"
+].includes(p[0])
 ) {
 
 if (
@@ -883,7 +1050,8 @@ p[1] &&
 "moni",
 "monit",
 "monitor"
-].some(x =>
+].some(
+x =>
 p[1].startsWith(x)
 )
 ) {
@@ -925,6 +1093,19 @@ return "copy running-config startup-config";
 }
 }
 
+/* COPY */
+
+if (
+p[0] === "copy" &&
+p[1] === "running-config" &&
+(
+p[2] === "startup-config" ||
+p[2] === "start"
+)
+) {
+return "copy running-config startup-config";
+}
+
 /* INTERFACE */
 
 if (
@@ -947,7 +1128,8 @@ return `interface ${p.slice(1).join(" ")}`;
 /* VLAN */
 
 if (
-["v", "vl", "vlan"].includes(p[0]) &&
+["v", "vl", "vlan"]
+.includes(p[0]) &&
 p[1]
 ) {
 return `vlan ${p[1]}`;
@@ -1009,7 +1191,12 @@ return "shutdown";
 /* EXIT */
 
 if (
-["x", "ex", "exi", "exit"].includes(p[0])
+[
+"x",
+"ex",
+"exi",
+"exit"
+].includes(p[0])
 ) {
 return "exit";
 }
@@ -1026,7 +1213,8 @@ return "end";
 /* PING */
 
 if (
-["p", "pi", "pin", "ping"].includes(p[0])
+["p", "pi", "pin", "ping"]
+.includes(p[0])
 ) {
 return `ping ${p.slice(1).join(" ")}`;
 }
@@ -1045,7 +1233,12 @@ if (
 
 if (
 p[1] &&
-["m", "mo", "mod", "mode"].includes(p[1])
+[
+"m",
+"mo",
+"mod",
+"mode"
+].includes(p[1])
 ) {
 
 if (
@@ -1154,6 +1347,19 @@ if (!cmd) return "";
 
 let p = tokens(cmd);
 
+/* SYSNAME
+يجب فحصه قبل system-view حتى لا يتحول sysname إلى sys */
+if (
+[
+"sysn",
+"sysna",
+"sysnam",
+"sysname"
+].includes(p[0])
+) {
+return `sysname ${p.slice(1).join(" ")}`;
+}
+
 /* SYSTEM VIEW */
 
 if (
@@ -1162,6 +1368,7 @@ if (
 "sy",
 "sys",
 "syst",
+"syste",
 "system",
 "system-view"
 ].includes(p[0])
@@ -1253,7 +1460,12 @@ return "display dhcp";
 /* QUIT */
 
 if (
-["q", "qu", "qui", "quit"].includes(p[0])
+[
+"q",
+"qu",
+"qui",
+"quit"
+].includes(p[0])
 ) {
 return "quit";
 }
@@ -1261,7 +1473,13 @@ return "quit";
 /* RETURN */
 
 if (
-["r", "re", "ret", "retu", "return"].includes(p[0])
+[
+"r",
+"re",
+"ret",
+"retu",
+"return"
+].includes(p[0])
 ) {
 return "return";
 }
@@ -1284,25 +1502,15 @@ return `interface ${p.slice(1).join(" ")}`;
 /* VLAN */
 
 if (
-["v", "vl", "vla", "vlan"].includes(p[0]) &&
+[
+"v",
+"vl",
+"vla",
+"vlan"
+].includes(p[0]) &&
 p[1]
 ) {
 return `vlan ${p[1]}`;
-}
-
-/* SYSNAME */
-
-if (
-[
-"s",
-"sy",
-"sys",
-"sysn",
-"sysna",
-"sysname"
-].includes(p[0])
-) {
-return `sysname ${p.slice(1).join(" ")}`;
 }
 
 /* UNDO SHUTDOWN */
@@ -1318,7 +1526,12 @@ return "undo shutdown";
 /* SHUTDOWN */
 
 if (
-["sh", "shu", "shut", "shutdown"].includes(p[0])
+[
+"sh",
+"shu",
+"shut",
+"shutdown"
+].includes(p[0])
 ) {
 return "shutdown";
 }
@@ -1340,7 +1553,12 @@ return `description ${p.slice(1).join(" ")}`;
 /* PING */
 
 if (
-["p", "pi", "pin", "ping"].includes(p[0])
+[
+"p",
+"pi",
+"pin",
+"ping"
+].includes(p[0])
 ) {
 return `ping ${p.slice(1).join(" ")}`;
 }
@@ -1348,7 +1566,11 @@ return `ping ${p.slice(1).join(" ")}`;
 /* PORT */
 
 if (
-["po", "por", "port"].includes(p[0])
+[
+"po",
+"por",
+"port"
+].includes(p[0])
 ) {
 
 if (
@@ -1442,15 +1664,18 @@ print("");
 print("VLAN Name Status Ports");
 print("---- -------------------------------- --------- ----------------");
 
-Object.entries(d.vlans).forEach(([id, vlan]) => {
+Object.entries(d.vlans).forEach(
+([id, vlan]) => {
 
 const ports =
 Object.entries(d.interfaces)
-.filter(([, intf]) =>
+.filter(
+([, intf]) =>
 intf.mode === "access" &&
 String(intf.vlan) === String(id)
 )
-.map(([name]) =>
+.map(
+([name]) =>
 name.replace(
 "GigabitEthernet",
 "Gi"
@@ -1463,7 +1688,8 @@ print(
 `${vlan.status.padEnd(9)} ` +
 `${ports.join(", ")}`
 );
-});
+}
+);
 
 print("");
 }
@@ -1474,7 +1700,8 @@ const d = device();
 
 print("");
 
-Object.entries(d.interfaces).forEach(
+Object.entries(d.interfaces)
+.forEach(
 ([name, intf]) => {
 
 print(
@@ -1514,15 +1741,26 @@ print("");
 print("Port Name Status Vlan");
 
 Object.entries(device().interfaces)
-.forEach(([name, intf]) => {
+.forEach(
+([name, intf]) => {
 
 print(
-`${name.replace("GigabitEthernet", "Gi").padEnd(9)} ` +
+`${name.replace(
+"GigabitEthernet",
+"Gi"
+).padEnd(9)} ` +
 `${(intf.description || "").padEnd(20)} ` +
-`${(intf.shutdown ? "disabled" : "connected").padEnd(12)} ` +
-`${intf.mode === "trunk" ? "trunk" : intf.vlan}`
+`${(
+intf.shutdown
+? "disabled"
+: "connected"
+).padEnd(12)} ` +
+`${intf.mode === "trunk"
+? "trunk"
+: intf.vlan}`
 );
-});
+}
+);
 
 print("");
 }
@@ -1533,15 +1771,25 @@ print("");
 print("Interface Status Protocol Description");
 
 Object.entries(device().interfaces)
-.forEach(([name, intf]) => {
+.forEach(
+([name, intf]) => {
 
 print(
 `${name.padEnd(22)} ` +
-`${(intf.shutdown ? "admin down" : "up").padEnd(14)} ` +
-`${(intf.shutdown ? "down" : "up").padEnd(9)} ` +
+`${(
+intf.shutdown
+? "admin down"
+: "up"
+).padEnd(14)} ` +
+`${(
+intf.shutdown
+? "down"
+: "up"
+).padEnd(9)} ` +
 `${intf.description || ""}`
 );
-});
+}
+);
 
 print("");
 }
@@ -1552,12 +1800,16 @@ print("");
 print("Interface IP-Address OK? Method Status Protocol");
 
 Object.entries(device().interfaces)
-.forEach(([name, intf]) => {
+.forEach(
+([name, intf]) => {
 
 print(
 `${name.padEnd(22)} ` +
-`${(intf.ip || "unassigned").padEnd(15)} ` +
-`YES DHCP ${
+`${(
+intf.ip ||
+"unassigned"
+).padEnd(15)} ` +
+`YES manual ${
 intf.shutdown
 ? "administratively down"
 : intf.status.padEnd(8)
@@ -1567,20 +1819,30 @@ intf.shutdown
 : intf.protocol
 }`
 );
-});
+}
+);
 
 Object.entries(device().svi)
-.forEach(([name, svi]) => {
+.forEach(
+([name, svi]) => {
 
 print(
 `${name.padEnd(22)} ` +
 `${svi.ip.padEnd(15)} ` +
-`YES manual ${svi.status.padEnd(8)} ${svi.protocol}`
+`YES manual ${
+svi.status.padEnd(8)
+} ${svi.protocol}`
 );
-});
+}
+);
 
 print("");
 }
+
+/* =========================================================
+Cisco Running Config
+يعرض الإعدادات الفعلية فقط
+========================================================= */
 
 function showCiscoRunningConfig() {
 
@@ -1610,14 +1872,19 @@ print("crypto key generate rsa");
 }
 
 if (d.ssh.enabled) {
-print("ip ssh version 2");
+print(`ip ssh version ${d.ssh.version || 2}`);
 }
 
-Object.entries(d.users).forEach(
+Object.entries(d.users)
+.forEach(
 ([username, data]) => {
 
 print(
-`username ${username} privilege ${data.privilege || 1} secret ${data.secret || "********"}`
+`username ${username} privilege ${
+data.privilege || 1
+} secret ${
+data.secret || "********"
+}`
 );
 }
 );
@@ -1628,25 +1895,86 @@ print(
 );
 }
 
-d.staticRoutes.forEach(route => {
+d.staticRoutes.forEach(
+route => {
 
 print(
 `ip route ${route.network} ${route.mask} ${route.nextHop}`
 );
-});
+}
+);
+
+/* OSPF */
+
+if (
+d.ospf.enabled &&
+d.ospf.process
+) {
+
+print(
+`router ospf ${d.ospf.process}`
+);
+
+d.ospf.networks.forEach(
+network => {
+
+print(
+` network ${network.network} ${network.wildcard || "0.0.0.255"} area ${network.area || 0}`
+);
+}
+);
+
+print("!");
+}
+
+/* VLANs */
 
 Object.entries(d.vlans)
-.forEach(([id, vlan]) => {
+.forEach(
+([id, vlan]) => {
 
 if (id === "1") return;
 
 print(`vlan ${id}`);
-print(` name ${vlan.name}`);
+
+if (
+vlan.name &&
+vlan.name !== `VLAN${id}`
+) {
+print(
+` name ${vlan.name}`
+);
+}
+
 print("!");
-});
+}
+);
+
+/* Interfaces */
 
 Object.entries(d.interfaces)
-.forEach(([name, intf]) => {
+.forEach(
+([name, intf]) => {
+
+const hasConfig =
+Boolean(intf.description) ||
+Boolean(intf.ip) ||
+Boolean(intf.shutdown) ||
+intf.mode === "trunk" ||
+Number(intf.vlan) !== 1 ||
+Boolean(intf.allowedVlans) ||
+Boolean(intf.nativeVlan) ||
+Boolean(d.portSecurity[name]) ||
+d.stp.portfast.includes(name) ||
+d.stp.bpduguard.includes(name) ||
+Object.values(d.etherChannels)
+.some(
+channel =>
+channel.ports &&
+channel.ports.includes(name)
+);
+
+if (!hasConfig) return;
 
 print(`interface ${name}`);
 
@@ -1657,19 +1985,33 @@ print(
 }
 
 if (intf.mode === "access") {
-print(" switchport mode access");
+
+if (Number(intf.vlan) !== 1) {
+print(
+" switchport mode access"
+);
+
 print(
 ` switchport access vlan ${intf.vlan}`
 );
 }
+}
 
 if (intf.mode === "trunk") {
 
-print(" switchport mode trunk");
+print(
+" switchport mode trunk"
+);
 
 if (intf.allowedVlans) {
 print(
 ` switchport trunk allowed vlan ${intf.allowedVlans}`
+);
+}
+
+if (intf.nativeVlan) {
+print(
+` switchport trunk native vlan ${intf.nativeVlan}`
 );
 }
 }
@@ -1684,11 +2026,138 @@ if (intf.shutdown) {
 print(" shutdown");
 }
 
+if (d.portSecurity[name]) {
+
+const ps =
+d.portSecurity[name];
+
+if (ps.enabled) {
+print(
+" switchport port-security"
+);
+}
+
+if (ps.maximum) {
+print(
+` switchport port-security maximum ${ps.maximum}`
+);
+}
+
+if (ps.sticky) {
+print(
+" switchport port-security mac-address sticky"
+);
+}
+
+if (ps.violation) {
+print(
+` switchport port-security violation ${ps.violation}`
+);
+}
+}
+
+if (
+d.stp.portfast.includes(name)
+) {
+print(
+" spanning-tree portfast"
+);
+}
+
+if (
+d.stp.bpduguard.includes(name)
+) {
+print(
+" spanning-tree bpduguard enable"
+);
+}
+
+Object.entries(
+d.etherChannels
+).forEach(
+([id, channel]) => {
+
+if (
+channel.ports &&
+channel.ports.includes(name)
+) {
+
+print(
+` channel-group ${id} mode ${channel.mode || "active"}`
+);
+}
+}
+);
+
 print("!");
-});
+}
+);
+
+/* VTY */
+
+const vtyConfigured =
+Boolean(d.vty.password) ||
+d.vty.loginLocal ||
+d.vty.transport !== "telnet" ||
+d.vty.execTimeout !== "10 0";
+
+if (vtyConfigured) {
+
+print("line vty 0 4");
+
+if (d.vty.password) {
+print(
+` password ${d.vty.password}`
+);
+}
+
+if (d.vty.loginLocal) {
+print(" login local");
+}
+
+if (d.vty.transport) {
+print(
+` transport input ${d.vty.transport}`
+);
+}
+
+if (d.vty.execTimeout) {
+print(
+` exec-timeout ${d.vty.execTimeout}`
+);
+}
+
+print("!");
+}
 
 print("end");
 print("");
+}
+
+function showCiscoStartupConfig() {
+
+print("");
+
+if (!startupConfigs.cisco) {
+
+print(
+"startup-config is not present."
+);
+
+print("");
+
+return;
+}
+
+const saved =
+devices.cisco;
+
+devices.cisco =
+deepClone(startupConfigs.cisco);
+
+showCiscoRunningConfig();
+
+devices.cisco = saved;
 }
 
 function showCiscoArp() {
@@ -1715,16 +2184,58 @@ print("");
 
 function showCiscoRoute() {
 
+const d = device();
+
 print("");
 print("Codes: C - connected, S - static, O - OSPF");
+print("");
+
+Object.entries(d.svi)
+.forEach(
+([name, svi]) => {
+
+if (!svi.ip) return;
+
+const prefix =
+maskToPrefix(svi.mask);
+
+const parts =
+svi.ip.split(".");
+
+parts[3] = "0";
 
 print(
-"C 192.168.10.0/24 is directly connected, Vlan10"
+`C ${parts.join(".")}/${prefix} is directly connected, ${name}`
+);
+}
 );
 
+d.staticRoutes.forEach(
+route => {
+
 print(
-"C 192.168.20.0/24 is directly connected, Vlan20"
+`S ${route.network}/${maskToPrefix(route.mask)} [1/0] via ${route.nextHop}`
 );
+}
+);
+
+if (
+d.ospf.enabled
+) {
+print(
+"O OSPF routes available."
+);
+}
+
+if (
+!Object.keys(d.svi).length &&
+!d.staticRoutes.length &&
+!d.ospf.enabled
+) {
+print(
+"No user-configured routes."
+);
+}
 
 print("");
 }
@@ -1736,16 +2247,26 @@ const d = device();
 print("");
 
 if (!d.ssh.enabled) {
-print("SSH Disabled");
-}
 
-else {
+print("SSH Disabled");
+
+} else {
+
 print("SSH Enabled - version 2");
+
 print(
-`Domain name: ${d.ssh.domain || "not configured"}`
+`Domain name: ${
+d.ssh.domain ||
+"not configured"
+}`
 );
+
 print(
-`RSA keys: ${d.ssh.rsa ? "present" : "not generated"}`
+`RSA keys: ${
+d.ssh.rsa
+? "present"
+: "not generated"
+}`
 );
 }
 
@@ -1761,14 +2282,17 @@ print(
 `Spanning tree enabled protocol ${d.stp.mode}`
 );
 print("");
+
 print("VLAN0010");
 print(" Root ID Priority 24586");
 print(" Address 0011.2233.4455");
 print("");
+
 print("Interface Role Sts Cost");
 print("Gi0/1 Desg FWD 4");
 print("Gi0/2 Desg FWD 4");
 print("Gi0/3 Root FWD 4");
+
 print("");
 }
 
@@ -1778,16 +2302,26 @@ print("");
 print("Group Port-channel Protocol Ports");
 print("------+-------------+-----------+----------------");
 
-Object.entries(device().etherChannels)
-.forEach(([id, data]) => {
+Object.entries(
+device().etherChannels
+).forEach(
+([id, data]) => {
 
 print(
-`${id.padEnd(6)} Po${id} ${data.mode || "LACP"} ${data.ports?.join(", ") || "Gi0/1 Gi0/2"}`
+`${id.padEnd(6)} Po${id} ${
+data.mode || "LACP"
+} ${
+data.ports?.join(", ") ||
+"Gi0/1 Gi0/2"
+}`
 );
-});
+}
+);
 
 if (
-!Object.keys(device().etherChannels).length
+!Object.keys(
+device().etherChannels
+).length
 ) {
 print("No EtherChannel configured.");
 }
@@ -1819,7 +2353,11 @@ print("Syslog logging: enabled");
 print("Console logging: level informational");
 print(
 "Monitor logging: " +
-(terminalMonitor ? "enabled" : "disabled")
+(
+terminalMonitor
+? "enabled"
+: "disabled"
+)
 );
 print("");
 }
@@ -1828,21 +2366,32 @@ function showCiscoAccessLists() {
 
 print("");
 
-if (!Object.keys(device().acls).length) {
-print("No access lists configured.");
+if (
+!Object.keys(
+device().acls
+).length
+) {
+print(
+"No access lists configured."
+);
 }
 
-Object.entries(device().acls)
-.forEach(([id, acl]) => {
+Object.entries(
+device().acls
+).forEach(
+([id, acl]) => {
 
 print(
 `Standard IP access list ${id}`
 );
 
-acl.rules.forEach(rule => {
+acl.rules.forEach(
+rule => {
 print(` ${rule}`);
-});
-});
+}
+);
+}
+);
 
 print("");
 }
@@ -1851,8 +2400,35 @@ function showCiscoPortSecurity() {
 
 print("");
 print("Secure Port MaxSecureAddr CurrentAddr");
-print("Gi0/1 2 1");
-print("Gi0/2 2 1");
+
+const entries =
+Object.entries(
+device().portSecurity
+);
+
+if (!entries.length) {
+
+print(
+"No port-security configured."
+);
+
+} else {
+
+entries.forEach(
+([name, data]) => {
+
+print(
+`${name.replace(
+"GigabitEthernet",
+"Gi"
+)} ${
+data.maximum || 1
+} 0`
+);
+}
+);
+}
+
 print("");
 }
 
@@ -1865,7 +2441,9 @@ function showHuaweiVersion() {
 const d = device();
 
 print("");
-print("Huawei Versatile Routing Platform Software");
+print(
+"Huawei Versatile Routing Platform Software"
+);
 print(
 `VRP (R) software, Version ${d.version}`
 );
@@ -1877,15 +2455,20 @@ print("");
 function showHuaweiVlan() {
 
 print("");
-print("The total number of VLANs is:");
+print(
+"The total number of VLANs is:"
+);
 
-Object.entries(device().vlans)
-.forEach(([id, vlan]) => {
+Object.entries(
+device().vlans
+).forEach(
+([id, vlan]) => {
 
 print(
 `VID: ${id} VLAN name: ${vlan.name} Status: ${vlan.status}`
 );
-});
+}
+);
 
 print("");
 }
@@ -1894,8 +2477,10 @@ function showHuaweiInterfaces() {
 
 print("");
 
-Object.entries(device().interfaces)
-.forEach(([name, intf]) => {
+Object.entries(
+device().interfaces
+).forEach(
+([name, intf]) => {
 
 print(
 `${name} current state : ${
@@ -1926,7 +2511,8 @@ print(
 }
 
 print("");
-});
+}
+);
 }
 
 function showHuaweiInterfaceBrief() {
@@ -1937,13 +2523,26 @@ print("**down: administratively down");
 print("");
 print("Interface PHY Protocol");
 
-Object.entries(device().interfaces)
-.forEach(([name, intf]) => {
+Object.entries(
+device().interfaces
+).forEach(
+([name, intf]) => {
 
 print(
-`${name.padEnd(33)} ${(intf.shutdown ? "down" : "up").padEnd(5)} ${intf.shutdown ? "down" : "up"}`
+`${name.padEnd(33)} ${
+(
+intf.shutdown
+? "down"
+: "up"
+).padEnd(5)
+} ${
+intf.shutdown
+? "down"
+: "up"
+}`
 );
-});
+}
+);
 
 print("");
 }
@@ -1953,24 +2552,45 @@ function showHuaweiIpInterfaceBrief() {
 print("");
 print("Interface IP Address/Mask");
 
-Object.entries(device().interfaces)
-.forEach(([name, intf]) => {
+Object.entries(
+device().interfaces
+).forEach(
+([name, intf]) => {
 
 print(
-`${name.padEnd(33)} ${intf.ip ? `${intf.ip}/${maskToPrefix(intf.mask)}` : "unassigned"}`
+`${name.padEnd(33)} ${
+intf.ip
+? `${intf.ip}/${maskToPrefix(intf.mask)}`
+: "unassigned"
+}`
 );
-});
+}
+);
 
-Object.entries(device().svi)
-.forEach(([name, svi]) => {
+Object.entries(
+device().svi
+).forEach(
+([name, svi]) => {
 
 print(
-`${name.padEnd(33)} ${svi.ip}/${maskToPrefix(svi.mask || "255.255.255.0")}`
+`${name.padEnd(33)} ${
+svi.ip
+? `${svi.ip}/${maskToPrefix(
+svi.mask ||
+"255.255.255.0"
+)}`
+: "unassigned"
+}`
 );
-});
+}
+);
 
 print("");
 }
+
+/* =========================================================
+Huawei Current Configuration
+========================================================= */
 
 function showHuaweiCurrentConfig() {
 
@@ -1988,25 +2608,105 @@ print(
 }
 
 if (d.ssh.stelnet) {
-print("stelnet server enable");
+print(
+"stelnet server enable"
+);
 }
 
-Object.entries(d.vlans)
-.forEach(([id, vlan]) => {
+if (d.ssh.rsa) {
+print(
+"rsa local-key-pair create"
+);
+}
+
+/* VLAN */
+
+Object.entries(
+d.vlans
+).forEach(
+([id, vlan]) => {
 
 if (id === "1") return;
 
 print(`vlan ${id}`);
 
-if (vlan.name !== `VLAN${id}`) {
-print(` name ${vlan.name}`);
+if (
+vlan.name &&
+vlan.name !== `VLAN${id}`
+) {
+print(
+` name ${vlan.name}`
+);
 }
-});
+}
+);
 
-Object.entries(d.interfaces)
-.forEach(([name, intf]) => {
+/* Static routes */
 
-print(`interface ${name}`);
+d.staticRoutes.forEach(
+route => {
+
+print(
+`ip route-static ${route.network} ${route.prefix ? "/" + route.prefix : ""} ${route.nextHop}`
+);
+}
+);
+
+/* OSPF */
+
+if (
+d.ospf.enabled &&
+d.ospf.process
+) {
+
+print(
+`ospf ${d.ospf.process}`
+);
+
+d.ospf.networks.forEach(
+network => {
+
+print(
+` area ${network.area || "0.0.0.0"}`
+);
+
+print(
+` network ${network.network} ${network.wildcard || "0.0.0.0"}`
+);
+}
+);
+}
+
+/* Interfaces */
+
+Object.entries(
+d.interfaces
+).forEach(
+([name, intf]) => {
+
+const hasConfig =
+Boolean(intf.description) ||
+Boolean(intf.ip) ||
+Boolean(intf.shutdown) ||
+intf.mode === "trunk" ||
+Number(intf.vlan) !== 1 ||
+Boolean(intf.allowedVlans) ||
+Boolean(intf.pvid) ||
+Boolean(d.portSecurity[name]) ||
+d.stp.edgePorts.includes(name) ||
+d.stp.bpduProtection ||
+Object.values(d.etherChannels)
+.some(
+channel =>
+channel.ports &&
+channel.ports.includes(name)
+);
+
+if (!hasConfig) return;
+
+print(
+`interface ${name}`
+);
 
 if (intf.description) {
 print(
@@ -2025,9 +2725,16 @@ print(
 ` port trunk allow-pass vlan ${intf.allowedVlans}`
 );
 }
+
+if (intf.pvid) {
+print(
+` port trunk pvid vlan ${intf.pvid}`
+);
 }
 
-else {
+} else if (
+Number(intf.vlan) !== 1
+) {
 
 print(
 " port link-type access"
@@ -2047,10 +2754,130 @@ print(
 if (intf.shutdown) {
 print(" shutdown");
 }
-});
+
+if (d.portSecurity[name]) {
+
+const ps =
+d.portSecurity[name];
+
+if (ps.enabled) {
+print(
+" port-security"
+);
+}
+
+if (ps.maximum) {
+print(
+` port-security max-mac-num ${ps.maximum}`
+);
+}
+
+if (ps.action) {
+print(
+` port-security protect-action ${ps.action}`
+);
+}
+}
+
+if (
+d.stp.edgePorts.includes(name)
+) {
+print(
+" stp edged-port enable"
+);
+}
+
+if (
+d.stp.bpduProtection
+) {
+print(
+" stp bpdu-protection"
+);
+}
+
+Object.entries(
+d.etherChannels
+).forEach(
+([id, channel]) => {
+
+if (
+channel.ports &&
+channel.ports.includes(name)
+) {
+print(
+` eth-trunk ${id}`
+);
+}
+}
+);
+}
+);
+
+/* VTY */
+
+const vtyConfigured =
+d.vty.authentication !== "none" ||
+d.vty.protocol !== "telnet";
+
+if (vtyConfigured) {
+
+print(
+"user-interface vty 0 4"
+);
+
+if (
+d.vty.authentication !== "none"
+) {
+print(
+` authentication-mode ${d.vty.authentication}`
+);
+}
+
+if (d.vty.protocol) {
+print(
+` protocol inbound ${d.vty.protocol}`
+);
+}
+}
 
 print("");
 }
+
+/* =========================================================
+Huawei Startup Config
+========================================================= */
+
+function showHuaweiStartupConfig() {
+
+print("");
+
+if (!startupConfigs.huawei) {
+
+print(
+"Startup configuration is not present."
+);
+
+print("");
+
+return;
+}
+
+const saved =
+devices.huawei;
+
+devices.huawei =
+deepClone(
+startupConfigs.huawei
+);
+
+showHuaweiCurrentConfig();
+
+devices.huawei = saved;
+}
+
+/* =========================================================
+Huawei Additional SHOW
+========================================================= */
 
 function showHuaweiArp() {
 
@@ -2072,18 +2899,43 @@ print("");
 
 function showHuaweiRoute() {
 
+const d = device();
+
 print("");
 print("Routing Tables: Public");
 print("Destination/Mask Proto Pre Cost Flags NextHop");
-print("192.168.10.0/24 Direct 0 0 D 192.168.10.1");
-print("192.168.20.0/24 Direct 0 0 D 192.168.20.1");
 
-device().staticRoutes.forEach(route => {
+Object.entries(d.svi)
+.forEach(
+([name, svi]) => {
+
+if (!svi.ip) return;
+
+const prefix =
+maskToPrefix(
+svi.mask ||
+"255.255.255.0"
+);
+
+const parts =
+svi.ip.split(".");
+
+parts[3] = "0";
+
+print(
+`${parts.join(".")}/${prefix} Direct 0 0 D ${svi.ip}`
+);
+}
+);
+
+d.staticRoutes.forEach(
+route => {
 
 print(
 `${route.network}/${route.prefix} Static 60 0 RD ${route.nextHop}`
 );
-});
+}
+);
 
 print("");
 }
@@ -2093,14 +2945,20 @@ function showHuaweiOspf() {
 print("");
 print("OSPF Process:");
 
-if (!device().ospf.enabled) {
-print("OSPF is not configured.");
-}
+if (
+!device().ospf.enabled
+) {
 
-else {
+print(
+"OSPF is not configured."
+);
+
+} else {
+
 print(
 `Process ID: ${device().ospf.process}`
 );
+
 print("Area 0.0.0.0");
 print("Neighbor State: Full");
 }
@@ -2112,7 +2970,13 @@ function showHuaweiStp() {
 
 print("");
 print("MSTP mode: RSTP");
-print("STP Status: Enabled");
+print(
+`STP Status: ${
+device().stp.enabled
+? "Enabled"
+: "Disabled"
+}`
+);
 print("");
 }
 
@@ -2120,19 +2984,32 @@ function showHuaweiAcl() {
 
 print("");
 
-if (!Object.keys(device().acls).length) {
-print("No ACL configured.");
+if (
+!Object.keys(
+device().acls
+).length
+) {
+print(
+"No ACL configured."
+);
 }
 
-Object.entries(device().acls)
-.forEach(([id, acl]) => {
+Object.entries(
+device().acls
+).forEach(
+([id, acl]) => {
 
-print(`Basic ACL ${id}`);
+print(
+`Basic ACL ${id}`
+);
 
-acl.rules.forEach(rule => {
+acl.rules.forEach(
+rule => {
 print(` rule ${rule}`);
-});
-});
+}
+);
+}
+);
 
 print("");
 }
@@ -2145,6 +3022,18 @@ function maskToPrefix(mask) {
 
 if (!mask) return "24";
 
+if (
+String(mask).startsWith("/")
+) {
+return String(mask).slice(1);
+}
+
+if (
+!isValidIPv4(mask)
+) {
+return "24";
+}
+
 return String(mask)
 .split(".")
 .reduce(
@@ -2154,7 +3043,9 @@ return total +
 Number(octet)
 .toString(2)
 .split("")
-.filter(x => x === "1")
+.filter(
+x => x === "1"
+)
 .length;
 
 },
@@ -2170,7 +3061,9 @@ function executePing(target) {
 
 if (!target) {
 
-print("% Incomplete command.");
+print(
+"% Incomplete command."
+);
 
 return;
 }
@@ -2212,10 +3105,16 @@ function handleCiscoConfig(command) {
 const p = tokens(command);
 const d = device();
 
+/* HOSTNAME */
+
 if (p[0] === "hostname") {
 
 if (!p[1]) {
-print("% Incomplete command.");
+
+print(
+"% Incomplete command."
+);
+
 return;
 }
 
@@ -2235,11 +3134,18 @@ print(
 return;
 }
 
+/* VLAN */
+
 if (p[0] === "vlan") {
 
-if (!p[1] || !isNumber(p[1])) {
+if (
+!p[1] ||
+!isNumber(p[1])
+) {
 
-print("% VLAN ID required.");
+print(
+"% VLAN ID required."
+);
 
 return;
 }
@@ -2265,6 +3171,8 @@ print(
 return;
 }
 
+/* INTERFACE */
+
 if (p[0] === "interface") {
 
 const name =
@@ -2272,20 +3180,76 @@ findInterface(
 p.slice(1).join(" ")
 );
 
-if (!name) {
+/*
+دعم SVI:
+interface vlan 10
+*/
 
-print("% Invalid interface.");
+if (
+currentDevice === "cisco" &&
+/^Vlan\d+$/i.test(
+normalizeInterfaceName(
+p.slice(1).join(" ")
+) || ""
+)
+) {
 
-return;
+const raw =
+normalizeInterfaceName(
+p.slice(1).join(" ")
+);
+
+const vlanId =
+raw.replace(
+/vlan/i,
+""
+);
+
+const sviName =
+`Vlan${vlanId}`;
+
+if (!d.svi[sviName]) {
+
+d.svi[sviName] = {
+ip: "",
+mask: "",
+status: "up",
+protocol: "up"
+};
 }
 
-currentInterface = name;
-currentMode = "interface";
+currentInterface =
+sviName;
+
+currentMode =
+"interface";
 
 updatePrompt();
 
 return;
 }
+
+if (!name) {
+
+print(
+"% Invalid interface."
+);
+
+return;
+}
+
+currentInterface =
+name;
+
+currentMode =
+"interface";
+
+updatePrompt();
+
+return;
+}
+
+/* LINE VTY */
 
 if (
 p[0] === "line" &&
@@ -2295,12 +3259,15 @@ p[1] === "vty"
 currentLine =
 p.slice(1).join(" ");
 
-currentMode = "line";
+currentMode =
+"line";
 
 updatePrompt();
 
 return;
 }
+
+/* AAA */
 
 if (
 p[0] === "aaa" &&
@@ -2316,13 +3283,18 @@ print(
 return;
 }
 
+/* USERNAME */
+
 if (p[0] === "username") {
 
-const username = p[1];
+const username =
+p[1];
 
 if (!username) {
 
-print("% Username required.");
+print(
+"% Username required."
+);
 
 return;
 }
@@ -2333,7 +3305,9 @@ let secret = "";
 const privilegeIndex =
 p.indexOf("privilege");
 
-if (privilegeIndex >= 0) {
+if (
+privilegeIndex >= 0
+) {
 privilege =
 p[privilegeIndex + 1] || 1;
 }
@@ -2341,9 +3315,13 @@ p[privilegeIndex + 1] || 1;
 const secretIndex =
 p.indexOf("secret");
 
-if (secretIndex >= 0) {
+if (
+secretIndex >= 0
+) {
 secret =
-p.slice(secretIndex + 1).join(" ");
+p.slice(
+secretIndex + 1
+).join(" ");
 }
 
 d.users[username] = {
@@ -2358,12 +3336,15 @@ print(
 return;
 }
 
+/* DOMAIN */
+
 if (
 p[0] === "ip" &&
 p[1] === "domain-name"
 ) {
 
-d.ssh.domain = p[2] || "";
+d.ssh.domain =
+p[2] || "";
 
 print(
 `Domain name set to ${d.ssh.domain}`
@@ -2371,6 +3352,8 @@ print(
 
 return;
 }
+
+/* RSA */
 
 if (
 p[0] === "crypto" &&
@@ -2381,17 +3364,24 @@ p[3] === "rsa"
 
 d.ssh.rsa = true;
 
-print("The name for the keys will be:");
+print(
+"The name for the keys will be:"
+);
+
 print(
 `${d.ssh.domain || d.hostname}`
 );
+
 print(
 "Generating 1024 bit RSA keys..."
 );
+
 print("[OK]");
 
 return;
 }
+
+/* SSH */
 
 if (
 p[0] === "ip" &&
@@ -2400,6 +3390,7 @@ p[2] === "version"
 ) {
 
 d.ssh.enabled = true;
+
 d.ssh.version =
 Number(p[3]) || 2;
 
@@ -2410,6 +3401,8 @@ print(
 return;
 }
 
+/* DEFAULT GATEWAY */
+
 if (
 p[0] === "ip" &&
 p[1] === "default-gateway"
@@ -2418,12 +3411,30 @@ p[1] === "default-gateway"
 d.defaultGateway =
 p[2] || "";
 
+if (
+d.defaultGateway &&
+!isValidIPv4(
+d.defaultGateway
+)
+) {
+
+print(
+"% Invalid gateway address."
+);
+
+d.defaultGateway = "";
+
+return;
+}
+
 print(
 `Default gateway ${d.defaultGateway} configured.`
 );
 
 return;
 }
+
+/* STATIC ROUTE */
 
 if (
 p[0] === "ip" &&
@@ -2432,7 +3443,22 @@ p[1] === "route"
 
 if (p.length < 5) {
 
-print("% Incomplete command.");
+print(
+"% Incomplete command."
+);
+
+return;
+}
+
+if (
+!isValidIPv4(p[2]) ||
+!isValidIPv4(p[3]) ||
+!isValidIPv4(p[4])
+) {
+
+print(
+"% Invalid IP address or mask."
+);
 
 return;
 }
@@ -2450,12 +3476,15 @@ print(
 return;
 }
 
+/* OSPF */
+
 if (
 p[0] === "router" &&
 p[1] === "ospf"
 ) {
 
 d.ospf.enabled = true;
+
 d.ospf.process =
 p[2] || "1";
 
@@ -2466,17 +3495,72 @@ print(
 return;
 }
 
+/* OSPF NETWORK */
+
+if (
+p[0] === "network" &&
+currentMode === "config"
+) {
+
+if (!d.ospf.enabled) {
+
+print(
+"% OSPF process not configured."
+);
+
+return;
+}
+
+const network =
+p[1];
+
+const wildcard =
+p[2];
+
+const area =
+p[4] || "0";
+
+if (
+!network ||
+!wildcard
+) {
+
+print(
+"% Incomplete command."
+);
+
+return;
+}
+
+d.ospf.networks.push({
+network,
+wildcard,
+area
+});
+
+print(
+"OSPF network added."
+);
+
+return;
+}
+
+/* DHCP */
+
 if (
 p[0] === "ip" &&
 p[1] === "dhcp" &&
 p[2] === "pool"
 ) {
 
-const name = p[3];
+const name =
+p[3];
 
 if (!name) {
 
-print("% Pool name required.");
+print(
+"% Pool name required."
+);
 
 return;
 }
@@ -2495,13 +3579,27 @@ print(
 return;
 }
 
+/* ACL */
+
 if (
 p[0] === "ip" &&
 p[1] === "access-list"
 ) {
 
-const type = p[2];
-const id = p[3];
+const type =
+p[2];
+
+const id =
+p[3];
+
+if (!id) {
+
+print(
+"% Access-list number required."
+);
+
+return;
+}
 
 if (!d.acls[id]) {
 
@@ -2518,12 +3616,15 @@ print(
 return;
 }
 
+/* PASSWORD ENCRYPTION */
+
 if (
 p[0] === "service" &&
 p[1] === "password-encryption"
 ) {
 
-d.passwordEncryption = true;
+d.passwordEncryption =
+true;
 
 print(
 "Password encryption enabled."
@@ -2532,9 +3633,15 @@ print(
 return;
 }
 
-if (p[0] === "spanning-tree") {
+/* SPANNING TREE */
 
-if (p[1] === "mode") {
+if (
+p[0] === "spanning-tree"
+) {
+
+if (
+p[1] === "mode"
+) {
 
 d.stp.mode =
 p[2] || "rapid-pvst";
@@ -2573,7 +3680,9 @@ if (p[0] === "name") {
 
 if (!p[1]) {
 
-print("% VLAN name required.");
+print(
+"% VLAN name required."
+);
 
 return;
 }
@@ -2627,6 +3736,13 @@ const intf = getCurrentInterface();
 
 if (!intf) return;
 
+const svi =
+isSviInterface(
+currentInterface
+);
+
+/* DESCRIPTION */
+
 if (p[0] === "description") {
 
 intf.description =
@@ -2639,12 +3755,15 @@ print(
 return;
 }
 
+/* SHUTDOWN */
+
 if (p[0] === "shutdown") {
 
 intf.shutdown = true;
 intf.status =
 "administratively down";
-intf.protocol = "down";
+intf.protocol =
+"down";
 
 print(
 "Interface administratively shut down."
@@ -2652,6 +3771,8 @@ print(
 
 return;
 }
+
+/* NO SHUTDOWN */
 
 if (
 p[0] === "no" &&
@@ -2669,18 +3790,24 @@ print(
 return;
 }
 
+/* IP */
+
 if (
 p[0] === "ip" &&
 p[1] === "address"
 ) {
 
-const ip = p[2];
+const ip =
+p[2];
 
-let mask = p[3];
+let mask =
+p[3];
 
 if (!isValidIPv4(ip)) {
 
-print("% Invalid IP address.");
+print(
+"% Invalid IP address."
+);
 
 return;
 }
@@ -2689,6 +3816,7 @@ if (
 mask &&
 mask.startsWith("/")
 ) {
+
 mask =
 prefixToMask(
 mask.slice(1)
@@ -2714,12 +3842,32 @@ print(
 return;
 }
 
+/* SVI لا يدعم switchport */
+
+if (svi) {
+
+if (
+p[0] === "switchport"
+) {
+
+print(
+"% Invalid command on routed interface."
+);
+
+return;
+}
+}
+
+/* SWITCHPORT MODE */
+
 if (
 p[0] === "switchport" &&
 p[1] === "mode"
 ) {
 
-if (p[2] === "access") {
+if (
+p[2] === "access"
+) {
 
 intf.mode = "access";
 
@@ -2730,7 +3878,9 @@ print(
 return;
 }
 
-if (p[2] === "trunk") {
+if (
+p[2] === "trunk"
+) {
 
 intf.mode = "trunk";
 
@@ -2742,14 +3892,40 @@ return;
 }
 }
 
+/* ACCESS VLAN */
+
 if (
 p[0] === "switchport" &&
 p[1] === "access" &&
 p[2] === "vlan"
 ) {
 
+const vlan =
+Number(p[3]);
+
+if (
+!Number.isInteger(vlan) ||
+vlan < 1 ||
+vlan > 4094
+) {
+
+print(
+"% Invalid VLAN."
+);
+
+return;
+}
+
+if (!d.vlans[vlan]) {
+
+d.vlans[vlan] = {
+name: `VLAN${vlan}`,
+status: "active"
+};
+}
+
 intf.vlan =
-Number(p[3]) || 1;
+vlan;
 
 print(
 `Access VLAN ${intf.vlan} configured.`
@@ -2757,6 +3933,8 @@ print(
 
 return;
 }
+
+/* TRUNK ALLOWED */
 
 if (
 p[0] === "switchport" &&
@@ -2775,6 +3953,8 @@ print(
 return;
 }
 
+/* NATIVE VLAN */
+
 if (
 p[0] === "switchport" &&
 p[1] === "trunk" &&
@@ -2782,8 +3962,24 @@ p[2] === "native" &&
 p[3] === "vlan"
 ) {
 
+const vlan =
+Number(p[4]);
+
+if (
+!Number.isInteger(vlan) ||
+vlan < 1 ||
+vlan > 4094
+) {
+
+print(
+"% Invalid VLAN."
+);
+
+return;
+}
+
 intf.nativeVlan =
-Number(p[4]) || 1;
+vlan;
 
 print(
 `Native VLAN ${intf.nativeVlan} configured.`
@@ -2792,12 +3988,15 @@ print(
 return;
 }
 
+/* PORT SECURITY */
+
 if (
 p[0] === "switchport" &&
 p[1] === "port-security"
 ) {
 
-const key = currentInterface;
+const key =
+currentInterface;
 
 if (!d.portSecurity[key]) {
 
@@ -2811,7 +4010,8 @@ violation: "shutdown"
 
 if (p.length === 2) {
 
-d.portSecurity[key].enabled = true;
+d.portSecurity[key].enabled =
+true;
 
 print(
 "Port security enabled."
@@ -2820,7 +4020,9 @@ print(
 return;
 }
 
-if (p[2] === "maximum") {
+if (
+p[2] === "maximum"
+) {
 
 d.portSecurity[key].maximum =
 Number(p[3]) || 1;
@@ -2837,7 +4039,8 @@ p[2] === "mac-address" &&
 p[3] === "sticky"
 ) {
 
-d.portSecurity[key].sticky = true;
+d.portSecurity[key].sticky =
+true;
 
 print(
 "Sticky MAC enabled."
@@ -2846,7 +4049,9 @@ print(
 return;
 }
 
-if (p[2] === "violation") {
+if (
+p[2] === "violation"
+) {
 
 d.portSecurity[key].violation =
 p[3] || "shutdown";
@@ -2859,9 +4064,14 @@ return;
 }
 }
 
-if (p[0] === "channel-group") {
+/* CHANNEL GROUP */
 
-const id = p[1] || "1";
+if (
+p[0] === "channel-group"
+) {
+
+const id =
+p[1] || "1";
 
 if (!d.etherChannels[id]) {
 
@@ -2887,6 +4097,8 @@ print(
 return;
 }
 
+/* PORTFAST */
+
 if (
 p[0] === "spanning-tree" &&
 p[1] === "portfast"
@@ -2907,6 +4119,8 @@ print(
 
 return;
 }
+
+/* BPDU GUARD */
 
 if (
 p[0] === "spanning-tree" &&
@@ -2930,6 +4144,8 @@ print(
 return;
 }
 
+/* EXIT */
+
 if (p[0] === "exit") {
 
 currentMode = "config";
@@ -2939,6 +4155,8 @@ updatePrompt();
 
 return;
 }
+
+/* END */
 
 if (p[0] === "end") {
 
@@ -2981,7 +4199,8 @@ p[0] === "login" &&
 p[1] === "local"
 ) {
 
-d.vty.loginLocal = true;
+d.vty.loginLocal =
+true;
 
 print(
 "Login local configured."
@@ -3005,7 +4224,9 @@ print(
 return;
 }
 
-if (p[0] === "exec-timeout") {
+if (
+p[0] === "exec-timeout"
+) {
 
 d.vty.execTimeout =
 p.slice(1).join(" ");
@@ -3051,6 +4272,8 @@ function handleHuaweiConfig(command) {
 const p = tokens(command);
 const d = device();
 
+/* SYSNAME */
+
 if (p[0] === "sysname") {
 
 d.hostname =
@@ -3070,6 +4293,8 @@ print(
 return;
 }
 
+/* VLAN */
+
 if (p[0] === "vlan") {
 
 if (!p[1]) {
@@ -3081,7 +4306,24 @@ print(
 return;
 }
 
-currentVlan = p[1];
+const vlanId =
+Number(p[1]);
+
+if (
+!Number.isInteger(vlanId) ||
+vlanId < 1 ||
+vlanId > 4094
+) {
+
+print(
+"Error: Invalid VLAN ID."
+);
+
+return;
+}
+
+currentVlan =
+String(vlanId);
 
 if (!d.vlans[p[1]]) {
 
@@ -3091,18 +4333,67 @@ status: "active"
 };
 }
 
-currentMode = "vlan";
+currentMode =
+"vlan";
 
 updatePrompt();
 
 return;
 }
 
+/* INTERFACE */
+
 if (p[0] === "interface") {
+
+const rawName =
+p.slice(1).join(" ");
+
+const normalized =
+normalizeInterfaceName(
+rawName
+);
+
+/* Vlanif */
+
+if (
+/^Vlanif\d+$/i.test(
+normalized || ""
+)
+) {
+
+const vlanId =
+normalized.replace(
+/vlanif/i,
+""
+);
+
+const sviName =
+`Vlanif${vlanId}`;
+
+if (!d.svi[sviName]) {
+
+d.svi[sviName] = {
+ip: "",
+mask: "",
+status: "up",
+protocol: "up"
+};
+}
+
+currentInterface =
+sviName;
+
+currentMode =
+"interface";
+
+updatePrompt();
+
+return;
+}
 
 const name =
 findInterface(
-p.slice(1).join(" ")
+rawName
 );
 
 if (!name) {
@@ -3114,13 +4405,18 @@ print(
 return;
 }
 
-currentInterface = name;
-currentMode = "interface";
+currentInterface =
+name;
+
+currentMode =
+"interface";
 
 updatePrompt();
 
 return;
 }
+
+/* STELNET */
 
 if (
 p[0] === "stelnet" &&
@@ -3138,6 +4434,8 @@ print(
 return;
 }
 
+/* DOMAIN */
+
 if (p[0] === "domain-name") {
 
 d.ssh.domain =
@@ -3149,6 +4447,8 @@ print(
 
 return;
 }
+
+/* RSA */
 
 if (
 p[0] === "rsa" &&
@@ -3170,6 +4470,8 @@ print("[OK]");
 return;
 }
 
+/* STATIC ROUTE */
+
 if (
 p[0] === "ip" &&
 p[1] === "route-static"
@@ -3184,7 +4486,20 @@ print(
 return;
 }
 
-let prefix = p[3];
+if (
+!isValidIPv4(p[2]) ||
+!isValidIPv4(p[4])
+) {
+
+print(
+"Error: Wrong IP address."
+);
+
+return;
+}
+
+let prefix =
+p[3];
 
 if (
 prefix &&
@@ -3192,6 +4507,21 @@ prefix.startsWith("/")
 ) {
 prefix =
 prefix.slice(1);
+}
+
+if (
+!/^\d+$/.test(
+String(prefix)
+) ||
+Number(prefix) < 0 ||
+Number(prefix) > 32
+) {
+
+print(
+"Error: Wrong mask."
+);
+
+return;
 }
 
 d.staticRoutes.push({
@@ -3207,6 +4537,8 @@ print(
 return;
 }
 
+/* OSPF */
+
 if (p[0] === "ospf") {
 
 d.ospf.enabled = true;
@@ -3220,12 +4552,15 @@ print(
 return;
 }
 
+/* DHCP */
+
 if (
 p[0] === "dhcp" &&
 p[1] === "enable"
 ) {
 
-d.dhcpEnabled = true;
+d.dhcpEnabled =
+true;
 
 print(
 "DHCP enabled."
@@ -3234,9 +4569,12 @@ print(
 return;
 }
 
+/* ACL */
+
 if (p[0] === "acl") {
 
-const id = p[1];
+const id =
+p[1];
 
 if (!id) {
 
@@ -3261,15 +4599,20 @@ print(
 return;
 }
 
+/* STP */
+
 if (p[0] === "stp") {
 
-d.stp.enabled = true;
+d.stp.enabled =
+true;
 
-if (p[1] === "enable") {
-print("STP enabled.");
-}
-
-else {
+if (
+p[1] === "enable"
+) {
+print(
+"STP enabled."
+);
+} else {
 print(
 "STP command accepted."
 );
@@ -3310,8 +4653,11 @@ return;
 
 if (p[0] === "quit") {
 
-currentMode = "config";
-currentVlan = null;
+currentMode =
+"config";
+
+currentVlan =
+null;
 
 updatePrompt();
 
@@ -3320,8 +4666,11 @@ return;
 
 if (p[0] === "return") {
 
-currentMode = "user";
-currentVlan = null;
+currentMode =
+"user";
+
+currentVlan =
+null;
 
 updatePrompt();
 
@@ -3345,6 +4694,13 @@ const intf = getCurrentInterface();
 
 if (!intf) return;
 
+const svi =
+isSviInterface(
+currentInterface
+);
+
+/* DESCRIPTION */
+
 if (p[0] === "description") {
 
 intf.description =
@@ -3357,11 +4713,18 @@ print(
 return;
 }
 
+/* SHUTDOWN */
+
 if (p[0] === "shutdown") {
 
-intf.shutdown = true;
-intf.status = "down";
-intf.protocol = "down";
+intf.shutdown =
+true;
+
+intf.status =
+"down";
+
+intf.protocol =
+"down";
 
 print(
 "Interface shut down."
@@ -3370,14 +4733,21 @@ print(
 return;
 }
 
+/* UNDO SHUTDOWN */
+
 if (
 p[0] === "undo" &&
 p[1] === "shutdown"
 ) {
 
-intf.shutdown = false;
-intf.status = "up";
-intf.protocol = "up";
+intf.shutdown =
+false;
+
+intf.status =
+"up";
+
+intf.protocol =
+"up";
 
 print(
 "Interface enabled."
@@ -3386,14 +4756,18 @@ print(
 return;
 }
 
+/* IP ADDRESS */
+
 if (
 p[0] === "ip" &&
 p[1] === "address"
 ) {
 
-const ip = p[2];
+const ip =
+p[2];
 
-let prefix = p[3];
+let prefix =
+p[3];
 
 if (!isValidIPv4(ip)) {
 
@@ -3426,8 +4800,11 @@ print(
 return;
 }
 
-intf.ip = ip;
-intf.mask = mask;
+intf.ip =
+ip;
+
+intf.mask =
+mask;
 
 print(
 `IP address ${ip}/${prefix || "24"} configured.`
@@ -3436,14 +4813,35 @@ print(
 return;
 }
 
+/* SVI */
+
+if (svi) {
+
+if (
+p[0] === "port"
+) {
+
+print(
+"Error: Port command is not valid on Vlanif interface."
+);
+
+return;
+}
+}
+
+/* LINK TYPE */
+
 if (
 p[0] === "port" &&
 p[1] === "link-type"
 ) {
 
-if (p[2] === "access") {
+if (
+p[2] === "access"
+) {
 
-intf.mode = "access";
+intf.mode =
+"access";
 
 print(
 "Port link-type set to access."
@@ -3452,9 +4850,12 @@ print(
 return;
 }
 
-if (p[2] === "trunk") {
+if (
+p[2] === "trunk"
+) {
 
-intf.mode = "trunk";
+intf.mode =
+"trunk";
 
 print(
 "Port link-type set to trunk."
@@ -3464,14 +4865,40 @@ return;
 }
 }
 
+/* DEFAULT VLAN */
+
 if (
 p[0] === "port" &&
 p[1] === "default" &&
 p[2] === "vlan"
 ) {
 
+const vlan =
+Number(p[3]);
+
+if (
+!Number.isInteger(vlan) ||
+vlan < 1 ||
+vlan > 4094
+) {
+
+print(
+"Error: Invalid VLAN."
+);
+
+return;
+}
+
+if (!d.vlans[vlan]) {
+
+d.vlans[vlan] = {
+name: `VLAN${vlan}`,
+status: "active"
+};
+}
+
 intf.vlan =
-Number(p[3]) || 1;
+vlan;
 
 print(
 `Default VLAN ${intf.vlan} configured.`
@@ -3479,6 +4906,8 @@ print(
 
 return;
 }
+
+/* TRUNK ALLOW PASS */
 
 if (
 p[0] === "port" &&
@@ -3497,6 +4926,8 @@ print(
 return;
 }
 
+/* PVID */
+
 if (
 p[0] === "port" &&
 p[1] === "trunk" &&
@@ -3514,9 +4945,14 @@ print(
 return;
 }
 
-if (p[0] === "port-security") {
+/* PORT SECURITY */
 
-const key = currentInterface;
+if (
+p[0] === "port-security"
+) {
+
+const key =
+currentInterface;
 
 if (!d.portSecurity[key]) {
 
@@ -3529,7 +4965,8 @@ action: "shutdown"
 
 if (p.length === 1) {
 
-d.portSecurity[key].enabled = true;
+d.portSecurity[key].enabled =
+true;
 
 print(
 "Port security enabled."
@@ -3538,7 +4975,9 @@ print(
 return;
 }
 
-if (p[1] === "max-mac-num") {
+if (
+p[1] === "max-mac-num"
+) {
 
 d.portSecurity[key].maximum =
 Number(p[2]) || 1;
@@ -3550,7 +4989,9 @@ print(
 return;
 }
 
-if (p[1] === "protect-action") {
+if (
+p[1] === "protect-action"
+) {
 
 d.portSecurity[key].action =
 p[2] || "shutdown";
@@ -3563,6 +5004,8 @@ return;
 }
 }
 
+/* EDGE PORT */
+
 if (
 p[0] === "stp" &&
 p[1] === "edged-port" &&
@@ -3573,6 +5016,7 @@ if (
 !d.stp.edgePorts
 .includes(currentInterface)
 ) {
+
 d.stp.edgePorts
 .push(currentInterface);
 }
@@ -3584,12 +5028,15 @@ print(
 return;
 }
 
+/* BPDU PROTECTION */
+
 if (
 p[0] === "stp" &&
 p[1] === "bpdu-protection"
 ) {
 
-d.stp.bpduProtection = true;
+d.stp.bpduProtection =
+true;
 
 print(
 "BPDU protection enabled."
@@ -3598,9 +5045,14 @@ print(
 return;
 }
 
-if (p[0] === "eth-trunk") {
+/* ETH-TRUNK */
 
-const id = p[1] || "1";
+if (
+p[0] === "eth-trunk"
+) {
+
+const id =
+p[1] || "1";
 
 if (!d.etherChannels[id]) {
 
@@ -3626,20 +5078,30 @@ print(
 return;
 }
 
+/* QUIT */
+
 if (p[0] === "quit") {
 
-currentMode = "config";
-currentInterface = null;
+currentMode =
+"config";
+
+currentInterface =
+null;
 
 updatePrompt();
 
 return;
 }
 
+/* RETURN */
+
 if (p[0] === "return") {
 
-currentMode = "user";
-currentInterface = null;
+currentMode =
+"user";
+
+currentInterface =
+null;
 
 updatePrompt();
 
@@ -3660,7 +5122,9 @@ function handleHuaweiLine(command) {
 const p = tokens(command);
 const d = device();
 
-if (p[0] === "authentication-mode") {
+if (
+p[0] === "authentication-mode"
+) {
 
 d.vty.authentication =
 p[1] || "none";
@@ -3672,9 +5136,13 @@ print(
 return;
 }
 
-if (p[0] === "protocol") {
+if (
+p[0] === "protocol"
+) {
 
-if (p[1] === "inbound") {
+if (
+p[1] === "inbound"
+) {
 
 d.vty.protocol =
 p[2] || "telnet";
@@ -3689,8 +5157,11 @@ return;
 
 if (p[0] === "quit") {
 
-currentMode = "config";
-currentLine = null;
+currentMode =
+"config";
+
+currentLine =
+null;
 
 updatePrompt();
 
@@ -3699,8 +5170,11 @@ return;
 
 if (p[0] === "return") {
 
-currentMode = "user";
-currentLine = null;
+currentMode =
+"user";
+
+currentLine =
+null;
 
 updatePrompt();
 
@@ -3718,11 +5192,18 @@ Show Dispatcher
 
 function handleShow(command) {
 
-const cmd = lower(command);
+const cmd =
+lower(command);
+
+/* =====================================================
+CISCO
+===================================================== */
 
 if (currentDevice === "cisco") {
 
-if (cmd === "show version") {
+if (
+cmd === "show version"
+) {
 showCiscoVersion();
 return;
 }
@@ -3735,7 +5216,9 @@ showCiscoVlans();
 return;
 }
 
-if (cmd === "show interfaces") {
+if (
+cmd === "show interfaces"
+) {
 showCiscoInterfaces();
 return;
 }
@@ -3771,11 +5254,13 @@ return;
 if (
 cmd === "show startup-config"
 ) {
-showCiscoRunningConfig();
+showCiscoStartupConfig();
 return;
 }
 
-if (cmd === "show arp") {
+if (
+cmd === "show arp"
+) {
 showCiscoArp();
 return;
 }
@@ -3787,12 +5272,16 @@ showCiscoMac();
 return;
 }
 
-if (cmd === "show ip route") {
+if (
+cmd === "show ip route"
+) {
 showCiscoRoute();
 return;
 }
 
-if (cmd === "show ip ssh") {
+if (
+cmd === "show ip ssh"
+) {
 showCiscoSSH();
 return;
 }
@@ -3811,17 +5300,23 @@ showCiscoEtherChannel();
 return;
 }
 
-if (cmd === "show users") {
+if (
+cmd === "show users"
+) {
 showCiscoUsers();
 return;
 }
 
-if (cmd === "show line") {
+if (
+cmd === "show line"
+) {
 showCiscoLine();
 return;
 }
 
-if (cmd === "show logging") {
+if (
+cmd === "show logging"
+) {
 showCiscoLogging();
 return;
 }
@@ -3875,7 +5370,9 @@ print("");
 return;
 }
 
-if (cmd === "show ip ospf") {
+if (
+cmd === "show ip ospf"
+) {
 
 print("");
 
@@ -3897,19 +5394,27 @@ print(
 return;
 }
 
-/* Huawei */
+/* =====================================================
+HUAWEI
+===================================================== */
 
-if (cmd === "display version") {
+if (
+cmd === "display version"
+) {
 showHuaweiVersion();
 return;
 }
 
-if (cmd === "display vlan") {
+if (
+cmd === "display vlan"
+) {
 showHuaweiVlan();
 return;
 }
 
-if (cmd === "display interface") {
+if (
+cmd === "display interface"
+) {
 showHuaweiInterfaces();
 return;
 }
@@ -3935,12 +5440,23 @@ showHuaweiCurrentConfig();
 return;
 }
 
-if (cmd === "display arp") {
+if (
+cmd === "display startup"
+) {
+showHuaweiStartupConfig();
+return;
+}
+
+if (
+cmd === "display arp"
+) {
 showHuaweiArp();
 return;
 }
 
-if (cmd === "display mac-address") {
+if (
+cmd === "display mac-address"
+) {
 showHuaweiMac();
 return;
 }
@@ -3959,17 +5475,23 @@ showHuaweiOspf();
 return;
 }
 
-if (cmd === "display stp") {
+if (
+cmd === "display stp"
+) {
 showHuaweiStp();
 return;
 }
 
-if (cmd === "display acl") {
+if (
+cmd === "display acl"
+) {
 showHuaweiAcl();
 return;
 }
 
-if (cmd === "display dhcp") {
+if (
+cmd === "display dhcp"
+) {
 
 print("");
 
@@ -3996,7 +5518,10 @@ Do Command
 function executeDoCommand(command) {
 
 const actual =
-command.replace(/^do\s+/i, "");
+command.replace(
+/^do\s+/i,
+""
+);
 
 if (
 currentDevice === "cisco" &&
@@ -4031,14 +5556,16 @@ Terminal Commands
 
 function handleTerminalCommand(command) {
 
-const p = tokens(command);
+const p =
+tokens(command);
 
 if (
 p[0] === "terminal" &&
 p[1] === "monitor"
 ) {
 
-terminalMonitor = true;
+terminalMonitor =
+true;
 
 print(
 "Terminal monitoring enabled."
@@ -4053,7 +5580,8 @@ p[1] === "no" &&
 p[2] === "monitor"
 ) {
 
-terminalMonitor = false;
+terminalMonitor =
+false;
 
 print(
 "Terminal monitoring disabled."
@@ -4067,8 +5595,14 @@ p[0] === "terminal" &&
 p[1] === "length"
 ) {
 
+const length =
+Number(p[2]);
+
 terminalLength =
-Number(p[2]) || 24;
+Number.isInteger(length) &&
+length > 0
+? length
+: 24;
 
 print(
 `Terminal length set to ${terminalLength}.`
@@ -4086,52 +5620,78 @@ Execute Cisco
 
 function executeCisco(command) {
 
-const cmd = resolveCisco(command);
-const p = tokens(cmd);
+const cmd =
+resolveCisco(command);
+
+const p =
+tokens(cmd);
 
 if (!cmd) return;
 
-if (p[0] === "show") {
+/* SHOW */
+
+if (
+p[0] === "show"
+) {
 
 handleShow(cmd);
 
 return;
 }
 
-if (p[0] === "ping") {
+/* PING */
+
+if (
+p[0] === "ping"
+) {
 
 executePing(p[1]);
 
 return;
 }
 
-if (handleTerminalCommand(cmd)) {
+/* TERMINAL */
+
+if (
+handleTerminalCommand(cmd)
+) {
 return;
 }
+
+/* DO */
 
 if (
 lower(command).startsWith("do ")
 ) {
 
-if (executeDoCommand(command)) {
+if (
+executeDoCommand(command)
+) {
 return;
 }
 }
 
 /* USER */
 
-if (currentMode === "user") {
+if (
+currentMode === "user"
+) {
 
-if (cmd === "enable") {
+if (
+cmd === "enable"
+) {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
 updatePrompt();
 
 return;
 }
 
-if (cmd === "disable") {
+if (
+cmd === "disable"
+) {
 return;
 }
 
@@ -4144,13 +5704,16 @@ return;
 
 /* PRIVILEGED */
 
-if (currentMode === "privileged") {
+if (
+currentMode === "privileged"
+) {
 
 if (
 cmd === "configure terminal"
 ) {
 
-currentMode = "config";
+currentMode =
+"config";
 
 updatePrompt();
 
@@ -4166,36 +5729,39 @@ cmd ===
 "copy running-config startup-config"
 ) {
 
-print("");
-print(
-"Destination filename [startup-config]?"
-);
-print(
-"Building configuration..."
-);
-print("[OK]");
+saveConfiguration();
 
 return;
 }
 
-if (cmd === "write memory") {
+if (
+cmd === "write memory"
+) {
 
-print(
-"Building configuration..."
-);
-print("[OK]");
+saveConfiguration();
 
 return;
 }
 
-if (cmd === "reload") {
+if (
+cmd === "reload"
+) {
+
+reloadConfiguration();
+
+return;
+}
+
+if (
+cmd === "erase startup-config"
+) {
+
+startupConfigs.cisco =
+null;
 
 print("");
 print(
-"Reload command accepted."
-);
-print(
-"Simulation mode: device will not actually reboot."
+"Startup configuration erased."
 );
 print("");
 
@@ -4203,20 +5769,8 @@ return;
 }
 
 if (
-cmd ===
-"erase startup-config"
+cmd === "end"
 ) {
-
-print("");
-print(
-"Startup configuration erase simulated."
-);
-print("");
-
-return;
-}
-
-if (cmd === "end") {
 return;
 }
 
@@ -4229,20 +5783,28 @@ return;
 
 /* CONFIG */
 
-if (currentMode === "config") {
+if (
+currentMode === "config"
+) {
 
-if (cmd === "end") {
+if (
+cmd === "end"
+) {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
 updatePrompt();
 
 return;
 }
 
-if (cmd === "exit") {
+if (
+cmd === "exit"
+) {
 
-currentMode = "privileged";
+currentMode =
+"privileged";
 
 updatePrompt();
 
@@ -4256,7 +5818,9 @@ return;
 
 /* VLAN */
 
-if (currentMode === "vlan") {
+if (
+currentMode === "vlan"
+) {
 
 handleCiscoVlan(cmd);
 
@@ -4265,7 +5829,9 @@ return;
 
 /* INTERFACE */
 
-if (currentMode === "interface") {
+if (
+currentMode === "interface"
+) {
 
 handleCiscoInterface(cmd);
 
@@ -4274,7 +5840,9 @@ return;
 
 /* LINE */
 
-if (currentMode === "line") {
+if (
+currentMode === "line"
+) {
 
 handleCiscoLine(cmd);
 
@@ -4288,19 +5856,30 @@ Execute Huawei
 
 function executeHuawei(command) {
 
-const cmd = resolveHuawei(command);
-const p = tokens(cmd);
+const cmd =
+resolveHuawei(command);
+
+const p =
+tokens(cmd);
 
 if (!cmd) return;
 
-if (p[0] === "display") {
+/* DISPLAY */
+
+if (
+p[0] === "display"
+) {
 
 handleShow(cmd);
 
 return;
 }
 
-if (p[0] === "ping") {
+/* PING */
+
+if (
+p[0] === "ping"
+) {
 
 executePing(p[1]);
 
@@ -4309,11 +5888,16 @@ return;
 
 /* USER */
 
-if (currentMode === "user") {
+if (
+currentMode === "user"
+) {
 
-if (cmd === "system-view") {
+if (
+cmd === "system-view"
+) {
 
-currentMode = "config";
+currentMode =
+"config";
 
 updatePrompt();
 
@@ -4324,7 +5908,9 @@ print(
 return;
 }
 
-if (cmd === "quit") {
+if (
+cmd === "quit"
+) {
 
 print("Bye.");
 
@@ -4340,22 +5926,52 @@ return;
 
 /* CONFIG */
 
-if (currentMode === "config") {
+if (
+currentMode === "config"
+) {
 
-if (cmd === "quit") {
+if (
+cmd === "quit"
+) {
 
-currentMode = "user";
+currentMode =
+"user";
 
 updatePrompt();
 
 return;
 }
 
-if (cmd === "return") {
+if (
+cmd === "return"
+) {
 
-currentMode = "user";
+currentMode =
+"user";
 
 updatePrompt();
+
+return;
+}
+
+/* SAVE */
+
+if (
+cmd === "save"
+) {
+
+saveConfiguration();
+
+return;
+}
+
+/* REBOOT */
+
+if (
+cmd === "reboot"
+) {
+
+reloadConfiguration();
 
 return;
 }
@@ -4367,7 +5983,9 @@ return;
 
 /* VLAN */
 
-if (currentMode === "vlan") {
+if (
+currentMode === "vlan"
+) {
 
 handleHuaweiVlan(cmd);
 
@@ -4376,7 +5994,9 @@ return;
 
 /* INTERFACE */
 
-if (currentMode === "interface") {
+if (
+currentMode === "interface"
+) {
 
 handleHuaweiInterface(cmd);
 
@@ -4385,7 +6005,9 @@ return;
 
 /* LINE */
 
-if (currentMode === "line") {
+if (
+currentMode === "line"
+) {
 
 handleHuaweiLine(cmd);
 
@@ -4413,11 +6035,14 @@ commandHistory[
 commandHistory.length - 1
 ] !== command
 ) {
+
 commandHistory.push(command);
 }
 
 historyIndex =
 commandHistory.length;
+
+/* CLEAR */
 
 if (
 lower(command) === "clear" ||
@@ -4428,6 +6053,8 @@ clearTerminal();
 
 return;
 }
+
+/* HELP */
 
 if (
 lower(command) === "?" ||
@@ -4455,11 +6082,14 @@ print("");
 return;
 }
 
-if (currentDevice === "cisco") {
-executeCisco(command);
-}
+if (
+currentDevice === "cisco"
+) {
 
-else {
+executeCisco(command);
+
+} else {
+
 executeHuawei(command);
 }
 
@@ -4474,21 +6104,29 @@ function handleHistoryKey(event) {
 
 if (!commandHistory.length) return;
 
-if (event.key === "ArrowUp") {
+if (
+event.key === "ArrowUp"
+) {
 
 event.preventDefault();
 
-if (historyIndex > 0) {
+if (
+historyIndex > 0
+) {
 historyIndex--;
 }
 
 terminalInput.value =
-commandHistory[historyIndex] || "";
+commandHistory[
+historyIndex
+] || "";
 
 return;
 }
 
-if (event.key === "ArrowDown") {
+if (
+event.key === "ArrowDown"
+) {
 
 event.preventDefault();
 
@@ -4500,11 +6138,11 @@ commandHistory.length - 1
 historyIndex++;
 
 terminalInput.value =
-commandHistory[historyIndex];
+commandHistory[
+historyIndex
+];
 
-}
-
-else {
+} else {
 
 historyIndex =
 commandHistory.length;
@@ -4518,7 +6156,8 @@ terminalInput.value = "";
 Device Buttons
 ========================================================= */
 
-deviceButtons.forEach(button => {
+deviceButtons.forEach(
+button => {
 
 button.addEventListener(
 "click",
@@ -4529,18 +6168,24 @@ button.dataset.device;
 
 setDevice(type);
 
-deviceButtons.forEach(btn =>
-btn.classList.remove("active")
+deviceButtons.forEach(
+btn =>
+btn.classList.remove(
+"active"
+)
 );
 
-button.classList.add("active");
+button.classList.add(
+"active"
+);
 
 if (terminalInput) {
 terminalInput.focus();
 }
 }
 );
-});
+}
+);
 
 /* =========================================================
 Reset Button
@@ -4620,14 +6265,19 @@ Start
 
 setDevice("cisco");
 
-deviceButtons.forEach(button => {
+deviceButtons.forEach(
+button => {
 
 if (
 button.dataset.device === "cisco"
 ) {
-button.classList.add("active");
+
+button.classList.add(
+"active"
+);
 }
-});
+}
+);
 
 if (terminalInput) {
 terminalInput.focus();
