@@ -185,12 +185,10 @@
 
     <section class="home-feedback-section" aria-labelledby="home-feedback-title">
         <div class="home-feedback-card">
-            <div class="home-feedback-icon" aria-hidden="true">✉</div>
             <div class="home-feedback-copy">
-                <span class="section-kicker">نطوّر عرّاب الشبكات معك</span>
-                <h2 id="home-feedback-title">للاستفسارات والاقتراحات</h2>
-                <p>هل لديك استفسار أو فكرة تساعد على تحسين تجربتك؟ يسعدنا أن نسمع منك.</p>
-                <button class="home-feedback-open" id="feedbackOpen" type="button" aria-expanded="false" aria-controls="feedbackForm">اكتب رسالتك</button>
+                <h2 id="home-feedback-title">الاستفسارات والاقتراحات</h2>
+                <p>هل لديك فكرة تساعدنا على تحسين تجربتك؟ يسعدنا أن تشاركنا.</p>
+                <button class="home-feedback-open" id="feedbackOpen" type="button" aria-expanded="false" aria-controls="feedbackForm">تواصل مع العرّاب</button>
             </div>
         </div>
         <form class="home-feedback-form" id="feedbackForm" hidden>
@@ -274,7 +272,7 @@
             const isOpen = !feedbackForm.hidden;
             feedbackForm.hidden = isOpen;
             feedbackOpen.setAttribute("aria-expanded", String(!isOpen));
-            feedbackOpen.textContent = isOpen ? "اكتب رسالتك" : "إغلاق النموذج";
+            feedbackOpen.textContent = isOpen ? "تواصل مع العرّاب" : "إغلاق النموذج";
             if (!isOpen) feedbackForm.querySelector("input")?.focus();
         });
 
