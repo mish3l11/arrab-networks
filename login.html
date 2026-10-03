@@ -449,9 +449,10 @@ loginForm.addEventListener(
             */
 
             setTimeout(function() {
-
+                const requestedPage = new URLSearchParams(window.location.search).get("next");
+                const allowedPages = ["network-tools.html", "network-lab.html", "lab.html"];
                 window.location.replace(
-                    "profile.html"
+                    allowedPages.includes(requestedPage) ? requestedPage : "profile.html"
                 );
 
             }, 300);

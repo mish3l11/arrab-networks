@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="homepage.css">
     <link rel="stylesheet" href="site-theme.css">
+    <style>body{visibility:hidden}body.authenticated{visibility:visible}</style>
 </head>
 <body class="home-page">
 <header class="navbar home-navbar">
@@ -71,7 +72,26 @@
     </section>
 </main>
 
-<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script>
+    (async function () {
+        try {
+            const { data, error } = await supabaseClient.auth.getSession();
+            if (error || !data?.session?.user) {
+                window.location.replace("login.html?next=network-lab.html");
+                return;
+            }
+
+            document.body.classList.add("authenticated");
+            const labScript = document.createElement("script");
+            labScript.src = "script.js";
+            document.body.appendChild(labScript);
+        } catch (error) {
+            window.location.replace("login.html?next=network-lab.html");
+        }
+    })();
+</script>
 
 </body>
 </html>
