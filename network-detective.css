@@ -805,7 +805,7 @@ body {
     margin: 0 auto 8px;
     flex: 0 0 auto;
     font-size: 0;
-    background-image: url("images/network-devices-sprite.png");
+    background-image: url("images/network-devices-sprite.webp");
     background-repeat: no-repeat;
     background-size: 500% 100%;
     background-position-y: 50%;
