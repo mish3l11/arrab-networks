@@ -22,6 +22,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="site-theme.css">
 </head>
 
 <body class="terminal-page">
@@ -36,40 +37,7 @@
 
             <div class="brand-icon">
 
-                <svg
-                    class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    xmlns="http://www.w3.org/2000/svg">
-
-                    <circle cx="50" cy="18" r="9" fill="currentColor"/>
-                    <circle cx="22" cy="72" r="9" fill="currentColor"/>
-                    <circle cx="78" cy="72" r="9" fill="currentColor"/>
-
-                    <line
-                        x1="50"
-                        y1="27"
-                        x2="27"
-                        y2="64"
-                        stroke="currentColor"
-                        stroke-width="7"/>
-
-                    <line
-                        x1="50"
-                        y1="27"
-                        x2="73"
-                        y2="64"
-                        stroke="currentColor"
-                        stroke-width="7"/>
-
-                    <line
-                        x1="31"
-                        y1="72"
-                        x2="69"
-                        y2="72"
-                        stroke="currentColor"
-                        stroke-width="7"/>
-
-                </svg>
+                <img class="network-logo-image" src="images/network-logo.svg" alt="شعار عرّاب الشبكات">
 
             </div>
 
@@ -126,18 +94,16 @@
     ========================== -->
 
     <header class="terminal-hero">
-
-        <span class="terminal-badge">
-            NETWORK TERMINAL
-        </span>
-
-        <h1>
-            ⌨️ Terminal Simulator
-        </h1>
-
-        <p>
-            تدرّب على أوامر الشبكات داخل بيئة CLI تفاعلية.
-        </p>
+        <div class="terminal-hero-banner">
+            <img
+                class="terminal-hero-image"
+                src="images/cli-network-banner.png"
+                alt="محطة عمل شبكات تعرض شاشة أوامر CLI ومخططًا لاتصال الأجهزة">
+            <div class="terminal-hero-overlay-text">
+                <h1>Terminal Simulator</h1>
+                <p>تدرّب على أوامر الشبكات داخل بيئة CLI تفاعلية.</p>
+            </div>
+        </div>
 
     </header>
 
@@ -406,6 +372,7 @@
         async
         src="//gc.zgo.at/count.js">
     </script>
+
 
 </body>
 

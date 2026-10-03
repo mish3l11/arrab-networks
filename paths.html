@@ -458,6 +458,19 @@
             white-space: nowrap;
         }
 
+        .final-exam-top-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            background: #cbb77a !important;
+            color: #111111 !important;
+            border: 1px solid rgba(17,17,17,.12);
+        }
+
+        .final-exam-top-link:hover {
+            background: #dfcc8d !important;
+        }
+
 
         .path-status.current {
             background: #dbeafe;
@@ -867,6 +880,7 @@
 
     </style>
 
+    <link rel="stylesheet" href="site-theme.css">
 </head>
 
 
@@ -888,7 +902,7 @@
         >
 
             <span class="paths-brand-icon">
-                🌐
+                <img class="network-logo-image" src="images/network-logo.svg" alt="">
             </span>
 
 
@@ -1799,26 +1813,6 @@
                 </div>
 
 
-                <div class="path-lesson">
-
-                    <div class="path-lesson-name">
-
-                        <span class="path-lesson-number">
-                            🛠️
-                        </span>
-
-                        <span>
-                            الأعطال التدريبية
-                        </span>
-
-                    </div>
-
-                    <span class="path-lesson-status available">
-                        تدريب عملي
-                    </span>
-
-                </div>
-
             </div>
 
 
@@ -1891,6 +1885,28 @@
             >
                 🔒 أكمل المسار السابق
             </a>
+
+        </article>
+
+        <article class="path-card final-exam-path" data-path="6">
+            <div class="path-top">
+                <div class="path-icon">🏆</div>
+                <a href="final-exam.html" class="path-status current final-exam-top-link" id="status-6">ابدأ الاختبار النهائي ←</a>
+            </div>
+
+            <h2>الاختبار النهائي</h2>
+            <p class="path-description">
+                يغطي أساسيات الشبكات وSwitching وRouting والحماية.
+            </p>
+
+            <div class="path-progress-info">
+                <span>أفضل نتيجة</span>
+                <span id="final-exam-best-score">لم تبدأ بعد</span>
+            </div>
+
+            <div class="path-progress-track">
+                <div class="path-progress-fill" id="final-exam-progress"></div>
+            </div>
 
         </article>
 
@@ -2532,10 +2548,29 @@
 
     loadProgress();
 
+    const finalExamBestScore = Number(
+        localStorage.getItem("networkFinalExamBestScore")
+    ) || 0;
+    const finalExamPassed =
+        localStorage.getItem("networkFinalExamPassed") === "true";
+    const finalExamScoreLabel = document.getElementById("final-exam-best-score");
+    const finalExamProgress = document.getElementById("final-exam-progress");
+    const finalExamButton = document.querySelector(".final-exam-top-link");
+
+    if (finalExamBestScore && finalExamScoreLabel && finalExamProgress) {
+        finalExamScoreLabel.textContent = `${finalExamBestScore}%`;
+        finalExamProgress.style.width = `${finalExamBestScore}%`;
+    }
+
+    if (finalExamPassed && finalExamButton) {
+        finalExamButton.textContent = "🏆 أعد الاختبار النهائي ←";
+    }
+
 </script>
 
 
 <script src="user.js"></script>
+
 
 
 </body>

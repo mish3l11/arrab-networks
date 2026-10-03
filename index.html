@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,1397 +8,320 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="site-theme.css">
 </head>
 
-<body>
+<body class="home-page">
 
-<header class="navbar">
-
+<header class="navbar home-navbar">
     <div class="navbar-container">
 
         <a href="index.html" class="brand">
-
-            <span class="brand-icon">
-
-                <svg
-                    class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    role="img"
-                    aria-label="شعار عرّاب الشبكات"
-                >
-
-                    <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        opacity="0.75"
-                    >
-                        <path d="M50 64 L22 82" />
-                        <path d="M50 64 L78 82" />
-                        <path d="M50 64 L50 91" />
-                        <path d="M22 82 L12 72" />
-                        <path d="M78 82 L88 72" />
-                        <path d="M50 91 L38 96" />
-                        <path d="M50 91 L62 96" />
-                    </g>
-
-                    <g fill="currentColor">
-                        <circle cx="22" cy="82" r="3" />
-                        <circle cx="78" cy="82" r="3" />
-                        <circle cx="50" cy="91" r="3" />
-                        <circle cx="12" cy="72" r="2.5" />
-                        <circle cx="88" cy="72" r="2.5" />
-                        <circle cx="38" cy="96" r="2.5" />
-                        <circle cx="62" cy="96" r="2.5" />
-                    </g>
-
-                    <text
-                        x="39"
-                        y="45"
-                        text-anchor="middle"
-                        font-family="Tajawal, Arial, sans-serif"
-                        font-size="34"
-                        font-weight="800"
-                        fill="currentColor"
-                    >ع</text>
-
-                    <text
-                        x="64"
-                        y="38"
-                        text-anchor="middle"
-                        font-family="Arial, sans-serif"
-                        font-size="22"
-                        font-weight="800"
-                        fill="currentColor"
-                    >N</text>
-
-                    <path
-                        d="M47 31 H57"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-
-                    <path
-                        d="M50 51
-                           L53 58
-                           L61 59
-                           L55 64
-                           L57 72
-                           L50 68
-                           L43 72
-                           L45 64
-                           L39 59
-                           L47 58
-                           Z"
-                        fill="currentColor"
-                        opacity="0.95"
-                    />
-
-                </svg>
-
+            <span class="brand-icon home-brand-icon">
+                <img class="network-logo-image" src="images/network-logo.svg" alt="شعار عرّاب الشبكات">
             </span>
-
             <span class="brand-text">
-
-                <span class="brand-name">
-                    عرّاب الشبكات
-                </span>
-
-                <span class="brand-subtitle">
-                    NETWORKS
-                </span>
-
+                <span class="brand-name">عرّاب الشبكات</span>
+                <span class="brand-subtitle">NETWORKS</span>
             </span>
-
         </a>
 
-
-        <!-- ================= NAVIGATION ================= -->
-
-        <nav class="nav-links">
-
-            <a href="index.html" class="active">
-                الرئيسية
-            </a>
-
-            <a href="lessons.html">
-                الدروس
-            </a>
-
-            <a href="#network-lab">
-                المختبر
-            </a>
-
-            <a href="quiz.html" class="nav-button">
-                اختبر معلوماتك
-            </a>
-
-            <a href="dictionary.html" class="feature-card">
-                القاموس
-            </a>
-
-            <a href="config.html" class="nav-button">
-                مرجع الأوامر
-            </a>
-
-            <a href="network-tools.html">
-                أدوات العرّاب 
-            </a>
-
-            <!-- تحدي الميدان غير موجود في القائمة العلوية -->
-
-            <a href="terminal.html" class="feature-card">
-                CLI
-            </a>
-
-            <!-- حسابي -->
-
-            <a
-                href="profile.html"
-                class="nav-button profile-link"
-            >
-                👤 حسابي
-            </a>
-
-            <!-- لوحة الإدارة -->
-
-            <a
-                href="admin.html"
-                class="nav-button"
-                id="adminNavLink"
-                style="display:none;"
-            >
-                🛠️ لوحة الإدارة
-            </a>
-
+        <nav class="nav-links home-nav-links">
+            <a href="index.html" class="active">⌂ الرئيسية</a>
+            <a href="lessons.html">▤ الدروس</a>
+            <a href="#network-lab">⚗ المختبر</a>
+            <a href="quiz.html">▣ اختبر معلوماتك</a>
+            <a href="dictionary.html">📖 القاموس</a>
+            <a href="config.html">▧ مرجع الأوامر</a>
+            <a href="network-tools.html">🧰 أدوات العرّاب</a>
+            <a href="terminal.html">⌨ CLI</a>
+            <a href="profile.html">♙ حسابي</a>
+            <a href="admin.html" id="adminNavLink" style="display:none;">🛠️ لوحة الإدارة</a>
         </nav>
 
+        <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="فتح القائمة">
+            ☰
+        </button>
     </div>
-
 </header>
 
+<main>
 
-<!-- ================= HERO ================= -->
+    <!-- HERO -->
+    <section class="home-hero">
+        <div class="hero-overlay"></div>
 
-<section class="hero">
+        <div class="hero-inner">
 
-    <div class="hero-content">
+            <div class="hero-copy">
+                <span class="hero-kicker">منصة تعليم الشبكات</span>
 
-        <div class="hero-logo">
+                <h1>عرّاب الشبكات</h1>
 
-            <div class="hero-logo-icon">
+                <h2>رحلتك الاحترافية في عالم الشبكات</h2>
 
-                <svg
-                    class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    role="img"
-                    aria-label="شعار عرّاب الشبكات"
-                >
+                <div class="hero-motto">تعلّم <span>•</span> طبّق <span>•</span> احترف</div>
 
-                    <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        opacity="0.75"
-                    >
-                        <path d="M50 64 L22 82" />
-                        <path d="M50 64 L78 82" />
-                        <path d="M50 64 L50 91" />
-                        <path d="M22 82 L12 72" />
-                        <path d="M78 82 L88 72" />
-                        <path d="M50 91 L38 96" />
-                        <path d="M50 91 L62 96" />
-                    </g>
+                <p>
+                    من الأساسيات إلى الأوامر المتقدمة، كل ما تحتاجه في مكان واحد،
+                    بأسلوب بسيط وتجربة تعليمية احترافية.
+                </p>
 
-                    <g fill="currentColor">
-                        <circle cx="22" cy="82" r="3" />
-                        <circle cx="78" cy="82" r="3" />
-                        <circle cx="50" cy="91" r="3" />
-                        <circle cx="12" cy="72" r="2.5" />
-                        <circle cx="88" cy="72" r="2.5" />
-                        <circle cx="38" cy="96" r="2.5" />
-                        <circle cx="62" cy="96" r="2.5" />
-                    </g>
-
-                    <text
-                        x="39"
-                        y="45"
-                        text-anchor="middle"
-                        font-family="Tajawal, Arial, sans-serif"
-                        font-size="34"
-                        font-weight="800"
-                        fill="currentColor"
-                    >ع</text>
-
-                    <text
-                        x="64"
-                        y="38"
-                        text-anchor="middle"
-                        font-family="Arial, sans-serif"
-                        font-size="22"
-                        font-weight="800"
-                        fill="currentColor"
-                    >N</text>
-
-                    <path
-                        d="M47 31 H57"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-
-                    <path
-                        d="M50 51
-                           L53 58
-                           L61 59
-                           L55 64
-                           L57 72
-                           L50 68
-                           L43 72
-                           L45 64
-                           L39 59
-                           L47 58
-                           Z"
-                        fill="currentColor"
-                    />
-
-                </svg>
-
+                <div class="hero-trust">
+                    <span>تعلم ذاتي</span>
+                    <i></i>
+                    <span>تطبيق عملي</span>
+                    <i></i>
+                    <span>تطوير مستمر</span>
+                </div>
             </div>
 
-            <h1>
-                مرحباً بك في عرّاب الشبكات
-            </h1>
-
-            <div class="hero-logo-subtitle">
-                NETWORKS
-            </div>
+            <div class="hero-visual" role="img" aria-label="أجهزة شبكات وسويتشات احترافية وحاسوب يعرض أوامر الشبكات"></div>
 
         </div>
 
-        <p class="hero-greeting"></p>
-
-        <div class="hero-journey">
-
-            <div class="welcome-card">
-
-                <div class="welcome-label">
-                    YOUR NETWORK JOURNEY
-                </div>
-
-                <div class="welcome-title">
-                    كل شبكة تبدأ بخطوة 🌐
-                </div>
-
-                <div class="welcome-text">
-                    افهم الأساسيات، جرّب بنفسك، وابنِ خبرتك في الشبكات.
-                </div>
-
-                <div class="welcome-watermark">
-                    🌐
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<main class="container">
-
-
-    <!-- ================= LEARNING JOURNEY ================= -->
-
-    <section class="learning-journey">
-
-        <div class="journey-header">
-
-            <span>
-                LEARNING JOURNEY
-            </span>
-
-            <h2>
-                من النظرية إلى التطبيق
-            </h2>
-
-            <p>
-                طريقة تعلّمك داخل عرّاب الشبكات
-            </p>
-
-        </div>
-
-
-        <div class="journey-steps">
-
-            <div class="journey-step">
-
-                <div class="journey-icon">
-                    📖
-                </div>
-
-                <div>
-                    <strong>النظرية</strong>
-                    <small>تعرف على المفهوم</small>
-                </div>
-
-            </div>
-
-
-            <div class="journey-line"></div>
-
-
-            <div class="journey-step">
-
-                <div class="journey-icon">
-                    💡
-                </div>
-
-                <div>
-                    <strong>الفهم</strong>
-                    <small>اربط المعلومات</small>
-                </div>
-
-            </div>
-
-
-            <div class="journey-line"></div>
-
-
-            <div class="journey-step">
-
-                <div class="journey-icon">
-                    💻
-                </div>
-
-                <div>
-                    <strong>التطبيق</strong>
-                    <small>جرّب بنفسك</small>
-                </div>
-
-            </div>
-
-
-            <div class="journey-line"></div>
-
-
-            <div class="journey-step">
-
-                <div class="journey-icon">
-                    🧠
-                </div>
-
-                <div>
-                    <strong>الاختبار</strong>
-                    <small>اختبر معلوماتك</small>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="journey-next">
-            ↓ ثم اختر الموضوع الذي تريد تعلمه
-        </div>
-
+        <div class="hero-bottom-glow"></div>
     </section>
 
-
-    <!-- ================= LEARNING PATHS ================= -->
-
-    <section class="learning-paths">
-
-        <h2 class="home-title">
-            ماذا ستتعلم؟
-        </h2>
-
-        <p class="section-description">
-            تعرّف على أهم مواضيع الشبكات التي ستتعلمها خلال رحلتك.
-        </p>
-
-
-        <div class="paths-grid">
-
-
-            <div class="path-card">
-
-                <div class="path-icon">
-                    🌐
+    <!-- LEARNING JOURNEY -->
+    <section class="learning-journey home-learning-journey">
+        <div class="journey-visual">
+            <img class="journey-background" src="images/learning-journey-practice.png" alt="">
+            <div class="journey-overlay">
+                <div class="journey-header">
+                    <span class="section-kicker">مسارك نحو الاحتراف</span>
+                    <h2>من النظرية إلى التطبيق</h2>
+                    <p>طريقة تعلّمك داخل عرّاب الشبكات</p>
                 </div>
 
-                <h3>
-                    أساسيات الشبكات
-                </h3>
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="journey-icon">📖</div>
+                        <div>
+                            <strong>النظرية</strong>
+                            <small>تعرّف على المفهوم</small>
+                        </div>
+                    </div>
 
-                <p>
-                    تعرّف على أهم مفاهيم الشبكات ومكوناتها وكيف تتواصل الأجهزة مع بعضها.
-                </p>
+                    <div class="journey-line"></div>
 
-            </div>
+                    <div class="journey-step">
+                        <div class="journey-icon">💡</div>
+                        <div>
+                            <strong>الفهم</strong>
+                            <small>اربط المعلومات</small>
+                        </div>
+                    </div>
 
+                    <div class="journey-line"></div>
 
-            <div class="path-card">
+                    <div class="journey-step">
+                        <div class="journey-icon">💻</div>
+                        <div>
+                            <strong>التطبيق</strong>
+                            <small>جرّب بنفسك</small>
+                        </div>
+                    </div>
 
-                <div class="path-icon">
-                    🔢
+                    <div class="journey-line"></div>
+
+                    <div class="journey-step">
+                        <div class="journey-icon">🧠</div>
+                        <div>
+                            <strong>الاختبار</strong>
+                            <small>اختبر معلوماتك</small>
+                        </div>
+                    </div>
                 </div>
-
-                <h3>
-                    IP & Subnetting
-                </h3>
-
-                <p>
-                    افهم عناوين IP والشبكات وكيفية تقسيم الشبكات باستخدام Subnetting.
-                </p>
-
             </div>
-
-
-            <div class="path-card">
-
-                <div class="path-icon">
-                    🔵
-                </div>
-
-                <h3>
-                    Switching
-                </h3>
-
-                <p>
-                    تعلّم أساسيات السويتش وكيف تنتقل البيانات بين الأجهزة داخل الشبكة.
-                </p>
-
-            </div>
-
-
-            <div class="path-card">
-
-                <div class="path-icon">
-                    🧭
-                </div>
-
-                <h3>
-                    Routing
-                </h3>
-
-                <p>
-                    افهم التوجيه وكيف تنتقل البيانات بين الشبكات المختلفة.
-                </p>
-
-            </div>
-
-
-            <div class="path-card">
-
-                <div class="path-icon">
-                    🏷️
-                </div>
-
-                <h3>
-                    VLAN
-                </h3>
-
-                <p>
-                    تعلّم كيفية تقسيم الشبكة منطقيًا وإدارة الـ VLANs.
-                </p>
-
-            </div>
-
-
-            <div class="path-card">
-
-                <div class="path-icon">
-                    🛡️
-                </div>
-
-                <h3>
-                    Network Security
-                </h3>
-
-                <p>
-                    تعرّف على أساسيات حماية الشبكات وتأمين الأجهزة والاتصالات.
-                </p>
-
-            </div>
-
         </div>
-
     </section>
 
+    <!-- BOTTOM CTA -->
+    <section class="home-bottom-cta">
+        <div class="cta-photo"></div>
+        <div class="cta-content">
+            <span class="section-kicker">خطوتك القادمة</span>
+            <h2>كل محترف بدأ بخطوة ..<br>وأنت الآن في الطريق الصحيح</h2>
+            <a href="lessons.html" class="outline-button">ابدأ رحلتك الآن ←</a>
+        </div>
+    </section>
 
-    <!-- ================= CTA ================= -->
-
+    <!-- LEARNING DESTINATIONS -->
     <section class="cta-section">
-
         <div class="cta-grid">
-
-
-            <!-- START LEARNING -->
-
-            <div class="cta-card">
-
-                <div class="cta-icon small-cta-icon">
-                    🎓
-                </div>
-
-                <h2>
-                    جاهز تبدأ رحلتك؟
-                </h2>
-
-                <p>
-                    ابدأ من الأساسيات وابنِ معرفتك في الشبكات خطوة بخطوة.
-                </p>
-
-                <a
-                    href="lessons.html"
-                    class="cta-button"
-                >
-                    🚀 ابدأ التعلم
-                </a>
-
+            <div class="cta-card challenge-cta-card">
+                <h2>ساحة التحديات</h2>
+                <p>اختبر معرفتك ومهاراتك في الشبكات من خلال تحديات متنوعة.</p>
+                <a href="challenges.html" class="cta-button">⚔️ دخول ساحة التحديات</a>
             </div>
-
-
-            <!-- NETWORK DETECTIVE -->
 
             <div class="cta-card detective-cta-card">
-
-                <div class="cta-icon small-cta-icon">
-                    🕵️
-                </div>
-
-                <div class="cta-badge">
-                    NEW
-                </div>
-
-                <h2>
-                    جاهز للتحقيق؟
-                </h2>
-
-                <p>
-                    حل القضايا، اجمع الأدلة، واربط الأحداث للوصول إلى الحقيقة.
-                </p>
-
-                <a
-                    href="network-detective.html"
-                    class="cta-button detective-cta-button"
-                >
-                    🔍 ابدأ التحقيق
-                </a>
-
+                <div class="cta-badge">NEW</div>
+                <h2>جاهز للتحقيق؟</h2>
+                <p>حل القضايا، اجمع الأدلة، واربط الأحداث للوصول إلى الحقيقة.</p>
+                <a href="network-detective.html" class="cta-button detective-cta-button">🔍 ابدأ التحقيق</a>
             </div>
-
         </div>
-
     </section>
 
+    <!-- PRACTICAL LAB AT THE END OF THE HOMEPAGE -->
+    <section class="lab-showcase" id="network-lab">
+        <div class="lab-showcase-image" role="img" aria-label="مختبر شبكات يحتوي على حاسوب وسويتشات فعلية"></div>
 
-    <!-- ================= CHALLENGES ARENA ================= -->
-
-    <section
-        id="challenges"
-        class="challenges-arena"
-    >
-
-        <a
-            href="challenges.html"
-            class="challenges-main-card"
-        >
-
-            <div class="challenges-main-icon">
-                ⚔️
-            </div>
-
-            <div class="challenges-main-content">
-
-                <span class="challenges-kicker">
-                    NETWORK CHALLENGES
-                </span>
-
-                <h2>
-                    ساحة التحديات
-                </h2>
-
-                <p>
-                    اختبر معرفتك ومهاراتك في الشبكات من خلال تحديات متنوعة.
-                </p>
-
-                <span class="challenges-open-text">
-                    دخول ساحة التحديات ←
-                </span>
-
-            </div>
-
-        </a>
-
+        <div class="lab-showcase-content">
+            <span class="section-kicker">التعلّم بالتجربة</span>
+            <h2>المختبر العملي</h2>
+            <h3>جرّب بنفسك .. وشاهد النتائج مباشرة</h3>
+            <p>بيئة عملية تفاعلية لفهم الشبكات، وربط الأجهزة، ومراقبة انتقال البيانات خطوة بخطوة.</p>
+            <a href="network-lab.html" class="gold-button">ادخل إلى المختبر <span>←</span></a>
+        </div>
     </section>
 
+    <section class="home-feedback-section" aria-labelledby="home-feedback-title">
+        <div class="home-feedback-card">
+            <div class="home-feedback-icon" aria-hidden="true">✉</div>
+            <div class="home-feedback-copy">
+                <span class="section-kicker">نطوّر عرّاب الشبكات معك</span>
+                <h2 id="home-feedback-title">للاستفسارات والاقتراحات</h2>
+                <p>هل لديك استفسار أو فكرة تساعد على تحسين تجربتك؟ يسعدنا أن نسمع منك.</p>
+                <button class="home-feedback-open" id="feedbackOpen" type="button" aria-expanded="false" aria-controls="feedbackForm">اكتب رسالتك</button>
+            </div>
+        </div>
+        <form class="home-feedback-form" id="feedbackForm" hidden>
+            <label for="feedbackName">الاسم</label>
+            <input id="feedbackName" name="name" type="text" autocomplete="name" placeholder="اسمك" required>
+            <label for="feedbackEmail">بريدك الإلكتروني</label>
+            <input id="feedbackEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+            <label for="feedbackMessage">رسالتك</label>
+            <textarea id="feedbackMessage" name="message" rows="5" placeholder="اكتب استفسارك أو اقتراحك هنا" required></textarea>
+            <p class="home-feedback-note">أرسل رسالتك مباشرةً من الموقع.</p>
+            <p class="home-feedback-status" id="feedbackStatus" role="status" aria-live="polite" hidden></p>
+            <button class="home-feedback-submit" id="feedbackSubmit" type="submit">إرسال الرسالة <span aria-hidden="true">←</span></button>
+        </form>
+    </section>
 </main>
 
-
-<!-- ================= NETWORK LAB ================= -->
-
-<section
-    id="network-lab"
-    class="network-lab"
->
-
-    <div class="lab-header">
-
-        <div>
-
-            <span class="lab-kicker">
-                NETWORK OPERATIONS LAB
-            </span>
-
-            <h2>
-                🧪 مختبر الشبكة
-            </h2>
-
-            <p>
-                شاهد انتقال البيانات بين أجهزة الشبكة بشكل تفاعلي
-            </p>
-
-        </div>
-
-
-        <div class="lab-status">
-
-            <span class="status-dot"></span>
-
-            NETWORK ONLINE
-
-        </div>
-
-    </div>
-
-
-    <div class="network-topology">
-
-
-        <button
-            class="network-device"
-            onclick="showDeviceInfo('pc')"
-            type="button"
-        >
-
-            <span>💻</span>
-
-            <strong>
-                PC
-            </strong>
-
-            <small>
-                جهاز المستخدم
-            </small>
-
-        </button>
-
-
-        <div class="network-line"></div>
-
-
-        <button
-            class="network-device"
-            onclick="showDeviceInfo('switch')"
-            type="button"
-        >
-
-            <span>🔵</span>
-
-            <strong>
-                Switch
-            </strong>
-
-            <small>
-                Layer 2
-            </small>
-
-        </button>
-
-
-        <div class="network-line"></div>
-
-
-        <button
-            class="network-device"
-            onclick="showDeviceInfo('router')"
-            type="button"
-        >
-
-            <span>🟠</span>
-
-            <strong>
-                Router
-            </strong>
-
-            <small>
-                Layer 3
-            </small>
-
-        </button>
-
-
-        <div class="network-line"></div>
-
-
-        <button
-            class="network-device"
-            onclick="showDeviceInfo('firewall')"
-            type="button"
-        >
-
-            <span>🛡️</span>
-
-            <strong>
-                Firewall
-            </strong>
-
-            <small>
-                Security
-            </small>
-
-        </button>
-
-
-        <div class="network-line"></div>
-
-
-        <button
-            class="network-device"
-            onclick="showDeviceInfo('server')"
-            type="button"
-        >
-
-            <span>🖥️</span>
-
-            <strong>
-                Server
-            </strong>
-
-            <small>
-                Destination
-            </small>
-
-        </button>
-
-
-        <div id="packet" class="packet">
-            📡
-        </div>
-
-    </div>
-
-
-    <div class="packet-controls">
-
-        <button
-            class="packet-button"
-            onclick="sendPacket()"
-            type="button"
-        >
-            🚀 إرسال البيانات
-        </button>
-
-        <p id="packet-status">
-            💡 اضغط «إرسال البيانات» لبدء انتقال الـPacket
-        </p>
-
-    </div>
-
-
-    <div
-        id="device-info"
-        class="device-info"
-        aria-live="polite"
-    >
-
-        <div class="device-info-empty">
-
-            <span>🌐</span>
-
-            <h3>
-                معلومات الجهاز
-            </h3>
-
-            <p>
-                اضغط على أي جهاز في الشبكة لمعرفة وظيفته.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="footer">
-
-    <div class="footer-container">
-
-
-        <div class="footer-brand">
-
-            <span class="brand-icon">
-
-                <svg
-                    class="network-logo-svg"
-                    viewBox="0 0 100 100"
-                    role="img"
-                    aria-label="شعار عرّاب الشبكات"
-                >
-
-                    <g
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        opacity="0.75"
-                    >
-                        <path d="M50 64 L22 82" />
-                        <path d="M50 64 L78 82" />
-                        <path d="M50 64 L50 91" />
-                        <path d="M22 82 L12 72" />
-                        <path d="M78 82 L88 72" />
-                        <path d="M50 91 L38 96" />
-                        <path d="M50 91 L62 96" />
-                    </g>
-
-                    <g fill="currentColor">
-                        <circle cx="22" cy="82" r="3" />
-                        <circle cx="78" cy="82" r="3" />
-                        <circle cx="50" cy="91" r="3" />
-                        <circle cx="12" cy="72" r="2.5" />
-                        <circle cx="88" cy="72" r="2.5" />
-                        <circle cx="38" cy="96" r="2.5" />
-                        <circle cx="62" cy="96" r="2.5" />
-                    </g>
-
-                    <text
-                        x="39"
-                        y="45"
-                        text-anchor="middle"
-                        font-family="Tajawal, Arial, sans-serif"
-                        font-size="34"
-                        font-weight="800"
-                        fill="currentColor"
-                    >ع</text>
-
-                    <text
-                        x="64"
-                        y="38"
-                        text-anchor="middle"
-                        font-family="Arial, sans-serif"
-                        font-size="22"
-                        font-weight="800"
-                        fill="currentColor"
-                    >N</text>
-
-                    <path
-                        d="M47 31 H57"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-
-                    <path
-                        d="M50 51
-                           L53 58
-                           L61 59
-                           L55 64
-                           L57 72
-                           L50 68
-                           L43 72
-                           L45 64
-                           L39 59
-                           L47 58
-                           Z"
-                        fill="currentColor"
-                    />
-
-                </svg>
-
-            </span>
-
-
-            <div>
-
-                <div class="brand-name">
-                    عرّاب الشبكات
-                </div>
-
-                <div class="brand-subtitle">
-                    NETWORKS
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-text">
-            تعلّم • طبّق • اختبر
-        </div>
-
-    </div>
-
+<footer class="home-footer">
+    <a href="index.html" class="footer-brand">
+        <span class="footer-brand-icon">
+            <img class="network-logo-image" src="images/network-logo.svg" alt="شعار عرّاب الشبكات">
+        </span>
+        <span>
+            <strong>عرّاب الشبكات</strong>
+            <small>NETWORKS</small>
+        </span>
+    </a>
+
+    <p>تعلّم • طبّق • اختبر</p>
+    <small>جميع الحقوق محفوظة © 2026 عرّاب الشبكات</small>
+    <small>عدد الزيارات: <strong id="visitorCount">—</strong></small>
 </footer>
 
-
-<!-- ================= VISITOR COUNTER ================= -->
-
-<div class="visitor-counter">
-
-    <span class="visitor-icon">
-        👥
-    </span>
-
-    <span>
-        زوار الموقع:
-    </span>
-
-    <strong id="visitorCount">
-        ...
-    </strong>
-
-</div>
-
-
-<!-- ================= CHALLENGES ARENA STYLE ================= -->
-
-<style>
-
-/* =========================
-   CHALLENGES ARENA
-========================= */
-
-.challenges-arena {
-
-    width: min(1100px, 92%);
-
-    margin: 10px auto 70px;
-
-    padding: 55px 0 20px;
-}
-
-
-/* =========================
-   MAIN CHALLENGES CARD
-========================= */
-
-.challenges-main-card {
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    gap: 28px;
-
-    width: 100%;
-
-    padding: 32px;
-
-    border-radius: 28px;
-
-    border:
-        1px solid rgba(17,17,17,0.12);
-
-    background:
-        linear-gradient(
-            135deg,
-            #d6c58f,
-            #bda766
-        );
-
-    color: #111;
-
-    text-decoration: none;
-
-    text-align: right;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 18px 45px rgba(0,0,0,0.13);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-.challenges-main-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.13);
-
-    left: -90px;
-    bottom: -120px;
-
-    transition:
-        transform 0.3s ease;
-}
-
-.challenges-main-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    box-shadow:
-        0 25px 55px rgba(0,0,0,0.18);
-}
-
-.challenges-main-card:hover::before {
-
-    transform:
-        scale(1.25);
-}
-
-
-/* =========================
-   MAIN ICON
-========================= */
-
-.challenges-main-icon {
-
-    position: relative;
-
-    z-index: 1;
-
-    flex-shrink: 0;
-
-    width: 95px;
-    height: 95px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 26px;
-
-    font-size: 48px;
-
-    background:
-        rgba(255,255,255,0.45);
-
-    border:
-        1px solid rgba(17,17,17,0.1);
-
-    box-shadow:
-        inset 0 1px rgba(255,255,255,0.5);
-}
-
-
-/* =========================
-   MAIN CONTENT
-========================= */
-
-.challenges-main-content {
-
-    position: relative;
-
-    z-index: 1;
-
-    flex: 1;
-}
-
-.challenges-kicker {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #075985;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-}
-
-.challenges-main-content h2 {
-
-    margin: 0 0 8px;
-
-    font-size:
-        clamp(27px, 5vw, 38px);
-
-    font-weight: 800;
-}
-
-.challenges-main-content p {
-
-    margin: 0 0 16px;
-
-    font-size: 14px;
-
-    line-height: 1.8;
-
-    opacity: 0.7;
-}
-
-.challenges-open-text {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    padding: 9px 15px;
-
-    border-radius: 10px;
-
-    background: #111;
-
-    color: #cbb77a;
-
-    font-size: 13px;
-
-    font-weight: 800;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .challenges-arena {
-
-        width: 92%;
-
-        padding-top: 35px;
-    }
-
-    .challenges-main-card {
-
-        gap: 17px;
-
-        padding: 22px;
-
-        border-radius: 23px;
-    }
-
-    .challenges-main-icon {
-
-        width: 70px;
-        height: 70px;
-
-        border-radius: 19px;
-
-        font-size: 35px;
-    }
-
-    .challenges-main-content h2 {
-
-        font-size: 25px;
-    }
-
-    .challenges-main-content p {
-
-        font-size: 12px;
-    }
-
-    .challenges-open-text {
-
-        font-size: 11px;
-
-        padding: 8px 12px;
-    }
-
-}
-
-</style>
-
-
-<!-- ================= SUPABASE ================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase.js"></script>
-
 <script src="script.js"></script>
-
 <script src="user.js"></script>
-
-
-<!-- ================= ADMIN NAV ================= -->
+<script data-goatcounter="https://mish3l11.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <script>
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const homeNavLinks = document.querySelector(".home-nav-links");
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function () {
+    if (mobileMenuButton && homeNavLinks) {
+        mobileMenuButton.addEventListener("click", () => {
+            homeNavLinks.classList.toggle("open");
+        });
+    }
 
-        const adminLink =
-            document.getElementById("adminNavLink");
-
-        if (!adminLink) {
-            return;
-        }
-
-        adminLink.style.display = "none";
-
-        if (
-            typeof supabaseClient === "undefined"
-        ) {
-            return;
-        }
-
+    document.addEventListener("DOMContentLoaded", async () => {
+        const adminLink = document.getElementById("adminNavLink");
+        if (!adminLink || typeof supabaseClient === "undefined") return;
         try {
-
-            const {
-                data: sessionData,
-                error: sessionError
-            } =
-            await supabaseClient.auth.getSession();
-
-            if (sessionError) {
-                return;
-            }
-
-            const session =
-                sessionData?.session;
-
-            if (
-                !session ||
-                !session.user
-            ) {
-                return;
-            }
-
-            const {
-                data: profile,
-                error: profileError
-            } =
-            await supabaseClient
+            const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+            if (sessionError || !sessionData?.session?.user) return;
+            const { data: profile, error: profileError } = await supabaseClient
                 .from("users")
                 .select("is_admin")
-                .eq("auth_id", session.user.id)
+                .eq("auth_id", sessionData.session.user.id)
                 .maybeSingle();
-
-            if (profileError) {
-                return;
-            }
-
-            if (
-                profile &&
-                profile.is_admin === true
-            ) {
-
-                adminLink.style.display =
-                    "inline-flex";
-
-            }
-
+            if (!profileError && profile?.is_admin === true) adminLink.style.display = "inline-flex";
         } catch (error) {
-
             console.error(error);
-
         }
-
-    }
-);
-
-</script>
-
-
-<!-- ================= GOATCOUNTER ================= -->
-
-<script
-    data-goatcounter="https://mish3l11.goatcounter.com/count"
-    async
-    src="//gc.zgo.at/count.js">
-</script>
-
-
-<!-- ================= VISITOR COUNTER ================= -->
-
-<script>
-
-(function () {
-
-    const counterElement =
-        document.getElementById("visitorCount");
-
-    if (!counterElement) {
-        return;
-    }
-
-    fetch(
-        "https://mish3l11.goatcounter.com/counter/TOTAL.json"
-    )
-
-    .then(function (response) {
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Visitor counter request failed"
-            );
-
-        }
-
-        return response.json();
-
-    })
-
-    .then(function (data) {
-
-        if (
-            data &&
-            typeof data.count !== "undefined"
-        ) {
-
-            counterElement.textContent =
-                data.count;
-
-        } else {
-
-            counterElement.textContent =
-                "—";
-
-        }
-
-    })
-
-    .catch(function () {
-
-        counterElement.textContent =
-            "—";
-
     });
 
-})();
+    const visitorCount = document.getElementById("visitorCount");
+    if (visitorCount) {
+        fetch("https://mish3l11.goatcounter.com/counter/TOTAL.json")
+            .then(response => {
+                if (!response.ok) throw new Error("Visitor counter request failed");
+                return response.json();
+            })
+            .then(data => { visitorCount.textContent = data?.count ?? "—"; })
+            .catch(() => { visitorCount.textContent = "—"; });
+    }
 
+    const feedbackOpen = document.getElementById("feedbackOpen");
+    const feedbackForm = document.getElementById("feedbackForm");
+    if (feedbackOpen && feedbackForm) {
+        feedbackOpen.addEventListener("click", () => {
+            const isOpen = !feedbackForm.hidden;
+            feedbackForm.hidden = isOpen;
+            feedbackOpen.setAttribute("aria-expanded", String(!isOpen));
+            feedbackOpen.textContent = isOpen ? "اكتب رسالتك" : "إغلاق النموذج";
+            if (!isOpen) feedbackForm.querySelector("input")?.focus();
+        });
+
+        feedbackForm.addEventListener("submit", event => {
+            event.preventDefault();
+            if (!feedbackForm.reportValidity()) return;
+            const status = document.getElementById("feedbackStatus");
+            const submitButton = document.getElementById("feedbackSubmit");
+            const formData = new FormData(feedbackForm);
+            const payload = {
+                name: String(formData.get("name") || "").trim(),
+                email: String(formData.get("email") || "").trim(),
+                message: String(formData.get("message") || "").trim()
+            };
+            if (typeof supabaseClient === "undefined") {
+                status.textContent = "تعذر الاتصال بخدمة الإرسال. حاول مرة أخرى لاحقًا.";
+                status.dataset.state = "error";
+                status.hidden = false;
+                return;
+            }
+            submitButton.disabled = true;
+            submitButton.textContent = "جارٍ إرسال رسالتك...";
+            status.hidden = true;
+            supabaseClient.functions.invoke("send-feedback", { body: payload })
+                .then(({ error }) => {
+                    if (error) throw error;
+                    status.textContent = "وصلتنا رسالتك، شكرًا لتواصلك معنا.";
+                    status.dataset.state = "success";
+                    status.hidden = false;
+                    feedbackForm.reset();
+                })
+                .catch(error => {
+                    console.error("Feedback submission failed:", error);
+                    const responseStatus = error?.context?.status;
+                    status.textContent = responseStatus === 503
+                        ? "إعدادات البريد غير مكتملة على الخادم. أبلغ إدارة الموقع لإكمالها."
+                        : responseStatus === 502
+                            ? "تعذّر على مزوّد البريد إرسال الرسالة. حاول مرة أخرى لاحقًا."
+                            : "لم نتمكن من إرسال الرسالة الآن. حاول مرة أخرى لاحقًا.";
+                    status.dataset.state = "error";
+                    status.hidden = false;
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'إرسال الرسالة <span aria-hidden="true">←</span>';
+                });
+        });
+    }
 </script>
 
 

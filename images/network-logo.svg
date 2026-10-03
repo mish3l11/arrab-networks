@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="شعار عرّاب الشبكات">
+  <g fill="none" stroke="#e8bd55" stroke-width="2" stroke-linecap="round" opacity=".8">
+    <path d="M50 64 22 82M50 64 78 82M50 64v27M22 82 12 72M78 82l10-10M50 91 38 96M50 91l12 5"/>
+  </g>
+  <g fill="#e8bd55">
+    <circle cx="22" cy="82" r="3"/><circle cx="78" cy="82" r="3"/><circle cx="50" cy="91" r="3"/>
+    <circle cx="12" cy="72" r="2.5"/><circle cx="88" cy="72" r="2.5"/><circle cx="38" cy="96" r="2.5"/><circle cx="62" cy="96" r="2.5"/>
+    <path d="m50 51 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/>
+  </g>
+  <text x="39" y="45" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="800" fill="#ffe29a">ع</text>
+  <text x="64" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#ffe29a">N</text>
+  <path d="M47 31h10" fill="none" stroke="#e8bd55" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -65,7 +65,10 @@ body {
 }
 
 .brand-icon {
-    font-size: 31px;
+    display: block;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
 }
 
 .brand strong {
@@ -117,6 +120,16 @@ body {
     padding: 45px 0 70px;
 }
 
+.detective-page-title {
+    margin: 0 0 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(232, 189, 85, .35);
+    color: #ffe29a;
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 800;
+    line-height: 1.4;
+}
+
 /* =================================
    HERO
 ================================= */
@@ -131,24 +144,6 @@ body {
     margin-bottom: 38px;
 
     text-align: right;
-}
-
-.hero-icon {
-    width: 88px;
-    height: 88px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    background: var(--black);
-    border-radius: 22px;
-
-    font-size: 47px;
-
-    box-shadow: 8px 8px 0 rgba(17, 17, 17, 0.15);
 }
 
 .hero-label {
@@ -209,23 +204,6 @@ body {
     align-items: center;
 
     gap: 15px;
-}
-
-.player-avatar {
-    width: 58px;
-    height: 58px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--gold);
-
-    border-radius: 16px;
-
-    color: var(--black);
-
-    font-size: 30px;
 }
 
 .player-card h2 {
@@ -327,6 +305,29 @@ body {
     border-radius: 50px;
 
     transition: width 0.4s ease;
+}
+
+.detective-page .progress-card {
+    background: #111820;
+    border-color: #46515e;
+    color: #f3f4f6;
+}
+
+.detective-page .progress-top strong {
+    color: #f3f4f6;
+}
+
+.detective-page .progress-top span {
+    color: #ffe29a;
+}
+
+.detective-page .progress-bar {
+    background: #080c11;
+    border-color: #46515e;
+}
+
+.detective-page .progress-fill {
+    background: linear-gradient(90deg, #c99c36, #ffe29a);
 }
 
 /* =================================
@@ -784,6 +785,39 @@ body {
     font-weight: 800;
 }
 
+.detective-page .network-node {
+    background: #111820;
+    border-color: #3b4653;
+    color: #f3f4f6;
+}
+
+.detective-page .network-node:hover,
+.detective-page .network-node.selected {
+    background: #1b2734;
+    border-color: var(--gold-light);
+    color: var(--gold-light);
+}
+
+.detective-page .network-node-icon.device-art {
+    display: block;
+    width: 92px;
+    height: 66px;
+    margin: 0 auto 8px;
+    flex: 0 0 auto;
+    font-size: 0;
+    background-image: url("images/network-devices-sprite.png");
+    background-repeat: no-repeat;
+    background-size: 500% 100%;
+    background-position-y: 50%;
+    filter: drop-shadow(0 5px 7px rgba(0, 0, 0, .42));
+}
+
+.detective-page .device-art--pc { background-position-x: 0%; }
+.detective-page .device-art--switch { background-position-x: 25%; }
+.detective-page .device-art--router { background-position-x: 50%; }
+.detective-page .device-art--firewall { background-position-x: 75%; }
+.detective-page .device-art--server { background-position-x: 100%; }
+
 .network-line {
     width: 42px;
     height: 3px;
@@ -815,6 +849,25 @@ body {
 
     font-size: 14px;
     line-height: 1.8;
+}
+
+.detective-page .device-details {
+    background: #111820;
+    border: 1px solid #46515e;
+    border-right: 3px solid var(--gold);
+    color: #eef2f6;
+}
+
+.detective-page .device-details h4 {
+    color: var(--gold-light);
+}
+
+.detective-page .device-details p {
+    color: #eef2f6;
+}
+
+.detective-page .device-details strong {
+    color: var(--gold-light);
 }
 
 /* =================================
@@ -897,7 +950,7 @@ body {
 
     width: 3px;
 
-    background: var(--black);
+    background: #46515e;
 }
 
 .timeline-item {
@@ -907,10 +960,12 @@ body {
 
     padding: 14px 17px;
 
-    background: var(--gold);
+    background: #111820;
 
-    border: 2px solid var(--black);
+    border: 1px solid #354252;
+    border-right: 3px solid var(--gold);
     border-radius: 14px;
+    color: #f3f4f6;
 }
 
 .timeline-item:last-child {
@@ -928,7 +983,7 @@ body {
     width: 12px;
     height: 12px;
 
-    background: var(--black);
+    background: var(--gold);
 
     border: 3px solid var(--gold-light);
 
@@ -938,12 +993,14 @@ body {
 .timeline-time {
     margin-bottom: 4px;
 
-    font-size: 11px;
+    color: var(--gold-light);
+    font-size: 13px;
     font-weight: 800;
 }
 
 .timeline-text {
-    font-size: 13px;
+    color: #eef2f6;
+    font-size: 15px;
     line-height: 1.8;
 }
 
@@ -1041,10 +1098,11 @@ body {
 
     padding: 15px;
 
-    background: rgba(203, 183, 122, 0.08);
+    background: #111820;
 
-    border: 1px solid rgba(203, 183, 122, 0.4);
+    border: 1px solid #46515e;
     border-radius: 13px;
+    color: #f3f4f6;
 
     cursor: pointer;
 
@@ -1052,34 +1110,48 @@ body {
 }
 
 .hypothesis-option:hover {
-    background: rgba(203, 183, 122, 0.16);
+    background: #1a2531;
+    border-color: var(--gold-light);
 }
 
 .hypothesis-option.selected {
-    background: var(--gold);
-    color: var(--black);
+    background: #1d2b38;
+    color: #ffffff;
 
-    border-color: var(--gold);
+    border: 2px solid var(--gold-light);
+    box-shadow: 0 0 0 3px rgba(232, 189, 85, 0.15);
 }
 
 .hypothesis-option input {
     margin-top: 5px;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
 
-    accent-color: var(--black);
+    accent-color: var(--gold-light);
 }
 
 .hypothesis-title {
-    font-size: 14px;
+    color: #ffffff;
+    font-size: 16px;
     font-weight: 800;
+    line-height: 1.6;
 }
 
 .hypothesis-description {
     margin-top: 4px;
 
-    font-size: 12px;
+    color: #cbd5df;
+    font-size: 14px;
     line-height: 1.7;
+}
 
-    opacity: 0.75;
+.hypothesis-option.selected .hypothesis-title {
+    color: var(--gold-light);
+}
+
+.hypothesis-option.selected .hypothesis-description {
+    color: #edf2f7;
 }
 
 .selected-evidence {
@@ -1089,7 +1161,8 @@ body {
 .selected-evidence-title {
     margin-bottom: 9px;
 
-    font-size: 12px;
+    color: #f3f4f6;
+    font-size: 14px;
     font-weight: 800;
 }
 
@@ -1102,26 +1175,36 @@ body {
 }
 
 .evidence-select {
-    padding: 8px 11px;
+    min-height: 42px;
+    padding: 9px 13px;
 
-    background: transparent;
-    color: var(--gold);
+    background: #111820;
+    color: #ffe29a;
 
-    border: 1px solid rgba(203, 183, 122, 0.5);
+    border: 1px solid #66717e;
     border-radius: 9px;
 
     font-family: inherit;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 800;
 
     cursor: pointer;
+    transition: background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.evidence-select:hover,
+.evidence-select:focus-visible {
+    border-color: var(--gold-light);
+    outline: 2px solid rgba(255, 226, 154, .35);
+    outline-offset: 2px;
 }
 
 .evidence-select.selected {
-    background: var(--gold);
-    color: var(--black);
+    background: #e8bd55;
+    color: #111820;
 
-    border-color: var(--gold);
+    border: 2px solid #ffe29a;
+    box-shadow: 0 0 0 3px rgba(232, 189, 85, .2);
 }
 
 .submit-conclusion {
@@ -1247,6 +1330,49 @@ body {
     color: var(--gold);
 }
 
+.detective-page .result-panel {
+    background: #121820;
+    color: #f3f4f6;
+    border: 1px solid #46515e;
+}
+
+.detective-page .result-panel.result-success {
+    background: linear-gradient(145deg, #123522, #0d1e15);
+    color: #e4f7e9;
+    border-color: #3d8a58;
+}
+
+.detective-page .result-panel.result-failure {
+    background: linear-gradient(145deg, #3b2024, #241519);
+    color: #ffe8e8;
+    border-color: #a45159;
+}
+
+.detective-page .result-panel h2 {
+    color: #ffffff;
+}
+
+.detective-page .result-panel p {
+    color: #e6edf3;
+}
+
+.detective-page .result-xp {
+    color: #ffe29a;
+}
+
+.detective-page .result-button {
+    background: #1b2430;
+    color: #f3f4f6;
+    border-color: #647180;
+}
+
+.detective-page .result-button:hover,
+.detective-page .result-button.primary {
+    background: #e8bd55;
+    color: #111820;
+    border-color: #ffe29a;
+}
+
 /* =================================
    FOOTER
 ================================= */
@@ -1333,13 +1459,6 @@ body {
         flex-direction: column;
 
         text-align: center;
-    }
-
-    .hero-icon {
-        width: 75px;
-        height: 75px;
-
-        font-size: 40px;
     }
 
     .detective-hero h1 {
@@ -1453,4 +1572,15 @@ body {
         font-size: 13px;
     }
 
+}
+
+body.detective-case-view .detective-hero,
+body.detective-case-view .player-card,
+body.detective-case-view .progress-card,
+body.detective-case-view #casesSection {
+    display: none;
+}
+
+body.detective-case-view .investigation-section {
+    margin-top: 28px;
 }

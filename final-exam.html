@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاختبار النهائي | عرّاب الشبكات</title>
+    <link rel="stylesheet" href="site-theme.css">
+    <style>
+        body.final-exam-page { min-height: 100vh; background: #07111d; color: #f4f7fb; font-family: Tajawal, sans-serif; }
+        .exam-header { max-width: 1120px; margin: auto; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+        .exam-brand { display: flex; align-items: center; gap: 12px; color: #f4f7fb; text-decoration: none; font-weight: 800; }
+        .exam-brand img { width: 46px; height: 46px; }
+        .exam-back { color: #e8bd55; text-decoration: none; font-weight: 700; }
+        .exam-main { width: min(900px, calc(100% - 32px)); margin: 44px auto 80px; }
+        .exam-hero { text-align: center; margin-bottom: 28px; }
+        .exam-kicker { color: #e8bd55; letter-spacing: .12em; font-size: 12px; font-weight: 800; }
+        .exam-hero h1 { margin: 10px 0; font-size: clamp(28px, 5vw, 42px); }
+        .exam-hero p { color: #b7c4d3; margin: 0 auto; max-width: 650px; line-height: 1.9; }
+        .exam-card, .exam-result { background: #0d1b2a; border: 1px solid rgba(232,189,85,.23); border-radius: 20px; padding: clamp(20px, 4vw, 34px); box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+        .exam-top { display: flex; justify-content: space-between; gap: 14px; color: #e8bd55; font-weight: 800; }
+        .exam-progress { height: 8px; border-radius: 99px; background: #1b2b3c; overflow: hidden; margin: 16px 0 28px; }
+        .exam-progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg,#d4a83b,#ffe49a); transition: width .25s ease; }
+        .exam-question { font-size: clamp(20px, 3vw, 26px); line-height: 1.7; margin: 0 0 22px; }
+        .exam-answers { display: grid; gap: 12px; }
+        .exam-answer { width: 100%; text-align: right; padding: 15px 17px; border-radius: 12px; border: 1px solid #314256; background: #111f2e; color: #f2d477; cursor: pointer; font: inherit; font-weight: 800; transition: .18s; }
+        .exam-answer:hover:not(:disabled) { background: #e8bd55; color: #101820; border-color: #ffe49a; }
+        .exam-answer:disabled { cursor: default; }
+        .exam-answer.correct { background: #123c2c; color: #9de0b8; border-color: #29975f; }
+        .exam-answer.wrong { background: #4b2024; color: #ffb2b2; border-color: #cb4a52; }
+        .exam-explanation { display: none; margin-top: 18px; padding: 15px; border-radius: 12px; background: #14283a; color: #d8e2ec; line-height: 1.8; }
+        .exam-explanation.show { display: block; }
+        .exam-explanation.is-correct { background: #103727; border: 1px solid #2c9d63; color: #d9f7e5; }
+        .exam-explanation.is-wrong { background: #421f25; border: 1px solid #c94b56; color: #ffe0e2; }
+        .exam-feedback-title { display: block; margin-bottom: 6px; font-size: 16px; font-weight: 900; }
+        .exam-explanation.is-correct .exam-feedback-title { color: #72e2a2; }
+        .exam-explanation.is-wrong .exam-feedback-title { color: #ff8c96; }
+        .exam-explanation p { margin: 5px 0 0; }
+        .exam-next, .exam-restart { border: 0; border-radius: 11px; background: #e8bd55; color: #111820; padding: 13px 22px; font: inherit; font-weight: 900; cursor: pointer; }
+        .exam-next { display: none; margin-top: 20px; }
+        .exam-next.show { display: inline-flex; }
+        .exam-result { display: none; text-align: center; }
+        .exam-result.show { display: block; }
+        .exam-result-score { color: #e8bd55; font-size: 56px; font-weight: 900; margin: 12px 0; }
+        .exam-result p { color: #c1cedc; line-height: 1.8; }
+        .exam-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+        .exam-actions a { color: #e8bd55; border: 1px solid rgba(232,189,85,.45); border-radius: 11px; text-decoration: none; padding: 12px 18px; font-weight: 800; }
+        @media (max-width: 600px) { .exam-header { padding: 16px; } .exam-main { margin-top: 24px; } .exam-top { font-size: 13px; } }
+    </style>
+</head>
+<body class="final-exam-page">
+    <header class="exam-header">
+        <a class="exam-brand" href="index.html"><img src="images/network-logo.svg" alt=""><span>عرّاب الشبكات</span></a>
+        <a class="exam-back" href="lessons.html">العودة إلى الدروس ←</a>
+    </header>
+    <main class="exam-main">
+        <section class="exam-card" id="examCard">
+            <div class="exam-top"><span id="questionNumber">السؤال 1 من 15</span><span id="scoreText">النقاط: 0</span></div>
+            <div class="exam-progress"><span id="progressFill"></span></div>
+            <h2 class="exam-question" id="questionText"></h2>
+            <div class="exam-answers" id="answerList"></div>
+            <div class="exam-explanation" id="explanation"></div>
+            <button class="exam-next" id="nextButton" type="button">السؤال التالي ←</button>
+        </section>
+        <section class="exam-result" id="resultCard">
+            <div class="exam-kicker">نتيجتك في الاختبار النهائي</div>
+            <div class="exam-result-score" id="resultScore">0%</div>
+            <p id="resultMessage"></p>
+            <div class="exam-actions">
+                <button class="exam-restart" id="restartButton" type="button">أعد الاختبار</button>
+                <a href="lessons.html">العودة إلى الدروس</a>
+                <a href="lessons.html">مراجعة الدروس</a>
+            </div>
+        </section>
+    </main>
+    <script src="final-exam.js"></script>
+
+</body>
+</html>

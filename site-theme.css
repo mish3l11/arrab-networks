@@ -1,0 +1,1170 @@
+/* Shared dark charcoal and gold palette for the full site. */
+:root {
+    --bg: #07090d;
+    --bg-light: #101318;
+    --nav: #090c11;
+    --black: #0b0e13;
+    --black-soft: #151a21;
+    --gold: #e8bd55;
+    --gold-dark: #c99c36;
+    --gold-light: #ffe29a;
+    --gold-hover: #f5d47e;
+    --blue: #66c8f2;
+    --blue-light: #42bdf3;
+    --white: #f5f5f5;
+    --text-muted: rgba(230, 234, 240, 0.72);
+    --green: #83c99d;
+    --red: #ed8989;
+}
+
+body:not(.home-page) {
+    background: #07090d !important;
+    color: #f3f4f6 !important;
+}
+
+body:not(.home-page) :is(.navbar, .site-header, .topbar, .page-header) {
+    background: #090c11 !important;
+    color: #f3f4f6 !important;
+    border-color: rgba(232, 189, 85, 0.42) !important;
+}
+
+/* Quiz page navigation: clear contrast and readable link buttons. */
+.quiz-screen > header {
+    padding: 14px clamp(16px, 4vw, 54px) !important;
+    background: #090c11 !important;
+    border-bottom: 1px solid rgba(232, 189, 85, 0.42) !important;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+.quiz-screen > header > nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.quiz-screen > header > nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 13px;
+    border: 1px solid #303b49 !important;
+    border-radius: 10px;
+    background: #151b24 !important;
+    color: #f4f6f8 !important;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.quiz-screen > header > nav a.feature-card {
+    background: #151b24 !important;
+    border-color: #303b49 !important;
+    color: #f4f6f8 !important;
+    box-shadow: none !important;
+}
+
+.quiz-screen > header > nav a:hover,
+.quiz-screen > header > nav a:focus-visible {
+    background: #263241 !important;
+    border-color: #e8bd55 !important;
+    color: #ffe29a !important;
+}
+
+.quiz-screen > header > nav a.profile-link {
+    border-color: rgba(232, 189, 85, .55) !important;
+    color: #ffe29a !important;
+}
+
+@media (max-width: 800px) {
+    .quiz-screen > header {
+        align-items: center !important;
+    }
+
+    .quiz-screen > header > nav {
+        justify-content: center;
+    }
+
+    .quiz-screen > header > nav a {
+        padding: 8px 11px;
+    }
+}
+
+body:not(.home-page) :is(.brand, .brand-name, .brand-subtitle, .nav-links a, .site-header a) {
+    color: #ffe29a !important;
+}
+
+/* Use the same high-contrast pill navigation across every page. */
+body:not(.home-page) header:has(> nav) {
+    background: #090c11 !important;
+    border-bottom: 1px solid rgba(232, 189, 85, 0.42) !important;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+body:not(.home-page) :is(
+    header nav > a,
+    nav.navbar > a,
+    .navbar > a,
+    .nav-links > a,
+    .paths-nav > a,
+    .nav > a
+) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 13px;
+    border: 1px solid #303b49 !important;
+    border-radius: 10px;
+    background: #151b24 !important;
+    color: #f4f6f8 !important;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+body:not(.home-page) :is(
+    header nav > a:hover,
+    header nav > a:focus-visible,
+    nav.navbar > a:hover,
+    .navbar > a:hover,
+    .nav-links > a:hover,
+    .paths-nav > a:hover,
+    .nav > a:hover
+) {
+    background: #263241 !important;
+    border-color: #e8bd55 !important;
+    color: #ffe29a !important;
+}
+
+body.home-page .home-navbar .home-nav-links > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid rgba(232, 189, 85, 0.25);
+    border-radius: 10px;
+    background: #151b24;
+    color: #f4f6f8;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+body.home-page .home-navbar .home-nav-links > a:hover,
+body.home-page .home-navbar .home-nav-links > a:focus-visible,
+body.home-page .home-navbar .home-nav-links > a.active {
+    background: #263241;
+    border-color: #e8bd55;
+    color: #ffe29a;
+}
+
+@media (max-width: 800px) {
+    body:not(.home-page) :is(header nav, nav.navbar, .navbar nav, .nav-links, .paths-nav, .nav) {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    body:not(.home-page) :is(header nav > a, nav.navbar > a, .navbar > a, .nav-links > a, .paths-nav > a, .nav > a) {
+        padding: 8px 11px;
+    }
+}
+
+/* Keep the brand mark consistent with the gold network icon on the home page. */
+body:not(.home-page) :is(.brand-icon, .lab-brand-icon, .paths-brand-icon, .footer-brand-icon, .logo-icon, .logo) {
+    color: #e8bd55 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.network-logo-svg,
+.network-logo-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.network-logo-image {
+    filter: none;
+}
+
+.logo .network-logo-image {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+}
+
+/* Match the home page logo mark and wordmark across every page header/footer. */
+body :is(
+    .brand-icon,
+    .home-brand-icon,
+    .lab-brand-icon,
+    .quiz-brand-icon,
+    .config-brand-icon,
+    .paths-brand-icon,
+    .footer-brand-icon,
+    .logo-icon
+) {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #e8bd55 !important;
+}
+
+body :is(.brand, .footer-brand, .paths-brand) {
+    font-family: "Tajawal", sans-serif;
+    font-size: 17px !important;
+    font-weight: 800;
+}
+
+body :is(
+    .brand-name,
+    .brand-text strong,
+    .logo-title,
+    .paths-brand-name
+) {
+    color: #ffe29a !important;
+    font-family: "Tajawal", sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+body :is(
+    .brand-subtitle,
+    .brand-sub,
+    .logo-sub,
+    .paths-brand-subtitle
+) {
+    color: #c8ad68 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 8px !important;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+@media (max-width: 650px) {
+    body :is(.brand, .footer-brand, .paths-brand) {
+        font-size: 14px !important;
+    }
+
+    body :is(
+        .brand-name,
+        .brand-text h1,
+        .brand-text strong,
+        .logo-title,
+        .paths-brand-name
+    ) {
+        font-size: 14px !important;
+    }
+}
+
+body:not(.home-page) :is(h1, h2, h3, h4, .page-title, .section-title) {
+    color: #ffe29a !important;
+}
+
+body:not(.home-page) :is(p, label, li, td, th, dt, dd, .description, .section-description) {
+    color: #e1e5eb !important;
+}
+
+body:not(.home-page) :is(a, a:visited) {
+    color: #f0cc72;
+}
+
+body:not(.home-page) :is(
+    [class*="card"], [class*="panel"], [class*="box"], [class*="modal"],
+    [class*="popup"], [class*="widget"]
+):not([class*="success"]):not([class*="error"]):not([class*="danger"]):not([class*="warning"]) {
+    background: linear-gradient(145deg, #151a21, #0c0f14) !important;
+    color: #f3f4f6 !important;
+    border-color: rgba(232, 189, 85, 0.28) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+body:not(.home-page) :is([class*="hero"], [class*="banner"]):not([class*="success"]):not([class*="error"]) {
+    background: linear-gradient(145deg, #151a21, #090c11) !important;
+    color: #f3f4f6 !important;
+    border-color: rgba(232, 189, 85, 0.32) !important;
+}
+
+body:not(.home-page) :is(button, [role="button"], input[type="button"], input[type="submit"]) {
+    border-color: rgba(232, 189, 85, 0.68) !important;
+    background-color: #171b21 !important;
+    color: #ffe29a !important;
+}
+
+body:not(.home-page) :is(button, [role="button"], input[type="button"], input[type="submit"]):hover {
+    background: linear-gradient(135deg, #ffe29a, #d7a83b) !important;
+    color: #17130a !important;
+}
+
+body:not(.home-page) :is(input, textarea, select) {
+    background: #11161d !important;
+    color: #f3f4f6 !important;
+    border-color: rgba(232, 189, 85, 0.38) !important;
+}
+
+body:not(.home-page) :is(input, textarea, select)::placeholder {
+    color: #9da5b1 !important;
+}
+
+body:not(.home-page) :is(table, thead, tbody, tr, th, td) {
+    border-color: rgba(232, 189, 85, 0.2) !important;
+}
+
+body:not(.home-page) :is(th, thead) {
+    background-color: #171b21 !important;
+    color: #ffe29a !important;
+}
+
+/* Command reference page: readable navy panels, bright labels, and code blocks. */
+.config-page :is(.command-toolbar, .commands-sidebar-new, .command-section-new) {
+    background: linear-gradient(145deg, #10243a, #0a1727) !important;
+    color: #eaf1f8 !important;
+    border-color: #294966 !important;
+}
+
+.config-page .command-search {
+    background: #091624 !important;
+    border-color: #355773 !important;
+}
+
+.config-page .command-search input {
+    background: transparent !important;
+    color: #f3f6fa !important;
+}
+
+.config-page .command-search input::placeholder {
+    color: #a8bbcf !important;
+}
+
+.config-page .command-filters-new button:not(.active) {
+    background: #142b43 !important;
+    color: #e7eef6 !important;
+    border-color: #355773 !important;
+}
+
+.config-page .command-filters-new button.active,
+.config-page .command-filters-new button:hover {
+    background: #e8bd55 !important;
+    color: #111820 !important;
+    border-color: #ffe29a !important;
+}
+
+.config-page :is(.sidebar-title, .command-section-header h2, .command-cell-new h3) {
+    color: #ffe29a !important;
+}
+
+.config-page .sidebar-title {
+    font-size: 17px !important;
+}
+
+.config-page .commands-sidebar-new a,
+.config-page .command-filters-new button {
+    font-size: 14px !important;
+}
+
+.config-page .command-section-header h2 {
+    font-size: 21px !important;
+}
+
+.config-page .command-cell-new h3 {
+    font-size: 17px !important;
+}
+
+.config-page .sidebar-title,
+.config-page .command-section-header {
+    border-color: #294966 !important;
+}
+
+.config-page .commands-sidebar-new a {
+    color: #e1eaf3 !important;
+}
+
+.config-page .commands-sidebar-new a:hover {
+    background: #1a3854 !important;
+    color: #ffe29a !important;
+}
+
+.config-page .section-number,
+.config-page .command-head div {
+    background: #173957 !important;
+    color: #ffe29a !important;
+}
+
+.config-page .command-cell-new {
+    background: #13283d !important;
+    color: #ecf2f8 !important;
+    border-color: #2a4864 !important;
+}
+
+.config-page .command-cell-new small {
+    color: #8ed8ff !important;
+    font-size: 13px !important;
+}
+
+.config-page .command-cell-new p {
+    color: #d4e0eb !important;
+    font-size: 14px !important;
+    line-height: 1.9 !important;
+}
+
+.config-page .command-cell-new pre {
+    background: #06111d !important;
+    color: #eff5fb !important;
+    border: 1px solid #25435f !important;
+    padding: 15px !important;
+}
+
+.config-page .command-cell-new code {
+    font-size: 14px !important;
+    line-height: 1.9 !important;
+}
+
+.config-page .copy-button-new {
+    background: #17466a !important;
+    color: #ffffff !important;
+    border: 1px solid #4d86ad !important;
+    font-weight: 900 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.config-page .copy-button-new:hover,
+.config-page .copy-button-new:focus-visible {
+    background: #205d85 !important;
+    color: #ffffff !important;
+}
+
+.config-page .copy-button-new:disabled {
+    background: #143a58 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.config-page .command-note {
+    background: #0d2135 !important;
+    border-right-color: #e8bd55 !important;
+    color: #e3ebf3 !important;
+}
+
+/* Dictionary banner and term cards: preserve legibility on the dark theme. */
+body.dictionary-page .dictionary-hero {
+    width: min(1180px, calc(100% - 30px));
+    padding: 0 !important;
+    overflow: hidden;
+    border: 1px solid rgba(232, 189, 85, 0.42) !important;
+    border-radius: 22px;
+    background: none !important;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+body.dictionary-page .dictionary-hero-image {
+    display: block;
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+body.dictionary-page .dictionary-card strong {
+    color: #ffe29a !important;
+}
+
+body.dictionary-page .dictionary-card .english-name {
+    background: #192b3d !important;
+    color: #95d9fa !important;
+    border: 1px solid #35516b;
+}
+
+body.dictionary-page .dictionary-card p {
+    color: #dce6f0 !important;
+    line-height: 1.9;
+}
+
+/* Daily challenge answers: make selectable and result states unmistakable. */
+.daily-page .daily-option {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    pointer-events: auto;
+    background: #151b24 !important;
+    color: #f4f6f8 !important;
+    border: 2px solid #596d82 !important;
+    touch-action: manipulation;
+}
+
+.daily-page .daily-option:hover,
+.daily-page .daily-option:focus-visible {
+    background: #22354a !important;
+    color: #ffffff !important;
+    border-color: #8ed8ff !important;
+}
+
+.daily-page .daily-option.selected {
+    background: #17466a !important;
+    color: #ffffff !important;
+    border-color: #8ed8ff !important;
+    box-shadow: 0 0 0 3px rgba(142, 216, 255, 0.16);
+}
+
+.daily-page .daily-option.correct {
+    background: #17412d !important;
+    color: #c8f7d8 !important;
+    border-color: #69c98b !important;
+}
+
+.daily-page .daily-option.wrong {
+    background: #48272b !important;
+    color: #ffd5d5 !important;
+    border-color: #ef8585 !important;
+}
+
+.daily-page .daily-option:disabled {
+    cursor: not-allowed;
+    opacity: 0.76;
+}
+
+/* Field challenge: lift text and answer contrast on dark cards. */
+body.command-practice-page .stat-card,
+body.command-practice-page .practice-card,
+body.command-practice-page .final-result {
+    background: linear-gradient(145deg, #151d27, #0d141d) !important;
+    color: #edf3f8 !important;
+    border-color: #34495d !important;
+}
+
+body.command-practice-page .stat-label,
+body.command-practice-page .device-label {
+    color: #bdc9d6 !important;
+}
+
+body.command-practice-page .stat-card strong,
+body.command-practice-page .final-result > strong {
+    color: #ffe29a !important;
+}
+
+body.command-practice-page .question-category {
+    background: #173651 !important;
+    color: #a8e0ff !important;
+}
+
+body.command-practice-page .question-content h2 {
+    color: #ffffff !important;
+}
+
+body.command-practice-page .question-content p {
+    color: #e2e8f0 !important;
+}
+
+body.command-practice-page .question-level {
+    background: #252f3a !important;
+    color: #e4ebf2 !important;
+}
+
+body.command-practice-page .answer-button {
+    background: #080c11 !important;
+    color: #d6c58f !important;
+    border-color: #8b7842 !important;
+    font-weight: 800 !important;
+}
+
+body.command-practice-page .answer-button:hover,
+body.command-practice-page .answer-button:focus-visible {
+    background: #d6c58f !important;
+    color: #080c11 !important;
+    border-color: #d6c58f !important;
+}
+
+body.command-practice-page .answer-button:focus-visible {
+    outline: 3px solid #d6c58f !important;
+    outline-offset: 2px;
+}
+
+body.command-practice-page .answer-button:active {
+    background: #c4ad68 !important;
+    color: #080c11 !important;
+    border-color: #c4ad68 !important;
+}
+
+body.command-practice-page .answer-button:disabled {
+    opacity: 0.86;
+}
+
+body.command-practice-page .answer-button code {
+    color: inherit !important;
+    font-size: 14px;
+    font-weight: 800 !important;
+}
+
+body.command-practice-page .answer-letter {
+    background: #d6c58f !important;
+    color: #111820 !important;
+}
+
+body.command-practice-page .answer-button.correct {
+    background: #173d2b !important;
+    color: #d4f4df !important;
+    border-color: #69c98b !important;
+}
+
+body.command-practice-page .answer-button.correct code {
+    color: #b9f0cc !important;
+}
+
+body.command-practice-page .answer-button.correct .answer-letter {
+    background: #24633e !important;
+    color: #ffffff !important;
+}
+
+body.command-practice-page .answer-button.wrong {
+    background: #48272b !important;
+    color: #ffe0e0 !important;
+    border-color: #e57b7b !important;
+}
+
+body.command-practice-page .answer-button.wrong code {
+    color: #ffc1c1 !important;
+}
+
+body.command-practice-page .answer-button.wrong .answer-letter {
+    background: #8b3c3c !important;
+    color: #ffffff !important;
+}
+
+body.command-practice-page .answer-result {
+    background: #111b26 !important;
+    border-color: #344b60 !important;
+}
+
+body.command-practice-page .answer-result strong {
+    color: #ffe29a !important;
+}
+
+body.command-practice-page .answer-result p {
+    color: #dce6f0 !important;
+}
+
+body.command-practice-page .practice-mode {
+    background: #151b24 !important;
+    color: #eaf0f6 !important;
+    border-color: #34495d !important;
+}
+
+body.command-practice-page .practice-mode.active {
+    background: #17466a !important;
+    color: #ffffff !important;
+    border-color: #8ed8ff !important;
+    box-shadow: 0 0 0 3px rgba(142, 216, 255, 0.14);
+}
+
+body.command-practice-page .device-button {
+    background: #151b24 !important;
+    color: #eaf0f6 !important;
+    border-color: #34495d !important;
+}
+
+body.command-practice-page .device-button.active {
+    background: #17466a !important;
+    color: #ffffff !important;
+    border-color: #8ed8ff !important;
+}
+
+body.command-practice-page .next-question:disabled {
+    opacity: 0.78;
+}
+
+@media (max-width: 700px) {
+    body.command-practice-page .answer-button code {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    body.dictionary-page .dictionary-hero {
+        width: calc(100% - 20px);
+    }
+
+    body.dictionary-page .dictionary-hero-image {
+        height: 150px;
+        object-position: center 32%;
+    }
+}
+
+/* Command reference hero image and readable text layout. */
+.config-page .config-hero {
+    padding: 42px 24px 34px !important;
+    text-align: right !important;
+    background: linear-gradient(145deg, #081626, #0b1d30) !important;
+}
+
+.config-page .config-hero-layout {
+    width: min(1080px, 100%);
+    height: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+.config-page .config-hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 22px;
+    border: 1px solid rgba(232, 189, 85, 0.38);
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width: 850px) {
+    .config-page .config-hero-layout {
+        height: 230px;
+    }
+
+    .config-page .config-hero-image {
+        height: 100%;
+        object-fit: cover;
+        object-position: center 32%;
+        border-radius: 16px;
+    }
+}
+
+body:not(.home-page) :focus-visible {
+    outline: 2px solid #ffe29a !important;
+    outline-offset: 2px;
+}
+
+/* Lesson reading area: keep its full surface in deep navy shades. */
+body.lesson-page {
+    background: #061322 !important;
+    color: #eaf1f8 !important;
+}
+
+.lesson-page .content {
+    background: #0b1b2d !important;
+    color: #eaf1f8 !important;
+    border: 1px solid #1b3855 !important;
+}
+
+.lesson-page .content :is(h1, h2, h3, h4) {
+    color: #ffe29a !important;
+    border-color: #244563 !important;
+}
+
+.lesson-page .content :is(p, li, strong, em, span) {
+    color: #d8e3ee;
+}
+
+.lesson-page :is(.info-box, .important-box, .warning-box, .remember-box, .link-box) {
+    background: #102942 !important;
+    color: #e5edf5 !important;
+    border-color: #2b5274 !important;
+}
+
+.lesson-page .important-box {
+    background: #152d46 !important;
+    border-right-color: #e8bd55 !important;
+}
+
+.lesson-page .warning-box {
+    background: #20283b !important;
+    border-right-color: #db8585 !important;
+}
+
+.lesson-page .remember-box {
+    background: #102a3a !important;
+    border-right-color: #78c89b !important;
+}
+
+.lesson-page .link-box {
+    background: #10243a !important;
+}
+
+.lesson-page :is(table, tbody, tr, td) {
+    background: #0c2034 !important;
+    color: #e4edf6 !important;
+}
+
+.lesson-page th {
+    background: #143552 !important;
+    color: #ffe29a !important;
+}
+
+.lesson-page :is(th, td) {
+    border-color: #25435f !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:not(.home-page) *,
+    body:not(.home-page) *::before,
+    body:not(.home-page) *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.terminal-page .terminal-help {
+    background: #111820 !important;
+    color: #e7edf3 !important;
+    border: 1px solid #39495a !important;
+    border-right: 4px solid #e8bd55 !important;
+}
+
+.terminal-page .terminal-help h2 {
+    color: #ffe29a !important;
+}
+
+.terminal-page .terminal-help p {
+    color: #e1e8ef !important;
+    opacity: 1;
+}
+
+.terminal-page .terminal-help strong {
+    color: #ffffff !important;
+}
+
+.terminal-page .terminal-help code {
+    background: #080c11 !important;
+    color: #ffe29a !important;
+    border: 1px solid #46515e;
+}
+
+.terminal-page .terminal-hero .terminal-hero-overlay-text h1,
+.terminal-page .terminal-hero .terminal-hero-overlay-text p {
+    color: #ffe29a !important;
+    opacity: 1 !important;
+    font-size: inherit !important;
+    font-weight: 800 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+.terminal-page #terminalInput:focus,
+.terminal-page #terminalInput:focus-visible {
+    outline: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.terminal-page .terminal-input-area:focus-within {
+    outline: none !important;
+    border-top-color: rgba(255, 255, 255, .08) !important;
+    box-shadow: none !important;
+}
+
+.terminal-page .terminal-hero .terminal-hero-overlay-text p {
+    font-size: 15px !important;
+    white-space: nowrap !important;
+}
+
+@media (max-width: 700px) {
+    .terminal-page .terminal-hero .terminal-hero-overlay-text p {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .terminal-page .terminal-hero .terminal-hero-overlay-text p {
+        font-size: 12px !important;
+    }
+}
+
+/* Match lesson pages and lesson cards to the first lesson's navy and gold palette. */
+body.lesson-page {
+    background: #061322 !important;
+    color: #eaf1f8 !important;
+}
+
+.lesson-page > header {
+    background: #090c11 !important;
+    border-bottom: 2px solid rgba(232, 189, 85, .55) !important;
+}
+
+.lesson-page .nav-links a:hover,
+.lesson-page .sidebar a:hover,
+.lesson-page .sidebar a.active {
+    background: #e8bd55 !important;
+    color: #111820 !important;
+}
+
+.lesson-page .hero {
+    background: linear-gradient(135deg, #0b1b2d, #102942 60%, #0b1b2d) !important;
+    border-bottom-color: #e8bd55 !important;
+}
+
+.lesson-page .path-label,
+.lesson-page .progress-bar,
+.lesson-page .visual-btn,
+.lesson-page .osi-number,
+.lesson-page .ts-number,
+.lesson-page .security-wall,
+.lesson-page .complete-btn {
+    background: #e8bd55 !important;
+    color: #111820 !important;
+    border-color: #e8bd55 !important;
+}
+
+.lesson-page .progress-track {
+    background: #17283a !important;
+}
+
+.lesson-page .content {
+    background: #0b1b2d !important;
+    color: #eaf1f8 !important;
+    border-color: #1b3855 !important;
+}
+
+.lesson-page .content :is(h1, h2, h3, h4) {
+    color: #ffe29a !important;
+    border-color: #244563 !important;
+}
+
+.lesson-page .content :is(p, li, strong, em, span) {
+    color: #d8e3ee;
+}
+
+.lesson-page :is(.info-box, .important-box, .warning-box, .remember-box, .link-box) {
+    background: #102942 !important;
+    color: #e5edf5 !important;
+    border-color: #2b5274 !important;
+    border-right-color: #e8bd55 !important;
+}
+
+.lesson-page :is(table, tbody, tr, td) {
+    background: #0c2034 !important;
+    color: #e4edf6 !important;
+}
+
+.lesson-page th {
+    background: #143552 !important;
+    color: #ffe29a !important;
+}
+
+.lesson-page :is(th, td) {
+    border-color: #25435f !important;
+}
+
+.lesson-page .complete-btn:hover,
+.lesson-page .nav-card:hover,
+.lesson-page .visual-btn:hover {
+    background: #f5d47e !important;
+    color: #111820 !important;
+}
+
+.lesson-page .complete-btn.completed,
+.lessons-page .lesson-card.completed::before {
+    background: #2e8b57 !important;
+    color: #ffffff !important;
+}
+
+.lessons-page .lesson-card.completed .lesson-number,
+.lessons-page .lesson-card.completed .lesson-status {
+    color: #83c99d !important;
+}
+
+body.lessons-page {
+    background: #07090d !important;
+    color: #f3f4f6 !important;
+}
+
+.lessons-page .lesson-card::before {
+    background: #e8bd55 !important;
+}
+
+.lessons-page .lesson-number {
+    background: rgba(232, 189, 85, .14) !important;
+    color: #ffe29a !important;
+}
+
+.lessons-page .lesson-card h4 {
+    color: #ffe29a !important;
+}
+
+.lessons-page .lesson-card p {
+    color: #d8e3ee !important;
+}
+
+.lessons-page .lesson-btn {
+    background: rgba(232, 189, 85, .1) !important;
+    border-color: rgba(232, 189, 85, .5) !important;
+    color: #ffe29a !important;
+}
+
+.lessons-page .lesson-btn:hover {
+    background: #e8bd55 !important;
+    color: #111820 !important;
+}
+
+/* Practical subnetting: use the same dark navy and gold lesson palette. */
+body.subnetting-page {
+    background: #061322 !important;
+    color: #eaf1f8 !important;
+}
+
+.subnetting-page .subnet-section {
+    background: #0b1b2d !important;
+    color: #eaf1f8 !important;
+    border: 1px solid #1b3855 !important;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .22) !important;
+}
+
+.subnetting-page .subnet-section h2 {
+    color: #ffe29a !important;
+}
+
+.subnetting-page .subnet-section p,
+.subnetting-page .subnet-box {
+    color: #d8e3ee !important;
+}
+
+.subnetting-page .subnet-highlight {
+    background: #102942 !important;
+    color: #e5edf5 !important;
+    border-right-color: #e8bd55 !important;
+}
+
+.subnetting-page .subnet-example {
+    background: #080c11 !important;
+    color: #ffe29a !important;
+    border: 1px solid #263b50;
+}
+
+.subnetting-page .subnet-box,
+.subnetting-page .result-item {
+    background: #102238 !important;
+    border: 1px solid #29445f !important;
+}
+
+.subnetting-page .subnet-box strong,
+.subnetting-page .result-item strong {
+    color: #ffe29a !important;
+}
+
+.subnetting-page .result-item span {
+    color: #cbd7e2 !important;
+    opacity: 1;
+}
+
+.subnetting-page .subnet-input {
+    background: #080c11 !important;
+    color: #f3f4f6 !important;
+    border: 1px solid #46515e !important;
+}
+
+.subnetting-page .subnet-input::placeholder {
+    color: #9aa8b6 !important;
+}
+
+.subnetting-page .subnet-input:focus {
+    border-color: #e8bd55 !important;
+    box-shadow: 0 0 0 3px rgba(232, 189, 85, .16) !important;
+}
+
+.subnetting-page .subnet-button {
+    background: #e8bd55 !important;
+    color: #111820 !important;
+}
+
+.subnetting-page .subnet-button:hover {
+    background: #f5d47e !important;
+}
+
+.subnetting-page .subnet-error {
+    color: #ffaaaa !important;
+}
+
+.subnetting-page .subnet-back {
+    color: #ffe29a !important;
+}
+
+/* High contrast for the final exam entry links in both path views. */
+.lessons-page a.final-exam-cta,
+.paths-page a.final-exam-top-link {
+    background: #f2cf72 !important;
+    color: #101820 !important;
+    border: 2px solid #fff0ba !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 0 2px rgba(242, 207, 114, .18), 0 7px 18px rgba(0, 0, 0, .3) !important;
+    font-weight: 900 !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+.lessons-page a.final-exam-cta:hover,
+.lessons-page a.final-exam-cta:focus-visible,
+.paths-page a.final-exam-top-link:hover,
+.paths-page a.final-exam-top-link:focus-visible {
+    background: #fff1bf !important;
+    color: #07111d !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(242, 207, 114, .28), 0 9px 22px rgba(0, 0, 0, .35) !important;
+    outline: 2px solid #fff1bf !important;
+    outline-offset: 3px !important;
+}
+
+/* Make the administrator controls easy to spot and read in the profile. */
+body:not(.home-page) #adminCard {
+    border: 1px solid rgba(232, 189, 85, .65) !important;
+    background: linear-gradient(135deg, #111923, #0d1219) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .32), 0 0 0 2px rgba(232, 189, 85, .08) !important;
+}
+
+body:not(.home-page) #adminCard .card-title {
+    color: #ffe29a !important;
+}
+
+body:not(.home-page) #adminCard .admin-box {
+    background: #111d29 !important;
+    border: 1px solid #35475a !important;
+}
+
+body:not(.home-page) #adminCard .admin-box p {
+    color: #f1f5f9 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 1.9 !important;
+}
+
+body:not(.home-page) #adminCard a.admin-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 11px 20px !important;
+    background: #f2cf72 !important;
+    border: 2px solid #fff0ba !important;
+    color: #101820 !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    text-decoration: none !important;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, .3) !important;
+}
+
+body:not(.home-page) #adminCard a.admin-btn:hover,
+body:not(.home-page) #adminCard a.admin-btn:focus-visible {
+    background: #fff1bf !important;
+    color: #07111d !important;
+    outline: 2px solid #fff1bf !important;
+    outline-offset: 3px !important;
+}
+
+/* Single language switch on the home page; preference is shared by all pages. */
+

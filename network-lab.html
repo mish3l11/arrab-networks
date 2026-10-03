@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07090d">
+    <title>المختبر العملي | عرّاب الشبكات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="site-theme.css">
+</head>
+<body class="home-page">
+<header class="navbar home-navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="brand">
+            <span class="brand-icon home-brand-icon"><img class="network-logo-image" src="images/network-logo.svg" alt="شعار عرّاب الشبكات"></span>
+            <span class="brand-text">
+                <span class="brand-name">عرّاب الشبكات</span>
+                <span class="brand-subtitle">NETWORKS</span>
+            </span>
+        </a>
+        <a class="outline-button" href="index.html">العودة إلى الرئيسية</a>
+    </div>
+</header>
+
+<main>
+    <section class="network-lab-section" id="network-lab-simulation">
+        <div class="section-heading">
+            <span class="section-kicker">محاكاة تفاعلية</span>
+            <h1>تتبّع رحلة البيانات</h1>
+            <p>اختر جهازًا، ثم أرسل حزمة وشاهد انتقالها بين أجهزة الشبكة.</p>
+        </div>
+
+        <div class="network-lab-panel">
+            <div class="network-topology">
+                <div class="network-device" onclick="showDeviceInfo('pc')" role="button" tabindex="0">
+                    <span class="device-art device-art--pc" role="img" aria-label="حاسوب مكتبي"></span><strong>جهاز المستخدم</strong><small>مصدر البيانات</small>
+                </div>
+                <div class="network-line"></div>
+                <div class="network-device" onclick="showDeviceInfo('switch')" role="button" tabindex="0">
+                    <span class="device-art device-art--switch" role="img" aria-label="سويتش شبكات"></span><strong>السويتش</strong><small>الطبقة الثانية</small>
+                </div>
+                <div class="network-line"></div>
+                <div class="network-device" onclick="showDeviceInfo('router')" role="button" tabindex="0">
+                    <span class="device-art device-art--router" role="img" aria-label="راوتر شبكات"></span><strong>الراوتر</strong><small>الطبقة الثالثة</small>
+                </div>
+                <div class="network-line"></div>
+                <div class="network-device" onclick="showDeviceInfo('firewall')" role="button" tabindex="0">
+                    <span class="device-art device-art--firewall" role="img" aria-label="جهاز جدار ناري"></span><strong>الجدار الناري</strong><small>الحماية</small>
+                </div>
+                <div class="network-line"></div>
+                <div class="network-device" onclick="showDeviceInfo('server')" role="button" tabindex="0">
+                    <span class="device-art device-art--server" role="img" aria-label="خادم شبكات"></span><strong>الخادم</strong><small>الوجهة</small>
+                </div>
+                <div class="packet" id="packet">●</div>
+            </div>
+
+            <div class="packet-controls">
+                <button class="packet-button" id="packetButton" type="button" onclick="sendPacket()">إرسال البيانات</button>
+                <p id="packet-status">اضغط على إرسال البيانات لبدء التجربة</p>
+            </div>
+
+            <div class="device-info-empty" id="device-info">
+                <h2>معلومات الجهاز</h2>
+                <p>اختر أي جهاز من أجهزة الشبكة للتعرّف على دوره.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

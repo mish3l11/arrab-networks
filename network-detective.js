@@ -1807,7 +1807,7 @@ function renderCases() {
    OPEN CASE
 ========================================= */
 
-function openCase(caseId) {
+function openCase(caseId, isCasePageLoad) {
 
     var caseItem =
         getCaseById(caseId);
@@ -1823,6 +1823,14 @@ function openCase(caseId) {
         ) !== -1;
 
     if (!unlocked) {
+        return;
+    }
+
+    if (!isCasePageLoad) {
+        window.location.assign(
+            "network-detective.html?case=" +
+            encodeURIComponent(caseItem.id)
+        );
         return;
     }
 
@@ -1875,10 +1883,6 @@ function openCase(caseId) {
     renderSelectedEvidence();
     updateSubmitButton();
 
-    investigationSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
 }
 
 
@@ -1922,11 +1926,33 @@ function renderNetwork() {
         node.className =
             "network-node";
 
+        var deviceType =
+            String(device.type || "").toLowerCase();
+
+        var deviceIdentity =
+            String(device.id || "").toLowerCase() + " " +
+            String(device.name || "").toLowerCase();
+
+        var deviceArtType =
+            deviceType.indexOf("firewall") !== -1 ||
+            deviceIdentity.indexOf("firewall") !== -1
+                ? "firewall"
+                : deviceType.indexOf("server") !== -1 ||
+                  deviceIdentity.indexOf("server") !== -1
+                    ? "server"
+                    : deviceType.indexOf("switch") !== -1 ||
+                      deviceIdentity.indexOf("switch") !== -1 ||
+                      deviceIdentity.indexOf("core") !== -1
+                        ? "switch"
+                        : deviceType.indexOf("router") !== -1 ||
+                          deviceIdentity.indexOf("router") !== -1
+                            ? "router"
+                            : "pc";
+
         node.innerHTML =
-            '<span class="network-node-icon">' +
-                escapeHTML(
-                    device.icon
-                ) +
+            '<span class="network-node-icon device-art device-art--' +
+                deviceArtType +
+                '" aria-hidden="true">' +
             '</span>' +
 
             '<span class="network-node-name">' +
@@ -2496,11 +2522,17 @@ function renderSelectedEvidence() {
         button.className =
             "evidence-select";
 
-        if (
+        var evidenceIsSelected =
             state.selectedEvidence.indexOf(
                 evidenceId
-            ) !== -1
-        ) {
+            ) !== -1;
+
+        button.setAttribute(
+            "aria-pressed",
+            evidenceIsSelected ? "true" : "false"
+        );
+
+        if (evidenceIsSelected) {
 
             button.classList.add(
                 "selected"
@@ -2508,14 +2540,15 @@ function renderSelectedEvidence() {
         }
 
         button.textContent =
-            "🔎 " +
+            (evidenceIsSelected ? "✓ تم اختيار: " : "🔎 ") +
             evidenceItem.title;
 
         button.addEventListener(
             "click",
             function (
                 id,
-                btn
+                btn,
+                title
             ) {
 
                 return function () {
@@ -2535,6 +2568,14 @@ function renderSelectedEvidence() {
                             "selected"
                         );
 
+                        btn.setAttribute(
+                            "aria-pressed",
+                            "true"
+                        );
+
+                        btn.textContent =
+                            "✓ تم اختيار: " + title;
+
                     } else {
 
                         state.selectedEvidence.splice(
@@ -2545,6 +2586,14 @@ function renderSelectedEvidence() {
                         btn.classList.remove(
                             "selected"
                         );
+
+                        btn.setAttribute(
+                            "aria-pressed",
+                            "false"
+                        );
+
+                        btn.textContent =
+                            "🔎 " + title;
                     }
 
                     updateSubmitButton();
@@ -2553,7 +2602,8 @@ function renderSelectedEvidence() {
 
             }(
                 evidenceId,
-                button
+                button,
+                evidenceItem.title
             )
         );
 
@@ -2846,19 +2896,9 @@ if (backToCases) {
     backToCases.addEventListener(
         "click",
         function () {
-
-            investigationSection.classList.add(
-                "hidden"
+            window.location.assign(
+                "network-detective.html"
             );
-
-            resultPanel.classList.add(
-                "hidden"
-            );
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
         }
     );
 }
@@ -2907,6 +2947,41 @@ async function initializeDetective() {
 
         updateDashboard();
         renderCases();
+    }
+
+    var requestedCase =
+        new URLSearchParams(window.location.search).get("case");
+
+    if (requestedCase) {
+        var requestedCaseId =
+            parseInt(requestedCase, 10);
+
+        var requestedCaseItem =
+            getCaseById(requestedCaseId);
+
+        var requestedCaseUnlocked =
+            requestedCaseItem &&
+            (
+                requestedCaseItem.id === 1 ||
+                state.solved.indexOf(
+                    requestedCaseItem.id - 1
+                ) !== -1
+            );
+
+        if (requestedCaseUnlocked) {
+            document.body.classList.add(
+                "detective-case-view"
+            );
+
+            openCase(
+                requestedCaseId,
+                true
+            );
+        } else {
+            window.location.replace(
+                "network-detective.html"
+            );
+        }
     }
 }
 

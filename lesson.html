@@ -379,6 +379,46 @@ z-index: 2;
 font-size: 38px;
 }
 
+.device-icon.device-art,
+.route-node > .device-art,
+.security-side > .device-art,
+.security-wall > .device-art {
+display: block;
+width: 100px;
+height: 68px;
+margin: 0 auto 7px;
+font-size: 0;
+background-image: url("images/network-devices-sprite.png");
+background-repeat: no-repeat;
+background-size: 500% 100%;
+background-position-y: 50%;
+filter: drop-shadow(0 5px 7px rgba(0, 0, 0, .42));
+}
+
+.device-art--pc { background-position-x: 0%; }
+.device-art--switch { background-position-x: 25%; }
+.device-art--router { background-position-x: 50%; }
+.device-art--firewall { background-position-x: 75%; }
+.device-art--server { background-position-x: 100%; }
+
+.security-wall > .device-art {
+width: 110px;
+height: 76px;
+}
+
+.vlan-box .device-art--server {
+display: inline-block;
+vertical-align: middle;
+width: 48px;
+height: 34px;
+margin: 0 6px 0 0;
+font-size: 0;
+background-image: url("images/network-devices-sprite.png");
+background-repeat: no-repeat;
+background-size: 500% 100%;
+background-position-y: 50%;
+}
+
 .device-name {
 font-size: 13px;
 font-weight: 700;
@@ -1093,15 +1133,16 @@ transition-duration: .01ms !important;
 }
 }
 </style>
+    <link rel="stylesheet" href="site-theme.css">
 </head>
 
-<body>
+<body class="lesson-page">
 
 <header>
 <nav class="nav">
 
 <a href="index.html" class="logo">
-<span class="logo-icon">🌐</span>
+<span class="logo-icon"><img class="network-logo-image" src="images/network-logo.svg" alt=""></span>
 
 <span>
 <span class="logo-title">عرّاب الشبكات</span>
@@ -2741,6 +2782,217 @@ IP + MAC + VLAN + Switching + Routing + OSPF + SSH + Security
 
 ];
 
+/* شرح إضافي مخصص لكل درس، ويُعرض داخل قالب المحتوى الحالي. */
+const lessonAdditionalContent = {
+    1: `
+        <section class="section">
+            <h2>كيف تتبادل الأجهزة البيانات؟</h2>
+            <p>عندما يفتح مستخدم ملفًا من خادم داخل المكتب، يرسل جهازه طلبًا عبر الشبكة، ويستقبله الخادم ثم يعيد البيانات إلى الجهاز. كل جهاز يحتاج اتصالًا مناسبًا وعنوانًا يميّزه، كما تحدد إعدادات الشبكة الخدمات التي يستطيع الوصول إليها.</p>
+            <div class="info-box"><div class="box-title">مثال من الحياة اليومية</div>طابعة الشبكة تعمل كجهاز متاح للمستخدمين. يتصل الحاسوب بها عبر LAN، لكن صلاحية الطباعة تحددها إعدادات الطابعة أو النظام، وليس مجرد وجود الاتصال.</div>
+        </section>
+        <section class="section">
+            <h2>متى نستخدم LAN وWAN؟</h2>
+            <p>شبكة المنزل أو المكتب مثال على LAN. أما اتصال فرعين في مدينتين مختلفتين فيحتاج ربطًا بين شبكتيهما عبر WAN أو خدمة اتصال واسعة النطاق. وقد تتصل أجهزة Wi‑Fi بالشبكة المحلية نفسها لاسلكيًا؛ وهذا الجزء يسمى WLAN.</p>
+        </section>
+    `,
+    2: `
+        <section class="section">
+            <h2>كيف تعمل الأجهزة معًا؟</h2>
+            <p>يربط السويتش أجهزة المكتب ضمن الشبكة المحلية، ثم يمرر البيانات إلى المنفذ المناسب. عندما تكون الوجهة في شبكة أخرى، يوجّه الراوتر البيانات إلى الشبكة التالية. ويطبّق الجدار الناري قواعد تسمح بحركة محددة أو تمنعها.</p>
+            <div class="info-box"><div class="box-title">مثال</div>حاسوب يطبع على طابعة في المكتب: يمر الاتصال عبر السويتش. الحاسوب نفسه يفتح موقعًا خارج الشبكة: يرسل البيانات إلى الراوتر، وقد تفحصها قواعد الجدار الناري.</div>
+        </section>
+        <section class="section">
+            <h2>أجهزة أخرى في الشبكة</h2>
+            <p>نقطة الوصول Access Point تربط الأجهزة اللاسلكية بالشبكة المحلية. والخادم Server يقدم خدمة مثل الملفات أو المواقع. وقد يجمع جهاز واحد وظائف متعددة، لكن فهم وظيفة كل جزء يساعدك على تحديد مكان المشكلة.</p>
+        </section>
+    `,
+    3: `
+        <section class="section">
+            <h2>كيف يحدد الجهاز إن كانت الوجهة محلية؟</h2>
+            <p>يقارن الجهاز عنوانه بعنوان الوجهة باستخدام Subnet Mask. إذا كانت الوجهة في الشبكة نفسها، يرسلها مباشرة عبر الشبكة المحلية. وإذا كانت خارجها، يرسلها إلى البوابة الافتراضية.</p>
+            <div class="code-box">الجهاز: 192.168.1.10/24
+وجهة محلية: 192.168.1.25
+وجهة خارجية: 192.168.2.25
+Gateway: 192.168.1.1</div>
+            <p>في هذا المثال، العنوانان الأول والثاني ضمن 192.168.1.0/24، أما الوجهة الثالثة فتحتاج إلى الراوتر.</p>
+        </section>
+        <section class="section">
+            <h2>ثلاث قيم لا تخلط بينها</h2>
+            <ul><li><strong>IP Address:</strong> عنوان الجهاز المنطقي.</li><li><strong>Subnet Mask:</strong> يحدد جزء الشبكة وجزء الجهاز.</li><li><strong>Default Gateway:</strong> الطريق إلى الشبكات الأخرى.</li></ul>
+            <div class="important-box">وجود عنوان IP صحيح لا يكفي وحده؛ يجب أن يتوافق القناع والبوابة مع تصميم الشبكة.</div>
+        </section>
+    `,
+    4: `
+        <section class="section">
+            <h2>كيف يصل الإطار إلى الجهاز الصحيح؟</h2>
+            <p>داخل الشبكة المحلية، يحمل إطار Ethernet عنوان MAC للمرسل والوجهة. يتعلم السويتش عنوان المرسل من الإطار الوارد ويربطه بالمنفذ، ثم يستخدم عنوان الوجهة لاتخاذ قرار التمرير.</p>
+            <div class="info-box"><div class="box-title">علاقة IP وMAC</div>يحدد IP وجهة الاتصال على مستوى الشبكة، بينما يحدد MAC واجهة الاستلام على الوصلة المحلية الحالية. لذلك قد يتغير عنوان MAC عند انتقال البيانات عبر راوتر.</div>
+        </section>
+        <section class="section">
+            <h2>دور ARP داخل الشبكة</h2>
+            <p>إذا عرف الجهاز IP الوجهة المحلية ولم يعرف MAC المقابل له، يستخدم ARP للاستعلام عنه. وعند إرسال البيانات إلى شبكة بعيدة، يستعلم عن MAC البوابة الافتراضية بدلًا من MAC الجهاز البعيد.</p>
+        </section>
+    `,
+    5: `
+        <section class="section">
+            <h2>كيف يحدد المنفذ الخدمة؟</h2>
+            <p>قد يقدم الخادم أكثر من خدمة في الوقت نفسه. يحدد عنوان IP الجهاز، بينما يساعد رقم المنفذ على إيصال البيانات إلى التطبيق المناسب. الاتصال يحتوي عادة على منفذ مصدر يختاره العميل ومنفذ وجهة تستمع إليه الخدمة.</p>
+            <div class="code-box">عميل مؤقت: 53014
+خادم HTTPS: 443
+وجهة الاتصال: عنوان الخادم + TCP/443</div>
+            <p>رقم منفذ الخادم معروف عادة، أما منفذ العميل فقد يكون مؤقتًا ويتغير بين الاتصالات.</p>
+        </section>
+        <section class="section">
+            <h2>اختيار TCP أو UDP</h2>
+            <p>يختار التطبيق بروتوكول النقل حسب حاجته. يستخدم TCP آليات لضمان ترتيب البيانات وإعادة الإرسال عند الحاجة. أما UDP فيرسلها دون إنشاء اتصال مماثل، وقد يناسب الخدمات التي تفضّل تقليل التأخير. يعتمد الاختيار على التطبيق، وليس على رقم المنفذ وحده.</p>
+        </section>
+    `,
+    6: `
+        <section class="section">
+            <h2>رحلة البيانات عبر الطبقات</h2>
+            <p>قبل إرسال البيانات، تضيف كل طبقة المعلومات التي تحتاجها لتوصيلها. عند الاستقبال، تُقرأ هذه المعلومات بالتدرج العكسي حتى تصل البيانات إلى التطبيق.</p>
+            <div class="code-box">بيانات التطبيق
+↓ Segment — TCP/UDP
+↓ Packet — IP
+↓ Frame — Ethernet وMAC
+↓ Bits — الإشارة عبر الوسط</div>
+            <p>تسمى هذه العملية Encapsulation عند الإرسال، ويُزال الغلاف طبقة بعد طبقة عند الاستقبال.</p>
+        </section>
+        <section class="section">
+            <h2>استخدم الطبقات لتضييق نطاق المشكلة</h2>
+            <p>إذا لم توجد إشارة على المنفذ فابدأ بالطبقة الفيزيائية. إذا كانت الإشارة موجودة لكن الجهاز لا يصل إلى جهاز في VLAN نفسها، افحص الطبقة الثانية. وإذا كان الاتصال بين شبكات مختلفة، افحص IP والتوجيه في الطبقة الثالثة.</p>
+        </section>
+    `,
+    7: `
+        <section class="section">
+            <h2>كيف تقارن TCP/IP بنموذج OSI؟</h2>
+            <p>يستخدم نموذج OSI سبع طبقات للفهم والتحليل، بينما يجمع نموذج TCP/IP الوظائف في طبقات أقل ويصف مجموعة البروتوكولات المستخدمة فعليًا. لذلك لا تتطابق أسماؤهما واحدًا لواحد، لكن كليهما يساعد على تنظيم رحلة البيانات.</p>
+            <div class="table-wrapper"><table><tr><th>TCP/IP</th><th>أمثلة مرتبطة في OSI</th></tr><tr><td>Application</td><td>Application وPresentation وSession</td></tr><tr><td>Transport</td><td>TCP وUDP</td></tr><tr><td>Internet</td><td>IP وRouting</td></tr><tr><td>Network Access</td><td>Ethernet وMAC والوسط الفيزيائي</td></tr></table></div>
+            <div class="important-box">استخدم OSI لتحديد الطبقة التي تعمل عليها، واستخدم TCP/IP لفهم البروتوكولات التي تنقل البيانات.</div>
+        </section>
+    `,
+    8: `
+        <section class="section">
+            <h2>اختيار الجهاز المناسب</h2>
+            <p>اختر الجهاز بناءً على المهمة: ربط أجهزة ضمن LAN يحتاج عادةً إلى Switch، وربط شبكات IP مختلفة يحتاج إلى Router. أما Hub فيكرر الإشارة إلى منافذ أخرى ولا يختار منفذًا بناءً على عنوان MAC.</p>
+            <div class="info-box"><div class="box-title">سيناريو مكتب</div>تتصل الحواسيب والطابعة بالسويتش. يتصل السويتش بالراوتر للوصول إلى شبكة أخرى أو الإنترنت. ويمكن توصيل نقطة وصول بالسويتش لإضافة اتصال Wi‑Fi إلى الشبكة.</div>
+        </section>
+        <section class="section">
+            <h2>ماذا يحدث عند إرسال البيانات؟</h2>
+            <p>يمرر السويتش الإطار محليًا وفق جدول MAC. وعندما تكون الوجهة في شبكة أخرى، يرسل الجهاز الإطار إلى الراوتر، ثم يختار الراوتر مسارًا اعتمادًا على عنوان IP وجدول التوجيه.</p>
+        </section>
+    `,
+    9: `
+        <section class="section">
+            <h2>حساب شبكة /26</h2>
+            <p>في IPv4 التقليدي، تحجز البادئة /26 ستة بتات للأجهزة؛ لذلك تحتوي الشبكة على 64 عنوانًا إجمالًا و62 عنوانًا قابلًا للاستخدام.</p>
+            <div class="code-box">192.168.1.0/26
+Network:   192.168.1.0
+First host: 192.168.1.1
+Last host:  192.168.1.62
+Broadcast: 192.168.1.63</div>
+            <p>حجم كل شبكة /26 هو 64 عنوانًا، لذلك تبدأ الشبكة التالية عند 192.168.1.64.</p>
+        </section>
+        <section class="section">
+            <h2>خطوات الحل</h2>
+            <ol><li>احسب عدد الأجهزة المطلوبة.</li><li>اختر بادئة توفر عددًا كافيًا من العناوين القابلة للاستخدام.</li><li>حدد عنوان الشبكة والبث ونطاق الأجهزة.</li><li>تأكد من عدم تداخل النطاق مع شبكة أخرى.</li></ol>
+        </section>
+    `,
+    10: `
+        <section class="section">
+            <h2>كيف يتعلم السويتش العناوين؟</h2>
+            <ol><li>يستقبل Frame على منفذ.</li><li>يسجل Source MAC مع رقم المنفذ الذي وصل منه.</li><li>يفحص Destination MAC ويختار منفذ الإرسال إذا كان معروفًا.</li></ol>
+            <p>تتحدث معلومات الجدول مع حركة الشبكة، وقد تنتهي صلاحية إدخال قديم إذا لم يعد السويتش يستقبل حركة من ذلك العنوان.</p>
+        </section>
+        <section class="section">
+            <h2>الفرق بين Unicast وBroadcast</h2>
+            <p>يرسل Unicast البيانات إلى وجهة محددة. إذا لم يعرف السويتش منفذ MAC الوجهة، فقد يرسل الإطار إلى منافذ VLAN نفسها باستثناء منفذ الدخول. أما Broadcast فيبقى ضمن نطاق البث الخاص بالـVLAN.</p>
+            <div class="important-box">تقسيم الشبكة إلى VLANs يقلل نطاق انتشار Broadcast، لكنه لا يغني عن التوجيه عند الاتصال بين VLANs.</div>
+        </section>
+    `,
+    11: `
+        <section class="section">
+            <h2>Access وTrunk باختصار</h2>
+            <div class="table-wrapper"><table><tr><th>المنفذ</th><th>الاستخدام</th><th>مثال</th></tr><tr><td>Access</td><td>يربط جهازًا نهائيًا بـVLAN واحدة غالبًا</td><td>حاسوب أو طابعة</td></tr><tr><td>Trunk</td><td>يمرر حركة عدة VLANs بين الأجهزة</td><td>سويتش إلى سويتش</td></tr></table></div>
+            <p>يجب أن تكون الـVLAN موجودة ومسموحًا بمرورها على طرفي Trunk. وجودها على سويتش واحد فقط لا يكفي لامتدادها عبر الرابط.</p>
+        </section>
+        <section class="section">
+            <h2>هل تتواصل VLANs تلقائيًا؟</h2>
+            <p>لا. تفصل VLANs نطاقات الطبقة الثانية. إذا احتاج جهاز في VLAN 10 إلى الوصول إلى خادم في VLAN 20، فيلزم إعداد وظيفة توجيه بينهما وتحديد بوابة مناسبة لكل شبكة.</p>
+        </section>
+    `,
+    12: `
+        <section class="section">
+            <h2>كيف يختار الراوتر المسار؟</h2>
+            <ol><li>يقرأ عنوان IP للوجهة.</li><li>يبحث عن شبكة مطابقة في جدول التوجيه.</li><li>يستخدم المسار الأكثر تحديدًا عند وجود أكثر من تطابق.</li><li>يرسل الحزمة عبر Next Hop أو واجهة الخروج المحددة.</li></ol>
+            <div class="info-box"><div class="box-title">إذا لم يجد مسارًا</div>يستخدم الراوتر Default Route إن كانت موجودة. وإذا لم يوجد مسار مناسب أو افتراضي، فلا يستطيع توجيه الحزمة إلى تلك الوجهة.</div>
+        </section>
+        <section class="section">
+            <h2>ماذا تجد في جدول التوجيه؟</h2>
+            <p>قد يحتوي الجدول على شبكات متصلة مباشرة، ومسارات ثابتة أضافها المسؤول، ومسارات تعلمها بروتوكول ديناميكي. لكل مسار وجهة وطريقة وصول، وقد يتضمن Next Hop أو واجهة الخروج.</p>
+        </section>
+    `,
+    13: `
+        <section class="section">
+            <h2>مكونات المسار الثابت</h2>
+            <p>يحدد Static Route شبكة الوجهة وقناعها، ثم يحدد Next Hop أو واجهة الخروج. يجب أن يكون Next Hop قابلًا للوصول من الراوتر حتى يستطيع إرسال الحزمة إليه.</p>
+            <div class="code-box">الوجهة: 192.168.2.0/24
+Next Hop: 10.0.0.2
+المعنى: أرسل الحركة لهذه الشبكة إلى الراوتر 10.0.0.2</div>
+        </section>
+        <section class="section">
+            <h2>تحقق من الاتجاهين</h2>
+            <p>نجاح المسار إلى الشبكة البعيدة لا يضمن عودة الرد. يجب أن يعرف الراوتر البعيد أيضًا طريق العودة إلى شبكة المصدر. بعد إضافة المسار، تحقق من وجوده في الجدول ثم اختبر الاتصال من المصدر إلى الوجهة.</p>
+            <div class="warning-box">إذا تغيّر تصميم الشبكة، راجع المسارات الثابتة؛ فهي لا تتكيف تلقائيًا مع تغيّر الطريق.</div>
+        </section>
+    `,
+    14: `
+        <section class="section">
+            <h2>ماذا يحدث بعد تكوين OSPF؟</h2>
+            <p>يكتشف الراوتر جيرانه المشاركين في OSPF على الوصلات المفعّلة، ثم يتبادل معهم معلومات الشبكات. بعد اكتمال تبادل المعلومات، يحسب الراوتر المسارات ويضيف الأنسب منها إلى جدول التوجيه.</p>
+            <div class="info-box"><div class="box-title">لنجاح الجوار</div>تحقق من اتصال الواجهة، وعناوين الشبكة، وتطابق إعدادات OSPF الأساسية مثل Area على الوصلة. بعد ذلك افحص حالة الجار وجدول التوجيه.</div>
+        </section>
+        <section class="section">
+            <h2>OSPF مقارنة بالمسارات الثابتة</h2>
+            <p>في Static Routing يضيف المسؤول كل مسار يدويًا. أما OSPF فيتبادل معلومات التوجيه بين الراوترات، لذلك يناسب الشبكات التي تتغير مساراتها أو تحتوي على عدة راوترات. يظل التصميم والتحقق ضروريين في الحالتين.</p>
+        </section>
+    `,
+    15: `
+        <section class="section">
+            <h2>ماذا يحدث عند اتصال SSH؟</h2>
+            <p>ينشئ عميل الإدارة اتصالًا مشفرًا مع جهاز الشبكة، ثم يسجل المستخدم الدخول بحساب مصرح به. يحمي التشفير بيانات الجلسة أثناء انتقالها، لكنه لا يعوض عن كلمة مرور ضعيفة أو حساب بصلاحيات زائدة.</p>
+            <div class="important-box">اسمح بالإدارة من أجهزة أو شبكات موثوقة فقط، واستخدم حسابات منفصلة بصلاحيات مناسبة.</div>
+        </section>
+        <section class="section">
+            <h2>قبل اعتماد الإعداد</h2>
+            <ul><li>تأكد من أن خدمة SSH مفعّلة.</li><li>تحقق من وجود حساب محلي أو وسيلة مصادقة مناسبة.</li><li>اختبر الدخول من عميل مصرح به.</li><li>احتفظ بجلسة الإدارة الحالية إلى أن تتأكد من نجاح الاتصال الجديد.</li></ul>
+        </section>
+    `,
+    16: `
+        <section class="section">
+            <h2>كيف تُراجع قاعدة ACL؟</h2>
+            <p>اقرأ القاعدة من جهة المصدر إلى الوجهة: ما الأجهزة المسموح لها؟ إلى أي شبكة أو خدمة؟ وما البروتوكول أو المنفذ المطلوب؟ تأكد من أن موقع القاعدة واتجاهها يطابقان هدف السياسة.</p>
+            <div class="info-box"><div class="box-title">مثال في التفكير</div>إذا كان المطلوب السماح لمجموعة المستخدمين بخادم محدد، فاجعل النطاق محددًا قدر الإمكان، ثم تحقق أن بقية الخدمات لم تتأثر.</div>
+        </section>
+        <section class="section">
+            <h2>طبّق التغيير بحذر</h2>
+            <ol><li>حدد الحركة المطلوبة قبل كتابة القاعدة.</li><li>راجع ترتيب القواعد والسلوك الافتراضي على الجهاز.</li><li>طبّق التغيير في المكان والاتجاه المناسبين.</li><li>اختبر الحركة المسموحة والممنوعة وراجع السجلات.</li></ol>
+            <div class="warning-box">قاعدة واسعة أو في اتجاه غير صحيح قد تقطع خدمات سليمة؛ راجع أثرها قبل اعتمادها.</div>
+        </section>
+    `,
+    17: `
+        <section class="section">
+            <h2>حوّل الشكوى إلى اختبارات</h2>
+            <p>اسأل أولًا: هل المشكلة عند مستخدم واحد أم عند مجموعة؟ هل تتأثر خدمة واحدة أم كل الخدمات؟ تساعدك الإجابات على تحديد نطاق المشكلة واختيار نقطة بداية مناسبة بدل تغيير إعدادات عشوائيًا.</p>
+            <div class="table-wrapper"><table><tr><th>الملاحظة</th><th>نقطة بداية مناسبة</th></tr><tr><td>مستخدم واحد لا يتصل</td><td>إعداد الجهاز والمنفذ وVLAN</td></tr><tr><td>عدة أجهزة في شبكة واحدة متأثرة</td><td>السويتش أو البوابة أو إعداد الشبكة المشتركة</td></tr><tr><td>الوصول إلى خدمة واحدة يفشل</td><td>الخدمة والمنفذ وسياسات Firewall</td></tr></table></div>
+        </section>
+        <section class="section">
+            <h2>أغلق البلاغ بعد التحقق</h2>
+            <p>بعد تنفيذ حل واحد في كل مرة، أعد الاختبار من جهاز المستخدم وتأكد من عودة الخدمة المطلوبة. سجّل السبب والخطوات والتغيير الذي نجح، حتى يسهل التعامل مع الحالة إذا تكررت.</p>
+        </section>
+    `
+};
+
 
 /* =====================================================
 العناصر
@@ -2842,7 +3094,7 @@ const visuals = {
 <div class="device-row">
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">PC</div>
 <div class="device-label">Client</div>
 </div>
@@ -2850,7 +3102,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <div class="device-name">Switch</div>
 <div class="device-label">LAN</div>
 </div>
@@ -2858,7 +3110,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🖥️</div>
+<div class="device-icon device-art device-art--server" role="img" aria-label="خادم"></div>
 <div class="device-name">Server</div>
 <div class="device-label">Service</div>
 </div>
@@ -2889,7 +3141,7 @@ const visuals = {
 <div class="device-row">
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">أجهزة المستخدمين</div>
 <div class="device-label">Clients</div>
 </div>
@@ -2897,7 +3149,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <div class="device-name">Switch</div>
 <div class="device-label">Layer 2</div>
 </div>
@@ -2905,7 +3157,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🟠</div>
+<div class="device-icon device-art device-art--router" role="img" aria-label="راوتر شبكات"></div>
 <div class="device-name">Router</div>
 <div class="device-label">Layer 3</div>
 </div>
@@ -2913,7 +3165,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🛡️</div>
+<div class="device-icon device-art device-art--firewall" role="img" aria-label="جدار ناري"></div>
 <div class="device-name">Firewall</div>
 <div class="device-label">Security</div>
 </div>
@@ -2996,7 +3248,7 @@ const visuals = {
 <div class="device-row">
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">PC1</div>
 <div class="device-label">AA:BB:CC</div>
 </div>
@@ -3004,7 +3256,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <div class="device-name">Switch</div>
 <div class="device-label">MAC Table</div>
 </div>
@@ -3012,7 +3264,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">PC2</div>
 <div class="device-label">11:22:33</div>
 </div>
@@ -3043,7 +3295,7 @@ const visuals = {
 <div class="device-row">
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">Client</div>
 <div class="device-label">Request</div>
 </div>
@@ -3051,7 +3303,7 @@ const visuals = {
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🖥️</div>
+<div class="device-icon device-art device-art--server" role="img" aria-label="خادم"></div>
 <div class="device-name">Server</div>
 <div class="device-label">Services</div>
 </div>
@@ -3179,13 +3431,13 @@ HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
 </div>
 
 <div class="device">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <div class="device-name">Switch</div>
 <div class="device-label">MAC / Layer 2</div>
 </div>
 
 <div class="device">
-<div class="device-icon">🟠</div>
+<div class="device-icon device-art device-art--router" role="img" aria-label="راوتر شبكات"></div>
 <div class="device-name">Router</div>
 <div class="device-label">IP / Layer 3</div>
 </div>
@@ -3260,7 +3512,7 @@ HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
 <div class="device-row">
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">PC1</div>
 <div class="device-label">MAC A</div>
 </div>
@@ -3268,7 +3520,7 @@ HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <div class="device-name">Switch</div>
 <div class="device-label">MAC Table</div>
 </div>
@@ -3276,7 +3528,7 @@ HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">PC2</div>
 <div class="device-label">MAC B</div>
 </div>
@@ -3305,7 +3557,7 @@ HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
 <div class="vlan-visual">
 
 <div class="vlan-switch">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <strong>Switch</strong>
 </div>
 
@@ -3323,7 +3575,7 @@ HTTPS → 443 &nbsp; | &nbsp; SSH → 22 &nbsp; | &nbsp; DNS → 53
 
 <div class="vlan-box">
 <strong>VLAN 30</strong>
-<span>Servers 🖥️</span>
+<span>Servers <i class="device-art device-art--server" role="img" aria-label="خوادم"></i></span>
 </div>
 
 </div>
@@ -3354,21 +3606,21 @@ Trunk يمكنه حمل أكثر من VLAN بين الأجهزة الداعمة 
 <div class="route-network">
 
 <div class="route-node">
-<div>💻</div>
+<div class="device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <strong>Network A</strong>
 </div>
 
 <div class="route-line"></div>
 
 <div class="route-node">
-<div>🟠</div>
+<div class="device-art device-art--router" role="img" aria-label="راوتر"></div>
 <strong>Router</strong>
 </div>
 
 <div class="route-line"></div>
 
 <div class="route-node">
-<div>🖥️</div>
+<div class="device-art device-art--server" role="img" aria-label="خادم"></div>
 <strong>Network B</strong>
 </div>
 
@@ -3407,7 +3659,7 @@ Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
 <div class="route-line"></div>
 
 <div class="route-node">
-<div>🟠</div>
+<div class="device-art device-art--router" role="img" aria-label="راوتر"></div>
 <strong>10.0.0.1</strong>
 </div>
 
@@ -3444,7 +3696,7 @@ Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
 <div class="route-network">
 
 <div class="route-node">
-<div>🟠</div>
+<div class="device-art device-art--router" role="img" aria-label="راوتر"></div>
 <strong>R1</strong>
 <span style="color:#54d66a">Neighbor</span>
 </div>
@@ -3452,7 +3704,7 @@ Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
 <div class="route-line"></div>
 
 <div class="route-node">
-<div>🟠</div>
+<div class="device-art device-art--router" role="img" aria-label="راوتر"></div>
 <strong>R2</strong>
 <span style="color:#54d66a">Neighbor</span>
 </div>
@@ -3460,7 +3712,7 @@ Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
 <div class="route-line"></div>
 
 <div class="route-node">
-<div>🟠</div>
+<div class="device-art device-art--router" role="img" aria-label="راوتر"></div>
 <strong>R3</strong>
 <span style="color:#54d66a">Neighbor</span>
 </div>
@@ -3485,7 +3737,7 @@ Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
 <div class="device-row">
 
 <div class="device">
-<div class="device-icon">💻</div>
+<div class="device-icon device-art device-art--pc" role="img" aria-label="حاسوب"></div>
 <div class="device-name">Admin PC</div>
 <div class="device-label">SSH Client</div>
 </div>
@@ -3493,7 +3745,7 @@ Packet تنتقل من شبكة إلى أخرى عبر قرار Routing.
 <div class="connection"></div>
 
 <div class="device">
-<div class="device-icon">🔵</div>
+<div class="device-icon device-art device-art--switch" role="img" aria-label="سويتش شبكات"></div>
 <div class="device-name">Switch</div>
 <div class="device-label">SSH Server</div>
 </div>
@@ -3528,12 +3780,12 @@ Admin → SSH → Network Device
 </div>
 
 <div class="security-wall">
-🛡️
+<span class="device-art device-art--firewall" role="img" aria-label="جدار ناري"></span>
 <div style="font-size:12px;margin-top:8px">Firewall / ACL</div>
 </div>
 
 <div class="security-side">
-<div style="font-size:35px">🖥️</div>
+<div class="device-art device-art--server" role="img" aria-label="خادم"></div>
 <strong>Protected Network</strong>
 <span style="color:#999">Allowed Traffic</span>
 </div>
@@ -3678,7 +3930,8 @@ lessonVisual.innerHTML =
 getLessonVisual(currentLesson.id);
 
 lessonContent.innerHTML =
-currentLesson.content;
+currentLesson.content +
+(lessonAdditionalContent[currentLesson.id] || "");
 
 renderSidebar();
 
@@ -4175,6 +4428,7 @@ block: "nearest"
 );
 
 </script>
+
 
 </body>
 </html>
