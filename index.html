@@ -184,14 +184,90 @@
     </section>
 
     <section class="home-feedback-section" aria-labelledby="home-feedback-title">
-        <div class="home-feedback-card">
-            <div class="home-feedback-copy">
-                <h2 id="home-feedback-title">الاستفسارات والاقتراحات</h2>
-                <p>هل لديك فكرة تساعدنا على تحسين تجربتك؟ يسعدنا أن تشاركنا.</p>
-                <button class="home-feedback-open" id="feedbackOpen" type="button" aria-expanded="false" aria-controls="feedbackForm">تواصل مع العرّاب</button>
+        <style>
+            .home-bottom-cards-grid {
+                width: min(1120px, calc(100% - 32px));
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+                align-items: stretch;
+            }
+            .home-bottom-cards-grid .home-feedback-card,
+            .home-youtube-card {
+                min-width: 0;
+                min-height: 478px;
+                height: 100%;
+                box-sizing: border-box;
+            }
+            .home-youtube-card {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
+                overflow: hidden;
+                isolation: isolate;
+                min-height: 478px;
+                border: 1px solid rgba(203, 183, 122, .48);
+                border-radius: 20px;
+                background: #101216;
+                color: #f7f4eb;
+                box-shadow: 0 12px 34px rgba(0,0,0,.18);
+            }
+            .home-youtube-image {
+                position: absolute;
+                inset: 0;
+                z-index: -2;
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                border: 0;
+                transition: transform .35s ease;
+            }
+            .home-youtube-card::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                background: linear-gradient(90deg, rgba(5,7,10,.28) 0%, rgba(5,7,10,.62) 48%, rgba(5,7,10,.9) 100%);
+            }
+            .home-youtube-card:hover .home-youtube-image { transform: scale(1.035); }
+            .home-youtube-icon { display: none; }
+            .home-youtube-copy { position: relative; padding: clamp(28px, 3vw, 42px); text-align: right; text-shadow: 0 2px 8px rgba(0,0,0,.8); }
+            .home-youtube-copy h2 { margin: 0 0 12px; color: #f2d27e; font-size: clamp(1.5rem, 2vw, 1.9rem); font-weight: 800; }
+            .home-youtube-copy p { margin: 0 0 22px; color: #fff; line-height: 1.9; max-width: 34rem; }
+            .home-youtube-link { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+            .home-youtube-link:hover { transform: translateY(-2px); }
+            .home-feedback-form { grid-column: 1 / -1; }
+            @media (max-width: 720px) {
+                .home-bottom-cards-grid { grid-template-columns: 1fr; gap: 16px; }
+                .home-bottom-cards-grid .home-feedback-card,
+                .home-youtube-card { min-height: 350px; }
+                .home-youtube-copy { padding: 24px; }
+            }
+        </style>
+        <div class="home-bottom-cards-grid">
+            <article class="home-youtube-card" aria-labelledby="home-youtube-title">
+                <img class="home-youtube-image" src="images/youtube-library.png" alt="مكتبة فيديوهات تعليم الشبكات على يوتيوب" loading="lazy" decoding="async">
+                <div class="home-youtube-copy">
+                    <h2 id="home-youtube-title">مكتبة الفيديو التعليمية</h2>
+                    <p>تعلّم الشبكات من خلال مصادر يوتيوب مرتبة حسب المستوى: الأساسيات، IP وSubnetting، Cisco، Huawei، وVLAN وRouting.</p>
+                    <a class="home-feedback-open home-youtube-link" href="youtube-learning.html">استكشف مصادر التعلّم <span aria-hidden="true">←</span></a>
+                </div>
+            </article>
+            <div class="home-feedback-card">
+                <div class="home-feedback-copy">
+                    <h2 id="home-feedback-title">الاستفسارات والاقتراحات</h2>
+                    <p>هل لديك فكرة تساعدنا على تحسين تجربتك؟ يسعدنا أن تشاركنا.</p>
+                    <button class="home-feedback-open" id="feedbackOpen" type="button" aria-expanded="false" aria-controls="feedbackForm">تواصل مع العرّاب</button>
+                </div>
             </div>
-        </div>
-        <form class="home-feedback-form" id="feedbackForm" hidden>
+            <form class="home-feedback-form" id="feedbackForm" hidden>
             <label for="feedbackName">الاسم</label>
             <input id="feedbackName" name="name" type="text" autocomplete="name" placeholder="اسمك" required>
             <label for="feedbackEmail">بريدك الإلكتروني</label>
@@ -201,7 +277,8 @@
             <p class="home-feedback-note">أرسل رسالتك مباشرةً من الموقع.</p>
             <p class="home-feedback-status" id="feedbackStatus" role="status" aria-live="polite" hidden></p>
             <button class="home-feedback-submit" id="feedbackSubmit" type="submit">إرسال الرسالة <span aria-hidden="true">←</span></button>
-        </form>
+            </form>
+        </div>
     </section>
 </main>
 

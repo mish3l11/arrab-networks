@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="دروس الفايبر أوبتك في عرّاب الشبكات: الأنواع والموصلات وODF واللحام وقياس القدرة وفحص الأعطال.">
+
+  <title>أكاديمية الفايبر أوبتك | عرّاب الشبكات</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="site-theme.css">
+
+  <style>
+
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:'Tajawal',sans-serif;color:#f5f5f5;background:radial-gradient(circle at 90% 0,rgba(203,183,122,.1),transparent 28%),linear-gradient(135deg,#080b10,#10151d 55%,#080b10)}
+
+    a{text-decoration:none;color:inherit}.topbar{background:rgba(7,10,15,.92);border-bottom:1px solid rgba(203,183,122,.18)}.topbar-inner{max-width:1120px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{color:#cbb77a;font-size:19px;font-weight:800}.back,.login-link{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border:1px solid rgba(203,183,122,.35);border-radius:10px;color:#e8d69a;font-weight:700}.container{max-width:1120px;margin:auto;padding:38px 22px 76px}.hero{position:relative;isolation:isolate;overflow:hidden;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(30px,5vw,58px);border:1px solid rgba(203,183,122,.4);border-radius:23px;background:#0b1017 url('images/fiber-card.png') center 42%/cover no-repeat;text-align:center}.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,8,13,.58),rgba(5,8,13,.66)),linear-gradient(0deg,rgba(5,8,13,.55),rgba(5,8,13,.12))}.hero>*{position:relative}.hero h1{text-shadow:0 2px 16px rgba(0,0,0,.65)}.hero p{color:#f0f2f5;text-shadow:0 2px 10px rgba(0,0,0,.9)}.eyebrow{color:#cbb77a;font-weight:800;letter-spacing:1px}.hero h1{margin:12px 0;font-size:clamp(29px,5vw,44px)}.hero p{max-width:760px;margin:0 auto;color:#b4bbc5;line-height:2;font-size:16px}.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}.stat{padding:8px 13px;border-radius:999px;background:rgba(203,183,122,.08);border:1px solid rgba(203,183,122,.17);color:#e8d69a;font-size:13px}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:34px 0 16px}.section-heading h2{font-size:24px;margin:0;color:#f4e7bd}.section-heading p{margin:5px 0 0;color:#9ca3af;line-height:1.8}.lessons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.lesson{align-self:start;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:rgba(255,255,255,.025);overflow:hidden}.lesson summary{list-style:none;cursor:pointer;padding:19px 20px;display:flex;align-items:center;gap:14px}.lesson summary::-webkit-details-marker{display:none}.number{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:12px;background:rgba(203,183,122,.12);border:1px solid rgba(203,183,122,.25);color:#e8d69a;font-weight:800}.summary-text{flex:1}.summary-text h3{font-size:17px;margin:0 0 5px}.summary-text p{margin:0;color:#9ca3af;font-size:13px;line-height:1.7}.chevron{color:#cbb77a;font-size:20px;transition:transform .2s}details[open] .chevron{transform:rotate(180deg)}.lesson-body{padding:0 20px 20px;color:#c3c9d2;line-height:2;border-top:1px solid rgba(255,255,255,.07)}.lesson-body h4{color:#e8d69a;margin:18px 0 6px}.lesson-body p{margin:8px 0}.lesson-body ul{padding-right:22px;margin:8px 0}.term{display:inline-block;direction:ltr;unicode-bidi:isolate;color:#e8d69a;background:rgba(203,183,122,.08);border-radius:5px;padding:0 5px}.tip{padding:12px 14px;margin-top:12px;border-right:3px solid #cbb77a;background:rgba(203,183,122,.06);border-radius:7px;color:#d5d0c2}.practical{display:flex;align-items:center;gap:16px;margin-top:30px;padding:22px;border:1px solid rgba(203,183,122,.3);border-radius:18px;background:linear-gradient(110deg,rgba(203,183,122,.09),rgba(255,255,255,.02))}.lock-icon{width:48px;height:48px;flex:0 0 48px;border-radius:14px;display:grid;place-items:center;background:rgba(203,183,122,.12);font-size:23px}.practical-copy{flex:1}.practical h2{margin:0 0 5px;color:#f4e7bd;font-size:20px}.practical p{margin:0;color:#aeb5bf;line-height:1.8}.practical .login-link{white-space:nowrap;background:#cbb77a!important;color:#111!important;border-color:#cbb77a!important;font-weight:800;text-shadow:none}.footer-note{text-align:center;color:#818894;font-size:13px;line-height:1.9;margin-top:24px}@media(max-width:760px){.hero{min-height:310px;background-position:center center}.lessons{grid-template-columns:1fr}.container{padding:25px 15px 50px}.topbar-inner{padding:13px 15px}.practical{align-items:flex-start;flex-wrap:wrap}.practical .login-link{width:100%;color:#111!important;background:#cbb77a!important}.section-heading{display:block}.section-heading p{font-size:14px}}
+
+  </style>
+
+</head>
+
+<body>
+
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">عرّاب الشبكات</a><a class="back" href="lessons.html">العودة إلى الدروس</a></div></header>
+
+  <main class="container">
+
+    <section class="hero">
+
+      <div class="eyebrow">FIBER OPTICS ACADEMY</div>
+
+      <h1>أكاديمية الفايبر أوبتك</h1>
+
+      <p>تعلّم الألياف الضوئية خطوة بخطوة؛ من فهم انتقال الضوء وأنواع الكوابل، إلى الموصلات والـ ODF واللحام وقراءة قياسات القدرة وفحص الأعطال. افتح أي درس لقراءة الشرح النظري.</p>
+
+      <div class="stats"><span class="stat">10 دروس نظرية</span></div>
+
+    </section>
+
+
+
+    <div class="section-heading"><div><h2>دروس الفايبر</h2><p>ابدأ بالدرس الأول، ثم تابع بالترتيب أو اختر الموضوع الذي تحتاجه.</p></div></div>
+
+    <section class="lessons" aria-label="دروس الفايبر النظرية">
+
+      <details class="lesson" open>
+
+        <summary><span class="number">01</span><span class="summary-text"><h3>مقدمة في الألياف الضوئية</h3><p>ما الفايبر؟ وكيف تنتقل البيانات عبر الضوء؟</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p>الألياف الضوئية <span class="term">Fiber Optics</span> وسيط نقل يستخدم نبضات ضوئية لإرسال البيانات عبر خيط رفيع من الزجاج أو البلاستيك. تُستخدم في الربط بين المباني والمواقع، وشبكات مزودي الخدمة، ومراكز البيانات.</p><h4>ممّ يتكوّن الليف؟</h4><ul><li><b>Core — القلب:</b> الجزء الذي ينتقل الضوء داخله.</li><li><b>Cladding — الغلاف البصري:</b> يحيط بالقلب ويساعد على إبقاء الضوء داخله بفعل الانعكاس الكلي الداخلي.</li><li><b>Coating — الطبقة الواقية:</b> تحمي الليف من الرطوبة والخدوش والإجهاد.</li></ul><div class="tip">ميزة مهمة: الفايبر مناسب للمسافات الطويلة وعرض النطاق العالي، كما أنه أقل تأثرًا بالتداخل الكهرومغناطيسي من الكوابل النحاسية.</div></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">02</span><span class="summary-text"><h3>Single-Mode وMulti-Mode</h3><p>الفرق بين الليف أحادي النمط ومتعدد الأنماط.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p><b>Single-Mode (SM):</b> قلب صغير، غالبًا نحو 9 ميكرومتر، ويُستخدم عادةً للمسافات الطويلة وروابط الاتصالات. من أشهر فئاته OS1 وOS2.</p><p><b>Multi-Mode (MM):</b> قلب أكبر، غالبًا 50 أو 62.5 ميكرومتر، ويُستخدم كثيرًا داخل المباني ومراكز البيانات لمسافات أقصر. من فئاته OM1 وOM2 وOM3 وOM4 وOM5.</p><h4>كيف أختار؟</h4><p>يعتمد الاختيار على المسافة، ومعدل البيانات، ونوع المنافذ والوحدات الضوئية، والميزانية، ومعايير الشبكة. لا يكفي لون الكابل وحده لتحديد توافقه.</p></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">03</span><span class="summary-text"><h3>أنواع الكوابل OS1 وOS2 وOM1–OM5</h3><p>قراءة التصنيفات ومجالات الاستخدام.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><ul><li><b>OS1 / OS2:</b> تصنيفات للألياف أحادية النمط؛ ويشيع استخدام OS2 في البنية التحتية والربط لمسافات طويلة.</li><li><b>OM1 / OM2:</b> ألياف متعددة الأنماط أقدم، وتظهر في بعض التركيبات القائمة.</li><li><b>OM3 / OM4:</b> ألياف متعددة الأنماط محسّنة لتطبيقات أسرع داخل المنشآت ومراكز البيانات.</li><li><b>OM5:</b> ليف متعدد الأنماط واسع النطاق يدعم تطبيقات محددة تستخدم أطوالًا موجية متعددة.</li></ul><div class="tip">قبل شراء الكابل، راجع مواصفات الرابط والوحدات الضوئية ونوع الليف والمسافة المطلوبة؛ التصنيف وحده لا يضمن أن الرابط سيعمل.</div></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">04</span><span class="summary-text"><h3>الموصلات SC وLC وFC</h3><p>التعرّف على أشكال الموصلات واستخداماتها.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p><b>SC:</b> موصل بآلية دفع وسحب، حجمه أكبر نسبيًا ويظهر كثيرًا في لوحات التوزيع.</p><p><b>LC:</b> موصل صغير الحجم، شائع في سويتشات الشبكات ووحدات SFP بسبب كثافة المنافذ.</p><p><b>FC:</b> موصل لولبي يُستخدم في بعض تجهيزات القياس والاتصالات.</p><p>قد تجد نهايات مثل <span class="term">UPC</span> و<span class="term">APC</span>. تختلف طريقة صقل النهاية، ولا ينبغي وصل نوعي الصقل المختلفين مباشرةً. افحص نوع الموصل المطلوب في طرفي الرابط.</p><div class="tip">سلامة العمل أولًا: لا تنظر أبدًا مباشرةً داخل موصل أو منفذ فايبر؛ فقد يكون هناك ضوء ليزري غير مرئي.</div></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">05</span><span class="summary-text"><h3>ODF وPatch Cord وPigtail</h3><p>مكوّنات تنظيم وإنهاء الألياف داخل الكابينة.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p><b>ODF — Optical Distribution Frame:</b> لوحة أو وحدة لتنظيم الألياف وإنهائها وتسهيل الربط والصيانة.</p><p><b>Patch Cord:</b> وصلة فايبر جاهزة بموصلات في الطرفين، تُستخدم للربط بين منافذ الـ ODF والأجهزة أو بين لوحات التوزيع.</p><p><b>Pigtail:</b> ليفة قصيرة بموصل في طرف واحد، ويُلحَم طرفها الآخر مع الليف القادم من الكابل.</p><p>نظّم الألياف داخل الكاسيت، والتزم بنصف قطر الانحناء المسموح من الشركة المصنّعة، وضع تسميات واضحة لكل ليف ومنفذ.</p></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">06</span><span class="summary-text"><h3>لحام الألياف الضوئية Splicing</h3><p>فكرة اللحام الانصهاري ومراحل التجهيز.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p>اللحام الانصهاري <span class="term">Fusion Splicing</span> يدمج طرفي ليفين باستخدام جهاز لحام مخصص بهدف إنشاء اتصال دائم منخفض الفقد.</p><h4>المراحل العامة</h4><ol><li>تجهيز الكابل وتثبيت الليف وفق إجراءات السلامة.</li><li>تجريد الطبقة الواقية بالطريقة المناسبة.</li><li>تنظيف الليف بأدوات ومواد مخصصة.</li><li>قص الطرف بقاطع دقيق <span class="term">Cleaver</span>.</li><li>محاذاة الليفين وتنفيذ اللحام بالجهاز.</li><li>حماية نقطة اللحام بغطاء حراري وتثبيتها في صينية اللحام.</li></ol><p>يعرض جهاز اللحام تقديرًا للفقد، لكن التحقق من جودة الرابط قد يتطلب قياسًا مستقلًا. يجب جمع بقايا الألياف والتخلص منها في حاوية مناسبة.</p></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">07</span><span class="summary-text"><h3>فهم dB وdBm وفقد الإشارة</h3><p>الفرق بين قياس القدرة ومقدار الفقد.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p><b>dBm:</b> وحدة تعبّر عن القدرة الضوئية نسبةً إلى 1 ملي واط؛ وهي قراءة مطلقة للقدرة.</p><p><b>dB:</b> وحدة تعبّر عن نسبة أو فرق بين مستويين، وتُستخدم لوصف الفقد أو الكسب.</p><p>مثال توضيحي: إذا كانت القدرة عند الإرسال +3 dBm، والقدرة المستقبلة −7 dBm، فإن الفرق بينهما 10 dB. هذا الفرق هو الفقد الإجمالي الظاهر بين نقطتي القياس، وقد يشمل الكابل والموصلات واللحامات وعناصر أخرى.</p><h4>ميزانية الرابط الضوئي</h4><p>تُقارن قدرة الإرسال وحساسية الاستقبال مع الفقد المتوقع في الكابل والموصلات واللحامات وأي عناصر أخرى، مع ترك هامش هندسي مناسب وفق مواصفات الأجهزة والرابط.</p><div class="tip">لا تقارن قراءتين إلا بعد التأكد من وحدة القياس، والطول الموجي، ونقطة القياس، وحالة تنظيف الموصلات.</div></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">08</span><span class="summary-text"><h3>وحدات SFP وSFP+ والأطوال الموجية</h3><p>كيف يرسل السويتش البيانات عبر الفايبر؟</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p>وحدات <span class="term">SFP</span> و<span class="term">SFP+</span> وحدات إرسال واستقبال قابلة للاستبدال تُركّب في المنافذ المتوافقة. تختلف حسب سرعة البيانات، ونوع الليف، والمدى، والطول الموجي، ونوع الموصل.</p><p>من الأطوال الموجية الشائعة في تطبيقات الفايبر 850 nm و1310 nm و1550 nm، لكن استخدامها يعتمد على نوع الوحدة ومعيارها. توجد وحدات مخصصة لـ Single-Mode وأخرى لـ Multi-Mode.</p><h4>قبل تركيب الوحدة</h4><ul><li>تحقق من توافق الوحدة مع طراز الجهاز وإصدار النظام.</li><li>طابق نوع الليف والطول الموجي والمدى بين الطرفين.</li><li>تحقق من السرعة والموصل، ومن دعم الوحدات في الجهاز.</li><li>في الوحدات ثنائية الليف، راعِ توصيل الإرسال في طرف بالاستقبال في الطرف الآخر.</li></ul></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">09</span><span class="summary-text"><h3>أجهزة الفحص: Power Meter وLight Source وOTDR</h3><p>ما وظيفة كل جهاز ومتى نستخدمه؟</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><p><b>Optical Power Meter:</b> يقيس القدرة الضوئية الواصلة إلى نقطة القياس، عادةً بوحدة dBm.</p><p><b>Optical Light Source:</b> مصدر ضوئي معلوم يُستخدم مع مقياس القدرة لقياس فقد الإدخال في الرابط وفق طريقة القياس المناسبة.</p><p><b>OTDR:</b> يرسل نبضات ضوئية إلى الليف ويحلل الضوء المرتد لتقدير مواقع الأحداث والمسافة والفقد، وقد يساعد على تحديد موضع قطع أو لحام أو انعكاس.</p><p>الأجهزة ليست بدائل متطابقة: مقياس القدرة يقيس القدرة عند نقطة، بينما يساعد OTDR في إظهار أحداث على امتداد الليف. اتبع إجراء الاختبار المناسب لطول الرابط ونوعه.</p></div>
+
+      </details>
+
+      <details class="lesson">
+
+        <summary><span class="number">10</span><span class="summary-text"><h3>استكشاف أعطال الفايبر</h3><p>من انقطاع الرابط إلى ضعف القدرة الضوئية.</p></span><span class="chevron">⌄</span></summary>
+
+        <div class="lesson-body"><h4>تسلسل فحص مبدئي</h4><ol><li>تحقق من حالة المنفذ ورسائل الجهاز، ومن توافق وحدات الإرسال والاستقبال.</li><li>افحص الكابل بصريًا بحثًا عن قطع أو انحناء حاد أو تلف ظاهر.</li><li>تحقق من نوع الموصل والليف، ومن توصيل الإرسال والاستقبال بصورة صحيحة.</li><li>نظّف الموصلات بأدوات مخصصة وافحصها بأداة فحص مناسبة قبل إعادة التوصيل.</li><li>اقرأ مستويات الإرسال والاستقبال من الجهاز إن كانت متاحة.</li><li>استخدم مقياس القدرة أو OTDR عند الحاجة، ثم قارن النتائج بالقيم المرجعية ومواصفات الرابط.</li></ol><p>الأسباب المحتملة تشمل اتساخ الموصلات، أو عدم التوافق بين الوحدات، أو فقدًا مرتفعًا في لحام أو موصل، أو انحناءً زائدًا، أو تلفًا في الكابل، أو مشكلة في الجهاز نفسه.</p><div class="tip">لا تفصل وحدات أو توصلها عشوائيًا في رابط تشغيلي؛ اتبع إجراءات الموقع، وتأكد من وجود تصريح عند الحاجة.</div></div>
+
+      </details>
+
+    </section>
+
+
+
+    <section class="practical" aria-label="تطبيقات الفايبر العملية">
+
+      <div class="lock-icon" aria-hidden="true">🔒</div>
+
+      <div class="practical-copy"><h2>مختبر الفايبر والتطبيقات العملية</h2><p>التطبيقات التفاعلية وقياس ميزانية الرابط ومحاكاة الأعطال ستكون متاحة بعد تسجيل الدخول. قراءة الدروس النظرية أعلاه متاحة للجميع.</p></div>
+
+      <a class="login-link" href="login.html">تسجيل الدخول للتطبيق العملي</a>
+
+    </section>
+
+    <p class="footer-note">عرّاب الشبكات — تعلّم الأساسيات أولًا، ثم انتقل إلى التطبيق العملي. المعلومات التعليمية لا تغني عن اتباع تعليمات السلامة ومواصفات الأجهزة المستخدمة.</p>
+
+  </main>
+
+</body>
+
+</html>

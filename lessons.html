@@ -450,6 +450,165 @@
         }
 
         /* =========================
+           CATEGORIES: NETWORKING / FIBER
+        ========================= */
+        .lesson-categories {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin: 8px 0 34px;
+            align-items: stretch;
+        }
+
+        .category-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+            padding: 30px;
+            overflow: hidden;
+            text-align: right;
+            border: 1px solid rgba(203,183,122,.25);
+            border-radius: 22px;
+            background: linear-gradient(145deg, rgba(203,183,122,.09), rgba(255,255,255,.018) 58%, rgba(7,89,133,.10));
+            box-shadow: 0 16px 34px rgba(0,0,0,.18);
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+
+        .category-card:hover, .category-card:focus-visible {
+            transform: translateY(-4px);
+            border-color: rgba(203,183,122,.65);
+            box-shadow: 0 22px 42px rgba(0,0,0,.28);
+            outline: none;
+        }
+
+        .category-image {
+            display: block;
+            width: calc(100% + 60px);
+            max-width: none;
+            height: 190px;
+            margin: -30px -30px 24px;
+            object-fit: cover;
+            object-position: center;
+            border-bottom: 1px solid rgba(203,183,122,.22);
+        }
+
+        /* بطاقة الراوتر والسويتش: استخدام صورة مسار التعلّم الموجودة بالمشروع */
+        .category-card.network-category {
+            min-height: 480px;
+            justify-content: flex-end;
+            isolation: isolate;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            background: #080b10;
+        }
+        .category-card.network-category::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(3,7,12,.18) 0%, rgba(3,7,12,.30) 35%, rgba(3,7,12,.80) 68%, rgba(3,7,12,.96) 100%);
+        }
+        .category-card.network-category .network-card-image {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            object-fit: cover;
+            object-position: center;
+            border: 0;
+        }
+        .category-card.network-category .category-icon,
+        .category-card.network-category h3,
+        .category-card.network-category p,
+        .category-card.network-category .category-meta {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,.92);
+        }
+        .category-card.network-category h3 { color: #ffe09a; font-size: 28px; }
+        .category-card.network-category p { color: #fff; }
+        .category-card.network-category .category-meta { color: #ffdc83; }
+
+        /* بطاقة الفايبر: الصورة تغطي البطاقة والنصوص فوقها */
+        .category-card.fiber {
+            min-height: 480px;
+            justify-content: flex-end;
+            isolation: isolate;
+            background: #080b10;
+        }
+        .category-card.fiber::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(3,7,12,.08) 0%, rgba(3,7,12,.18) 32%, rgba(3,7,12,.82) 63%, rgba(3,7,12,.97) 100%);
+        }
+        .category-card.fiber .category-image {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            object-fit: cover;
+            object-position: center;
+            border: 0;
+        }
+        .category-card.fiber .category-icon,
+        .category-card.fiber h3,
+        .category-card.fiber p,
+        .category-card.fiber .category-meta {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,.9);
+        }
+        .category-card.fiber h3 { color: #ffe09a; font-size: 28px; }
+        .category-card.fiber p { color: #fff; }
+        .category-card.fiber .category-meta { color: #ffdc83; }
+
+        .category-icon {
+            display: grid;
+            place-items: center;
+            width: 62px;
+            height: 62px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(203,183,122,.28);
+            border-radius: 17px;
+            background: rgba(203,183,122,.11);
+            color: #e8d69a;
+            font-size: 30px;
+        }
+
+        .category-card h3 { margin: 0 0 10px; color: #f5e8bc; font-size: 25px; }
+        .category-card p { margin: 0; color: #a4abb5; line-height: 1.9; font-size: 15px; }
+        .category-meta { margin-top: auto; padding-top: 24px; color: #cbb77a; font-weight: 800; }
+        .category-card.fiber .category-icon { color: #8edcff; border-color: rgba(125,211,252,.45); background: rgba(7,25,38,.72); }
+        .section-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 22px;
+            padding: 10px 16px;
+            border: 1px solid rgba(203,183,122,.25);
+            border-radius: 10px;
+            color: #cbb77a;
+            background: rgba(203,183,122,.06);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .section-back:hover { background: #cbb77a; color: #111; }
+        .guest-progress-note { margin: 0 0 24px; color: #9ca3af; font-size: 13px; line-height: 1.8; }
+
+        /* =========================
            RESPONSIVE
         ========================= */
 
@@ -477,7 +636,10 @@
 
         }
 
-    </style>
+            @media (max-width: 700px) {
+            .category-card.fiber { min-height: 420px; padding: 24px; }
+        }
+        </style>
     <link rel="stylesheet" href="site-theme.css">
 </head>
 
@@ -534,7 +696,7 @@
              OVERALL PROGRESS
         ========================= -->
 
-        <section class="overall-progress">
+        <section class="overall-progress" style="display:none">
 
             <div class="progress-top">
 
@@ -756,6 +918,7 @@
         ========================================== */
 
         let completedLessons = [];
+        let isLoggedIn = false;
 
 
         /* ==========================================
@@ -774,14 +937,18 @@
 
 
                 if (!session) {
-
-                    window.location.href =
-                        "login.html";
-
+                    // القراءة النظرية متاحة للزوار؛ التطبيقات العملية تتطلب حسابًا.
+                    isLoggedIn = false;
+                    completedLessons = [];
+                    const progressSection = document.querySelector(".overall-progress");
+                    if (progressSection) progressSection.style.display = "none";
+                    renderCategories();
                     return;
-
                 }
 
+                isLoggedIn = true;
+                const progressSection = document.querySelector(".overall-progress");
+                if (progressSection) progressSection.style.display = "";
 
                 const {
                     data,
@@ -809,16 +976,55 @@
                 }
 
 
-                renderPaths();
+                renderCategories();
 
             } catch (error) {
-
                 console.error(error);
-
+                // لا نمنع الزائر من الوصول إلى محتوى الدروس إذا تعذر تحميل حالة الحساب.
+                isLoggedIn = false;
+                completedLessons = [];
+                const progressSection = document.querySelector(".overall-progress");
+                if (progressSection) progressSection.style.display = "none";
+                renderCategories();
             }
 
         }
 
+
+        /* ==========================================
+           صفحة اختيار قسم الدروس
+        ========================================== */
+        function renderCategories() {
+            const container = document.getElementById("pathsContainer");
+            if (!container) return;
+
+            container.innerHTML = `
+                <section class="lesson-categories" aria-label="أقسام الدروس">
+                    <button type="button" class="category-card network-category" id="networkLessonsCard">
+                        <img class="network-card-image" src="images/learning-journey-practice.webp" alt="تعلم الشبكات وأجهزة الراوتر والسويتش" loading="eager" decoding="async">
+                        <span class="category-icon" aria-hidden="true">⌘</span>
+                        <h3>الراوتر والسويتش</h3>
+                        <p>جميع دروس الشبكات الموجودة حاليًا، من الأساسيات وعناوين IP إلى Switching وVLAN وRouting والحماية واستكشاف الأعطال والاختبار النهائي، مع الحفاظ على ترتيبها الحالي.</p>
+                        <span class="category-meta">عرض جميع الدروس ←</span>
+                    </button>
+                    <a class="category-card fiber" href="fiber.html">
+                        <img class="category-image" src="images/fiber-card.png" alt="كابلات وألياف ضوئية داخل لوحة توزيع فايبر" loading="lazy" decoding="async">
+                        <span class="category-icon" aria-hidden="true">〰</span>
+                        <h3>الفايبر أوبتك</h3>
+                        <p>قسم مستقل لتعلّم الألياف الضوئية، وأنواع الفايبر والموصلات والـ ODF واللحام وقياس الإشارة وفحص الأعطال. ستُضاف محتوياته تدريجيًا.</p>
+                        <span class="category-meta">الدخول إلى قسم الفايبر ←</span>
+                    </a>
+                </section>
+                <p class="guest-progress-note">يمكنك قراءة الدروس النظرية دون تسجيل دخول. تسجيل الدخول مطلوب لحفظ التقدم واستخدام التطبيقات العملية.</p>
+            `;
+
+            document.getElementById("networkLessonsCard").addEventListener("click", () => {
+                renderPaths();
+                const progressSection = document.querySelector(".overall-progress");
+                if (progressSection) progressSection.style.display = isLoggedIn ? "" : "none";
+                container.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        }
 
         /* ==========================================
            عرض المسارات
@@ -835,8 +1041,10 @@
             if (!container) return;
 
 
-            container.innerHTML = "";
-
+            container.innerHTML = `
+                <button type="button" class="section-back" id="backToLessonCategories">→ العودة إلى أقسام الدروس</button>
+            `;
+            document.getElementById("backToLessonCategories").addEventListener("click", renderCategories);
 
             paths.forEach((path, pathIndex) => {
 
@@ -990,14 +1198,17 @@
 
     ${
         lesson.id === 9
-            ? `
-                <a
-                    href="subnetting.html"
-                    class="lesson-btn practical-btn"
-                >
-                    🧪 العملي
-                </a>
-            `
+            ? isLoggedIn
+                ? `
+                    <a href="subnetting.html" class="lesson-btn practical-btn">
+                        🧪 التطبيق العملي
+                    </a>
+                  `
+                : `
+                    <a href="login.html" class="lesson-btn practical-btn" title="يتطلب تسجيل الدخول">
+                        🔒 سجّل الدخول للتطبيق العملي
+                    </a>
+                  `
             : ""
     }
 

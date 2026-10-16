@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="مكتبة فيديوهات ومصادر يوتيوب لتعلّم الشبكات باللغة العربية.">
+  <title>مكتبة الفيديو التعليمية | عرّاب الشبكات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="site-theme.css">
+  <style>
+    :root { --yt-gold: #cbb77a; --yt-bg: #101114; --yt-panel: #181a20; }
+    body { background: var(--yt-bg); color: #f5f2e9; font-family: 'Tajawal', sans-serif; }
+    .yt-page { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 54px 0 76px; }
+    .yt-hero { position: relative; isolation: isolate; overflow: hidden; min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(26px, 5vw, 52px); border: 1px solid rgba(203,183,122,.5); border-radius: 24px; background: #101114; }
+    .yt-hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; z-index: -2; }
+    .yt-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8,10,14,.62), rgba(8,10,14,.78)); }
+    .yt-hero > * { position: relative; z-index: 1; }
+    .yt-hero h1 { max-width: 760px; width: 100%; text-align: center; text-shadow: 0 2px 14px rgba(0,0,0,.65); }
+    .yt-hero p { max-width: 760px; width: 100%; margin-inline: auto; text-align: center; color: #f2f0eb; text-shadow: 0 2px 8px rgba(0,0,0,.8); }
+    .yt-hero { position: relative; isolation: isolate; overflow: hidden; min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(26px, 5vw, 52px); border: 1px solid rgba(203,183,122,.5); border-radius: 24px; background: #101114; }
+    .yt-hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; z-index: -2; }
+    .yt-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8,10,14,.62), rgba(8,10,14,.78)); }
+    .yt-kicker { color: var(--yt-gold); font-weight: 800; text-align: center; }
+    .yt-hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 12px 0; }
+    .yt-hero p { color: #c9c9c9; line-height: 2; max-width: 760px; }
+    .yt-section-title { margin: 32px 0 16px; font-size: 1.55rem; }
+    .yt-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .yt-card { padding: 24px; border: 1px solid rgba(203,183,122,.23); border-radius: 18px; background: var(--yt-panel); }
+    .yt-card h3 { color: var(--yt-gold); margin: 0 0 8px; font-size: 1.3rem; }
+    .yt-card p { color: #c9c9c9; line-height: 1.8; margin: 0 0 18px; }
+    /* High-contrast action buttons: override global site link styles */
+    .yt-card a, .yt-card a:link, .yt-card a:visited { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 0; color: #171717 !important; -webkit-text-fill-color: #171717; background: #cbb77a !important; padding: 12px 16px; border: 1px solid #e4d39b; border-radius: 9px; text-decoration: none !important; font-weight: 900; line-height: 1.5; text-shadow: none !important; box-shadow: 0 2px 0 rgba(0,0,0,.18); transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+    .yt-card a:hover { color: #111 !important; -webkit-text-fill-color: #111; background: #ead79b !important; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.22); }
+    .yt-card a:focus-visible { outline: 3px solid #fff1b8; outline-offset: 3px; color: #111 !important; -webkit-text-fill-color: #111; }
+    .yt-card a:active { transform: translateY(0); }
+    .yt-note { color: #aaa; line-height: 1.9; font-size: .95rem; margin-top: 24px; }
+    .yt-back { display: inline-block; margin-bottom: 22px; color: var(--yt-gold); text-decoration: none; font-weight: 800; }
+    @media (max-width: 700px) { .yt-grid { grid-template-columns: 1fr; } .yt-page { padding-top: 28px; } }
+  </style>
+</head>
+<body>
+  <header class="navbar home-navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="brand">
+        <span class="brand-icon home-brand-icon"><img class="network-logo-image" src="images/network-logo.svg" alt="شعار عرّاب الشبكات"></span>
+        <span class="brand-text"><span class="brand-name">عرّاب الشبكات</span><span class="brand-subtitle">NETWORKS</span></span>
+      </a>
+      <nav class="nav-links home-nav-links">
+        <a href="index.html">⌂ الرئيسية</a><a href="lessons.html">▤ الدروس</a><a href="quiz.html">▣ اختبر معلوماتك</a><a href="config.html">▧ مرجع الأوامر</a>
+      </nav>
+    </div>
+  </header>
+  <main class="yt-page">
+    <a class="yt-back" href="index.html">→ العودة إلى الصفحة الرئيسية</a>
+    <section class="yt-hero">
+      <img class="yt-hero-image" src="images/youtube-library.png" alt="مكتبة فيديو تعليم الشبكات" fetchpriority="high">
+      <span class="yt-kicker">مصادر خارجية مختارة</span>
+      <h1>مكتبة الفيديو التعليمية</h1>
+      <p>ابدأ من الأساسيات ثم انتقل إلى إعداد الأجهزة وحل المشكلات. الروابط أدناه تفتح نتائج بحث يوتيوب محددة لكل موضوع، حتى تتمكن من اختيار الشرح المناسب وحداثة المحتوى بنفسك.</p>
+    </section>
+    <h2 class="yt-section-title">ابدأ من هنا</h2>
+    <section class="yt-grid">
+      <article class="yt-card"><h3>أساسيات الشبكات</h3><p>تعرّف على LAN وWAN، ونموذج OSI، ومكونات الشبكة وطريقة انتقال البيانات.</p><a href="https://www.youtube.com/results?search_query=شرح+أساسيات+الشبكات+باللغة+العربية" target="_blank" rel="noopener noreferrer">مشاهدة الشروحات على يوتيوب ↗</a></article>
+      <article class="yt-card"><h3>IP وSubnetting</h3><p>تدرّب على عناوين IP، وقناع الشبكة، وCIDR، وحساب الشبكات الفرعية.</p><a href="https://www.youtube.com/results?search_query=شرح+Subnetting+بالعربي+خطوة+بخطوة" target="_blank" rel="noopener noreferrer">مشاهدة شروحات Subnetting ↗</a></article>
+      <article class="yt-card"><h3>Cisco وCCNA</h3><p>تعلّم أساسيات السويتش والراوتر، وتهيئة الأجهزة، ومفاهيم منهج CCNA.</p><a href="https://www.youtube.com/results?search_query=دورة+CCNA+كاملة+بالعربي" target="_blank" rel="noopener noreferrer">البحث عن دورات CCNA ↗</a></article>
+      <article class="yt-card"><h3>Huawei وVRP</h3><p>تعرّف على واجهة CLI وأوامر Huawei، وإعداد VLAN والمنافذ والتوجيه.</p><a href="https://www.youtube.com/results?search_query=شرح+سويتشات+Huawei+VRP+بالعربي" target="_blank" rel="noopener noreferrer">مشاهدة شروحات Huawei ↗</a></article>
+      <article class="yt-card"><h3>VLAN وTrunk</h3><p>افهم تقسيم الشبكة إلى VLAN، وتهيئة منافذ Access وTrunk، وحل مشكلات الاتصال.</p><a href="https://www.youtube.com/results?search_query=شرح+VLAN+و+Trunk+بالعربي" target="_blank" rel="noopener noreferrer">مشاهدة شروحات VLAN ↗</a></article>
+      <article class="yt-card"><h3>Routing وOSPF</h3><p>انتقل إلى التوجيه الثابت، والبوابة الافتراضية، ومبادئ بروتوكول OSPF.</p><a href="https://www.youtube.com/results?search_query=شرح+Routing+و+OSPF+بالعربي+شبكات" target="_blank" rel="noopener noreferrer">مشاهدة شروحات التوجيه ↗</a></article>
+      <article class="yt-card"><h3>DHCP واستكشاف الأعطال</h3><p>تعلّم توزيع عناوين IP تلقائيًا، واستخدام أوامر الفحص لتحديد سبب المشكلة.</p><a href="https://www.youtube.com/results?search_query=شرح+DHCP+واستكشاف+أعطال+الشبكات+بالعربي" target="_blank" rel="noopener noreferrer">مشاهدة الشروحات العملية ↗</a></article>
+      <article class="yt-card"><h3>VPN وربط المواقع</h3><p>تعرّف على المفاهيم الأساسية لربط المواقع البعيدة والأنفاق الآمنة.</p><a href="https://www.youtube.com/results?search_query=شرح+Site+to+Site+VPN+شبكات+بالعربي" target="_blank" rel="noopener noreferrer">البحث عن شروحات VPN ↗</a></article>
+    </section>
+    <p class="yt-note">تنبيه: هذه الروابط تفتح نتائج البحث في يوتيوب وليست تأكيدًا على اعتماد فيديو أو قناة بعينها. اختر محتوى واضحًا وحديثًا، وطبّق الأوامر في بيئة تجريبية قبل استخدامها على شبكة فعلية.</p>
+  </main>
+</body>
+</html>
