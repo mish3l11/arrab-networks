@@ -1,1 +1,149 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مختبر الفايبر | عرّاب الشبكات</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090a0d;color:#f5f5f5;font-family:Tajawal,sans-serif;padding:24px}
+main{max-width:1100px;margin:auto}
+header,.panel{background:#121317;border:1px solid #484333;border-radius:20px;padding:25px;margin-bottom:20px}
+h1,h2{color:#cbb77a}
+p{color:#c6c6c9;line-height:1.9}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+label{display:block;margin:14px 0 6px;font-weight:700}
+input,select{width:100%;padding:12px;border:1px solid #45454a;border-radius:10px;background:#202126;color:white;font:inherit}
+button,.btn{display:inline-block;border:0;border-radius:10px;padding:12px 18px;background:#cbb77a;color:#111;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;margin-top:15px}
+.result{padding:16px;margin-top:15px;border-radius:12px;background:#202126;line-height:1.9}
+.muted{color:#aaa;font-size:.92rem}
+.hidden{display:none!important}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+@media(max-width:600px){body{padding:12px}header,.panel{padding:18px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="topline">
+<h1>مختبر الفايبر والتطبيقات العملية</h1>
+<a class="btn" href="fiber.html">العودة للدروس</a>
+</div>
+<p>تدرّب على حساب ميزانية الرابط الضوئي، وافهم كيف يؤثر الفقد في جودة اتصال الفايبر.</p>
+<div id="status" class="muted">جارٍ التحقق من تسجيل الدخول...</div>
+</header>
+
+<div id="lab" class="hidden">
+<div class="grid">
+<section class="panel">
+<h2>حاسبة ميزانية الرابط</h2>
+<p>أدخل قيمًا افتراضية أو قيمًا من تصميم الرابط لديك.</p>
+<label for="tx">قدرة الإرسال (dBm)</label>
+<input id="tx" type="number" value="0" step="0.1">
+<label for="rx">حساسية الاستقبال (dBm)</label>
+<input id="rx" type="number" value="-20" step="0.1">
+<label for="length">طول الكابل (كم)</label>
+<input id="length" type="number" value="5" min="0" step="0.1">
+<label for="attenuation">فقد الكابل (dB/km)</label>
+<input id="attenuation" type="number" value="0.35" min="0" step="0.01">
+<label for="connectors">فقد الموصلات واللحامات الإجمالي (dB)</label>
+<input id="connectors" type="number" value="2" min="0" step="0.1">
+<button id="calculate" type="button">احسب الميزانية</button>
+<div id="budgetResult" class="result" aria-live="polite">أدخل القيم ثم اضغط حساب.</div>
+<p class="muted">الحساب تقديري للتدريب. تحقّق من مواصفات الوحدات والكابل والهوامش الهندسية قبل اعتماد أي رابط فعلي.</p>
+</section>
+
+<section class="panel">
+<h2>محاكي أعطال الفايبر</h2>
+<p>اختر حالة تدريبية، ثم اعرض التفسير والخطوات المقترحة.</p>
+<label for="fault">الحالة</label>
+<select id="fault">
+<option value="dirty">اتساخ موصل ضوئي</option>
+<option value="bend">انحناء حاد في الكابل</option>
+<option value="splice">فقد مرتفع في اللحام</option>
+<option value="mismatch">عدم توافق نوع الوحدة الضوئية</option>
+<option value="normal">الرابط يعمل ضمن القيم المتوقعة</option>
+</select>
+<button id="diagnose" type="button">حلّل الحالة</button>
+<div id="faultResult" class="result" aria-live="polite">اختر حالة ثم اضغط تحليل.</div>
+</section>
+</div>
+</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script>
+(async function(){
+ const status=document.getElementById("status");
+ const lab=document.getElementById("lab");
+
+ if(typeof supabaseClient==="undefined"){
+   status.textContent="تعذر تحميل إعدادات تسجيل الدخول. تحقق من ملف supabase.js.";
+   return;
+ }
+
+ try{
+   const {data,error}=await supabaseClient.auth.getSession();
+   if(error) throw error;
+   if(!data.session){
+     const next=encodeURIComponent("fiber-lab.html");
+     window.location.replace("login.html?next="+next);
+     return;
+   }
+   status.textContent="تم التحقق من تسجيل الدخول.";
+   lab.classList.remove("hidden");
+ }catch(e){
+   console.error(e);
+   status.textContent="تعذر التحقق من الجلسة. حدّث الصفحة أو سجّل الدخول مجددًا.";
+ }
+})();
+
+document.getElementById("calculate").addEventListener("click",()=>{
+ const tx=Number(document.getElementById("tx").value);
+ const rx=Number(document.getElementById("rx").value);
+ const length=Number(document.getElementById("length").value);
+ const attenuation=Number(document.getElementById("attenuation").value);
+ const connectors=Number(document.getElementById("connectors").value);
+ const out=document.getElementById("budgetResult");
+
+ if(![tx,rx,length,attenuation,connectors].every(Number.isFinite)||
+    length<0||attenuation<0||connectors<0){
+   out.textContent="تحقق من إدخال قيم صحيحة وغير سالبة للطول والفقد.";
+   return;
+ }
+ const budget=tx-rx;
+ const totalLoss=length*attenuation+connectors;
+ const margin=budget-totalLoss;
+ out.innerHTML=
+   "ميزانية الرابط المتاحة: <b>"+budget.toFixed(2)+" dB</b><br>"+
+   "الفقد المقدر للرابط: <b>"+totalLoss.toFixed(2)+" dB</b><br>"+
+   "الهامش المتبقي: <b>"+margin.toFixed(2)+" dB</b><br>"+
+   (margin>=0
+     ?"الفقد المحسوب ضمن الميزانية المدخلة؛ راجع هامش التصميم المطلوب."
+     :"الفقد المحسوب يتجاوز الميزانية المتاحة؛ راجع التصميم والمكونات.");
+});
+
+const faultInfo={
+ dirty:["اتساخ الموصل","افحص الموصل بأداة مناسبة، ونظّفه بأدوات مخصصة، ثم أعد القياس. لا تلمس سطح الموصل الضوئي."],
+ bend:["انحناء زائد","افحص مسار الكابل ونصف قطر الانحناء وفق مواصفات الشركة المصنّعة، وصحّح المسار ثم أعد القياس."],
+ splice:["فقد مرتفع في اللحام","راجع سجل اللحام وقياسات OTDR، وافحص نقاط اللحام وفق إجراءات الموقع."],
+ mismatch:["عدم توافق الوحدة الضوئية","تحقق من نوع الألياف والطول الموجي ومعدل البيانات ومدى الإرسال وتوافق الوحدات على الطرفين."],
+ normal:["لا يظهر عطل في الحالة الافتراضية","قارن قياسات الإرسال والاستقبال الفعلية بالقيم المحددة في مواصفات الجهاز وتصميم الرابط."]
+};
+document.getElementById("diagnose").addEventListener("click",()=>{
+ const item=faultInfo[document.getElementById("fault").value];
+ const out=document.getElementById("faultResult");
+ out.replaceChildren();
+ const title=document.createElement("strong");
+ title.textContent=item[0];
+ const text=document.createElement("p");
+ text.textContent=item[1];
+ out.append(title,text);
+});
+</script>
+</body>
+</html>
+
