@@ -450,7 +450,12 @@ loginForm.addEventListener(
 
             setTimeout(function() {
                 const requestedPage = new URLSearchParams(window.location.search).get("next");
-                const allowedPages = ["network-tools.html", "network-lab.html", "lab.html"];
+                const allowedPages = [
+    "network-tools.html",
+    "network-lab.html",
+    "lab.html",
+    "fiber-lab.html"
+];
                 window.location.replace(
                     allowedPages.includes(requestedPage) ? requestedPage : "profile.html"
                 );
